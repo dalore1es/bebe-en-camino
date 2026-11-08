@@ -1,0 +1,13 @@
+{
+  "name": "Bebé en Camino",
+  "short_name": "Bebé en Camino",
+  "lang": "es",
+  "start_url": "./",
+  "display": "standalone",
+  "background_color": "#f3f5f7",
+  "theme_color": "#2f6f8f",
+  "icons": [
+    {"src": "icon.svg", "sizes": "any", "type": "image/svg+xml"},
+    {"src": "icon-180.png", "sizes": "180x180", "type": "image/png"}
+  ]
+}

@@ -1,0 +1,785 @@
+<title>Bebé en Camino</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700&family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&display=swap">
+<style>
+/* Layout: a course app. Home = stage picker + next lesson + blocks with progress. Lesson = one reading column with prev/next. Night-light palette: deep ink, calm blue accent, warm amber for "your role", red only for alarms. */
+:root{
+  --bg:#f3f5f7; --surface:#ffffff; --ink:#1d2433; --muted:#5b6578; --line:#d9dee6;
+  --accent:#2f6f8f; --accent-soft:#e3eef4; --warm:#b76a1f; --warm-soft:#fbefe2;
+  --alarm:#b3362b; --alarm-soft:#fbe7e4; --ok:#2e7d55; --ok-soft:#e2f2e9;
+  --display:"Bricolage Grotesque","Avenir Next",system-ui,sans-serif;
+  --body:"Atkinson Hyperlegible","Segoe UI",system-ui,sans-serif;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#121722; --surface:#1a2130; --ink:#e7ebf2; --muted:#9aa5b8; --line:#2c3547;
+  --accent:#7db7d4; --accent-soft:#1d3240; --warm:#e8a35c; --warm-soft:#3a2a1a;
+  --alarm:#f08a7e; --alarm-soft:#3d1e1b; --ok:#7fcfa1; --ok-soft:#173326; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#121722; --surface:#1a2130; --ink:#e7ebf2; --muted:#9aa5b8; --line:#2c3547;
+  --accent:#7db7d4; --accent-soft:#1d3240; --warm:#e8a35c; --warm-soft:#3a2a1a;
+  --alarm:#f08a7e; --alarm-soft:#3d1e1b; --ok:#7fcfa1; --ok-soft:#173326; color-scheme:dark}
+
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font-family:var(--body);font-size:17px;line-height:1.55;
+  padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:10;background:var(--bg)}
+.wrap{max-width:720px;margin:0 auto;padding-block:12px 72px;display:flex;flex-direction:column;gap:32px}
+h1,h2,h3{font-family:var(--display);text-wrap:balance;line-height:1.15;margin:0}
+h1{font-size:2.1rem;font-weight:700;letter-spacing:-.01em}
+h2{font-size:1.5rem;font-weight:700}
+h3{font-size:1.1rem;font-weight:700}
+p{margin:0}
+a{color:var(--accent)}
+a:focus-visible,button:focus-visible,input:focus-visible,summary:focus-visible{outline:3px solid var(--accent);outline-offset:2px;border-radius:4px}
+.eyebrow{font-size:.78rem;text-transform:uppercase;letter-spacing:.09em;color:var(--muted);font-weight:700}
+.lead{color:var(--muted);max-width:62ch}
+.stack{display:flex;flex-direction:column;gap:14px}
+.note{font-size:.88rem;color:var(--muted)}
+
+/* Top bar */
+.bar{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--bg);padding-block:10px;border-bottom:1px solid var(--line);display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+.bar .home{font-family:var(--display);font-weight:700;text-decoration:none;color:var(--ink);font-size:1.05rem}
+.bar .tools{margin-left:auto;display:flex;gap:6px 14px;align-items:center;flex-wrap:wrap;font-size:.86rem;color:var(--muted)}
+.bar label{display:flex;gap:6px;align-items:center;cursor:pointer}
+.sos{font:inherit;font-size:.86rem;font-weight:700;color:var(--alarm);border:1.5px solid var(--alarm);background:var(--surface);border-radius:999px;padding:5px 12px;text-decoration:none}
+.sync::before{content:"";display:inline-block;width:8px;height:8px;border-radius:50%;background:var(--muted);margin-right:6px;vertical-align:1px}
+.sync[data-state="on"]::before{background:var(--ok)}
+
+/* Home */
+.chips{display:flex;gap:8px;overflow-x:auto;scrollbar-width:none;padding-bottom:2px}
+.chips::-webkit-scrollbar{display:none}
+.chip{flex:0 0 auto;border:1px solid var(--line);background:var(--surface);color:var(--ink);font:inherit;font-size:.92rem;padding:7px 13px;border-radius:999px;cursor:pointer;white-space:nowrap}
+.chip[aria-pressed="true"]{background:var(--accent);border-color:var(--accent);color:var(--bg);font-weight:700}
+.next{background:var(--accent-soft);border-radius:16px;padding:20px;display:flex;flex-direction:column;gap:12px}
+.next .go{align-self:flex-start}
+.overall{display:flex;align-items:center;gap:12px;font-size:.92rem;color:var(--muted);font-variant-numeric:tabular-nums}
+.meter{flex:1;height:8px;background:var(--line);border-radius:999px;overflow:hidden;min-width:60px}
+.meter i{display:block;height:100%;background:var(--ok);border-radius:999px}
+.blocks{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:12px}
+.block{min-width:0;background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:16px;display:flex;flex-direction:column;gap:8px;text-decoration:none;color:var(--ink)}
+.block:hover{border-color:var(--accent)}
+.block .num{font-family:var(--display);color:var(--muted);font-size:.85rem;font-variant-numeric:tabular-nums}
+.block h3{font-size:1.05rem}
+.block p{font-size:.9rem;color:var(--muted)}
+.block .overall{margin-top:auto}
+.rec{outline:2px solid var(--accent);outline-offset:-1px}
+.tag{display:inline-block;font-size:.7rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em;padding:2px 8px;border-radius:999px;background:var(--accent);color:var(--bg);margin-left:6px;vertical-align:2px}
+
+/* Block view */
+.lessons{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;background:var(--surface);border:1px solid var(--line);border-radius:14px}
+.lessons li+li{border-top:1px solid var(--line)}
+.lessons a{display:flex;gap:12px;align-items:center;padding:13px 16px;text-decoration:none;color:var(--ink)}
+.lessons .dot{flex:0 0 22px;height:22px;border-radius:50%;border:2px solid var(--line);display:grid;place-items:center;font-size:.75rem;color:var(--bg)}
+.lessons .done .dot{background:var(--ok);border-color:var(--ok)}
+.lessons .t{flex:1;min-width:0}
+.lessons .m{font-size:.82rem;color:var(--muted);white-space:nowrap}
+
+/* Lesson */
+.crumb{font-size:.88rem;color:var(--muted)}
+.crumb a{color:var(--muted)}
+.meta{display:flex;gap:8px;flex-wrap:wrap;align-items:center;font-size:.86rem;color:var(--muted)}
+.prio{display:inline-block;font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em;padding:2px 8px;border-radius:999px}
+.p1{background:var(--alarm-soft);color:var(--alarm)} .p2{background:var(--warm-soft);color:var(--warm)} .p3{background:var(--line);color:var(--muted)}
+.body{display:flex;flex-direction:column;gap:16px}
+.body ul,.body ol{margin:0;padding-left:1.25em;display:flex;flex-direction:column;gap:6px}
+.alarm{border:2px solid var(--alarm);border-radius:14px;padding:16px 18px;background:var(--surface);display:flex;flex-direction:column;gap:10px}
+.alarm h3{color:var(--alarm)}
+.callout{background:var(--warm-soft);border-radius:10px;padding:12px 14px;font-size:.96rem}
+.callout.ok{background:var(--ok-soft)}
+.callout.info{background:var(--accent-soft)}
+.role{background:var(--warm-soft);border-radius:10px;padding:12px 14px;font-size:.96rem}
+.role::before{content:"Tu papel · ";font-weight:700;color:var(--warm)}
+.practice{border:1.5px dashed var(--accent);border-radius:12px;padding:14px 16px;display:flex;flex-direction:column;gap:8px}
+.practice::before{content:"Practicadlo";font-family:var(--display);font-weight:700;color:var(--accent)}
+.remember{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:14px 16px;display:flex;flex-direction:column;gap:8px}
+.remember::before{content:"Para recordar";font-family:var(--display);font-weight:700}
+.dos{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:12px}
+.dos>div{min-width:0;background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:14px 16px;display:flex;flex-direction:column;gap:8px}
+.dos h3{font-size:1rem}
+.yes h3{color:var(--ok)} .no h3{color:var(--alarm)}
+.steps{counter-reset:s;list-style:none;padding:0!important}
+.steps>li{counter-increment:s;display:grid;grid-template-columns:32px 1fr;gap:10px;align-items:start}
+.steps>li::before{content:counter(s);width:28px;height:28px;border-radius:50%;background:var(--accent);color:var(--bg);display:grid;place-items:center;font-weight:700;font-family:var(--display)}
+.tbl{overflow-x:auto;border:1px solid var(--line);border-radius:12px;background:var(--surface)}
+table{border-collapse:collapse;width:100%;min-width:460px;font-size:.94rem}
+th,td{text-align:left;padding:10px 12px;border-bottom:1px solid var(--line);vertical-align:top}
+th{font-family:var(--display);font-size:.9rem}
+tr:last-child td{border-bottom:0}
+figure{margin:0;background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:14px;display:flex;flex-direction:column;gap:8px}
+figure svg{width:100%;height:auto;display:block}
+figcaption{font-size:.86rem;color:var(--muted)}
+.svg-txt{fill:var(--ink);font-family:var(--body);font-size:13px}
+.svg-small{fill:var(--muted);font-family:var(--body);font-size:11.5px}
+.src{font-size:.88rem;color:var(--muted)}
+.src ul{padding-left:1.2em;margin:4px 0 0}
+.copy{font-family:var(--display);font-weight:700;font-variant-numeric:tabular-nums;user-select:all}
+
+/* Sensitive */
+.sens{position:relative;border-radius:12px}
+.sens .veil{display:none}
+body.hide-sens .sens:not(.revealed) .content{filter:blur(14px);pointer-events:none;user-select:none;max-height:280px;overflow:hidden}
+body.hide-sens .sens:not(.revealed) .veil{display:flex;position:absolute;inset:0;z-index:2;align-items:center;justify-content:center;flex-direction:column;gap:10px;text-align:center;padding:16px;background:color-mix(in srgb,var(--bg) 55%,transparent);border-radius:12px}
+
+.btn{font:inherit;font-size:.95rem;border:1px solid var(--accent);background:var(--surface);color:var(--accent);padding:9px 16px;border-radius:999px;cursor:pointer;text-decoration:none;display:inline-flex;align-items:center;gap:6px}
+.btn.primary{background:var(--accent);color:var(--bg);font-weight:700}
+.btn.doneb{background:var(--ok);border-color:var(--ok);color:var(--bg);font-weight:700}
+.pager{display:flex;gap:10px;flex-wrap:wrap;justify-content:space-between;align-items:center;border-top:1px solid var(--line);padding-top:16px}
+
+/* Quiz */
+.quiz{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:16px 18px;display:flex;flex-direction:column;gap:10px}
+.opts{display:flex;flex-direction:column;gap:8px}
+.opt{font:inherit;text-align:left;border:1px solid var(--line);background:var(--bg);color:var(--ink);padding:10px 14px;border-radius:10px;cursor:pointer}
+.opt:hover:not(:disabled){border-color:var(--accent)}
+.opt:disabled{cursor:default}
+.opt.right{border-color:var(--ok);background:var(--ok-soft);font-weight:700}
+.opt.wrong{border-color:var(--alarm);background:var(--alarm-soft)}
+.qfb:empty{display:none}
+
+/* Checklist */
+.check{background:var(--surface);border:1px solid var(--line);border-radius:14px}
+.check details+details{border-top:1px solid var(--line)}
+.check summary{cursor:pointer;padding:12px 16px;display:flex;justify-content:space-between;gap:10px;font-family:var(--display);font-weight:700;list-style:none}
+.check summary::-webkit-details-marker{display:none}
+.count{font-family:var(--body);font-weight:400;color:var(--muted);font-variant-numeric:tabular-nums;font-size:.9rem}
+.check ul{list-style:none;margin:0;padding:0 16px 12px;display:flex;flex-direction:column;gap:2px}
+.check li label{display:flex;gap:10px;align-items:flex-start;padding:6px 0;cursor:pointer}
+.check input{width:20px;height:20px;margin-top:2px;accent-color:var(--ok);flex:0 0 auto}
+.check li.done span{color:var(--muted);text-decoration:line-through}
+
+footer{font-size:.85rem;color:var(--muted);border-top:1px solid var(--line);padding-top:16px}
+@media (prefers-reduced-motion:no-preference){html{scroll-behavior:smooth}}
+</style>
+
+<div class="wrap">
+  <div class="bar">
+    <a class="home" href="#inicio">Bebé en Camino</a>
+    <div class="tools">
+      <a class="sos" href="#p-atragantamiento">Atragantamiento</a>
+      <a class="sos" href="#p-urgencias">Urgencias</a>
+      <label for="sensToggle"><input type="checkbox" id="sensToggle" checked> Ocultar contenido delicado</label>
+      <span class="sync" id="sync" data-state="off">Progreso en este dispositivo</span>
+    </div>
+  </div>
+  <main id="view" class="stack" tabindex="-1"></main>
+  <footer>Curso informativo general, sin datos personales. No sustituye a vuestra matrona ni a vuestro pediatra: ante cualquier duda concreta, preguntadles a ellos. Ayudas, plazos y teléfonos revisados en noviembre de 2026: confirmadlos antes de cada trámite.</footer>
+</div>
+
+<script>
+/* ---------- Course content ---------- */
+const BLOCKS = [
+  {id:"b1", n:1, title:"Preparación", sub:"Semanas 30–36: lo que conviene tener listo y practicar"},
+  {id:"b2", n:2, title:"El parto se acerca", sub:"Semanas 37–40+: reconocer el parto y saber cuándo ir"},
+  {id:"b3", n:3, title:"El parto", sub:"Fases, alivio del dolor, tu papel y la primera hora"},
+  {id:"b4", n:4, title:"Días en el hospital", sub:"Pruebas al bebé, lo normal y el registro"},
+  {id:"b5", n:5, title:"Cuidados del bebé", sub:"Sueño, ropa, pañal, cordón, baño, comida, llanto y fiebre"},
+  {id:"b6", n:6, title:"Emergencias y prevención", sub:"Atragantamiento, accidentes y botiquín"},
+  {id:"b7", n:7, title:"Posparto de ella", sub:"Recuperación, pechos y salud mental"},
+  {id:"b8", n:8, title:"Vosotros dos", sub:"Cómo ayudar, noches, visitas y tu salud mental"},
+  {id:"b9", n:9, title:"Trámites, ayudas y seguro", sub:"Madrid, Gregorio Marañón, prestaciones y Mapfre Salud"}
+];
+
+const STAGES = [
+  {id:"s30", label:"Semanas 30–36", blocks:["b1","b9","b6"]},
+  {id:"s37", label:"Semanas 37–40+", blocks:["b2","b3","b1"]},
+  {id:"parto", label:"Parto", blocks:["b3","b2"]},
+  {id:"hospital", label:"Días en el hospital", blocks:["b4","b5","b9"]},
+  {id:"casa", label:"Primeras semanas", blocks:["b5","b7","b8","b6","b9"]}
+];
+
+const SVG_CONTR = `<figure><svg viewBox="0 0 640 210" role="img" aria-labelledby="ctT"><title id="ctT">Contracciones de práctica irregulares frente a contracciones de parto cada vez más seguidas e intensas</title>
+<text x="0" y="18" class="svg-txt" font-weight="700">De práctica</text><line x1="0" y1="78" x2="640" y2="78" style="stroke:var(--line)"/>
+<g style="fill:var(--muted)"><rect x="40" y="52" width="30" height="26" rx="4"/><rect x="170" y="60" width="22" height="18" rx="4"/><rect x="230" y="48" width="34" height="30" rx="4"/><rect x="420" y="62" width="24" height="16" rx="4"/><rect x="560" y="56" width="28" height="22" rx="4"/></g>
+<text x="0" y="118" class="svg-txt" font-weight="700">De parto</text><line x1="0" y1="180" x2="640" y2="180" style="stroke:var(--line)"/>
+<g style="fill:var(--accent)"><rect x="20" y="160" width="26" height="20" rx="4"/><rect x="150" y="155" width="30" height="25" rx="4"/><rect x="260" y="148" width="34" height="32" rx="4"/><rect x="350" y="142" width="38" height="38" rx="4"/><rect x="430" y="136" width="42" height="44" rx="4"/><rect x="505" y="132" width="44" height="48" rx="4"/><rect x="580" y="128" width="46" height="52" rx="4"/></g>
+<text x="0" y="200" class="svg-small">Tiempo →</text><text x="640" y="200" class="svg-small" text-anchor="end">Más seguidas, más largas y más intensas</text></svg>
+<figcaption>Cada bloque es una contracción: el ancho es lo que dura y la altura, lo intensa que es.</figcaption></figure>`;
+
+const SVG_CRIB = `<figure><svg viewBox="0 0 640 300" role="img" aria-labelledby="crT"><title id="crT">Cuna segura: bebé boca arriba con saco de dormir, colchón firme y nada más dentro</title>
+<g fill="none" stroke-width="3" style="stroke:var(--muted)"><rect x="120" y="70" width="400" height="160" rx="10"/><line x1="120" y1="230" x2="120" y2="270"/><line x1="520" y1="230" x2="520" y2="270"/></g>
+<g stroke-width="2" style="stroke:var(--line)"><line x1="160" y1="70" x2="160" y2="196"/><line x1="200" y1="70" x2="200" y2="196"/><line x1="240" y1="70" x2="240" y2="196"/><line x1="400" y1="70" x2="400" y2="196"/><line x1="440" y1="70" x2="440" y2="196"/><line x1="480" y1="70" x2="480" y2="196"/></g>
+<rect x="128" y="196" width="384" height="26" rx="4" stroke-width="2" style="fill:var(--accent-soft);stroke:var(--accent)"/>
+<ellipse cx="370" cy="182" rx="80" ry="15" style="fill:var(--accent)"/><circle cx="270" cy="178" r="20" stroke-width="2" style="fill:var(--warm-soft);stroke:var(--warm)"/>
+<path d="M262 176 q3 -3 6 0 M274 176 q3 -3 6 0" fill="none" stroke-width="1.6" style="stroke:var(--ink)"/>
+<g class="svg-txt"><text x="270" y="140" text-anchor="middle">Boca arriba</text><text x="370" y="140" text-anchor="middle">Saco de dormir</text><text x="320" y="252" text-anchor="middle">Colchón firme, bien ajustado, solo con sábana bajera</text></g>
+<g class="svg-small"><text x="20" y="40">Nada dentro: ni almohada, ni peluches, ni protectores, ni mantas sueltas</text><text x="20" y="292">Habitación a unos 20–22 °C · sin humo · cuna junto a vuestra cama</text></g></svg>
+<figcaption>Si usáis manta en lugar de saco: los pies del bebé tocando el pie de la cuna y la manta remetida bajo el colchón, nunca por encima de los hombros.</figcaption></figure>`;
+
+const SVG_CHOKE = `<figure><svg viewBox="0 0 640 260" role="img" aria-labelledby="chT"><title id="chT">Maniobras para un lactante atragantado: golpes en la espalda boca abajo sobre el antebrazo y compresiones en el pecho boca arriba</title>
+<text x="160" y="22" class="svg-txt" font-weight="700" text-anchor="middle">1 · Cinco golpes en la espalda</text>
+<path d="M30 190 L290 150" stroke-width="26" stroke-linecap="round" style="stroke:var(--line)"/>
+<g transform="rotate(-9 160 150)"><ellipse cx="170" cy="140" rx="75" ry="22" style="fill:var(--accent)"/><circle cx="82" cy="152" r="20" stroke-width="2" style="fill:var(--warm-soft);stroke:var(--warm)"/></g>
+<path d="M205 70 L190 112" stroke-width="4" style="stroke:var(--alarm)"/><path d="M182 102 L190 116 L200 104" fill="none" stroke-width="4" style="stroke:var(--alarm)"/>
+<text x="160" y="232" class="svg-small" text-anchor="middle">Boca abajo sobre tu antebrazo, cabeza más baja que el cuerpo,</text>
+<text x="160" y="248" class="svg-small" text-anchor="middle">sujetando la mandíbula. Golpes secos entre los omóplatos.</text>
+<text x="480" y="22" class="svg-txt" font-weight="700" text-anchor="middle">2 · Cinco compresiones en el pecho</text>
+<path d="M350 150 L610 190" stroke-width="26" stroke-linecap="round" style="stroke:var(--line)"/>
+<g transform="rotate(9 480 150)"><ellipse cx="470" cy="140" rx="75" ry="22" style="fill:var(--accent)"/><circle cx="558" cy="152" r="20" stroke-width="2" style="fill:var(--warm-soft);stroke:var(--warm)"/></g>
+<path d="M488 70 L488 112" stroke-width="4" style="stroke:var(--alarm)"/><path d="M479 102 L488 116 L497 102" fill="none" stroke-width="4" style="stroke:var(--alarm)"/>
+<text x="480" y="232" class="svg-small" text-anchor="middle">Boca arriba sobre tu otro antebrazo, cabeza más baja.</text>
+<text x="480" y="248" class="svg-small" text-anchor="middle">Dos dedos en el centro del pecho, justo bajo los pezones.</text></svg>
+<figcaption>Alternad 5 y 5 hasta que expulse el objeto o pierda el conocimiento. Esquema orientativo: aprended la técnica en un curso presencial.</figcaption></figure>`;
+
+const SVG_DIAPER = `<figure><svg viewBox="0 0 640 170" role="img" aria-labelledby="dpT"><title id="dpT">Cambio de pañal en cuatro pasos: preparar, abrir y limpiar de delante hacia atrás, pañal limpio debajo, cerrar dejando el cordón fuera</title>
+<g class="svg-txt" text-anchor="middle" font-weight="700"><text x="80" y="20">Prepara</text><text x="240" y="20">Limpia</text><text x="400" y="20">Desliza</text><text x="560" y="20">Cierra</text></g>
+<g stroke-width="2" style="stroke:var(--line);fill:var(--surface)"><rect x="20" y="34" width="120" height="96" rx="10"/><rect x="180" y="34" width="120" height="96" rx="10"/><rect x="340" y="34" width="120" height="96" rx="10"/><rect x="500" y="34" width="120" height="96" rx="10"/></g>
+<g style="fill:var(--accent)"><rect x="36" y="56" width="26" height="40" rx="4"/><rect x="70" y="66" width="22" height="30" rx="4"/><rect x="100" y="60" width="26" height="36" rx="13"/></g>
+<path d="M240 52 L240 112" stroke-width="5" style="stroke:var(--accent)"/><path d="M230 100 L240 116 L250 100" fill="none" stroke-width="5" style="stroke:var(--accent)"/>
+<path d="M360 94 h80 v18 h-80 z" style="fill:var(--accent-soft);stroke:var(--accent)"/><path d="M400 56 L400 88" stroke-width="4" style="stroke:var(--accent)"/><path d="M391 78 L400 92 L409 78" fill="none" stroke-width="4" style="stroke:var(--accent)"/>
+<path d="M520 70 q40 50 80 0 v30 q-40 22 -80 0 z" style="fill:var(--accent-soft);stroke:var(--accent)"/><circle cx="560" cy="60" r="6" style="fill:var(--warm)"/>
+<g class="svg-small" text-anchor="middle"><text x="80" y="150">Todo a mano antes</text><text x="240" y="150">De delante a atrás</text><text x="400" y="150">Levantando el culete</text><text x="560" y="150">Cordón por fuera</text></g></svg>
+<figcaption>Nunca le dejes solo en el cambiador, ni un segundo: mantén siempre una mano sobre él.</figcaption></figure>`;
+
+const SVG_LOCHIA = `<figure><svg viewBox="0 0 640 110" role="img" aria-labelledby="loT"><title id="loT">Evolución del sangrado posparto: rojo intenso los primeros días, rosado o marrón hasta unas dos semanas, amarillento o blanquecino hasta las 4 a 6 semanas</title>
+<rect x="0" y="30" width="140" height="28" rx="6" fill="#b3362b"/><rect x="140" y="30" width="200" height="28" fill="#c98b84"/><rect x="340" y="30" width="300" height="28" rx="6" fill="#e9dcb8"/>
+<g class="svg-small"><text x="0" y="20">Días 1–4: rojo intenso</text><text x="150" y="20">Hasta ~2 semanas: rosado o marrón</text><text x="350" y="20">Hasta 4–6 semanas: amarillento o blanquecino</text><text x="0" y="86">Cada vez menos cantidad. Puede aumentar un poco al dar el pecho o al levantarse.</text></g></svg>
+<figcaption>Orientativo: cada recuperación tiene su ritmo.</figcaption></figure>`;
+
+const CHECK = [
+  {id:"madre", title:"Para ella", items:[["m1","Camisones o pijamas que abran por delante (2–3)"],["m2","Bata y zapatillas"],["m3","Braguitas de talle alto, desechables o de algodón"],["m4","Compresas tocológicas (preguntad si las da el hospital)"],["m5","Sujetadores de lactancia y discos absorbentes"],["m6","Neceser: cepillo, gomas del pelo, cacao de labios, crema hidratante"],["m7","Ropa cómoda para volver a casa (talla de embarazo)"]]},
+  {id:"bebe", title:"Para el bebé", items:[["b1","Bodies (3–4) de talla de recién nacido"],["b2","Pijamas o peleles (3–4)"],["b3","Gorrito y calcetines"],["b4","Arrullo o manta para la salida"],["b5","Ropa para volver a casa"],["b6","Pañales de recién nacido (si no los da el hospital)"]]},
+  {id:"papeles", title:"Papeles", items:[["d1","DNI de los dos"],["d2","Tarjeta sanitaria pública y la de Mapfre"],["d3","Cartilla del embarazo, últimas analíticas y ecografías"],["d4","Plan de parto, si lo habéis hecho"],["d5","Libro de familia, si lo tenéis"]]},
+  {id:"acomp", title:"Para ti", items:[["a1","Ropa cómoda y una muda"],["a2","Cargador con cable largo o batería externa"],["a3","Agua y algo de comer para los dos"],["a4","Tarjeta para el parking y las máquinas"],["a5","Almohada pequeña, si cabe"]]},
+  {id:"coche", title:"Antes de salir", items:[["c1","Silla de coche a contramarcha, instalada y probada"],["c2","Ruta al hospital y dónde aparcar"],["c3","Teléfonos del hospital y de la matrona guardados en los dos móviles"]]}
+];
+
+const L = []; /* lessons */
+const P = (id,b,title,min,prio,body,opt={}) => L.push({id,b,title,min,prio,body,...opt});
+
+/* Block 1 */
+P("urgencias","b1","Cuándo ir a urgencias durante el embarazo",3,"p1",`
+<div class="alarm"><h3>Id a urgencias de maternidad si aparece cualquiera de estas señales</h3><ul>
+<li><strong>Notáis que el bebé se mueve menos</strong> de lo habitual. No esperéis al día siguiente.</li>
+<li><strong>Sangrado vaginal</strong>, aunque sea poco.</li>
+<li><strong>Pérdida de líquido</strong> por la vagina, a chorro o goteando.</li>
+<li><strong>Dolor de cabeza fuerte</strong>, visión borrosa o lucecitas, o hinchazón brusca de cara y manos.</li>
+<li><strong>Dolor de barriga intenso y continuo</strong>, que no se va entre contracciones.</li>
+<li><strong>Fiebre</strong> de 38 °C o más.</li>
+<li><strong>Contracciones regulares antes de la semana 37.</strong></li>
+<li><strong>Picor intenso en palmas y plantas</strong>, sobre todo por la noche.</li></ul>
+<p>Emergencias: <span class="copy">112</span>. Urgencias de maternidad del Gregorio Marañón: <span class="copy">91 529 01 21</span> (confirmadlo en vuestra próxima consulta y guardadlo en los dos móviles).</p></div>
+<p class="role">si ella duda entre ir o esperar, la respuesta es ir. En urgencias de maternidad prefieren veros por nada a que esperéis con algo. Conduce tú y lleva la cartilla del embarazo.</p>
+<div class="remember"><ul><li>Menos movimientos del bebé: se consulta el mismo día.</li><li>Sangrado o líquido: urgencias.</li><li>Ante la duda, id.</li></ul></div>`);
+
+P("bolsa","b1","La bolsa del hospital",5,"p1",`
+<p class="lead">Tenedla lista en la semana 36. Marcad lo que ya tenéis: si abrís el curso los dos desde vuestras cuentas, veréis las mismas marcas. Preguntad antes qué da el hospital: muchos ponen pañales, compresas y ropa del bebé durante el ingreso.</p>
+<div class="check" id="checklist"></div>`,{checklist:true});
+
+P("compras","b1","Silla de coche y compras básicas",4,"p1",`
+<h3>La silla de coche, lo primero</h3>
+<ul><li>Para salir del hospital en coche necesitáis una silla homologada <strong>i-Size (R129)</strong> para recién nacidos, instalada <strong>a contramarcha</strong> (mirando hacia atrás). La norma obliga a llevarle así al menos hasta los 15 meses.</li>
+<li>Nunca en el asiento delantero con el airbag activado.</li>
+<li>Arnés ajustado: que solo quepa un dedo entre el arnés y la clavícula. Sin abrigos gruesos debajo; si hace frío, una manta por encima.</li>
+<li>Instaladla y probadla antes del parto. Muchas tiendas os enseñan a montarla.</li></ul>
+<div class="dos"><div class="yes"><h3>Imprescindible</h3><ul><li>Cuna o minicuna con colchón firme a medida y sábanas bajeras</li><li>Saco de dormir de su talla</li><li>Carrito o fular/mochila de porteo ergonómica</li><li>Termómetro digital</li><li>Suero fisiológico en monodosis, gasas y crema para el pañal</li><li>Lima o tijeras de punta redonda</li></ul></div>
+<div class="no"><h3>No hace falta (o no es seguro)</h3><ul><li>Protectores de cuna, almohadas y cojines antivuelco o posicionadores</li><li>Calientatoallitas, esterilizadores caros si vais a dar el pecho</li><li>Mucha ropa de primera puesta: crecen muy rápido</li></ul></div></div>
+<p class="role">encárgate de la silla del coche: elegirla, instalarla y saber soltarla con una mano.</p>`);
+
+P("vacunas-embarazo","b1","Vacunas en el embarazo",3,"p1",`
+<p class="lead">Algunas vacunas que se ponen a la madre durante el embarazo protegen también al bebé en sus primeros meses, cuando aún es demasiado pequeño para vacunarse.</p>
+<div class="tbl"><table><thead><tr><th>Vacuna</th><th>Cuándo</th><th>Por qué</th></tr></thead><tbody>
+<tr><td><strong>Tosferina (Tdpa)</strong></td><td>Entre las semanas 27 y 36, <strong>en cada embarazo</strong></td><td>La tosferina es muy grave en recién nacidos. Los anticuerpos de la madre pasan al bebé.</td></tr>
+<tr><td><strong>Gripe</strong></td><td>Durante la campaña, en cualquier momento del embarazo (en Madrid empezó el 5 de octubre de 2026)</td><td>Protege a la madre, que tiene más riesgo de gripe grave, y al bebé.</td></tr>
+<tr><td><strong>Virus respiratorio sincitial (VRS)</strong></td><td>Preguntad a la matrona</td><td>En Madrid lo habitual es proteger al bebé con un anticuerpo en la maternidad si nace entre octubre y marzo. Ver la píldora de revisiones y vacunas.</td></tr></tbody></table></div>
+<div class="callout"><strong>Estáis en el momento.</strong> Si estáis en la semana 30 y aún no se ha puesto la de la tosferina, pedid cita en enfermería del centro de salud.</div>
+<p class="role">pregunta en tu centro de salud si te corresponde a ti la vacuna de la gripe como conviviente de un recién nacido, y revisa que las personas que vayan a cuidar al bebé tengan sus vacunas al día.</p>
+<p class="src">Fuente: Calendario de vacunaciones para embarazadas 2026 del Comité Asesor de Vacunas de la AEP.</p>`);
+
+P("ejercicios","b1","Ejercicios para practicar juntos",6,"p2",`
+<p class="lead">Practicar estas técnicas en las semanas previas hace que el día del parto os salgan solas. Haced antes las que os indique vuestra matrona y parad si algo duele o molesta.</p>
+<h3>Respiración</h3><p>Durante una contracción ayuda soltar el aire más despacio de lo que se coge: inspirar por la nariz contando 4 y soltar por la boca contando 6, con los hombros y la mandíbula sueltos.</p>
+<div class="practice"><p>Dos minutos al día, los dos a la vez. Tú cuentas en voz alta; ella sigue tu ritmo. Es lo mismo que harás en el paritorio.</p></div>
+<h3>Pelota de pilates</h3><p>Sentada en la pelota con los pies bien apoyados y las rodillas algo más bajas que la cadera: círculos y ochos con la cadera, balanceo adelante y atrás. Alivia la espalda y ayuda a que el bebé se coloque.</p>
+<h3>Suelo pélvico (ejercicios de Kegel)</h3><p>Contraer la musculatura como para cortar el pis, mantener 5 segundos y soltar 5 segundos. 10 repeticiones, tres veces al día. Seguirán siendo útiles en el posparto.</p>
+<h3>Masaje perineal</h3><p>Desde la semana 34–35, una o dos veces por semana, unos 5 minutos. En el primer parto reduce el riesgo de desgarros que necesitan puntos y de episiotomía. Con las manos limpias y un aceite (de almendras, por ejemplo), se introducen los pulgares unos 3–4 cm y se presiona suavemente hacia abajo y a los lados, en forma de U, hasta notar un estiramiento que no llegue a doler. Lo puede hacer ella o tú, si los dos estáis cómodos.</p>
+<p class="note">Consultad antes a la matrona si hay sangrado, infección vaginal, placenta previa o cualquier complicación.</p>
+<h3>Posturas para el parto</h3><ul><li>A cuatro patas, o de rodillas apoyada en la pelota o en la cama.</li><li>De pie, inclinada hacia delante, con los brazos en tus hombros.</li><li>Tumbada de lado con un cojín entre las rodillas (útil también con epidural).</li></ul>
+<div class="practice"><p>Probad cada postura un par de minutos y apuntad cuáles le resultan más cómodas. Ponedlas en el plan de parto.</p></div>`);
+
+P("contrapresion","b1","Masaje, contrapresión y rebozo",6,"p2",`
+<h3>Contrapresión en el sacro</h3><p>Cuando la contracción duele en la parte baja de la espalda: apoya la palma o el puño sobre el hueso plano que hay encima de las nalgas (el sacro) y empuja firme y sostenido durante toda la contracción. Ella te dirá dónde y cuánta fuerza.</p>
+<h3>Doble presión de caderas</h3><p>Ella inclinada hacia delante; tú detrás, con una mano en cada lado de la cadera (en la parte carnosa del glúteo), aprietas hacia el centro y ligeramente hacia arriba durante la contracción. Muy útil cuando el dolor es lumbar.</p>
+<h3>El rebozo</h3><p>Es un chal largo y resistente de tradición mexicana que muchas matronas usan para relajar, aliviar la espalda y ayudar a la movilidad de la pelvis. La técnica más habitual en el embarazo es el <strong>manteo de cadera</strong>:</p>
+<ol class="steps"><li>Ella se pone a cuatro patas, con la cabeza y los brazos apoyados en cojines o en la pelota.</li><li>Pasas el rebozo por debajo de la barriga y sujetas un extremo en cada mano, de pie detrás o a un lado.</li><li>Levantas lo justo para que note el peso sujeto y haces un vaivén lateral suave y rítmico, de 1 a 3 minutos.</li><li>Ella marca la intensidad; si no se relaja, se para.</li></ol>
+<div class="callout"><strong>Antes de usarlo, consultad a vuestra matrona.</strong> No se usa si hay placenta previa o sangrado, ni si hay contracciones antes de tiempo o la bolsa está rota, y en general ante cualquier complicación. Lo ideal es aprenderlo en una clase de preparación al parto.</div>
+<div class="practice"><p>Elegid un momento tranquilo, probad cada técnica dos o tres minutos y que ella os diga qué le alivia. El día del parto no habrá tiempo para experimentar.</p></div>`);
+
+P("plan","b1","Plan de parto y decisiones previas",4,"p2",`
+<p>El plan de parto es un documento breve en el que dejáis por escrito vuestras preferencias. Sirve de guía al equipo, que lo respetará siempre que la situación lo permita. Preguntad en la consulta si el Gregorio Marañón tiene modelo propio; si no, el Ministerio de Sanidad tiene uno general.</p>
+<h3>Qué suele incluir</h3><ul><li>Quién os acompaña y si queréis estar juntos en todo momento.</li><li>Libertad de movimiento y posturas, uso de pelota o ducha.</li><li>Alivio del dolor: epidural, métodos sin fármacos o ver sobre la marcha.</li><li>Piel con piel inmediato y pinzamiento tardío del cordón.</li><li>Lactancia materna o biberón.</li><li>Si queréis cortar el cordón o hacer fotos.</li></ul>
+<div class="callout info">Más que un contrato, es una conversación previa. Lo importante es que lo habléis entre vosotros antes y que tú lo conozcas bien para poder recordarlo en el paritorio.</div>`);
+
+/* Block 2 */
+P("parto-real","b2","¿Es el parto o son contracciones de práctica?",4,"p1",`
+<p class="lead">Al final del embarazo es normal tener contracciones irregulares. Las de parto se distinguen por tres cosas: son regulares, cada vez más seguidas y cada vez más intensas.</p>
+<div class="tbl"><table><thead><tr><th></th><th>De práctica</th><th>Parto de verdad</th></tr></thead><tbody>
+<tr><td><strong>Ritmo</strong></td><td>Irregulares, sin patrón</td><td>Regulares, cada vez más juntas</td></tr>
+<tr><td><strong>Intensidad</strong></td><td>Igual o van a menos</td><td>Van a más; cuesta hablar durante ellas</td></tr>
+<tr><td><strong>Si cambia de postura, camina o se ducha</strong></td><td>Se calman o desaparecen</td><td>Siguen igual</td></tr>
+<tr><td><strong>Dónde duelen</strong></td><td>Sobre todo delante, en la barriga</td><td>Empiezan en la espalda y rodean la barriga</td></tr></tbody></table></div>
+${SVG_CONTR}
+<p class="role">cronometra las contracciones desde que empieza una hasta que empieza la siguiente, con una app o en notas.</p>`);
+
+P("cuando-ir","b2","Cuándo salir hacia el hospital",3,"p1",`
+<div class="dos"><div class="no"><h3>Salid ya, sin esperar</h3><ul><li>Rompe la bolsa y el líquido es <strong>verde, marrón o tiene sangre</strong>.</li><li>Sangrado como una regla o más.</li><li>El bebé se mueve menos.</li><li>Rompe la bolsa y el cultivo del estreptococo (semanas 35–37) salió positivo.</li></ul></div>
+<div class="yes"><h3>Salid con calma</h3><ul><li>Contracciones <strong>regulares cada 5 minutos o menos durante al menos una hora</strong>, en primer parto.</li><li>Rompe la bolsa con líquido claro, aunque no haya contracciones. Apuntad la hora.</li></ul></div></div>
+<p class="note">Son pautas generales. Preguntad en vuestra consulta qué recomienda el Gregorio Marañón.</p>
+<p class="role">mientras esperáis en casa, ayúdala a moverse, a ducharse con agua caliente o a apoyarse en la pelota. Ten el coche y la bolsa preparados.</p>`);
+
+P("bolsa-rota","b2","Rotura de bolsa y tapón mucoso",3,"p2",`
+<h3>Rotura de bolsa</h3><p>Puede ser un chorro o un goteo continuo que no se puede retener. Fijaos en tres cosas: <strong>la hora, el color y el olor</strong>. Si es claro o rosado, id al hospital con calma. Si es verde, marrón o con sangre, id ya.</p>
+<p>Ponerse una compresa (no un tampón) ayuda a ver el color y la cantidad.</p>
+<h3>Tapón mucoso</h3><p>Es una mucosidad espesa, a veces con hilos de sangre, que puede expulsarse días o semanas antes del parto. <strong>No es motivo para ir al hospital</strong> por sí solo, salvo que haya sangrado abundante.</p>`);
+
+/* Block 3 */
+P("fases","b3","Las fases del parto",5,"p2",`
+<ol class="steps"><li><div><strong>Dilatación latente.</strong> Contracciones irregulares que poco a poco se ordenan; el cuello del útero se ablanda y empieza a abrirse. Puede durar muchas horas y gran parte se pasa en casa.</div></li>
+<li><div><strong>Dilatación activa.</strong> Contracciones regulares e intensas, hasta los 10 cm. Es el momento de estar en el hospital.</div></li>
+<li><div><strong>Expulsivo.</strong> Llega la necesidad de empujar y nace el bebé. En un primer parto puede durar desde minutos hasta un par de horas, más con epidural.</div></li>
+<li><div><strong>Alumbramiento.</strong> Sale la placenta, normalmente entre 5 y 30 minutos después del nacimiento.</div></li></ol>
+<div class="callout info">Los tiempos varían muchísimo entre mujeres y partos. Que vaya más lento de lo que esperabais no significa que algo vaya mal.</div>`);
+
+P("dolor","b3","Alivio del dolor",4,"p2",`
+<div class="dos"><div><h3>Con fármacos</h3><ul><li><strong>Epidural:</strong> anestesia local por un catéter en la espalda. Alivia mucho el dolor y permite estar consciente. Se pone durante la dilatación activa.</li><li>Otras opciones según el hospital (por ejemplo, óxido nitroso o analgésicos intravenosos). Preguntad cuáles ofrece el Gregorio Marañón.</li></ul></div>
+<div><h3>Sin fármacos</h3><ul><li>Moverse y cambiar de postura.</li><li>Agua caliente: ducha o bañera.</li><li>Respiración, masaje, contrapresión, rebozo.</li><li>Calor local en la espalda.</li><li>Ambiente tranquilo: poca luz, poca gente.</li></ul></div></div>
+<p>No hace falta decidirlo todo antes. Se puede empezar sin epidural y pedirla después, o al revés.</p>`);
+
+P("tu-papel-parto","b3","Tu papel en el paritorio",5,"p1",`
+<div class="tbl"><table><thead><tr><th>Fase</th><th>Qué puedes hacer</th></tr></thead><tbody>
+<tr><td>En casa</td><td>Cronometrar, que coma algo ligero y beba, proponer descanso y ducha, mantener la calma.</td></tr>
+<tr><td>Dilatación</td><td>Agua a sorbos, contrapresión, contar las respiraciones, bajar la luz, proteger su espacio. No hablarle durante la contracción.</td></tr>
+<tr><td>Expulsivo</td><td>Ánimo concreto y cercano, paños fríos en la frente, sujetarle la mano o la pierna si te lo piden.</td></tr>
+<tr><td>Después</td><td>Acompañar el piel con piel, cortar el cordón si queréis, avisar a la familia cuando ella diga.</td></tr></tbody></table></div>
+<div class="dos"><div class="yes"><h3>Frases que ayudan</h3><ul><li>"Lo estás haciendo muy bien."</li><li>"Una a una. Esta ya ha pasado."</li><li>"Suelta los hombros. Respira conmigo."</li></ul></div>
+<div class="no"><h3>Mejor evitar</h3><ul><li>"¿Te duele mucho?"</li><li>Mirar el móvil o comentar los tiempos.</li><li>Tomar decisiones por ella sin preguntarle.</li></ul></div></div>
+<p class="role">eres su portavoz. Si ella no puede hablar, recuerda al equipo lo que habíais acordado en el plan de parto, con respeto y sin enfrentarte.</p>`);
+
+P("cesarea","b3","Si hay cesárea",4,"p2",`
+<p>Puede ser programada o decidirse durante el parto. Es una cirugía en la que el bebé nace a través de un corte bajo en la barriga, normalmente con anestesia epidural o raquídea: ella está despierta.</p>
+<ul><li>En muchos hospitales el acompañante puede entrar al quirófano. Preguntad la política del Gregorio Marañón.</li><li>Si la madre no puede hacer piel con piel en ese momento, puedes hacerlo tú: tiene los mismos beneficios para el bebé.</li><li>La recuperación es más lenta que en un parto vaginal: necesitará ayuda para levantarse, coger al bebé y moverse durante unos días.</li></ul>
+<p class="role">si hay cesárea urgente, puede que te pidan esperar fuera unos minutos. Te llamarán en cuanto puedas entrar. Quédate cerca.</p>`);
+
+P("primera-hora","b3","La primera hora del bebé",4,"p2",`
+<ul><li><strong>Piel con piel:</strong> el bebé, desnudo sobre el pecho de la madre y tapado. Regula su temperatura, su respiración y facilita la primera toma.</li>
+<li><strong>Pinzamiento tardío del cordón:</strong> esperar al menos un minuto antes de cortarlo mejora sus reservas de hierro.</li>
+<li><strong>Primera toma:</strong> muchos bebés buscan el pecho solos en la primera hora.</li>
+<li><strong>Test de Apgar:</strong> al minuto y a los 5 minutos valoran cómo respira, el pulso, el color, el tono y los reflejos.</li>
+<li><strong>Vitamina K</strong> (inyección para prevenir hemorragias) y <strong>pomada en los ojos</strong>. Se pueden hacer sin separarle de la madre.</li></ul>
+<p class="role">si ella necesita atención después del parto, pide hacer tú el piel con piel.</p>`);
+
+/* Block 4 */
+P("pruebas","b4","Pruebas al recién nacido",3,"p2",`
+<ul><li><strong>Prueba del talón (cribado neonatal):</strong> unas gotas de sangre del talón, normalmente a partir de las 48 horas de vida. Detecta enfermedades raras que tienen tratamiento si se cogen a tiempo. Si os dan el alta antes, os dirán dónde hacerla.</li>
+<li><strong>Prueba de audición:</strong> rápida e indolora, mientras duerme.</li>
+<li><strong>Revisión del pediatra</strong> antes del alta.</li></ul>
+<p class="note">Los resultados del talón solo os los comunican si hay que repetir o estudiar algo.</p>`);
+
+P("normal-hospital","b4","Lo que es normal estos días",4,"p2",`
+<ul><li><strong>Meconio:</strong> las primeras cacas son negras verdosas y pegajosas. Cambian a verde y luego a amarillo en 3–5 días.</li>
+<li><strong>Pérdida de peso:</strong> es normal que pierda hasta un 7–10 % los primeros días y lo recupere hacia las dos semanas.</li>
+<li><strong>Ictericia:</strong> piel algo amarillenta a partir del 2.º o 3.º día. Es frecuente; el equipo la vigila.</li>
+<li><strong>La segunda noche</strong> suele ser movida: el bebé quiere mamar casi sin parar. Es normal y ayuda a que suba la leche.</li></ul>
+<p class="role">aprovecha el hospital para practicar con las enfermeras: cambio de pañal, baño y coger al bebé. Y filtra las visitas: el descanso de ella va primero.</p>`);
+
+P("registro","b4","El registro del bebé desde el hospital",3,"p1",`
+<p>En la Comunidad de Madrid el nacimiento se puede inscribir en el Registro Civil <strong>desde el propio hospital</strong>: os darán un formulario que firmáis los dos con vuestros datos y el nombre del bebé, y el hospital lo envía de forma telemática.</p>
+<ul><li>Llevad el DNI de los dos (está en la lista de la bolsa).</li><li>Si no se hace desde el hospital, hay que ir al Registro Civil en los plazos legales (días, no semanas). Preguntad en planta antes del alta.</li><li>Después podéis descargar el certificado de nacimiento, que os pedirán para el resto de trámites.</li></ul>
+<p class="role">este trámite es tuyo: pregunta en planta el primer día y deja hecho el formulario.</p>`);
+
+/* Block 5 */
+P("sueno","b5","Sueño seguro",5,"p1",`
+<p class="lead">Estas pautas reducen el riesgo de muerte súbita del lactante. Son las mismas para cada siesta y cada noche, también fuera de casa.</p>
+${SVG_CRIB}
+<div class="dos"><div class="yes"><h3>Sí</h3><ul><li>Siempre <strong>boca arriba</strong>, también en las siestas. De lado no es seguro.</li><li>Cuna o minicuna en <strong>vuestra habitación</strong>, al menos los primeros 6 meses.</li><li>Colchón firme y plano; nada de superficies inclinadas.</li><li>La <strong>lactancia materna</strong> protege. El chupete al dormir también, cuando la lactancia esté bien establecida.</li><li>Ratos boca abajo <strong>despierto y vigilado</strong> durante el día.</li></ul></div>
+<div class="no"><h3>No</h3><ul><li><strong>Nunca dormirse con el bebé en el sofá</strong> o en un sillón.</li><li>Ni tabaco cerca del bebé, tampoco en casa ni en el coche.</li><li>No abrigarle de más ni ponerle gorro para dormir en casa.</li><li>No dejarle dormir en la silla del coche o el balancín más allá del trayecto.</li></ul></div></div>`);
+
+P("vestir","b5","Cómo vestirle",3,"p2",`
+<p>Regla práctica: <strong>una capa más de la que llevas tú</strong> para estar cómodo en esa habitación. Para saber si tiene frío o calor, <strong>tócale la nuca o el pecho</strong>, no las manos ni los pies (suelen estar frescos y es normal).</p>
+<div class="tbl"><table><thead><tr><th>Habitación</th><th>Para dormir (orientativo)</th></tr></thead><tbody><tr><td>24 °C o más</td><td>Body de manga corta, o pañal y saco muy fino</td></tr><tr><td>20–23 °C</td><td>Body + pijama fino, o body + saco ligero</td></tr><tr><td>16–19 °C</td><td>Body + pijama + saco de entretiempo</td></tr></tbody></table></div>
+<div class="callout ok">Nuca sudada o caliente: quítale una capa. Nuca fresca y piel algo pálida: añade una.</div>`);
+
+P("dia-noche","b5","Que distinga el día de la noche",3,"p2",`
+<p>Un recién nacido no distingue el día de la noche: su reloj interno se forma poco a poco durante los primeros meses. Estas costumbres le ayudan:</p>
+<div class="dos"><div><h3>De día</h3><ul><li>Tomas con luz natural y el ruido normal de casa.</li><li>Siestas sin oscurecer del todo ni andar de puntillas.</li><li>Juego, paseo y hablarle cuando está despierto.</li></ul></div>
+<div><h3>De noche</h3><ul><li>Luz tenue, voz baja, pocos estímulos.</li><li>Cambiar el pañal solo si hace falta.</li><li>Tras la toma, de vuelta a la cuna sin juego.</li><li>A partir de unas semanas, una rutina corta y siempre igual: baño o cambio, pijama, toma, cuna.</li></ul></div></div>
+<div class="callout">Cansarle durante el día no hace que duerma mejor de noche (suele ser al revés). Los primeros meses es normal que se despierte cada 2–3 horas para comer. Si el pediatra os dice que le despertéis para las tomas, hacedle caso.</div>
+<p class="role">si ella da el pecho, tú puedes hacer todo lo demás: traer al bebé, cambiar el pañal, hacerle eructar y devolverle a la cuna.</p>`);
+
+P("coger","b5","Coger, sujetar y portear al bebé",4,"p2",`
+<ul><li><strong>Cabeza y cuello siempre sujetos</strong> los primeros meses: una mano bajo la nuca y la otra bajo el culete.</li><li>Para cogerle de la cuna, desliza primero una mano bajo la cabeza y otra bajo el culete, y acércale a tu pecho antes de incorporarte.</li><li>Para pasarle a otra persona, espera a que tenga las dos manos bien colocadas antes de soltarle.</li></ul>
+<h3>Porteo seguro</h3><p>Fular, bandolera o mochila ergonómica: calman mucho y dejan las manos libres. Comprobad siempre:</p>
+<ol class="steps"><li><strong>Ajustado:</strong> pegado a tu cuerpo, sin holguras.</li><li><strong>Visible:</strong> le ves la cara sin abrir la tela.</li><li><strong>Al alcance de un beso:</strong> su cabeza, tan alta que puedes besarle la frente.</li><li><strong>Barbilla separada del pecho:</strong> que quepan dos dedos. Así respira bien.</li><li><strong>Espalda redondeada y piernas en M:</strong> rodillas más altas que el culete.</li></ol>
+<p class="role">el porteo es una de las mejores formas de calmarle por la tarde y de que ella descanse un rato.</p>`);
+
+P("panal","b5","Cambio de pañal paso a paso",4,"p1",`
+${SVG_DIAPER}
+<ol class="steps"><li>Ten a mano pañal limpio, toallitas o agua con gasas, y crema si la usáis.</li><li>Abre el pañal y usa la parte delantera limpia para retirar la caca hacia abajo.</li><li>Limpia <strong>de delante hacia atrás</strong>, sobre todo en niñas. En niños, tapa el pene con una gasa por si acaso.</li><li>Levanta el culete sujetando los tobillos con suavidad, retira el sucio y desliza el limpio debajo.</li><li>Seca bien los pliegues. Crema solo si hay rojez.</li><li>Cierra dejando dos dedos de holgura en la cintura y <strong>el cordón por fuera</strong> (dobla el borde del pañal hacia abajo).</li></ol>
+<h3>Qué dice el color de la caca</h3>
+<div class="tbl"><table><thead><tr><th>Color</th><th>Qué significa</th></tr></thead><tbody><tr><td>Negra verdosa (días 1–2)</td><td>Meconio, normal</td></tr><tr><td>Verde a marrón (días 3–4)</td><td>Transición, normal</td></tr><tr><td>Amarilla mostaza, grumosa</td><td>Normal con pecho</td></tr><tr><td>Marrón amarillenta, más pastosa</td><td>Normal con biberón</td></tr><tr><td><strong>Blanca, gris o muy pálida</strong></td><td><strong>Consultad al pediatra ese mismo día</strong></td></tr><tr><td><strong>Con sangre, o negra pasado el meconio</strong></td><td><strong>Consultad</strong></td></tr></tbody></table></div>
+<div class="practice"><p>Practica con un muñeco o en el hospital con las enfermeras. A la décima vez lo harás medio dormido.</p></div>`);
+
+P("cordon","b5","El cordón umbilical",3,"p2",`
+<ul><li>Mantenlo <strong>limpio y seco</strong>. Si se mancha, agua y jabón, y secar bien con una gasa.</li><li>Pañal doblado por debajo para que le dé el aire.</li><li>Se cae solo, normalmente entre los 5 y los 15 días. Es normal un poco de sangre al caerse.</li><li>Se le puede bañar aunque no se haya caído, secándolo bien después.</li></ul>
+<div class="alarm"><h3>Consultad si</h3><ul><li>La piel de alrededor se pone roja y la rojez se extiende.</li><li>Sale pus o huele mal.</li><li>Hay fiebre o el bebé está decaído.</li></ul></div>`,{sens:"Esta píldora puede incluir imágenes del cordón umbilical."});
+
+P("bano","b5","El baño y las uñas",3,"p3",`
+<ul><li>No hace falta bañarle todos los días: dos o tres veces por semana basta, lavando a diario cara, pliegues y culete.</li><li>Agua a 36–37 °C: compruébala con el codo o un termómetro de baño. Prepara todo antes.</li><li>Sujeta la cabeza y el cuello con tu antebrazo. Baño corto, de 5 a 10 minutos.</li><li><strong>Nunca le dejes solo en el agua</strong>, ni un segundo. Si suena el timbre, sale contigo envuelto en la toalla.</li><li>Uñas: mejor limarlas, después del baño o mientras duerme.</li></ul>
+<p class="role">el baño puede ser tu momento con el bebé cada día. Es un buen ritual antes de dormir.</p>`);
+
+P("alimentacion","b5","Alimentación: pecho y biberón",6,"p1",`
+<h3>Señales de hambre</h3><p>Se lleva las manos a la boca, gira la cabeza buscando, chupetea o saca la lengua. <strong>El llanto es una señal tardía</strong>: mejor ofrecerle antes.</p>
+<h3>Lactancia materna</h3><ul><li>A demanda: suelen ser 8–12 tomas al día los primeros días.</li><li>Buen agarre: boca muy abierta, labios hacia fuera, barbilla pegada al pecho y más areola dentro por abajo que por arriba.</li><li>Si duele durante toda la toma o salen grietas, revisad el agarre con la matrona.</li><li>Come suficiente si a partir del 5.º día moja 5–6 pañales al día, hace cacas amarillas y gana peso en las revisiones.</li></ul>
+<h3>Biberón</h3><ol class="steps"><li>Lávate las manos y prepara el biberón limpio.</li><li>Primero el agua (la que os indique el pediatra) y después el polvo, con el cacito raso. Nunca añadas cacitos de más.</li><li>Agita y comprueba la temperatura en la cara interna de la muñeca: templada, no caliente.</li><li>Dale con el bebé semiincorporado, con pausas para eructar. No apoyes el biberón para que coma solo.</li><li>Desecha lo que sobre pasada una hora.</li></ol>
+<p class="note">Para saber si un medicamento es compatible con la lactancia: e-lactancia.org.</p>
+<p class="role">da los biberones si los hay; si es pecho, lleva agua y algo de comer a ella en cada toma y haz eructar al bebé.</p>`);
+
+P("llanto","b5","Llanto, gases y cólicos",4,"p1",`
+<ul><li>El llanto aumenta hasta las 6–8 semanas y luego va a menos. Muchas tardes de llanto sin causa clara son normales.</li><li>Repasa lo básico: hambre, pañal, frío o calor, gases, sueño.</li><li>Lo que suele calmar: contacto piel con piel, mecerle, un "shhh" continuo, porteo, paseo, succión.</li><li>Cólico del lactante: llanto intenso más de 3 horas al día, más de 3 días por semana, en un bebé sano. Comentadlo con el pediatra.</li></ul>
+<div class="alarm"><h3>Nunca le zarandees</h3><p>Sacudir a un bebé, aunque sea un segundo, puede causarle lesiones cerebrales graves. Si sientes que no puedes más, déjale en la cuna boca arriba, sal de la habitación unos minutos y respira, o pide relevo. Que llore un rato en un sitio seguro no le hace daño.</p></div>`);
+
+P("fiebre","b5","Fiebre y señales de alarma",4,"p1",`
+<div class="alarm"><h3>Id a urgencias si</h3><ul><li>Un bebé de <strong>menos de 3 meses tiene 38 °C o más</strong>.</li><li>Respira con dificultad: se le hunden las costillas, se queja o respira muy deprisa.</li><li>Color azulado, grisáceo o muy pálido.</li><li>Está muy decaído, no se despierta para comer o rechaza varias tomas seguidas.</li><li>Moja muchos menos pañales.</li><li>Vómitos verdes, o vómitos fuertes repetidos.</li><li>Convulsiones, o la fontanela (la parte blanda de la cabeza) abombada.</li><li>Piel muy amarilla y bebé adormilado.</li></ul></div>
+<p>Mide la temperatura con un termómetro digital en la axila. Antes de dar cualquier medicamento a un recién nacido, consultad siempre.</p>`);
+
+P("revisiones","b5","Revisiones del pediatra y vacunas",4,"p2",`
+<h3>Revisiones del niño sano</h3><ul><li><strong>Primera semana:</strong> visita en el centro de salud con enfermería o matrona y pediatra, a los pocos días del alta. Pedid cita en cuanto lleguéis a casa.</li><li>Después, revisiones periódicas en las que le pesan, le miden y vigilan su desarrollo. Os darán una cartilla de salud infantil: llevadla siempre.</li></ul>
+<h3>Vacunas</h3><ul><li><strong>VRS:</strong> en Madrid, la campaña 2026–2027 va del 1 de octubre al 31 de marzo. A los bebés que nacen en esas fechas se les suele poner en la maternidad un anticuerpo (nirsevimab) que les protege del virus que causa la bronquiolitis. Preguntadlo en planta.</li><li><strong>Primeras vacunas del calendario: a los 2 meses</strong>, en el centro de salud. Enfermería os irá citando según el calendario oficial de la Comunidad de Madrid.</li><li>Antes de cada vacuna, podéis preguntar qué le ponen y qué reacciones son normales (febrícula, irritabilidad, zona roja).</li></ul>
+<p class="role">apunta en el móvil las citas de revisión y vacunas, y lleva la cartilla a cada consulta, también a las de Mapfre.</p>
+<p class="src">Fuentes: Comunidad de Madrid, vacunas y campaña de VRS. El calendario exacto os lo confirmará vuestro centro de salud.</p>`);
+
+/* Block 6 */
+P("atragantamiento","b6","Atragantamiento del bebé (menor de 1 año)",6,"p1",`
+<div class="alarm"><h3>Si tose con fuerza o llora</h3><p>Déjale toser: es la mejor forma de expulsar lo que sea. No le golpees ni metas los dedos en la boca. Vigílale.</p></div>
+<div class="alarm"><h3>Si no puede toser, llorar ni respirar</h3><ol class="steps"><li>Pide ayuda: que alguien llame al <span class="copy">112</span>, o llama tú con el altavoz.</li><li><strong>Cinco golpes en la espalda:</strong> boca abajo sobre tu antebrazo, apoyado en tu muslo, con la cabeza más baja que el cuerpo y sujetando la mandíbula (sin tapar la boca). Golpes secos con el talón de la mano entre los omóplatos.</li><li><strong>Cinco compresiones en el pecho:</strong> dale la vuelta boca arriba sobre el otro antebrazo, cabeza más baja. Con dos dedos en el centro del pecho, justo bajo la línea de los pezones, empuja hacia dentro con firmeza.</li><li>Alterna 5 golpes y 5 compresiones hasta que expulse el objeto o pierda el conocimiento.</li><li>Si pierde el conocimiento: túmbale boca arriba en una superficie firme y empieza la reanimación (RCP). El 112 te guiará por teléfono.</li></ol></div>
+${SVG_CHOKE}
+<div class="dos"><div class="no"><h3>No hagas</h3><ul><li>Barrido a ciegas con el dedo: puede empujar el objeto más dentro. Sácalo solo si lo ves claramente.</li><li>Ponerle cabeza abajo sujetándole por los pies.</li><li>La maniobra de Heimlich de adultos (presión en el abdomen) en un bebé.</li></ul></div></div>
+<div class="practice"><p>Lo más útil es hacer un <strong>curso presencial de primeros auxilios pediátricos</strong> antes del parto, con muñeco, para practicar las maniobras y la RCP. Suelen organizarlos Cruz Roja, centros de salud y hospitales; preguntad a vuestra matrona. Hacedlo los dos.</p><p>Para repasar en casa: la app gratuita <strong>SOS Respira</strong> y el tríptico de atragantamiento en lactantes de Fundación Mapfre (enlace en Fuentes y vídeos, en la portada).</p></div>`);
+
+P("prevencion","b6","Prevenir accidentes en casa",4,"p2",`
+<ul><li><strong>Caídas:</strong> en el cambiador, la cama o el sofá, una mano siempre sobre el bebé. Aprenden a girarse sin avisar.</li><li><strong>Quemaduras:</strong> nunca bebidas calientes con el bebé en brazos. Agua del baño comprobada antes.</li><li><strong>Asfixia:</strong> cuna vacía, nada de cordones de chupete al cuello, bolsas de plástico lejos.</li><li><strong>Piezas pequeñas:</strong> todo lo que quepa por un rollo de papel higiénico es peligroso cuando empiece a coger cosas.</li><li><strong>Coche:</strong> silla a contramarcha en cada trayecto, por corto que sea.</li><li><strong>Humo:</strong> casa y coche sin humo.</li></ul>`);
+
+P("botiquin","b6","Botiquín y teléfonos útiles",3,"p2",`
+<div class="dos"><div><h3>Botiquín básico</h3><ul><li>Termómetro digital</li><li>Suero fisiológico en monodosis y aspirador nasal</li><li>Gasas estériles</li><li>Crema para el pañal</li><li>Paracetamol infantil, solo con la dosis que os indique el pediatra según su peso</li></ul></div>
+<div><h3>Teléfonos</h3><ul><li>Emergencias: <span class="copy">112</span></li><li>Urgencias maternidad Gregorio Marañón: <span class="copy">91 529 01 21</span></li><li>Centralita Gregorio Marañón: <span class="copy">91 586 80 00</span></li><li>Vuestro centro de salud y pediatra</li><li>Teléfono 24 horas de Mapfre Salud (en vuestra tarjeta)</li><li>Atención a la conducta suicida: <span class="copy">024</span></li></ul></div></div>
+<p class="note">Confirmad los teléfonos del hospital en vuestra próxima consulta.</p>`);
+
+/* Block 7 */
+P("alarma-posparto","b7","Señales de alarma en el posparto",3,"p1",`
+<div class="alarm"><h3>Id a urgencias si ella tiene</h3><ul><li>Sangrado que empapa más de una compresa por hora, o coágulos grandes.</li><li>Fiebre de 38 °C o más, o mal olor del sangrado.</li><li>Dolor, hinchazón o enrojecimiento en una pierna.</li><li>Dificultad para respirar o dolor en el pecho.</li><li>Dolor de cabeza intenso o visión borrosa (puede aparecer también después del parto).</li><li>Herida o puntos rojos, calientes o que supuran.</li><li>Pensamientos de hacerse daño o de hacérselo al bebé: buscad ayuda ya (112 o 024).</li></ul></div>`);
+
+P("recuperacion","b7","Recuperación física",5,"p2",`
+<h3>Sangrado posparto (loquios)</h3>${SVG_LOCHIA}
+<h3>Puntos de episiotomía o desgarro</h3><ul><li>Lavar con agua después de ir al baño y secar con toques suaves.</li><li>Frío local (envuelto en una gasa) las primeras 24–48 horas alivia la inflamación.</li><li>Los puntos suelen reabsorberse solos. Sentarse sobre un cojín ayuda.</li></ul>
+<h3>Cicatriz de cesárea</h3><ul><li>Mantenerla limpia y seca. La revisión de los puntos suele hacerse a los 7–10 días en el centro de salud.</li><li>Levantarse de lado, apoyándose en el brazo. No cargar más peso que el del bebé las primeras semanas.</li></ul>
+<h3>Entuertos</h3><p>Son contracciones del útero que vuelve a su tamaño. Se notan más al dar el pecho y en los primeros días.</p>
+<p>La matrona del centro de salud revisa a la madre en la primera semana tras el alta. Después, la recuperación del suelo pélvico merece una valoración propia: preguntad por ella.</p>`,{sens:"Esta píldora describe heridas, puntos y sangrado posparto."});
+
+P("pechos","b7","Pechos: subida de la leche, grietas y mastitis",4,"p2",`
+<ul><li><strong>Subida de la leche</strong> (días 2–5): pechos duros, calientes y llenos. Ayudan las tomas frecuentes, el calor antes de la toma y el frío entre tomas.</li><li><strong>Grietas:</strong> la causa más frecuente es un mal agarre. Revisadlo con la matrona; unas gotas de la propia leche al terminar ayudan a curarlas.</li><li><strong>Mastitis:</strong> zona roja, dolorosa y caliente en el pecho, a veces con fiebre y malestar. Hay que seguir dando el pecho y consultar.</li></ul>`,{sens:"Esta píldora puede incluir imágenes de pechos con grietas o mastitis."});
+
+P("salud-mental","b7","Baby blues y depresión posparto",4,"p1",`
+<div class="dos"><div><h3>Baby blues</h3><ul><li>Muy frecuente, entre los días 3 y 10.</li><li>Llanto fácil, cambios de humor, sentirse desbordada.</li><li>Se pasa sola en unas dos semanas con descanso y apoyo.</li></ul></div>
+<div class="no"><h3>Depresión posparto</h3><ul><li>Dura más de dos semanas o va a más.</li><li>Tristeza intensa, no disfrutar de nada, ansiedad, culpa, no poder dormir aunque el bebé duerma.</li><li>Tiene tratamiento: hablad con la matrona o el médico.</li></ul></div></div>
+<p class="role">eres quien mejor puede notar el cambio. Pregúntale cómo está ella, no solo el bebé. Si ves señales de depresión, acompáñala a pedir ayuda.</p>`);
+
+P("suelo-pelvico","b7","Suelo pélvico, sexualidad y anticoncepción",4,"p3",`
+<h3>Suelo pélvico</h3><ul><li>Los ejercicios de Kegel se pueden retomar pronto, con suavidad, si no duelen.</li><li>Pérdidas de orina, sensación de peso en la vagina o dolor persistente no son "lo normal tras un parto": merecen valoración por una fisioterapeuta de suelo pélvico.</li><li>Antes de volver a correr, saltar o hacer abdominales clásicos, conviene esa valoración.</li></ul>
+<h3>Sexualidad</h3><p>No hay una fecha fija: se retoman las relaciones con penetración cuando ella se sienta preparada, el sangrado haya terminado y los puntos estén curados. Es normal que el deseo tarde en volver por el cansancio y los cambios hormonales; hablarlo sin presión ayuda.</p>
+<h3>Anticoncepción</h3><p>Se puede volver a quedar embarazada antes de que vuelva la regla. La lactancia solo protege en condiciones muy concretas, así que hablad del método en la revisión posparto con la matrona.</p>`);
+
+/* Block 8 */
+P("como-ayudar","b8","Cómo ayudar de verdad",4,"p1",`
+<ul><li><strong>Hazte cargo de la casa:</strong> comidas, compra, ropa, limpieza. Que ella no tenga que pedirlo.</li><li><strong>Haz todo lo que no sea dar el pecho:</strong> pañales, baños, eructos, dormir al bebé, paseos.</li><li><strong>Cuida su descanso:</strong> que duerma cuando el bebé duerma; tú atiendes la puerta y el móvil.</li><li><strong>Anticípate:</strong> agua y algo de comer en cada toma, cojín, mando de la tele.</li><li><strong>Escucha sin arreglar:</strong> a veces solo necesita contar lo cansada que está.</li></ul>`);
+
+P("noches-visitas","b8","Turnos de noche y visitas",3,"p2",`
+<h3>Noches</h3><ul><li>Si es biberón, repartid las tomas por turnos para que cada uno duerma un bloque largo.</li><li>Si es pecho, tú te encargas del cambio y de volver a dormirle; ella vuelve a la cama cuanto antes.</li><li>Una siesta cada uno el fin de semana vale oro.</li></ul>
+<h3>Visitas</h3><ul><li>Pactad antes cuántas y cuándo. En el hospital, mejor pocas o ninguna.</li><li>Tú haces de filtro: avisa de que son visitas cortas y que quien venga se lave las manos.</li><li>Nadie con catarro o fiebre cerca del bebé. Sin besos en la cara.</li><li>Quien venga, que ayude: traer comida es la mejor visita.</li></ul>`);
+
+P("tu-salud","b8","Tu propia salud mental",3,"p2",`
+<p>Alrededor de 1 de cada 10 padres también tiene síntomas de depresión o ansiedad en el primer año. Falta de sueño, presión por el trabajo y sentirse al margen son habituales.</p>
+<ul><li>Habla de cómo estás con ella y con alguien de confianza.</li><li>Busca un rato para ti cada semana, aunque sea corto.</li><li>Si la irritabilidad, la tristeza o la ansiedad duran semanas, consulta a tu médico.</li></ul>`);
+
+/* Block 9 */
+P("calendario-tramites","b9","Calendario de trámites",4,"p1",`
+<div class="tbl"><table><thead><tr><th>Cuándo</th><th>Qué</th></tr></thead><tbody>
+<tr><td>Ya (desde la semana 21)</td><td>Si cumple los requisitos, pedir la ayuda de natalidad de la Comunidad de Madrid.</td></tr>
+<tr><td>Antes del parto</td><td>Preguntar a Mapfre el plazo para dar de alta al bebé. Informar a la empresa de las fechas previstas del permiso.</td></tr>
+<tr><td>En el hospital</td><td>Inscripción en el Registro Civil con el formulario del hospital.</td></tr>
+<tr><td>Primeros días</td><td>Alta del bebé en la póliza de Mapfre (la cobertura automática dura muy poco). Empadronarle en el Ayuntamiento.</td></tr>
+<tr><td>Primera semana</td><td>Tarjeta sanitaria pública y asignación de pediatra en el centro de salud. Pedir la prestación por nacimiento al INSS.</td></tr>
+<tr><td>Después</td><td>Deducción por maternidad (o su abono anticipado), ayuda municipal si hay convocatoria abierta.</td></tr></tbody></table></div>`);
+
+P("permisos","b9","Permiso y prestación por nacimiento",4,"p1",`
+<p>Desde 2026, cada progenitor tiene <strong>19 semanas</strong> de permiso, pagadas al 100 % de su base reguladora por la Seguridad Social y exentas de IRPF:</p>
+<ul><li><strong>6 semanas obligatorias</strong>, seguidas y a jornada completa, justo después del parto.</li><li><strong>11 semanas</strong> más, seguidas o por semanas, hasta que el bebé cumpla 12 meses.</li><li><strong>2 semanas</strong> que se pueden usar hasta que cumpla 8 años.</li><li>La madre puede adelantar hasta 4 semanas antes del parto.</li></ul>
+<p>Se solicita al INSS, por internet en el portal Tu Seguridad Social o en sus oficinas, con el certificado de nacimiento.</p>
+<div class="callout info">Preguntad también a Recursos Humanos de vuestras empresas: algunos convenios mejoran el permiso o añaden ayudas por nacimiento.</div>
+<p class="src">Fuente: Guía de nacimiento y cuidado de menor de la Seguridad Social (agosto de 2026).</p>`);
+
+P("ayudas","b9","Ayudas y deducciones en Madrid",5,"p2",`
+<h3>Ayuda a la natalidad de la Comunidad de Madrid</h3><ul><li><strong>500 € al mes durante 24 meses.</strong></li><li>Madre de <strong>hasta 30 años</strong>, empadronada en la Comunidad <strong>al menos 5 de los últimos 10 años</strong>, con renta inferior a <strong>30.000 € individual o 36.200 € en unidad familiar</strong>.</li><li>Se puede pedir desde la <strong>semana 21 de embarazo</strong> (con informe médico) o hasta que el bebé cumpla 24 meses.</li><li>Por internet con Cuenta Digital de la Comunidad de Madrid o en registro. Plazo abierto todo el año.</li></ul>
+<h3>Ayuda del Ayuntamiento de Madrid</h3><p>Pago único de 500 a 1.000 € según el número de hijo, para familias empadronadas en Madrid los últimos 5 años. La última convocatoria cubría nacimientos hasta el 31 de agosto de 2026: estad atentos a si sale una nueva en sede.madrid.es.</p>
+<h3>Deducción por maternidad (IRPF)</h3><ul><li>Hasta <strong>1.200 € al año</strong> por hijo menor de 3 años, para madres que trabajan y cotizan.</li><li>Se puede cobrar por adelantado: <strong>100 € al mes</strong> con el modelo 140 de la Agencia Tributaria.</li><li>Hasta 1.000 € más al año por gastos de guardería autorizada.</li></ul>
+<h3>Deducción autonómica por nacimiento</h3><p>La Comunidad de Madrid tiene una deducción en la declaración de la renta por nacimiento. Comprobad el importe vigente al hacer la declaración.</p>
+<p class="src">Fuentes: sede de la Comunidad de Madrid (actualizada en octubre de 2026), Agencia Tributaria. Confirmad los requisitos antes de solicitar.</p>`);
+
+P("mapfre","b9","Vuestro seguro de salud con Mapfre",4,"p1",`
+<div class="alarm"><h3>Dad de alta al bebé cuanto antes</h3><p>Según Mapfre, el recién nacido queda cubierto por la póliza de la madre solo <strong>3 días tras el parto (5 si es cesárea)</strong>. Para que siga cubierto hay que pedir que le incluyan como asegurado. Si se pasa el plazo, el alta puede ser denegada.</p></div>
+<h3>Preguntad ya, antes del parto</h3><ul><li>Cuál es el plazo exacto de vuestra póliza para dar de alta al bebé y qué documentos piden.</li><li>Si hace falta una declaración de salud del bebé.</li><li>Si el bebé tiene periodos de carencia al darle de alta.</li><li>Qué pediatras y urgencias pediátricas tenéis en el cuadro médico cerca de casa.</li><li>Si la póliza incluye preparación al parto, matrona o recuperación del suelo pélvico.</li></ul>
+<div class="callout info">Podéis combinar la sanidad pública (parto en el Gregorio Marañón, pediatra del centro de salud, vacunas del calendario) con la privada (pediatra o urgencias de Mapfre cuando os convenga). Siempre que vayáis a urgencias, llevad las dos tarjetas.</div>
+<p class="role">llama tú a Mapfre esta semana con estas preguntas y apunta las respuestas aquí.</p>
+<p class="src">Fuente: mapfre.es, "Cómo saber si mi hijo está asegurado". Las condiciones dependen de cada póliza.</p>`);
+
+P("maranon","b9","Gregorio Marañón: datos prácticos",3,"p2",`
+<ul><li>Urgencias de maternidad: <span class="copy">91 529 01 21</span></li><li>Centralita: <span class="copy">91 586 80 00</span></li><li>Neonatología y recién nacidos sanos: 5.ª planta del área materno-infantil.</li></ul>
+<h3>Preguntad en vuestra próxima consulta</h3><ul><li>Por qué puerta se entra a urgencias de maternidad y dónde aparcar.</li><li>Si tienen modelo propio de plan de parto y visita a los paritorios.</li><li>Qué opciones de alivio del dolor ofrecen.</li><li>Si el acompañante puede entrar en una cesárea.</li><li>Qué dan durante el ingreso (pañales, compresas, ropa del bebé).</li><li>Cómo se hace la inscripción en el Registro Civil desde planta.</li></ul>
+<p class="src">Fuente: web del Hospital General Universitario Gregorio Marañón (comunidad.madrid). Confirmad teléfonos y accesos en la consulta.</p>`);
+
+P("glosario","b9","Glosario",3,"p3",`
+<div class="tbl"><table><tbody>
+<tr><td><strong>Alumbramiento</strong></td><td>Salida de la placenta tras el nacimiento.</td></tr>
+<tr><td><strong>Apgar</strong></td><td>Puntuación del bebé al minuto y a los 5 minutos de nacer.</td></tr>
+<tr><td><strong>Calostro</strong></td><td>Primera leche, espesa y amarillenta. Poca cantidad, muy nutritiva.</td></tr>
+<tr><td><strong>Cribado neonatal</strong></td><td>La prueba del talón.</td></tr>
+<tr><td><strong>Dilatación</strong></td><td>Apertura del cuello del útero, hasta los 10 cm.</td></tr>
+<tr><td><strong>Entuertos</strong></td><td>Contracciones del útero después del parto.</td></tr>
+<tr><td><strong>Epidural</strong></td><td>Anestesia por un catéter en la espalda para aliviar el dolor del parto.</td></tr>
+<tr><td><strong>Episiotomía</strong></td><td>Corte en el periné para ampliar la salida del bebé. No se hace de rutina.</td></tr>
+<tr><td><strong>Fontanela</strong></td><td>Zona blanda de la cabeza del bebé.</td></tr>
+<tr><td><strong>Ictericia</strong></td><td>Color amarillento de piel y ojos, frecuente los primeros días.</td></tr>
+<tr><td><strong>Loquios</strong></td><td>Sangrado y flujo posparto.</td></tr>
+<tr><td><strong>Meconio</strong></td><td>Primeras cacas, negras verdosas.</td></tr>
+<tr><td><strong>Nirsevimab</strong></td><td>Anticuerpo que protege al bebé del VRS.</td></tr>
+<tr><td><strong>Pródromos</strong></td><td>Contracciones irregulares previas al parto.</td></tr>
+<tr><td><strong>Tdpa</strong></td><td>Vacuna de difteria, tétanos y tosferina.</td></tr>
+<tr><td><strong>VRS</strong></td><td>Virus respiratorio sincitial, causa principal de la bronquiolitis.</td></tr></tbody></table></div>`);
+
+/* ---------- Quiz: one review question per lesson [question, options, correct index, explanation] ---------- */
+const QUIZ = {
+  "urgencias":["Notáis por la tarde que el bebé se mueve menos de lo habitual. ¿Qué hacéis?",["Esperar a mañana a ver si se mueve","Ir a urgencias de maternidad ese mismo día","Comer algo dulce y esperar unas horas"],1,"Una disminución de movimientos se valora siempre el mismo día."],
+  "bolsa":["¿Qué conviene preguntar al hospital antes de llenar la bolsa?",["Si dan pañales, compresas y ropa del bebé","El menú de la cafetería","Si se puede llevar la cuna de casa"],0,"Así no cargáis con lo que ya os van a dar."],
+  "compras":["¿Cómo debe ir la silla de coche del recién nacido?",["Mirando hacia delante en el asiento trasero","A contramarcha, y nunca delante con el airbag activado","En brazos si el trayecto es corto"],1,"A contramarcha protege mucho mejor su cabeza y su cuello."],
+  "vacunas-embarazo":["¿Cuándo se pone la vacuna de la tosferina?",["Entre las semanas 27 y 36, en cada embarazo","Solo en el primer embarazo","Después del parto"],0,"Así los anticuerpos llegan al bebé antes de nacer."],
+  "ejercicios":["Durante una contracción, ¿qué ayuda más?",["Soltar el aire más despacio de lo que se coge","Aguantar la respiración","Respirar muy rápido"],0,"La espiración lenta relaja y ayuda a sobrellevar el dolor."],
+  "contrapresion":["¿En cuál de estas situaciones no se debe usar el rebozo?",["Embarazo sin complicaciones y con el visto bueno de la matrona","Placenta previa o sangrado","Para relajarse antes de dormir"],1,"Placenta previa y sangrado son contraindicaciones claras."],
+  "plan":["¿Qué es el plan de parto?",["Un contrato que obliga al hospital","Vuestras preferencias, que el equipo respeta si la situación lo permite","Un trámite obligatorio para ingresar"],1,"Es una guía para el equipo, no un contrato."],
+  "parto-real":["¿Qué distingue a las contracciones de parto?",["Que se calman al ducharse","Que son regulares, cada vez más seguidas e intensas","Que solo duelen delante"],1,"Regularidad, frecuencia e intensidad crecientes."],
+  "cuando-ir":["Rompe la bolsa y el líquido es verde. ¿Qué hacéis?",["Esperar a que empiecen las contracciones","Salir ya hacia el hospital","Llamar mañana a la matrona"],1,"El líquido verde o marrón puede indicar que el bebé lo está pasando mal."],
+  "bolsa-rota":["Expulsa el tapón mucoso, sin contracciones ni sangrado abundante.",["Es normal; no hace falta ir al hospital por eso","Urgencias inmediatamente","Llamar al 112"],0,"El tapón puede salir días o semanas antes del parto."],
+  "fases":["¿En qué fase sale la placenta?",["Dilatación","Expulsivo","Alumbramiento"],2,"El alumbramiento es la última fase."],
+  "dolor":["¿Hay que decidir antes del parto si se quiere epidural?",["Sí, no se puede cambiar","No, se puede decidir sobre la marcha","Solo si hay cesárea"],1,"Se puede empezar sin epidural y pedirla después, o al revés."],
+  "tu-papel-parto":["Durante una contracción fuerte, ¿qué es mejor?",["Preguntarle cuánto le duele","Acompañar en silencio, contrapresión y respirar con ella","Comentarle cuánto tiempo lleváis"],1,"Durante la contracción, menos palabras y más apoyo físico."],
+  "cesarea":["Si la madre no puede hacer piel con piel tras la cesárea…",["El bebé espera en la cuna","Puede hacerlo el padre, con los mismos beneficios","No tiene importancia"],1,"El piel con piel con el padre también regula al bebé."],
+  "primera-hora":["¿Para qué sirve el pinzamiento tardío del cordón?",["Mejora las reservas de hierro del bebé","Evita siempre la ictericia","Acelera la salida de la placenta"],0,"Esperar al menos un minuto le aporta más sangre y hierro."],
+  "pruebas":["¿Cuándo se suele hacer la prueba del talón?",["Nada más nacer","A partir de las 48 horas de vida","Al mes"],1,"Necesita que el bebé lleve unas horas comiendo."],
+  "normal-hospital":["El bebé ha perdido un 6 % de su peso al tercer día.",["Es normal; lo recuperará hacia las dos semanas","Hay que darle biberón ya","Es una urgencia"],0,"Hasta un 7–10 % es esperable los primeros días."],
+  "registro":["¿Qué necesitáis para registrar al bebé desde el hospital?",["El DNI de los dos","Nada","El libro de familia, obligatoriamente"],0,"Con el DNI y el formulario del hospital basta."],
+  "sueno":["¿Cuál es la postura segura para dormir?",["De lado","Boca arriba","Boca abajo"],1,"Boca arriba en cada siesta y cada noche."],
+  "vestir":["¿Dónde se comprueba si el bebé tiene calor?",["En las manos","En los pies","En la nuca o el pecho"],2,"Manos y pies suelen estar frescos aunque esté bien."],
+  "dia-noche":["Para ayudarle a dormir mejor por la noche…",["Mantenerle despierto todo el día","Luz y vida normal de día; luz tenue y calma de noche","Darle más comida antes de dormir"],1,"Cansarle de día suele empeorar el sueño."],
+  "coger":["En el porteo, ¿cómo debe ir la cara del bebé?",["Hundida en tu pecho","Visible y con la barbilla separada del pecho","Tapada con la tela"],1,"Así respira bien y puedes verle en todo momento."],
+  "panal":["Caca blanca o gris en un recién nacido:",["Es normal con pecho","Consultad al pediatra ese mismo día","Es por la crema del pañal"],1,"Las cacas muy pálidas pueden indicar un problema del hígado."],
+  "cordon":["¿Cómo se cuida el cordón?",["Limpio y seco, con agua y jabón si se mancha","Con alcohol varias veces al día","Tapado bajo el pañal"],0,"Cura seca y al aire, con el pañal doblado por debajo."],
+  "bano":["Suena el timbre durante el baño:",["Le dejas un segundo","Sale contigo envuelto en la toalla","Le dejas sentado esperando"],1,"Nunca solo en el agua, ni un segundo."],
+  "alimentacion":["¿Cuál es una señal temprana de hambre?",["Llanto fuerte","Llevarse las manos a la boca y buscar con la cabeza","Dormir profundamente"],1,"El llanto es una señal tardía."],
+  "llanto":["Estás desbordado y no deja de llorar:",["Le dejas seguro en la cuna, sales unos minutos y respiras","Le meces con energía","Le das agua"],0,"Que llore un rato en un sitio seguro no le hace daño. Zarandearle sí."],
+  "fiebre":["Bebé de 5 semanas con 38,2 °C:",["Paracetamol y esperar","Urgencias","Esperar a mañana"],1,"Con menos de 3 meses, 38 °C o más es siempre urgencia."],
+  "revisiones":["Si nace entre octubre y marzo en Madrid, ¿qué protección frente al VRS suele recibir?",["Un anticuerpo (nirsevimab) en la maternidad","Ninguna","Una vacuna a los 6 meses"],0,"Protege frente a la bronquiolitis en su primer invierno."],
+  "atragantamiento":["Se atraganta, pero tose con fuerza:",["Golpes en la espalda enseguida","Dejarle toser y vigilarle","Meter el dedo para sacar el objeto"],1,"La tos eficaz es lo mejor para expulsarlo."],
+  "prevencion":["¿Qué evita caídas del cambiador?",["Una correa de seguridad","Tener siempre una mano sobre el bebé","Un cambiador con bordes altos"],1,"Ninguna correa sustituye a tu mano."],
+  "botiquin":["Paracetamol infantil:",["La dosis según su peso que indique el pediatra","Media cucharadita siempre","La dosis de adulto dividida"],0,"La dosis depende del peso: preguntad siempre."],
+  "alarma-posparto":["Dolor e hinchazón en una pierna tras el parto:",["Es normal por el esfuerzo","Urgencias: puede ser una trombosis","Un masaje fuerte"],1,"El riesgo de trombosis es mayor en el posparto."],
+  "recuperacion":["Los loquios…",["Son rojo intenso durante 6 semanas","Van aclarando y disminuyendo durante 4–6 semanas","Desaparecen en 3 días"],1,"Rojo los primeros días, luego rosado y después amarillento."],
+  "pechos":["Si hay mastitis…",["Dejar de dar ese pecho","Seguir dando el pecho y consultar","Esperar a que se pase sola"],1,"Vaciar el pecho ayuda a que mejore."],
+  "salud-mental":["Tristeza intensa que dura más de dos semanas:",["Baby blues normal","Puede ser depresión posparto: pedir ayuda","Cansancio sin importancia"],1,"El baby blues se pasa en unas dos semanas; si no, hay que consultar."],
+  "suelo-pelvico":["¿La lactancia sirve como anticonceptivo?",["Siempre","Solo en condiciones muy concretas; mejor hablarlo con la matrona","Nunca influye"],1,"Se puede volver a quedar embarazada antes de que vuelva la regla."],
+  "como-ayudar":["¿Qué ayuda más en las primeras semanas?",["Encargarte de la casa y de todo lo que no sea dar el pecho","Preguntar qué hay que hacer","Organizar visitas para que se distraiga"],0,"Anticiparte vale más que preguntar."],
+  "noches-visitas":["Un familiar con catarro quiere conocer al bebé:",["Mejor que espere a estar bien","Que venga con mascarilla y le dé un beso","No pasa nada"],0,"Un catarro de adulto puede ser serio en un recién nacido."],
+  "tu-salud":["Llevas semanas irritable, triste o con ansiedad:",["Es parte de ser padre, se aguanta","Hablarlo y consultar a tu médico","Trabajar más para distraerte"],1,"Los padres también pueden tener depresión posparto."],
+  "calendario-tramites":["¿Desde qué semana se puede pedir la ayuda de natalidad de la Comunidad de Madrid?",["Semana 21","Después del parto","Semana 36"],0,"Con un informe médico que lo acredite."],
+  "permisos":["¿Cuántas semanas de permiso tiene cada progenitor en 2026?",["16","19","12"],1,"6 obligatorias, 11 hasta el año y 2 hasta los 8 años."],
+  "ayudas":["¿Cuánto se puede cobrar al mes por adelantado de la deducción por maternidad?",["50 €","100 €","200 €"],1,"Con el modelo 140, hasta 1.200 € al año."],
+  "mapfre":["¿Cuánto tiempo cubre la póliza de la madre al recién nacido tras un parto vaginal?",["3 días","1 mes","1 año"],0,"5 días si es cesárea. Después hay que darle de alta."],
+  "maranon":["¿Qué conviene preguntar en la próxima consulta?",["Por qué puerta se entra a urgencias de maternidad y dónde aparcar","El horario de la tienda","El menú de planta"],0,"El día del parto no es momento de buscar la puerta."]
+};
+
+/* ---------- Sources (shown on home) ---------- */
+const SOURCES = [
+  ["Consejos para reducir el riesgo de muerte súbita infantil (AEP, En Familia)","https://enfamilia.aeped.es/prevencion/consejos-para-reducir-riesgo-muerte-subita-infantil"],
+  ["Guía de sueño seguro para padres (Academia Americana de Pediatría, en español)","https://healthychildren.org/spanish/ages-stages/baby/sleep/paginas/a-parents-guide-to-safe-sleep.aspx"],
+  ["Vídeos sobre el parto y los cuidados del bebé (Hospital de Getafe)","https://www.comunidad.madrid/hospital/getafe/noticia/65917"],
+  ["Ayuda a la natalidad (Comunidad de Madrid)","https://sede.comunidad.madrid/ayudas-becas-subvenciones/ayudas-economicas-natalidad"],
+  ["Cómo saber si mi hijo está asegurado (Mapfre)","https://www.mapfre.es/particulares/seguros-de-salud/articulos/como-saber-si-mi-hijo-esta-asegurado/"],
+  ["Hospital General Universitario Gregorio Marañón","https://www.comunidad.madrid/centros/hospital-general-universitario-gregorio-maranon"],
+  ["Compatibilidad de medicamentos con la lactancia","https://www.e-lactancia.org"],
+  ["Atragantamiento en lactantes, tríptico (Fundación Mapfre, SOS Respira)","https://www.fundacionmapfre.org/media/educacion-divulgacion/salud-bienestar/sos-respira/triptico-atragantamiento-lactantes.pdf"],
+  ["Vacunas para embarazadas 2026 (Comité Asesor de Vacunas de la AEP)","https://static.aeped.es/Embarazadas_Calendario_CAV_AEP_2026_para_familias_33c65f1032.pdf"],
+  ["Vacunas (Comunidad de Madrid)","https://www.comunidad.madrid/servicios/salud/vacunas-informacion-profesionales"]
+];
+
+/* ---------- State ---------- */
+const $ = s => document.querySelector(s);
+const store = { get(k,d){ try{ const v=localStorage.getItem(k); return v===null?d:JSON.parse(v);}catch(e){return d;} },
+                set(k,v){ try{ localStorage.setItem(k,JSON.stringify(v)); }catch(e){} } };
+let stage = store.get("stage","s30");
+let progress = store.get("progress",{});
+let checked = store.get("checks",{});
+let db = null, progressRef = null;
+
+const byBlock = b => L.filter(l=>l.b===b);
+const blockOf = id => BLOCKS.find(b=>b.id===id);
+const pct = list => list.length ? Math.round(100*list.filter(l=>progress[l.id]).length/list.length) : 0;
+const prioLabel = {p1:"Imprescindible",p2:"Conviene",p3:"Si da tiempo"};
+const meter = (list) => `<div class="overall"><div class="meter"><i style="width:${pct(list)}%"></i></div><span>${list.filter(l=>progress[l.id]).length}/${list.length}</span></div>`;
+
+function nextLesson(){
+  const s = STAGES.find(x=>x.id===stage)||STAGES[0];
+  const ordered = s.blocks.flatMap(byBlock);
+  return ordered.find(l=>!progress[l.id] && l.prio==="p1") || ordered.find(l=>!progress[l.id]) || L.find(l=>!progress[l.id]);
+}
+
+/* ---------- Views ---------- */
+function viewHome(){
+  const s = STAGES.find(x=>x.id===stage)||STAGES[0];
+  const nx = nextLesson();
+  return `<header class="stack"><span class="eyebrow">Curso para los dos · ${L.length} píldoras de 3 a 6 minutos</span><h1>Bebé en Camino</h1>
+  <p class="lead">Elegid en qué momento estáis y el curso os propone la siguiente píldora. Marcad cada una como aprendida y avanzad a vuestro ritmo.</p></header>
+  <div class="stack"><span class="eyebrow">¿Dónde estáis?</span><div class="chips" role="group" aria-label="Etapa">${
+    STAGES.map(x=>`<button class="chip" type="button" id="chip-${x.id}" data-stage="${x.id}" aria-pressed="${x.id===stage}">${x.label}</button>`).join("")}</div></div>
+  ${nx?`<section class="next"><span class="eyebrow">Siguiente píldora · ${blockOf(nx.b).title}</span><h2>${nx.title}</h2>
+    <div class="meta"><span class="prio ${nx.prio}">${prioLabel[nx.prio]}</span><span>${nx.min} min</span></div>
+    <a class="btn primary go" href="#p-${nx.id}">Empezar</a></section>`
+   :`<section class="next"><h2>¡Curso completado!</h2><p>Podéis repasar cualquier píldora cuando queráis.</p></section>`}
+  <div class="stack"><span class="eyebrow">Progreso total</span>${meter(L)}</div>
+  <section class="stack"><h2>Bloques</h2><div class="blocks">${
+    BLOCKS.map(b=>`<a class="block ${s.blocks[0]===b.id?"rec":""}" href="#b-${b.id}"><span class="num">Bloque ${b.n}${s.blocks[0]===b.id?'<span class="tag">Ahora</span>':""}</span><h3>${b.title}</h3><p>${b.sub}</p>${meter(byBlock(b.id))}</a>`).join("")}</div></section>
+  <section class="src"><h3>Fuentes y vídeos</h3><ul>${SOURCES.map(([t,u])=>`<li><a href="${u}" target="_blank" rel="noopener">${t}</a></li>`).join("")}</ul></section>`;
+}
+
+function viewBlock(id){
+  const b = blockOf(id); if(!b) return viewHome();
+  const ls = byBlock(id);
+  return `<p class="crumb"><a href="#inicio">Inicio</a> › Bloque ${b.n}</p>
+  <header class="stack"><span class="eyebrow">Bloque ${b.n}</span><h1>${b.title}</h1><p class="lead">${b.sub}</p>${meter(ls)}</header>
+  <ul class="lessons">${ls.map(l=>`<li class="${progress[l.id]?"done":""}"><a href="#p-${l.id}"><span class="dot" aria-hidden="true">${progress[l.id]?"✓":""}</span><span class="t">${l.title}</span><span class="m">${l.min} min · <span class="prio ${l.prio}">${prioLabel[l.prio]}</span></span></a></li>`).join("")}</ul>`;
+}
+
+function viewLesson(id){
+  const l = L.find(x=>x.id===id); if(!l) return viewHome();
+  const b = blockOf(l.b), i = L.indexOf(l), prev = L[i-1], next = L[i+1];
+  const body = l.sens
+    ? `<div class="sens" id="sens-${l.id}"><div class="veil"><p><strong>Contenido delicado.</strong> ${l.sens}</p><button class="btn" type="button" data-reveal="${l.id}">Mostrar</button></div><div class="content body">${l.body}</div></div>`
+    : `<div class="body">${l.body}</div>`;
+  return `<p class="crumb"><a href="#inicio">Inicio</a> › <a href="#b-${b.id}">Bloque ${b.n} · ${b.title}</a></p>
+  <header class="stack"><h1>${l.title}</h1><div class="meta"><span class="prio ${l.prio}">${prioLabel[l.prio]}</span><span>${l.min} min de lectura</span></div></header>
+  ${body}
+  ${QUIZ[l.id] ? viewQuiz(l.id) : ""}
+  <div class="pager">
+    ${prev?`<a class="btn" href="#p-${prev.id}">← Anterior</a>`:"<span></span>"}
+    <button class="btn ${progress[l.id]?"doneb":"primary"}" type="button" id="markBtn" data-id="${l.id}">${progress[l.id]?"✓ Aprendida":"Marcar como aprendida"}</button>
+    ${next?`<a class="btn" href="#p-${next.id}">Siguiente →</a>`:"<span></span>"}
+  </div>`;
+}
+
+function viewQuiz(id){
+  const [q,opts] = QUIZ[id];
+  return `<section class="quiz" id="quiz"><span class="eyebrow">Repaso</span><h3>${q}</h3><div class="opts">${
+    opts.map((o,i)=>`<button class="opt" type="button" data-quiz="${id}" data-i="${i}">${o}</button>`).join("")}</div><p class="qfb" id="qfb" aria-live="polite"></p></section>`;
+}
+
+function renderChecklist(){
+  const el = $("#checklist"); if(!el) return;
+  el.innerHTML = CHECK.map(g=>{
+    const done = g.items.filter(([id])=>checked[id]).length;
+    return `<details open><summary>${g.title}<span class="count">${done}/${g.items.length}</span></summary><ul>${
+      g.items.map(([id,t])=>`<li class="${checked[id]?"done":""}"><label for="ck-${id}"><input type="checkbox" id="ck-${id}" data-ck="${id}" ${checked[id]?"checked":""}><span>${t}</span></label></li>`).join("")}</ul></details>`;
+  }).join("");
+}
+
+let lastRoute = null;
+function render(){
+  const h = location.hash.slice(1) || "inicio";
+  const v = $("#view");
+  v.innerHTML = h.startsWith("p-") ? viewLesson(h.slice(2)) : h.startsWith("b-") ? viewBlock(h.slice(2)) : viewHome();
+  renderChecklist();
+  if(h!==lastRoute){ window.scrollTo(0,0); lastRoute=h; }
+}
+window.addEventListener("hashchange",render);
+
+/* ---------- Events ---------- */
+document.addEventListener("click", async e=>{
+  const chip = e.target.closest("[data-stage]");
+  if(chip){ stage=chip.dataset.stage; store.set("stage",stage); render(); return; }
+  const rv = e.target.closest("[data-reveal]");
+  if(rv){ $("#sens-"+rv.dataset.reveal).classList.add("revealed"); return; }
+  const op = e.target.closest("[data-quiz]");
+  if(op){
+    const id = op.dataset.quiz, i = +op.dataset.i, [,,ok,why] = QUIZ[id];
+    document.querySelectorAll("[data-quiz]").forEach(b=>{ b.disabled=true; if(+b.dataset.i===ok) b.classList.add("right"); });
+    if(i!==ok) op.classList.add("wrong");
+    $("#qfb").innerHTML = (i===ok ? "<strong>Correcto.</strong> " : "<strong>No exactamente.</strong> ") + why + (i===ok && !progress[id] ? " La marcamos como aprendida." : "");
+    if(i===ok && !progress[id]){
+      progress = {...progress,[id]:true}; saveProgress();
+      const mb = $("#markBtn"); mb.className="btn doneb"; mb.textContent="✓ Aprendida";
+    }
+    return;
+  }
+  const mk = e.target.closest("#markBtn");
+  if(mk){ const id=mk.dataset.id; progress={...progress,[id]:!progress[id]}; render(); saveProgress(); }
+});
+document.addEventListener("change", async e=>{
+  const id = e.target.dataset?.ck; if(!id) return;
+  checked = {...checked,[id]:e.target.checked}; renderChecklist();
+  if(db){ try{ await db.doc("checks/"+id).set({done:e.target.checked}); }catch(err){ store.set("checks",checked); } }
+  else store.set("checks",checked);
+});
+const sens = $("#sensToggle");
+sens.checked = store.get("hideSens",true);
+document.body.classList.toggle("hide-sens",sens.checked);
+sens.addEventListener("change",()=>{ document.body.classList.toggle("hide-sens",sens.checked); store.set("hideSens",sens.checked); });
+
+/* ---------- Persistence: db when available, local otherwise ---------- */
+let saving = false, pendingSave = false;
+async function saveProgress(){
+  store.set("progress",progress);
+  if(!progressRef) return;
+  if(saving){ pendingSave=true; return; }
+  saving = true;
+  try{ await progressRef.set({done:progress}); }catch(e){}
+  saving = false;
+  if(pendingSave){ pendingSave=false; saveProgress(); }
+}
+function setSync(state,text){ const el=$("#sync"); el.dataset.state=state; el.textContent=text; }
+
+async function connect(){
+  try{
+    if(!window.claude?.use) return;
+    const [dbNs, user] = await Promise.all([window.claude.use("db"), window.claude.use("user")]);
+    if(!dbNs) return;
+    db = dbNs;
+    const timer = setTimeout(()=>setSync("off","Conectando…"),10000);
+    db.collection("checks").onSnapshot(snap=>{
+      const next={}; snap.docs.forEach(d=>{ if(d.data()?.done) next[d.id]=true; });
+      checked=next; renderChecklist();
+      if(!snap.metadata.fromCache){ clearTimeout(timer); setSync("on","Sincronizado"); }
+    },()=>{ clearTimeout(timer); db=null; setSync("off","Progreso en este dispositivo"); });
+    const uid = user ? await user.id() : null;
+    if(uid){
+      progressRef = db.doc("data/users/"+uid+"/progress");
+      let first = true;
+      progressRef.onSnapshot(snap=>{
+        const remote = snap.exists ? (snap.data().done||{}) : {};
+        if(first && !snap.metadata.fromCache){
+          first = false;
+          const merged = {...remote, ...progress};
+          const changed = JSON.stringify(merged)!==JSON.stringify(remote);
+          progress = merged; render();
+          if(changed) saveProgress();
+        } else if(!first && JSON.stringify(remote)!==JSON.stringify(progress)){ progress = {...remote}; store.set("progress",progress); render(); }
+      },()=>{ progressRef=null; });
+    }
+  }catch(e){ db=null; }
+}
+
+render(); connect();
+</script>
