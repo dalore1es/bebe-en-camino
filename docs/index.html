@@ -181,6 +181,8 @@ body.hide-sens .sens:not(.revealed) .veil{display:flex;position:absolute;inset:0
 .results a{display:block;padding:12px 16px;text-decoration:none;color:var(--ink)}
 .results small{display:block;color:var(--muted);font-size:.85rem;margin-top:2px}
 .results mark{background:var(--warm-soft);color:inherit;border-radius:3px}
+.quick{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:16px}
+.quick .more{align-self:flex-start}
 .symptoms{display:flex;flex-direction:column;gap:14px}
 .sym-group h3{font-size:1rem;margin-bottom:8px}
 .sym{display:flex;flex-wrap:wrap;gap:8px}
@@ -2727,19 +2729,18 @@ function viewHome(){
   const s = STAGES.find(x=>x.id===stage)||STAGES[0];
   const nx = nextLesson();
   return `<header class="stack"><span class="eyebrow">Curso para los dos · ${L.length} píldoras de 3 a 7 minutos</span><h1>Bebé en Camino</h1>
-  <p class="lead">Elegid en qué momento estáis y el curso os propone la siguiente píldora. Marcad cada una como aprendida y avanzad a vuestro ritmo.</p></header>
+  <p class="lead">Dos formas de usarlo: seguir el curso a vuestro ritmo, píldora a píldora, o buscar una duda concreta cuando surja.</p></header>
   <div class="stack"><span class="eyebrow">¿Dónde estáis?</span><div class="chips" role="group" aria-label="Etapa">${
     STAGES.map(x=>`<button class="chip" type="button" id="chip-${x.id}" data-stage="${x.id}" aria-pressed="${x.id===stage}">${x.label}</button>`).join("")}</div></div>
   ${nx?`<section class="next"><span class="eyebrow">Siguiente píldora · ${blockOf(nx.b).title}</span><h2>${nx.title}</h2>
     <div class="meta"><span class="prio ${nx.prio}">${prioLabel[nx.prio]}</span><span>${nx.min} min</span></div>
     <a class="btn primary go" href="#p-${nx.id}">Empezar</a></section>`
    :`<section class="next"><h2>¡Curso completado!</h2><p>Podéis repasar cualquier píldora cuando queráis.</p></section>`}
-  ${searchBox("¿Buscas algo concreto?")}
-  ${symptomIndex()}
-  <section class="stack"><h2>Vídeos de 1 minuto</h2><div class="vids">${VIDEOS.map(([id,name,t])=>`<a class="vid" href="#p-${id}"><img src="videos/${name}.jpg" alt="" loading="lazy"><span>▶ ${t}</span></a>`).join("")}</div></section>
+  ${quickHelp(s.id)}
   <div class="stack"><span class="eyebrow">Progreso total</span>${meter(L)}</div>
-  <section class="stack"><h2>Bloques</h2><div class="blocks">${
+  <section class="stack"><h2>El curso, bloque a bloque</h2><div class="blocks">${
     BLOCKS.map(b=>`<a class="block ${s.blocks[0]===b.id?"rec":""}" href="#b-${b.id}"><span class="num">Bloque ${b.n}${s.blocks[0]===b.id?'<span class="tag">Ahora</span>':""}</span><h3>${b.title}</h3><p>${b.sub}</p>${meter(byBlock(b.id))}</a>`).join("")}</div></section>
+  <section class="stack"><h2>Vídeos de 1 minuto</h2><div class="vids">${VIDEOS.map(([id,name,t])=>`<a class="vid" href="#p-${id}"><img src="videos/${name}.jpg" alt="" loading="lazy"><span>▶ ${t}</span></a>`).join("")}</div></section>
   <section class="src"><h3>Fuentes y vídeos</h3><ul>${SOURCES.map(([t,u])=>`<li><a href="${u}" target="_blank" rel="noopener">${t}</a></li>`).join("")}</ul></section>`;
 }
 
@@ -2779,6 +2780,15 @@ function renderResults(q){
 const esc = t => t.replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
 const searchBox = (label) => `<div class="search" role="search"><label class="eyebrow" for="q">${label}</label><input id="q" type="search" autocomplete="off" placeholder="Ej.: gases, fiebre, rompe aguas, puntos…" value="${esc(lastQuery)}"><ul class="results" id="results"></ul></div>`;
 let lastQuery = "";
+/* Home: a compact entry to the "I have a doubt" path; the full index lives in #buscar */
+function quickHelp(stageId){
+  const pregnancy = ["s30","s37","parto"].includes(stageId);
+  const groups = pregnancy ? [SYMPTOMS[1]] : [SYMPTOMS[0], SYMPTOMS[2]];
+  const items = groups.flatMap(g=>g.items.slice(0, pregnancy ? 6 : 4)).filter(([, id])=>L.some(l=>l.id===id));
+  return `<section class="quick stack"><h2>¿Tenéis una duda ahora?</h2>${searchBox("Buscad por palabra")}
+  <div class="sym">${items.map(([t,id,u])=>`<a href="#p-${id}" class="${u?"urgent":""}">${t}</a>`).join("")}</div>
+  <a class="btn more" href="#buscar">Ver todas las situaciones</a></section>`;
+}
 function symptomIndex(){
   return `<section class="symptoms"><h2>¿Qué le pasa?</h2>${SYMPTOMS.map(g=>`<div class="sym-group"><h3>${g.title}</h3><div class="sym">${
     g.items.filter(([, id])=>L.some(l=>l.id===id)).map(([t,id,u])=>`<a href="#p-${id}" class="${u?"urgent":""}">${t}</a>`).join("")}</div></div>`).join("")}</section>`;
