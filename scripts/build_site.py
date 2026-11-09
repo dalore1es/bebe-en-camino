@@ -4,11 +4,13 @@ guia-bebe.html is authored for the claude.ai artifact viewer, which wraps it in 
 document skeleton. This script adds that skeleton (doctype, head, base reset) plus a
 web app manifest and icon so the course can be added to a phone's home screen.
 """
+import shutil
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
 SOURCE = ROOT / "guia-bebe.html"
 OUT = ROOT / "docs"
+VIDEOS = ROOT / "videos"
 SPLIT_MARKER = '<div class="wrap">'
 
 HEAD_EXTRA = """<meta charset="utf-8">
@@ -73,6 +75,8 @@ def main() -> None:
     (OUT / "manifest.webmanifest").write_text(MANIFEST, encoding="utf-8")
     (OUT / "icon.svg").write_text(ICON_SVG, encoding="utf-8")
     (OUT / ".nojekyll").write_text("", encoding="utf-8")
+    if VIDEOS.is_dir():
+        shutil.copytree(VIDEOS, OUT / "videos", dirs_exist_ok=True)
     print(f"Built {OUT / 'index.html'} ({len(html) // 1024} KB)")
 
 

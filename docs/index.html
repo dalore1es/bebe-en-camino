@@ -125,6 +125,7 @@ tr:last-child td{border-bottom:0}
 figure{margin:0;background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:14px;display:flex;flex-direction:column;gap:8px}
 figure svg{width:100%;height:auto;display:block}
 figcaption{font-size:.86rem;color:var(--muted)}
+figure video{width:100%;height:auto;display:block;border-radius:8px;background:var(--line)}
 .svg-txt{fill:var(--ink);font-family:var(--body);font-size:13px}
 .svg-small{fill:var(--muted);font-family:var(--body);font-size:11.5px}
 .src{font-size:.88rem;color:var(--muted)}
@@ -141,6 +142,13 @@ body.hide-sens .sens:not(.revealed) .veil{display:flex;position:absolute;inset:0
 .btn.primary{background:var(--accent);color:var(--bg);font-weight:700}
 .btn.doneb{background:var(--ok);border-color:var(--ok);color:var(--bg);font-weight:700}
 .pager{display:flex;gap:10px;flex-wrap:wrap;justify-content:space-between;align-items:center;border-top:1px solid var(--line);padding-top:16px}
+
+/* Breathing pacer */
+.pacer{background:var(--accent-soft);border-radius:14px;padding:20px 16px;display:flex;flex-direction:column;align-items:center;gap:14px}
+.pc-stage{position:relative;width:210px;height:210px;display:grid;place-items:center}
+.pc-ring{position:absolute;inset:0;border-radius:50%;background:var(--surface);border:3px solid var(--accent);transform:scale(.55);transition-property:transform;transition-timing-function:ease-in-out}
+#pcText{position:relative;font-family:var(--display);font-weight:700;text-align:center;max-width:150px;font-size:.95rem}
+@media (prefers-reduced-motion:reduce){.pc-ring{transition:none!important}}
 
 /* Quiz */
 .quiz{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:16px 18px;display:flex;flex-direction:column;gap:10px}
@@ -252,6 +260,16 @@ const SVG_LOCHIA = `<figure><svg viewBox="0 0 640 110" role="img" aria-labelledb
 <g class="svg-small"><text x="0" y="20">Días 1–4: rojo intenso</text><text x="150" y="20">Hasta ~2 semanas: rosado o marrón</text><text x="350" y="20">Hasta 4–6 semanas: amarillento o blanquecino</text><text x="0" y="86">Cada vez menos cantidad. Puede aumentar un poco al dar el pecho o al levantarse.</text></g></svg>
 <figcaption>Orientativo: cada recuperación tiene su ritmo.</figcaption></figure>`;
 
+const SVG_WAVE = `<figure><svg viewBox="0 0 640 330" role="img" aria-labelledby="wvT"><title id="wvT">Una contracción es como una ola: sube, llega a un pico y baja; después viene una pausa sin dolor</title>
+<line x1="10" y1="230" x2="630" y2="230" style="stroke:var(--line)" stroke-width="2"/>
+<path d="M10 230 C60 230 90 90 160 90 C230 90 260 230 310 230 L420 230 C450 230 470 110 520 110 C570 110 590 230 630 230" fill="none" stroke-width="5" style="stroke:var(--accent)"/>
+<path d="M10 230 C60 230 90 90 160 90 C230 90 260 230 310 230 Z" style="fill:var(--accent-soft)"/>
+<rect x="312" y="216" width="106" height="12" rx="6" style="fill:var(--ok)"/>
+<g style="fill:var(--ink);font-family:var(--body);font-weight:700;font-size:24px"><text x="160" y="36" text-anchor="middle">Pico</text><text x="365" y="200" text-anchor="middle">Pausa</text><text x="20" y="130">Sube</text><text x="254" y="130">Baja</text></g>
+<g style="fill:var(--muted);font-family:var(--body);font-size:19px"><text x="160" y="62" text-anchor="middle">respiración más ligera</text><text x="20" y="154">lenta</text><text x="254" y="154">suelta</text><text x="365" y="262" text-anchor="middle">descansa</text>
+<text x="160" y="262" text-anchor="middle">≈ 1 minuto</text><text x="10" y="318">Tiempo →</text><text x="630" y="318" text-anchor="end">Una cada vez</text></g></svg>
+<figcaption>Sube: respira lento. Pico: respiración más ligera, sin acelerar. Baja: suelta el aire y afloja. Pausa: no duele, descansa de verdad. A medida que avanza el parto, las contracciones duran más y las pausas se acortan, pero siempre hay pausa.</figcaption></figure>`;
+
 const CHECK = [
   {id:"madre", title:"Para ella", items:[["m1","Camisones o pijamas que abran por delante (2–3)"],["m2","Bata y zapatillas"],["m3","Braguitas de talle alto, desechables o de algodón"],["m4","Compresas tocológicas (preguntad si las da el hospital)"],["m5","Sujetadores de lactancia y discos absorbentes"],["m6","Neceser: cepillo, gomas del pelo, cacao de labios, crema hidratante"],["m7","Ropa cómoda para volver a casa (talla de embarazo)"]]},
   {id:"bebe", title:"Para el bebé", items:[["b1","Bodies (3–4) de talla de recién nacido"],["b2","Pijamas o peleles (3–4)"],["b3","Gorrito y calcetines"],["b4","Arrullo o manta para la salida"],["b5","Ropa para volver a casa"],["b6","Pañales de recién nacido (si no los da el hospital)"]]},
@@ -259,6 +277,8 @@ const CHECK = [
   {id:"acomp", title:"Para ti", items:[["a1","Ropa cómoda y una muda"],["a2","Cargador con cable largo o batería externa"],["a3","Agua y algo de comer para los dos"],["a4","Tarjeta para el parking y las máquinas"],["a5","Almohada pequeña, si cabe"]]},
   {id:"coche", title:"Antes de salir", items:[["c1","Silla de coche a contramarcha, instalada y probada"],["c2","Ruta al hospital y dónde aparcar"],["c3","Teléfonos del hospital y de la matrona guardados en los dos móviles"]]}
 ];
+
+const video = (name,caption) => `<figure><video controls playsinline preload="none" poster="videos/${name}.jpg" src="videos/${name}.mp4"></video><figcaption>${caption}</figcaption></figure>`;
 
 const L = []; /* lessons */
 const P = (id,b,title,min,prio,body,opt={}) => L.push({id,b,title,min,prio,body,...opt});
@@ -302,24 +322,66 @@ P("vacunas-embarazo","b1","Vacunas en el embarazo",3,"p1",`
 <p class="role">pregunta en tu centro de salud si te corresponde a ti la vacuna de la gripe como conviviente de un recién nacido, y revisa que las personas que vayan a cuidar al bebé tengan sus vacunas al día.</p>
 <p class="src">Fuente: Calendario de vacunaciones para embarazadas 2026 del Comité Asesor de Vacunas de la AEP.</p>`);
 
-P("ejercicios","b1","Ejercicios para practicar juntos",6,"p2",`
+P("ejercicio-embarazo","b1","Moverse durante el embarazo",4,"p2",`
+<p class="lead">Si el embarazo va bien, el ejercicio moderado es seguro hasta el final y tiene beneficios: menos dolor de espalda, mejor sueño y menos riesgo de diabetes gestacional. La recomendación general (OMS, Colegio Americano de Obstetras) son unos <strong>150 minutos a la semana</strong> de actividad moderada, por ejemplo 30 minutos cinco días.</p>
+<div class="callout info"><strong>Test del habla:</strong> la intensidad es buena si puede hablar mientras se mueve, pero no cantar.</div>
+<div class="dos"><div class="yes"><h3>Buenas opciones</h3><ul><li>Caminar a buen ritmo.</li><li>Nadar o aquagym.</li><li>Bicicleta estática.</li><li>Yoga o pilates para embarazadas, con monitor que lo sepa.</li><li>Fuerza suave con poco peso o bandas.</li><li>Pelota de pilates en casa.</li></ul></div>
+<div class="no"><h3>Mejor evitar</h3><ul><li>Deportes de contacto o con riesgo de caída o golpe en la barriga.</li><li>Buceo.</li><li>Ejercicio con mucho calor (yoga caliente, horas centrales en verano).</li><li>Mucho rato tumbada boca arriba sin moverse: si se marea, que se ponga de lado.</li></ul></div></div>
+<div class="alarm"><h3>Parad y consultad si aparece</h3><ul><li>Sangrado o pérdida de líquido por la vagina.</li><li>Contracciones regulares y dolorosas.</li><li>Falta de aire que no mejora al descansar, o dolor en el pecho.</li><li>Mareo, desmayo o dolor de cabeza fuerte.</li><li>Debilidad muscular.</li><li>Dolor o hinchazón en una pantorrilla.</li><li>Menos movimientos del bebé.</li></ul></div>
+<p class="note">Si hay tensión alta, placenta previa, riesgo de parto prematuro, bolsa rota u otra complicación, la matrona os dirá qué se puede hacer.</p>
+<p class="role">salir a caminar juntos cada día es el ejercicio más fácil de mantener y un buen momento para hablar del plan de parto.</p>
+<p class="src">Fuentes: Guía de práctica clínica sobre la actividad física durante el embarazo (GuíaSalud, 2023); OMS, directrices de actividad física (2020); ACOG, Committee Opinion 804 (2020).</p>`);
+
+P("ejercicios","b1","Respiración, pelota, suelo pélvico y posturas",5,"p2",`
 <p class="lead">Practicar estas técnicas en las semanas previas hace que el día del parto os salgan solas. Haced antes las que os indique vuestra matrona y parad si algo duele o molesta.</p>
 <h3>Respiración</h3><p>Durante una contracción ayuda soltar el aire más despacio de lo que se coge: inspirar por la nariz contando 4 y soltar por la boca contando 6, con los hombros y la mandíbula sueltos.</p>
 <div class="practice"><p>Dos minutos al día, los dos a la vez. Tú cuentas en voz alta; ella sigue tu ritmo. Es lo mismo que harás en el paritorio.</p></div>
 <h3>Pelota de pilates</h3><p>Sentada en la pelota con los pies bien apoyados y las rodillas algo más bajas que la cadera: círculos y ochos con la cadera, balanceo adelante y atrás. Alivia la espalda y ayuda a que el bebé se coloque.</p>
 <h3>Suelo pélvico (ejercicios de Kegel)</h3><p>Contraer la musculatura como para cortar el pis, mantener 5 segundos y soltar 5 segundos. 10 repeticiones, tres veces al día. Seguirán siendo útiles en el posparto.</p>
-<h3>Masaje perineal</h3><p>Desde la semana 34–35, una o dos veces por semana, unos 5 minutos. En el primer parto reduce el riesgo de desgarros que necesitan puntos y de episiotomía. Con las manos limpias y un aceite (de almendras, por ejemplo), se introducen los pulgares unos 3–4 cm y se presiona suavemente hacia abajo y a los lados, en forma de U, hasta notar un estiramiento que no llegue a doler. Lo puede hacer ella o tú, si los dos estáis cómodos.</p>
-<p class="note">Consultad antes a la matrona si hay sangrado, infección vaginal, placenta previa o cualquier complicación.</p>
+<h3>Masaje perineal</h3><p>Desde la semana 34–35 reduce los desgarros en un primer parto. Lo tenéis paso a paso en su propia píldora.</p>
 <h3>Posturas para el parto</h3><ul><li>A cuatro patas, o de rodillas apoyada en la pelota o en la cama.</li><li>De pie, inclinada hacia delante, con los brazos en tus hombros.</li><li>Tumbada de lado con un cojín entre las rodillas (útil también con epidural).</li></ul>
 <div class="practice"><p>Probad cada postura un par de minutos y apuntad cuáles le resultan más cómodas. Ponedlas en el plan de parto.</p></div>`);
 
-P("contrapresion","b1","Masaje, contrapresión y rebozo",6,"p2",`
+P("sesion-pareja","b1","Rutina de práctica en pareja (15 minutos)",5,"p2",`
+<p class="lead">Una sesión corta, tres o cuatro veces por semana desde ahora, para que el día del parto cada uno sepa qué hacer sin pensarlo. Lo importante no es hacerlo perfecto, sino que tú aprendas a leer lo que le alivia.</p>
+<div class="tbl"><table><thead><tr><th>Minutos</th><th>Qué hacéis</th></tr></thead><tbody>
+<tr><td><strong>0–3</strong></td><td><strong>Respiración guiada.</strong> Ella respira lento; tú cuentas en voz baja: coger aire en 4, soltar en 6. Usad el ejercicio de la píldora de respiración.</td></tr>
+<tr><td><strong>3–7</strong></td><td><strong>Simulacro de contracción.</strong> Ella aprieta un cubito de hielo en la mano durante 60 segundos (una molestia que va creciendo) mientras respira; tú haces contrapresión y le dices frases cortas. Descansad 60 segundos y repetid dos veces más. No imita el dolor de parto: sirve para ensayar el papel de cada uno.</td></tr>
+<tr><td><strong>7–10</strong></td><td><strong>Posturas.</strong> Un minuto en cada una: a cuatro patas, sentada en la pelota, de pie inclinada sobre ti.</td></tr>
+<tr><td><strong>10–13</strong></td><td><strong>Contrapresión y doble presión de caderas.</strong> Ajustad dónde y con cuánta fuerza.</td></tr>
+<tr><td><strong>13–15</strong></td><td><strong>Soltar tensión.</strong> Ella cierra los ojos; tú tocas con suavidad la zona que ves tensa (hombros, mandíbula, manos, frente) y dices "suelta aquí".</td></tr></tbody></table></div>
+<div class="callout"><strong>Acordad tres señales</strong> que ella pueda hacer sin hablar: "más fuerte", "para" y "no me hables ahora". En una contracción intensa no podrá explicarse.</div>
+<div class="practice"><p>Apuntad después qué le ha gustado y qué no. Llevad esa nota al hospital junto al plan de parto.</p></div>`);
+
+P("contrapresion","b1","Masaje, contrapresión y calor",4,"p2",`
 <h3>Contrapresión en el sacro</h3><p>Cuando la contracción duele en la parte baja de la espalda: apoya la palma o el puño sobre el hueso plano que hay encima de las nalgas (el sacro) y empuja firme y sostenido durante toda la contracción. Ella te dirá dónde y cuánta fuerza.</p>
 <h3>Doble presión de caderas</h3><p>Ella inclinada hacia delante; tú detrás, con una mano en cada lado de la cadera (en la parte carnosa del glúteo), aprietas hacia el centro y ligeramente hacia arriba durante la contracción. Muy útil cuando el dolor es lumbar.</p>
-<h3>El rebozo</h3><p>Es un chal largo y resistente de tradición mexicana que muchas matronas usan para relajar, aliviar la espalda y ayudar a la movilidad de la pelvis. La técnica más habitual en el embarazo es el <strong>manteo de cadera</strong>:</p>
-<ol class="steps"><li>Ella se pone a cuatro patas, con la cabeza y los brazos apoyados en cojines o en la pelota.</li><li>Pasas el rebozo por debajo de la barriga y sujetas un extremo en cada mano, de pie detrás o a un lado.</li><li>Levantas lo justo para que note el peso sujeto y haces un vaivén lateral suave y rítmico, de 1 a 3 minutos.</li><li>Ella marca la intensidad; si no se relaja, se para.</li></ol>
-<div class="callout"><strong>Antes de usarlo, consultad a vuestra matrona.</strong> No se usa si hay placenta previa o sangrado, ni si hay contracciones antes de tiempo o la bolsa está rota, y en general ante cualquier complicación. Lo ideal es aprenderlo en una clase de preparación al parto.</div>
+<h3>Masaje entre contracciones</h3><p>Masaje lento en hombros, lumbares o pies durante las pausas, con aceite o crema si le apetece. Durante la contracción, muchas mujeres prefieren presión firme y quieta en lugar de masaje.</p>
+<h3>Calor</h3><p>Una bolsa de agua caliente (no hirviendo, envuelta en una toalla) o un saco de semillas en la zona lumbar alivia a muchas mujeres.</p>
+<p class="note">Una revisión Cochrane (2018) concluyó que el masaje puede reducir el dolor en la dilatación, con estudios de calidad baja. El rebozo tiene su propia píldora.</p>
 <div class="practice"><p>Elegid un momento tranquilo, probad cada técnica dos o tres minutos y que ella os diga qué le alivia. El día del parto no habrá tiempo para experimentar.</p></div>`);
+
+P("rebozo","b1","El rebozo, paso a paso",6,"p2",`
+<p class="lead">El rebozo es un chal largo y resistente de tradición mexicana. Muchas matronas lo usan en el embarazo y el parto para relajar, aliviar la espalda y acompañar el movimiento de la pelvis. Necesitáis un rebozo o un fular de tejido firme de unos 2,5–3 metros.</p>
+<div class="callout"><strong>Antes de usarlo, consultad a vuestra matrona.</strong> No se usa si hay placenta previa o sangrado, contracciones antes de tiempo, la bolsa rota o cualquier complicación. Lo ideal es aprenderlo en una clase de preparación al parto.</div>
+<h3>1 · Manteo de cadera a cuatro patas</h3>
+<ol class="steps"><li>Ella a cuatro patas, con la cabeza y los brazos apoyados en cojines o en la pelota.</li><li>Pasas el rebozo por debajo de la barriga, que quede ancho y sin pliegues, y sujetas un extremo en cada mano, de pie detrás de ella.</li><li>Levantas lo justo para que note el peso de la barriga sujeto.</li><li>Haces un vaivén lateral suave y rítmico, alternando las manos, de 1 a 3 minutos.</li><li>Paras despacio, bajando el peso poco a poco.</li></ol>
+<h3>2 · Sostén de la barriga de pie</h3>
+<ol class="steps"><li>Ella de pie, inclinada hacia delante y apoyada en la cama o en una encimera.</li><li>Tú detrás, con el rebozo bajo la barriga y los extremos cruzados a tu espalda o en tus manos.</li><li>Levantas suavemente el peso de la barriga durante la contracción o unos minutos, sin balancear. Alivia la zona lumbar.</li></ol>
+<h3>3 · Como apoyo para empujar</h3><p>En el expulsivo, si el equipo lo permite, ella tira de un extremo mientras tú sujetas firme el otro. Le da algo de lo que tirar al empujar.</p>
+<div class="dos"><div class="yes"><h3>Cómo saber si va bien</h3><ul><li>Ella suelta la respiración y relaja la cara.</li><li>El movimiento es suave, como mecer.</li><li>Ella marca la intensidad.</li></ul></div><div class="no"><h3>Parad si</h3><ul><li>Hay dolor, mareo o molestia.</li><li>Ella no se relaja.</li><li>Notáis contracciones nuevas o pérdidas.</li></ul></div></div>
+<h3>¿Qué dice la evidencia?</h3>
+<div class="callout info"><p>Un ensayo en Turquía con 113 mujeres en su primer parto (publicado en 2024) y una revisión de 2026 encontraron <strong>menos dolor percibido</strong> durante la fase activa y una mejor experiencia del parto con el rebozo. Los estudios son pequeños y de pocos países: es una técnica segura en manos formadas y agradable para muchas mujeres, pero no hay pruebas sólidas de que acorte el parto ni de que cambie la posición del bebé.</p></div>
+<div class="practice"><p>Probad la técnica 1 y la 2 en una sesión tranquila, dos o tres minutos cada una. Que ella os diga cuál le alivia más.</p></div>
+<p class="src">Fuentes: Tandoğan y Oskay, Medicine 2024 (ensayo aleatorizado); revisión sistemática en International Journal of Women's Health, 2026; Iversen y col., 2017 (experiencia de las mujeres).</p>`);
+
+P("masaje-perineal","b1","Masaje perineal desde la semana 34",4,"p2",`
+<p class="lead">El periné es la zona entre la vagina y el ano, que se estira mucho cuando sale la cabeza del bebé. Masajearlo en las últimas semanas reduce el riesgo de desgarros que necesitan puntos en un primer parto.</p>
+<div class="callout info"><strong>Qué dice la evidencia.</strong> Una revisión Cochrane (2013, 4 ensayos, más de 2.400 mujeres) concluyó que, en el primer parto, el masaje perineal prenatal reduce los desgarros que necesitan sutura y las episiotomías. Dicho en cifras: de cada 15 mujeres primerizas que lo hacen, una se evita los puntos que habría necesitado. No cambia el número total de desgarros pequeños. Las pautas habituales son una o dos veces por semana desde la semana 34–35.</div>
+<ol class="steps"><li><strong>Cuándo:</strong> desde la semana 34–35, una o dos veces por semana, unos 5 minutos.</li><li><strong>Preparación:</strong> uñas cortas, manos limpias, un aceite (de almendras, por ejemplo) o un lubricante soluble en agua. Después de una ducha caliente es más cómodo.</li><li><strong>Postura:</strong> semisentada con cojines o de lado, con las rodillas dobladas.</li><li><strong>Técnica:</strong> se introducen los pulgares unos 3–4 cm y se presiona suavemente hacia abajo (hacia el ano) y a los lados, en forma de U, hasta notar un estiramiento o escozor que no llegue a doler. Se mantiene un minuto o dos y se suelta.</li><li><strong>Quién:</strong> ella misma, o tú si los dos estáis cómodos. Si lo haces tú, usa los dedos índices.</li></ol>
+<p class="note">No lo hagáis si hay sangrado, infección vaginal, herpes activo, placenta previa o la bolsa rota, y consultad ante cualquier complicación.</p>
+<p class="role">si te encargas tú, ve despacio y que ella marque cuánta presión. Es un momento para hacerlo con calma, no una tarea más.</p>
+<p class="src">Fuente: Beckmann y Stock, Cochrane Database of Systematic Reviews 2013, CD005123.</p>`);
 
 P("plan","b1","Plan de parto y decisiones previas",4,"p2",`
 <p>El plan de parto es un documento breve en el que dejáis por escrito vuestras preferencias. Sirve de guía al equipo, que lo respetará siempre que la situación lo permita. Preguntad en la consulta si el Gregorio Marañón tiene modelo propio; si no, el Ministerio de Sanidad tiene uno general.</p>
@@ -337,6 +399,13 @@ P("parto-real","b2","¿Es el parto o son contracciones de práctica?",4,"p1",`
 ${SVG_CONTR}
 <p class="role">cronometra las contracciones desde que empieza una hasta que empieza la siguiente, con una app o en notas.</p>`);
 
+P("fase-latente","b2","Las primeras horas en casa (fase latente)",4,"p2",`
+<p class="lead">En un primer parto, la parte inicial suele ser la más larga: las contracciones van ordenándose mientras el cuello del útero se ablanda y empieza a abrirse. Puede durar muchas horas, a veces más de un día con paradas. Es normal y casi toda se pasa mejor en casa.</p>
+<div class="dos"><div class="yes"><h3>Lo que ayuda</h3><ul><li><strong>Descansar o dormir</strong> si las contracciones lo permiten. La energía hará falta después.</li><li>Comer algo ligero y beber agua a menudo.</li><li>Ducha caliente, pelota, caminar por casa.</li><li>Distraerse: una película, un paseo corto, cocinar algo sencillo.</li><li>Orinar a menudo.</li></ul></div>
+<div class="no"><h3>Lo que no ayuda</h3><ul><li>Cronometrar cada contracción desde la primera: agota y angustia. Empezad cuando sean regulares.</li><li>Ir al hospital demasiado pronto, si todo está bien: muchas veces os mandarán de vuelta a casa.</li><li>Avisar a toda la familia y tener el móvil sonando.</li></ul></div></div>
+<div class="callout info">Que os manden a casa porque aún está en fase latente no es un fracaso ni una pérdida de tiempo: es lo habitual en un primer parto.</div>
+<p class="role">eres quien mantiene la calma: baja la luz, prepara algo de comer, avisa solo a quien hayáis acordado y lleva la cuenta de las contracciones cuando se vuelvan regulares. Revisa la píldora "Cuándo salir hacia el hospital".</p>`);
+
 P("cuando-ir","b2","Cuándo salir hacia el hospital",3,"p1",`
 <div class="dos"><div class="no"><h3>Salid ya, sin esperar</h3><ul><li>Rompe la bolsa y el líquido es <strong>verde, marrón o tiene sangre</strong>.</li><li>Sangrado como una regla o más.</li><li>El bebé se mueve menos.</li><li>Rompe la bolsa y el cultivo del estreptococo (semanas 35–37) salió positivo.</li></ul></div>
 <div class="yes"><h3>Salid con calma</h3><ul><li>Contracciones <strong>regulares cada 5 minutos o menos durante al menos una hora</strong>, en primer parto.</li><li>Rompe la bolsa con líquido claro, aunque no haya contracciones. Apuntad la hora.</li></ul></div></div>
@@ -348,6 +417,15 @@ P("bolsa-rota","b2","Rotura de bolsa y tapón mucoso",3,"p2",`
 <p>Ponerse una compresa (no un tampón) ayuda a ver el color y la cantidad.</p>
 <h3>Tapón mucoso</h3><p>Es una mucosidad espesa, a veces con hilos de sangre, que puede expulsarse días o semanas antes del parto. <strong>No es motivo para ir al hospital</strong> por sí solo, salvo que haya sangrado abundante.</p>`);
 
+P("induccion","b2","Si os proponen una inducción",4,"p2",`
+<p class="lead">Inducir es poner en marcha el parto con medicación o con métodos mecánicos, cuando el equipo considera que es mejor que el bebé nazca ya que seguir esperando. Es frecuente, así que conviene saber cómo es.</p>
+<h3>Por qué se propone</h3><ul><li>El embarazo pasa de la semana 41.</li><li>Se rompe la bolsa y no empiezan las contracciones.</li><li>Tensión alta, diabetes, el bebé crece poco u otros motivos médicos.</li></ul>
+<h3>Cómo se hace (puede combinarse)</h3>
+<ol class="steps"><li><strong>Madurar el cuello del útero:</strong> con un medicamento (prostaglandinas, en dispositivo vaginal o en pastillas) o con un balón o sonda que lo abre poco a poco.</li><li><strong>Romper la bolsa</strong> (amniorrexis), cuando el cuello ya está algo abierto.</li><li><strong>Oxitocina por vía intravenosa</strong>, para que las contracciones sean regulares.</li></ol>
+<div class="callout"><strong>Paciencia.</strong> Desde que empieza hasta que el parto se pone en marcha pueden pasar horas o incluso uno o dos días, sobre todo si el cuello está cerrado. Durante la inducción se vigila al bebé con monitor y se puede pedir epidural igual que en un parto espontáneo.</div>
+<h3>Preguntas que podéis hacer</h3><ul><li>¿Por qué nos la recomendáis y qué beneficios tiene en nuestro caso?</li><li>¿Qué riesgos tiene y cuáles tiene esperar?</li><li>¿Qué método usaréis y cuánto suele tardar?</li><li>¿Podemos esperar un poco más? ¿Con qué controles?</li></ul>
+<p class="role">llevad entretenimiento, cargadores y comida para los dos. Si es larga, turnaos para descansar cuando ella pueda dormir, y asegúrate de estar fresco cuando empiece la fase activa.</p>`);
+
 /* Block 3 */
 P("fases","b3","Las fases del parto",5,"p2",`
 <ol class="steps"><li><div><strong>Dilatación latente.</strong> Contracciones irregulares que poco a poco se ordenan; el cuello del útero se ablanda y empieza a abrirse. Puede durar muchas horas y gran parte se pasa en casa.</div></li>
@@ -356,10 +434,65 @@ P("fases","b3","Las fases del parto",5,"p2",`
 <li><div><strong>Alumbramiento.</strong> Sale la placenta, normalmente entre 5 y 30 minutos después del nacimiento.</div></li></ol>
 <div class="callout info">Los tiempos varían muchísimo entre mujeres y partos. Que vaya más lento de lo que esperabais no significa que algo vaya mal.</div>`);
 
+P("contracciones","b3","Cómo son las contracciones",5,"p1",`
+<p class="lead">El útero es un músculo. En cada contracción se tensa con fuerza para ir abriendo el cuello y empujar al bebé hacia abajo, y luego se relaja. Saber cómo funcionan quita mucho miedo: <strong>cada contracción tiene principio y final, y entre una y otra hay descanso.</strong></p>
+${SVG_WAVE}
+<h3>Qué se siente</h3><ul><li>Al principio, como un dolor de regla fuerte o de espalda que va y viene, con la barriga dura.</li><li>Después, una ola que sube, llega a un pico intenso y baja. Muchas mujeres la notan empezar en la zona lumbar y rodear la barriga.</li><li>Entre contracciones, normalmente no duele: el cuerpo descansa.</li></ul>
+<h3>Cómo cambian a lo largo del parto (orientativo)</h3>
+<div class="tbl"><table><thead><tr><th>Momento</th><th>Cada cuánto</th><th>Cuánto duran</th><th>Cómo se viven</th></tr></thead><tbody>
+<tr><td><strong>Fase latente</strong> (hasta 4–5 cm: la guía española usa 4 cm y la OMS 5)</td><td>Irregulares, cada 5–30 min</td><td>30–45 s</td><td>Se puede hablar y moverse entre ellas. Muchas horas, casi siempre en casa.</td></tr>
+<tr><td><strong>Fase activa</strong> (de unos 5 a 10 cm)</td><td>Regulares, cada 3–5 min</td><td>45–60 s o más</td><td>Cuesta hablar durante ellas; necesita concentrarse. En un primer parto dura de media unas 8 horas (la OMS indica que normalmente no pasa de 12).</td></tr>
+<tr><td><strong>Transición</strong> (los últimos centímetros)</td><td>Cada 2–3 min</td><td>60–90 s</td><td>Las más intensas y seguidas. Es la parte más corta.</td></tr>
+<tr><td><strong>Expulsivo</strong></td><td>Cada 2–5 min</td><td>≈ 1 min</td><td>Cambian: aparecen las ganas de empujar, como de hacer caca. Muchas lo viven como un alivio.</td></tr></tbody></table></div>
+<div class="callout"><strong>La transición tiene señales propias:</strong> temblores, náuseas o vómitos, calor y frío, irritabilidad y frases como "no puedo más" o "quiero irme a casa". Asustan, pero suelen significar que <strong>queda poco</strong>.</div>
+<div class="alarm"><h3>Llamad o id al hospital si</h3><ul><li>Alguna contracción dura <strong>más de 2 minutos</strong>.</li><li>Hay <strong>6 o más contracciones en 10 minutos</strong>.</li><li>El dolor no se va entre contracciones.</li></ul></div>
+<p class="role">cuando ella diga "no puedo más", no discutas ni te asustes: recuérdale que eso suele aparecer cuando falta poco y respira despacio con ella, una contracción cada vez.</p>
+<p class="src">Fuentes: OMS, recomendaciones sobre cuidados durante el parto (2018); Ministerio de Sanidad, Guía de práctica clínica sobre la atención al parto normal (2010); NHS, signs of labour.</p>`);
+
+P("trucos-contracciones","b3","Trucos para llevar mejor las contracciones",5,"p1",`
+<p class="lead">Ningún truco hace desaparecer el dolor, pero varios lo hacen más llevadero y algunos tienen buenos estudios detrás. Se pueden combinar entre sí y con la epidural.</p>
+<div class="tbl"><table><thead><tr><th>Qué</th><th>Cómo</th><th>Qué dicen los estudios</th></tr></thead><tbody>
+<tr><td><strong>Acompañamiento continuo</strong></td><td>Alguien de confianza a su lado todo el tiempo, sin irse: tú.</td><td><strong>Lo más sólido.</strong> Revisión Cochrane con más de 15.000 mujeres: más partos espontáneos, menos cesáreas y menos analgesia, partos unos 40 minutos más cortos y menos mujeres con mala vivencia del parto.</td></tr>
+<tr><td><strong>Moverse y estar en vertical</strong></td><td>Caminar, de pie, sentada en la pelota, de rodillas, a cuatro patas. Cambiar cada rato.</td><td>Sin epidural, la dilatación fue <strong>alrededor de una hora más corta</strong> y hubo menos epidurales que tumbada (Cochrane).</td></tr>
+<tr><td><strong>Agua caliente</strong></td><td>Ducha dirigida a la espalda o bañera, si el hospital la tiene.</td><td>Reduce algo el uso de epidural: del 43 % al 39 % (Cochrane).</td></tr>
+<tr><td><strong>Masaje y contrapresión</strong></td><td>Presión firme en el sacro; masaje entre contracciones.</td><td>Puede reducir el dolor; estudios de calidad baja.</td></tr>
+<tr><td><strong>Calor local</strong></td><td>Bolsa de agua caliente o saco de semillas en la zona lumbar.</td><td>Puede aliviar; estudios de calidad muy baja. La OMS recomienda el masaje y el calor local si ella lo desea.</td></tr>
+<tr><td><strong>Respiración y relajación</strong></td><td>Soltar el aire despacio, aflojar mandíbula y hombros.</td><td>Puede reducir el dolor y mejorar la sensación de control; estudios pequeños.</td></tr>
+<tr><td><strong>TENS</strong></td><td>Aparato de electrodos en la espalda.</td><td>Poca evidencia de alivio; a algunas mujeres les gusta.</td></tr></tbody></table></div>
+<h3>Pequeñas cosas que suman</h3><ul><li><strong>Una contracción cada vez.</strong> No pensar en cuántas quedan: "esta ya ha pasado".</li><li><strong>Aflojar en la pausa:</strong> soltar hombros, manos y cara en cuanto baja la ola.</li><li><strong>Sonidos graves</strong> ("ooo", "aaa") en lugar de gritos agudos: ayudan a soltar la tensión.</li><li><strong>Orinar cada una o dos horas:</strong> la vejiga llena aumenta la molestia.</li><li><strong>Beber a sorbos:</strong> la guía española recomienda permitir líquidos claros, mejor bebidas isotónicas que solo agua.</li><li><strong>Ambiente tranquilo:</strong> poca luz, poca gente, su música.</li></ul>
+<p class="role">tu presencia es, literalmente, el método con más evidencia de la lista. No te vayas, no mires el móvil y ofrece agua, calor y contrapresión sin esperar a que te lo pida.</p>
+<p class="src">Fuentes: Cochrane: Bohren y col. 2017 (apoyo continuo); Lawrence y col. 2013 (posturas en la dilatación); Cluett y col. 2018 (inmersión en agua); Smith y col. 2018 (masaje y relajación); OMS 2018.</p>`);
+
+P("respiracion","b3","Cómo respirar en cada momento del parto",6,"p1",`
+<p class="lead">No hay una única respiración "correcta": cada momento pide una distinta. La idea general es sencilla: <strong>soltar el aire más despacio de lo que se coge</strong> durante casi todo el parto, respiración más ligera en los picos, soplidos cortos cuando no hay que empujar, y empujar como pida el cuerpo cuando llega el momento.</p>
+<div class="pacer"><div class="pc-stage"><div class="pc-ring" id="pcRing"></div><span id="pcText">Respiración lenta: 4 para coger aire, 6 para soltarlo</span></div><button class="btn primary" type="button" id="pcBtn" data-breath>Practicar 1 minuto</button></div>
+<div class="tbl"><table><thead><tr><th>Momento</th><th>Cómo respirar</th><th>Para qué</th></tr></thead><tbody>
+<tr><td><strong>Dilatación</strong></td><td><strong>Lenta y profunda.</strong> Coger aire por la nariz (unos 4 segundos) y soltarlo por la boca más despacio (unos 6), con los labios sueltos. Una respiración profunda al empezar la contracción y otra al terminar.</td><td>Relaja, da sensación de control y ayuda a no tensar el cuerpo contra la contracción.</td></tr>
+<tr><td><strong>Pico de la contracción</strong></td><td><strong>Más ligera y corta</strong>, si el cuerpo lo pide, sin acelerar demasiado. Sonidos graves al soltar el aire.</td><td>Pasar la parte más intensa. En cuanto baja, volver a la lenta.</td></tr>
+<tr><td><strong>Ganas de empujar antes de tiempo</strong> (si la matrona pide esperar)</td><td><strong>Soplidos cortos</strong>, como apagando velas ("fu, fu, fuuu"), o jadeo suave.</td><td>Con la boca abierta y soplando es difícil empujar.</td></tr>
+<tr><td><strong>Expulsivo, sin epidural</strong></td><td><strong>Pujo espontáneo:</strong> empujar cuando y como lo pide el cuerpo, normalmente varias veces cortas en cada contracción, soltando aire o gimiendo, o reteniéndolo un momento si le sale así.</td><td>La OMS recomienda animar a la mujer a seguir su propio impulso de empujar.</td></tr>
+<tr><td><strong>Expulsivo, con epidural</strong></td><td><strong>Pujo dirigido</strong> si no nota ganas: coger aire, retenerlo (apnea) y empujar unos segundos mientras dura la contracción, siguiendo a la matrona. A menudo se espera un rato tras llegar a 10 cm para que el bebé baje solo.</td><td>Ayuda cuando la epidural quita la sensación de pujo.</td></tr>
+<tr><td><strong>Cuando sale la cabeza</strong> (coronación)</td><td><strong>Dejar de empujar y jadear</strong> o soplar suave, según indique la matrona.</td><td>Que la cabeza salga despacio y el periné se estire poco a poco.</td></tr></tbody></table></div>
+<div class="callout info"><strong>¿Apnea o no?</strong> Aguantar el aire empujando largo rato en cada contracción (pujo dirigido) no ha demostrado ser mejor de forma sistemática que el pujo espontáneo, salvo como ayuda cuando la epidural quita la sensación. Lo práctico: empujar como le pida el cuerpo y hacer caso a la matrona, que verá lo que funciona en cada momento.</div>
+<div class="alarm"><h3>Si respira demasiado rápido</h3><p>Respirar muy deprisa durante mucho rato puede dar hormigueo en manos y labios o mareo. No es grave: hay que volver a soltar el aire despacio. Respira tú lento a su lado y pídele que te siga.</p></div>
+<p class="role">eres su metrónomo. Practicad el ejercicio de arriba juntos y, en el parto, respira con ella en voz baja: "coge… y suelta despacio". Ella no tiene que pensar, solo seguirte.</p>
+<p class="src">Fuentes: OMS, recomendaciones sobre cuidados durante el parto para una experiencia positiva (2018); Ministerio de Sanidad, Guía de práctica clínica sobre la atención al parto normal (2010); Cochrane, Lemos y col. 2017 (métodos de pujo); NICE NG235 (2023).</p>`);
+
 P("dolor","b3","Alivio del dolor",4,"p2",`
 <div class="dos"><div><h3>Con fármacos</h3><ul><li><strong>Epidural:</strong> anestesia local por un catéter en la espalda. Alivia mucho el dolor y permite estar consciente. Se pone durante la dilatación activa.</li><li>Otras opciones según el hospital (por ejemplo, óxido nitroso o analgésicos intravenosos). Preguntad cuáles ofrece el Gregorio Marañón.</li></ul></div>
-<div><h3>Sin fármacos</h3><ul><li>Moverse y cambiar de postura.</li><li>Agua caliente: ducha o bañera.</li><li>Respiración, masaje, contrapresión, rebozo.</li><li>Calor local en la espalda.</li><li>Ambiente tranquilo: poca luz, poca gente.</li></ul></div></div>
+<div><h3>Sin fármacos</h3><ul><li>Moverse y cambiar de postura.</li><li>Agua caliente: ducha o bañera.</li><li>Respiración, masaje, contrapresión, rebozo (ver las píldoras de trucos y de respiración).</li><li>Calor local en la espalda.</li><li>Ambiente tranquilo: poca luz, poca gente.</li></ul></div></div>
 <p>No hace falta decidirlo todo antes. Se puede empezar sin epidural y pedirla después, o al revés.</p>`);
+
+P("expulsivo","b3","El expulsivo: pujos, posturas y coronación",5,"p1",`
+<p class="lead">Es la fase en la que, con la dilatación completa, el bebé baja y nace. Para muchas mujeres es un cambio de sensación: deja de ser aguantar y pasa a ser hacer.</p>
+<h3>Qué se siente</h3><ul><li>Presión muy intensa abajo y ganas de empujar, parecidas a las de hacer caca.</li><li>Al coronar la cabeza, un escozor o quemazón fuerte que dura poco: es la señal de dejar de empujar y soplar.</li><li><strong>Es normal que salga algo de caca al empujar.</strong> Pasa muchísimo y el equipo lo limpia sin darle importancia.</li></ul>
+<h3>Cuánto dura</h3><p>Varía mucho. En un primer parto, la OMS indica que suele completarse en unas 3 horas. La guía española distingue una fase pasiva (dilatación completa sin ganas de empujar, hasta 2 horas, en la que el bebé baja solo) y una fase de pujos activos (hasta 1 hora sin epidural y hasta 2 con epidural). Mientras el bebé esté bien y el parto avance, no hay prisa.</p>
+<h3>Posturas</h3>
+<div class="dos"><div><h3>Sin epidural</h3><ul><li>De cuclillas, de rodillas o a cuatro patas, de pie o de lado: la que le resulte más cómoda.</li><li>Las posturas verticales se asocian a menos partos instrumentales y episiotomías, aunque quizá algo más de sangrado.</li></ul></div>
+<div><h3>Con epidural</h3><ul><li><strong>Tumbada de lado</strong> o con la espalda reclinada, cambiando de lado.</li><li>En un gran ensayo británico (BUMPES, 2017), las mujeres con epidural que estuvieron tumbadas de lado tuvieron más partos espontáneos (41 %) que las que estuvieron incorporadas (35 %).</li></ul></div></div>
+<h3>Proteger el periné</h3><ul><li>Compresas calientes en el periné durante los pujos: reducen los desgarros graves (Cochrane). Si os interesa, ponedlo en el plan de parto.</li><li>Dejar que la cabeza salga despacio, jadeando, como indique la matrona.</li><li>El masaje perineal de las semanas previas también ayuda.</li></ul>
+<p class="role">agua a sorbos y paños fríos en la frente entre pujos. Si te lo pide, sujeta una pierna o su espalda. Dile lo que ves si quiere saberlo ("ya se ve el pelo"): anima muchísimo. Y cuando nazca, que no te pille con el móvil en la mano.</p>
+<p class="src">Fuentes: OMS 2018; BUMPES Collaborative Group, BMJ 2017;359:j4471; Cochrane: Gupta y col. 2017 (posturas en el expulsivo); Aasheim y col. 2017 (técnicas perineales).</p>`);
 
 P("tu-papel-parto","b3","Tu papel en el paritorio",5,"p1",`
 <div class="tbl"><table><thead><tr><th>Fase</th><th>Qué puedes hacer</th></tr></thead><tbody>
@@ -429,6 +562,7 @@ P("coger","b5","Coger, sujetar y portear al bebé",4,"p2",`
 <p class="role">el porteo es una de las mejores formas de calmarle por la tarde y de que ella descanse un rato.</p>`);
 
 P("panal","b5","Cambio de pañal paso a paso",7,"p1",`
+${video("panal","Cambio de pañal en 55 segundos: pasos, cómo levantarle sin forzar las caderas, si es niño, el truco del frío y cuidados de la piel.")}
 ${SVG_DIAPER}
 <ol class="steps"><li>Ten a mano pañal limpio, toallitas o agua con gasas, y crema si la usáis.</li><li>Abre el pañal y usa la parte delantera limpia para retirar la caca hacia abajo.</li><li>Limpia <strong>de delante hacia atrás</strong>, sobre todo en niñas. En niños, tapa el pene con una gasa por si acaso.</li><li>Levanta el culete con una mano por debajo (no tirando de los tobillos), retira el sucio y desliza el limpio debajo.</li><li>Seca bien los pliegues. Crema solo si hay rojez.</li><li>Cierra dejando dos dedos de holgura en la cintura y <strong>el cordón por fuera</strong> (dobla el borde del pañal hacia abajo).</li></ol>
 <h3>Qué dice el color de la caca</h3>
@@ -482,6 +616,20 @@ P("atragantamiento","b6","Atragantamiento del bebé (menor de 1 año)",6,"p1",`
 ${SVG_CHOKE}
 <div class="dos"><div class="no"><h3>No hagas</h3><ul><li>Barrido a ciegas con el dedo: puede empujar el objeto más dentro. Sácalo solo si lo ves claramente.</li><li>Ponerle cabeza abajo sujetándole por los pies.</li><li>La maniobra de Heimlich de adultos (presión en el abdomen) en un bebé.</li></ul></div></div>
 <div class="practice"><p>Lo más útil es hacer un <strong>curso presencial de primeros auxilios pediátricos</strong> antes del parto, con muñeco, para practicar las maniobras y la RCP. Suelen organizarlos Cruz Roja, centros de salud y hospitales; preguntad a vuestra matrona. Hacedlo los dos.</p><p>Para repasar en casa: la app gratuita <strong>SOS Respira</strong> y el tríptico de atragantamiento en lactantes de Fundación Mapfre (enlace en Fuentes y vídeos, en la portada).</p></div>`);
+
+P("rcp-bebe","b6","RCP básica del bebé (menor de 1 año)",6,"p1",`
+<p class="lead">Es muy poco probable que la necesitéis, pero saber qué hacer en los primeros minutos, hasta que llegue la ayuda, puede salvar una vida. Esta píldora es un recordatorio: <strong>lo que de verdad enseña es un curso presencial</strong> de primeros auxilios pediátricos, con muñeco.</p>
+<div class="alarm"><h3>Si el bebé no responde y no respira con normalidad</h3>
+<ol class="steps"><li><strong>Grita pidiendo ayuda</strong> y llama al <span class="copy">112</span> con el altavoz puesto, sin dejar al bebé. Si estás solo y no tienes móvil a mano, haz 1 minuto de RCP antes de ir a llamar.</li>
+<li><strong>Abre la vía aérea:</strong> boca arriba sobre una superficie firme, cabeza en posición neutra (sin echarla hacia atrás del todo) y eleva la barbilla con un dedo.</li>
+<li><strong>Comprueba la respiración</strong> hasta 10 segundos: mira si se mueve el pecho, escucha y siente el aire en tu mejilla.</li>
+<li><strong>5 respiraciones de rescate:</strong> tapa con tu boca su boca y su nariz a la vez y sopla suave durante un segundo, lo justo para que se eleve el pecho.</li>
+<li><strong>Compresiones:</strong> en la mitad inferior del esternón (justo debajo de la línea de los pezones), con dos pulgares rodeando el pecho o con dos dedos. Hunde un tercio del pecho (unos 4 cm), a un ritmo de 100–120 por minuto.</li>
+<li><strong>Alterna 15 compresiones y 2 respiraciones</strong> sin parar hasta que llegue la ayuda, el bebé respire con normalidad o no puedas más.</li></ol></div>
+<div class="callout">Si no recuerdas la proporción, las guías europeas aceptan 30 compresiones y 2 respiraciones para quien no está formado en RCP pediátrica. <strong>Hacer algo es mucho mejor que no hacer nada.</strong></div>
+<div class="callout info">Si el bebé está consciente y se ha atragantado, la maniobra es otra: mira la píldora de atragantamiento.</div>
+<div class="practice"><p>Buscad un curso de primeros auxilios pediátricos antes de que nazca o en los primeros meses (Cruz Roja, vuestro centro de salud o el hospital suelen organizarlos). Id los dos.</p></div>
+<p class="src">Fuente: European Resuscitation Council, guías de soporte vital pediátrico 2021 y actualización de 2025.</p>`);
 
 P("prevencion","b6","Prevenir accidentes en casa",4,"p2",`
 <ul><li><strong>Caídas:</strong> en el cambiador, la cama o el sofá, una mano siempre sobre el bebé. Aprenden a girarse sin avisar.</li><li><strong>Quemaduras:</strong> nunca bebidas calientes con el bebé en brazos. Agua del baño comprobada antes.</li><li><strong>Asfixia:</strong> cuna vacía, nada de cordones de chupete al cuello, bolsas de plástico lejos.</li><li><strong>Piezas pequeñas:</strong> todo lo que quepa por un rollo de papel higiénico es peligroso cuando empiece a coger cosas.</li><li><strong>Coche:</strong> silla a contramarcha en cada trayecto, por corto que sea.</li><li><strong>Humo:</strong> casa y coche sin humo.</li></ul>`);
@@ -589,7 +737,17 @@ const QUIZ = {
   "compras":["¿Cómo debe ir la silla de coche del recién nacido?",["Mirando hacia delante en el asiento trasero","A contramarcha, y nunca delante con el airbag activado","En brazos si el trayecto es corto"],1,"A contramarcha protege mucho mejor su cabeza y su cuello."],
   "vacunas-embarazo":["¿Cuándo se pone la vacuna de la tosferina?",["Entre las semanas 27 y 36, en cada embarazo","Solo en el primer embarazo","Después del parto"],0,"Así los anticuerpos llegan al bebé antes de nacer."],
   "ejercicios":["Durante una contracción, ¿qué ayuda más?",["Soltar el aire más despacio de lo que se coge","Aguantar la respiración","Respirar muy rápido"],0,"La espiración lenta relaja y ayuda a sobrellevar el dolor."],
-  "contrapresion":["¿En cuál de estas situaciones no se debe usar el rebozo?",["Embarazo sin complicaciones y con el visto bueno de la matrona","Placenta previa o sangrado","Para relajarse antes de dormir"],1,"Placenta previa y sangrado son contraindicaciones claras."],
+  "contrapresion":["Le duele mucho la zona lumbar durante la contracción. ¿Qué haces?",["Masaje rápido y suave por toda la espalda","Presión firme y sostenida sobre el sacro mientras dura","Esperar a que pase sin tocarla"],1,"Durante la contracción suele aliviar más la presión firme y quieta; el masaje, en las pausas."],
+  "rebozo":["¿En cuál de estas situaciones no se debe usar el rebozo?",["Embarazo sin complicaciones y con el visto bueno de la matrona","Placenta previa o sangrado","Para relajarse antes de dormir"],1,"Placenta previa y sangrado son contraindicaciones claras."],
+  "ejercicio-embarazo":["¿Cómo sabe si la intensidad del ejercicio es adecuada?",["Si puede hablar pero no cantar","Si suda mucho","Si le cuesta respirar"],0,"Es el test del habla: intensidad moderada."],
+  "sesion-pareja":["¿Para qué sirve el simulacro con el cubito de hielo?",["Para imitar el dolor real del parto","Para ensayar respiración y apoyo ante una molestia que crece","Para endurecer la piel"],1,"No imita el parto: sirve para que cada uno practique su papel."],
+  "masaje-perineal":["¿Desde cuándo y con qué frecuencia se suele recomendar el masaje perineal?",["Desde la semana 20, a diario","Desde la semana 34–35, una o dos veces por semana","Solo durante el parto"],1,"El beneficio se vio con esa pauta, sobre todo en el primer parto."],
+  "fase-latente":["Contracciones irregulares desde hace horas, todo bien. ¿Qué es lo más útil?",["Ir ya al hospital","Descansar, comer ligero, beber y ducharse en casa","Cronometrar cada contracción desde la primera"],1,"La fase latente se lleva mejor en casa, guardando energía."],
+  "induccion":["Empieza una inducción con el cuello del útero cerrado. ¿Qué es esperable?",["Que el bebé nazca en una hora","Que tarde horas o incluso uno o dos días en ponerse en marcha","Que ya no se pueda poner epidural"],1,"Madurar el cuello lleva tiempo; la epidural se puede pedir igual."],
+  "contracciones":["En plena transición ella dice \"no puedo más\". ¿Qué suele significar?",["Que algo va mal","Que suele quedar poco","Que hay que irse a casa"],1,"Es una señal típica de la parte final de la dilatación."],
+  "trucos-contracciones":["¿Qué medida sin fármacos tiene más evidencia a favor?",["El TENS","El acompañamiento continuo","Tumbarse boca arriba"],1,"El apoyo continuo mejora varios resultados del parto y la vivencia."],
+  "respiracion":["Corona la cabeza del bebé y la matrona pide no empujar. ¿Cómo respira?",["Coge aire y aguanta","Jadeo o soplidos cortos","Respira muy rápido durante minutos"],1,"Soplando o jadeando es difícil empujar y la cabeza sale despacio."],
+  "expulsivo":["Con epidural, en el expulsivo, ¿qué postura se asoció a más partos espontáneos en el ensayo BUMPES?",["Incorporada o sentada","Tumbada de lado","Boca arriba sin moverse"],1,"41 % frente a 35 % de partos espontáneos."],
   "plan":["¿Qué es el plan de parto?",["Un contrato que obliga al hospital","Vuestras preferencias, que el equipo respeta si la situación lo permite","Un trámite obligatorio para ingresar"],1,"Es una guía para el equipo, no un contrato."],
   "parto-real":["¿Qué distingue a las contracciones de parto?",["Que se calman al ducharse","Que son regulares, cada vez más seguidas e intensas","Que solo duelen delante"],1,"Regularidad, frecuencia e intensidad crecientes."],
   "cuando-ir":["Rompe la bolsa y el líquido es verde. ¿Qué hacéis?",["Esperar a que empiecen las contracciones","Salir ya hacia el hospital","Llamar mañana a la matrona"],1,"El líquido verde o marrón puede indicar que el bebé lo está pasando mal."],
@@ -613,6 +771,7 @@ const QUIZ = {
   "llanto":["Estás desbordado y no deja de llorar:",["Le dejas seguro en la cuna, sales unos minutos y respiras","Le meces con energía","Le das agua"],0,"Que llore un rato en un sitio seguro no le hace daño. Zarandearle sí."],
   "fiebre":["Bebé de 5 semanas con 38,2 °C:",["Paracetamol y esperar","Urgencias","Esperar a mañana"],1,"Con menos de 3 meses, 38 °C o más es siempre urgencia."],
   "revisiones":["Si nace entre octubre y marzo en Madrid, ¿qué protección frente al VRS suele recibir?",["Un anticuerpo (nirsevimab) en la maternidad","Ninguna","Una vacuna a los 6 meses"],0,"Protege frente a la bronquiolitis en su primer invierno."],
+  "rcp-bebe":["Un bebé no responde y no respira con normalidad. Tras pedir ayuda y abrir la vía aérea, ¿qué haces primero?",["15 compresiones","5 respiraciones de rescate","Sacudirle"],1,"En niños se empieza con 5 respiraciones de rescate y luego 15 compresiones y 2 respiraciones."],
   "atragantamiento":["Se atraganta, pero tose con fuerza:",["Golpes en la espalda enseguida","Dejarle toser y vigilarle","Meter el dedo para sacar el objeto"],1,"La tos eficaz es lo mejor para expulsarlo."],
   "prevencion":["¿Qué evita caídas del cambiador?",["Una correa de seguridad","Tener siempre una mano sobre el bebé","Un cambiador con bordes altos"],1,"Ninguna correa sustituye a tu mano."],
   "botiquin":["Paracetamol infantil:",["La dosis según su peso que indique el pediatra","Media cucharadita siempre","La dosis de adulto dividida"],0,"La dosis depende del peso: preguntad siempre."],
@@ -639,6 +798,8 @@ const SOURCES = [
   ["Ayuda a la natalidad (Comunidad de Madrid)","https://sede.comunidad.madrid/ayudas-becas-subvenciones/ayudas-economicas-natalidad"],
   ["Cómo saber si mi hijo está asegurado (Mapfre)","https://www.mapfre.es/particulares/seguros-de-salud/articulos/como-saber-si-mi-hijo-esta-asegurado/"],
   ["Hospital General Universitario Gregorio Marañón","https://www.comunidad.madrid/centros/hospital-general-universitario-gregorio-maranon"],
+  ["Recomendaciones de la OMS para una experiencia de parto positiva (2018, en inglés)","https://iris.who.int/bitstream/handle/10665/260178/9789241550215-eng.pdf"],
+  ["Guía de práctica clínica sobre la atención al parto normal (Ministerio de Sanidad)","https://www.sanidad.gob.es/organizacion/sns/planCalidadSNS/equidad/saludGenero/saludSexualReproduccion/gpcsapn.htm"],
   ["Compatibilidad de medicamentos con la lactancia","https://www.e-lactancia.org"],
   ["Atragantamiento en lactantes, tríptico (Fundación Mapfre, SOS Respira)","https://www.fundacionmapfre.org/media/educacion-divulgacion/salud-bienestar/sos-respira/triptico-atragantamiento-lactantes.pdf"],
   ["Vacunas para embarazadas 2026 (Comité Asesor de Vacunas de la AEP)","https://static.aeped.es/Embarazadas_Calendario_CAV_AEP_2026_para_familias_33c65f1032.pdf"],
@@ -724,8 +885,28 @@ function renderChecklist(){
   }).join("");
 }
 
+/* Breathing pacer: 6 cycles of 4 s in, 6 s out */
+let breath = null;
+function stopBreath(){ if(breath){ clearInterval(breath); breath=null; } }
+function toggleBreath(){
+  const ring=$("#pcRing"), txt=$("#pcText"), btn=$("#pcBtn");
+  if(breath){ stopBreath(); ring.style.transitionDuration="1s"; ring.style.transform="scale(.55)"; txt.textContent="Respiración lenta: 4 para coger aire, 6 para soltarlo"; btn.textContent="Practicar 1 minuto"; return; }
+  const phases=[{t:"Coge aire por la nariz",n:4,s:1},{t:"Suéltalo despacio por la boca",n:6,s:.55}];
+  let cycle=0, ph=0, left=0;
+  const start=()=>{ const f=phases[ph]; left=f.n; ring.style.transitionDuration=f.n+"s"; ring.style.transform="scale("+f.s+")"; txt.textContent=f.t+" · "+left; };
+  btn.textContent="Parar"; start();
+  breath=setInterval(()=>{
+    left--;
+    if(left>0){ txt.textContent=phases[ph].t+" · "+left; return; }
+    ph=1-ph; if(ph===0) cycle++;
+    if(cycle>=6){ stopBreath(); ring.style.transitionDuration="1s"; ring.style.transform="scale(.55)"; txt.textContent="Bien hecho. Así, en cada contracción."; btn.textContent="Repetir"; return; }
+    start();
+  },1000);
+}
+
 let lastRoute = null;
 function render(){
+  stopBreath();
   const h = location.hash.slice(1) || "inicio";
   const v = $("#view");
   v.innerHTML = h.startsWith("p-") ? viewLesson(h.slice(2)) : h.startsWith("b-") ? viewBlock(h.slice(2)) : viewHome();
@@ -740,6 +921,7 @@ document.addEventListener("click", async e=>{
   if(chip){ stage=chip.dataset.stage; store.set("stage",stage); render(); return; }
   const rv = e.target.closest("[data-reveal]");
   if(rv){ $("#sens-"+rv.dataset.reveal).classList.add("revealed"); return; }
+  if(e.target.closest("[data-breath]")){ toggleBreath(); return; }
   const op = e.target.closest("[data-quiz]");
   if(op){
     const id = op.dataset.quiz, i = +op.dataset.i, [,,ok,why] = QUIZ[id];
