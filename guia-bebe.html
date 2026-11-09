@@ -210,6 +210,269 @@ body.hide-sens .sens:not(.revealed) .veil{display:flex;position:absolute;inset:0
 
 footer{font-size:.85rem;color:var(--muted);border-top:1px solid var(--line);padding-top:16px}
 @media (prefers-reduced-motion:no-preference){html{scroll-behavior:smooth}}
+/* Lesson illustrations */
+.il-rcp-bebe .steps5{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:12px}
+.il-rcp-bebe .st{display:grid;grid-template-columns:104px 1fr;gap:10px;align-items:center;border:1px solid var(--line);border-radius:10px;padding:10px;background:var(--bg)}
+.il-rcp-bebe .st svg{width:104px;height:auto;display:block}
+.il-rcp-bebe .st b{display:block;font-family:var(--display);font-size:1rem;margin-bottom:2px}
+.il-rcp-bebe .st span{font-size:.92rem;line-height:1.35}
+.il-rcp-bebe .n{display:inline-block;min-width:1.5em;height:1.5em;line-height:1.5em;border-radius:50%;text-align:center;font-size:.85rem;margin-right:4px;font-style:normal;background:var(--accent-soft);color:var(--ink)}
+.il-rcp-bebe .call{border-color:var(--alarm)}
+.il-rcp-bebe .call .n{background:var(--alarm);color:var(--surface)}
+.il-rcp-bebe .k{font-weight:700}.il-rcp-bebe .k.ok{color:var(--ok)}.il-rcp-bebe .k.no{color:var(--alarm)}
+.il-rcp-bebe .two{display:flex;gap:6px}.il-rcp-bebe .two{flex-direction:column;align-items:center}.il-rcp-bebe .two>div{display:flex;gap:4px}.il-rcp-bebe .two svg{width:50px}.il-rcp-bebe .two small{font-size:.8rem;color:var(--muted);display:flex;gap:0}.il-rcp-bebe .two small i{width:52px;white-space:nowrap;text-align:center;font-style:normal}
+.il-rcp-bebe .loop{display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:4px 16px;border:2px solid var(--alarm);border-radius:12px;padding:10px 12px;text-align:center}
+.il-rcp-bebe .loop strong{font-family:var(--display);font-size:2rem;line-height:1;color:var(--alarm)}
+.il-rcp-bebe .loop span{font-size:.92rem}
+.il-coger .il-coger-steps{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.il-coger .il-coger-steps .pic svg{width:100%;max-width:150px}
+.il-coger .il-coger-steps .pic b{font-size:.95rem}
+@media (max-width:480px){.il-coger .il-coger-steps{grid-template-columns:1fr;gap:10px}.il-coger .il-coger-steps .pic{display:grid;grid-template-columns:150px 1fr;align-items:center;gap:4px 12px;text-align:left}.il-coger .il-coger-steps .pic svg{grid-row:1/3;margin:0}.il-coger .il-coger-steps .pic b{align-self:end}.il-coger .il-coger-steps .pic span{align-self:start}}
+.il-coger .il-coger-porteo{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-top:4px}
+.il-coger .il-coger-porteo .pic svg{width:100%;max-width:190px}
+.il-coger .il-coger-sep{border-top:1px solid var(--line);padding-top:12px;margin-top:6px}
+.il-coger ol{margin:0;padding-left:1.4em;display:flex;flex-direction:column;gap:4px;font-size:.95rem}
+.il-coger ol li::marker{font-weight:700;color:var(--accent)}
+@media (max-width:480px){.il-coger .il-coger-porteo{grid-template-columns:1fr;gap:14px}.il-coger .il-coger-porteo .pic svg{max-width:230px}}
+.il-contrapresion .pics.wide{grid-template-columns:repeat(auto-fit,minmax(240px,1fr))}
+.il-contrapresion .il-small{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:14px;border-top:1px solid var(--line);padding-top:12px}
+.il-contrapresion .il-small .pic svg{max-width:110px}
+.il-contrapresion .il-key{display:inline-block;width:12px;height:12px;border-radius:2px;vertical-align:-1px;margin-right:4px;background:var(--accent-soft);border:2px solid var(--ink)}
+.il-mocos .rowlab{margin-top:4px}
+.il-mocos .ok>b{color:var(--ok)}
+.il-mocos .bad>b{color:var(--alarm)}
+.il-mocos .pic ul{margin:0;padding-left:1.1em;text-align:left;font-size:.9rem;display:flex;flex-direction:column;gap:3px}
+.il-mocos .count{display:flex;gap:14px;align-items:center}
+.il-mocos .count svg{width:76px;flex:none}
+.il-mocos .ref{display:flex;flex-direction:column;gap:6px;flex:1;min-width:0}
+.il-mocos .ref span{display:block;border:1px solid var(--line);border-left:4px solid var(--accent);border-radius:8px;padding:6px 10px;font-size:.92rem;background:var(--bg)}
+.il-movimientos .mv-flow{display:flex;flex-direction:column;align-items:stretch;gap:0}
+.il-movimientos .mv-box{border:2px solid var(--line);border-radius:12px;padding:10px 12px;background:var(--surface);display:flex;flex-direction:column;gap:4px;min-width:0}
+.il-movimientos .mv-box b{font-family:var(--display);font-size:1rem;line-height:1.25;text-wrap:balance}
+.il-movimientos .mv-box span,.il-movimientos .mv-box li{font-size:.92rem}
+.il-movimientos .mv-box ul{margin:0;padding-left:1.1em;display:flex;flex-direction:column;gap:2px}
+.il-movimientos .mv-start{border-color:var(--accent);background:var(--accent-soft);text-align:center}
+.il-movimientos .mv-red{border-color:var(--alarm)}
+.il-movimientos .mv-red b{color:var(--alarm)}
+.il-movimientos .mv-green{border-color:var(--ok);background:var(--ok-soft)}
+.il-movimientos .mv-green b{color:var(--ok)}
+.il-movimientos .mv-alarm{border-color:var(--alarm);background:var(--alarm-soft)}
+.il-movimientos .mv-alarm b{color:var(--alarm)}
+.il-movimientos .mv-arrow{display:flex;flex-direction:column;align-items:center;padding:2px 0;font-size:.85rem;color:var(--muted);font-weight:700}
+.il-movimientos .mv-arrow svg{width:18px;height:22px}
+.il-movimientos .mv-check{display:grid;grid-template-columns:minmax(0,1fr) 64px;gap:10px;align-items:center;width:100%;max-width:320px;margin:4px auto}
+.il-movimientos .mv-clock{display:flex;flex-direction:column;align-items:center;gap:2px;font-size:.85rem;font-weight:700;color:var(--muted)}
+.il-movimientos .mv-check svg{width:100%;height:auto;display:block}
+.il-movimientos .mv-step{text-align:left}
+.il-movimientos .mv-two{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.il-movimientos .mv-two .mv-box{text-align:center}
+.il-parto-rapido .pic{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:12px 12px 14px;gap:8px}
+.il-parto-rapido .pic.al{border:2px solid var(--alarm)}
+.il-parto-rapido .pic.al>b{color:var(--alarm)}
+.il-parto-rapido .two{display:grid;grid-template-columns:1fr 1fr;gap:6px;text-align:left}
+.il-parto-rapido .two span{font-size:.9rem}
+.il-parto-rapido .two strong{display:block}
+.il-parto-rapido .sy strong{color:var(--ok)}
+.il-parto-rapido .sn strong{color:var(--alarm)}
+.il-parto-rapido ul{margin:0;padding-left:1.1em;text-align:left;font-size:.92rem;display:flex;flex-direction:column;gap:2px}
+.il-parto-rapido .t112{display:inline-block;background:var(--alarm);color:var(--bg);font-weight:700;border-radius:999px;padding:0 10px}
+.il-parto-rapido .n{display:inline-grid;place-items:center;width:1.5em;height:1.5em;border-radius:50%;background:var(--ink);color:var(--bg);font-size:.85rem;margin-right:6px;vertical-align:1px}
+.il-parto-rapido .pic.al .n{background:var(--alarm)}
+.il-parto-rapido .sig li::marker{color:var(--alarm)}
+.il-parto-rapido .act{background:var(--alarm-soft);border-radius:10px;padding:8px 10px;text-align:left;font-size:.92rem}
+.il-parto-rapido .act b{color:var(--alarm)}
+.il-parto-rapido .you{color:var(--warm);font-weight:700}
+.il-fases .fs-map{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:4px 4px;margin-bottom:14px}
+.il-fases .fs-place{display:flex;align-items:center;justify-content:center;gap:6px;font-family:var(--display);font-weight:700;font-size:.9rem;padding:4px 2px 6px;border-bottom:3px solid var(--line);text-align:center;line-height:1.15}
+.il-fases .fs-place svg{width:22px;height:22px;flex:none}
+.il-fases .fs-home{border-color:var(--ok)}
+.il-fases .fs-hosp{grid-column:2 / 5;border-color:var(--accent)}
+.il-fases .fs-seg{height:30px;border-radius:8px;display:grid;place-items:center;font-family:var(--display);font-weight:700;font-size:1rem;background:var(--accent-soft);color:var(--ink);border:2px solid var(--accent)}
+.il-fases .fs-seg.on{background:var(--accent);color:var(--bg)}
+.il-fases .fs-cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:10px}
+.il-fases .fs-card{border:2px solid var(--line);border-radius:12px;padding:10px;background:var(--surface);display:flex;flex-direction:column;gap:6px;min-width:0}
+.il-fases .fs-head{display:flex;align-items:center;gap:8px}
+.il-fases .fs-n{flex:none;width:26px;height:26px;border-radius:50%;background:var(--accent);color:var(--bg);display:grid;place-items:center;font-weight:700;font-family:var(--display);font-size:.95rem}
+.il-fases .fs-head b{font-family:var(--display);font-size:1rem;line-height:1.15;min-width:0;hyphens:auto;overflow-wrap:break-word}
+.il-fases .fs-card svg.fs-ic{width:100%;max-width:130px;height:auto;margin:0 auto;display:block}
+.il-fases .fs-card span{font-size:.9rem;line-height:1.3}
+.il-fases .fs-t{font-weight:700;color:var(--accent)}
+.il-fases .fs-note{margin-top:10px;border-left:4px solid var(--ok);background:var(--ok-soft);padding:8px 10px;border-radius:0 10px 10px 0;font-size:.92rem}
+.il-cuando-ir .ci-cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:12px}
+.il-cuando-ir .ci-card{min-width:0;border:2px solid var(--line);border-radius:12px;padding:12px 14px;display:flex;flex-direction:column;gap:10px;background:var(--surface)}
+.il-cuando-ir .ci-card h3{margin:0;font-size:1.05rem;display:flex;align-items:center;gap:8px}
+.il-cuando-ir .ci-dot{width:14px;height:14px;border-radius:50%;flex:none}
+.il-cuando-ir .ci-ya{border-color:var(--alarm);background:var(--alarm-soft)}
+.il-cuando-ir .ci-ya h3{color:var(--alarm)}
+.il-cuando-ir .ci-ya .ci-dot{background:var(--alarm)}
+.il-cuando-ir .ci-calma{border-color:var(--warm);background:var(--warm-soft)}
+.il-cuando-ir .ci-calma h3{color:var(--warm)}
+.il-cuando-ir .ci-calma .ci-dot{background:var(--warm)}
+.il-cuando-ir .ci-row{display:grid;grid-template-columns:44px minmax(0,1fr);gap:10px;align-items:center;font-size:.92rem;line-height:1.35}
+.il-cuando-ir .ci-row svg{width:44px;height:44px}
+.il-cuando-ir .ci-line{display:flex;flex-direction:column;gap:4px;font-size:.92rem;line-height:1.35}
+.il-cuando-ir .ci-line svg{width:100%;height:auto;max-width:340px}
+.il-cuando-ir .ci-ends{display:flex;justify-content:space-between;max-width:340px;font-size:.85rem;font-weight:700;color:var(--muted)}
+.il-cuando-ir hr{border:0;border-top:1px solid var(--line);margin:0}
+.il-bolsa-rota .il-three{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.il-bolsa-rota .il-three .pic svg{max-width:52px}
+.il-bolsa-rota .il-cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:12px}
+.il-bolsa-rota .il-card{min-width:0;background:var(--surface);border:1px solid var(--line);border-left-width:6px;border-radius:12px;padding:12px 14px;display:flex;flex-direction:column;gap:10px}
+.il-bolsa-rota .il-calm{border-left-color:var(--warm)}
+.il-bolsa-rota .il-now{border-left-color:var(--alarm)}
+.il-bolsa-rota .il-plug{border-left-color:var(--ok)}
+.il-bolsa-rota .il-card>b{font-family:var(--display);font-size:1.05rem}
+.il-bolsa-rota .il-calm>b{color:var(--warm)}
+.il-bolsa-rota .il-now>b{color:var(--alarm)}
+.il-bolsa-rota .il-plug>b{color:var(--ok)}
+.il-bolsa-rota .il-pads{display:flex;justify-content:center;gap:8px}
+.il-bolsa-rota .il-pads .pic{flex:1 1 0;max-width:84px}
+.il-bolsa-rota .il-pads svg{max-width:60px}
+.il-bolsa-rota .il-card p{margin:0;font-size:.95rem}
+.il-bolsa-rota .il-row{display:flex;gap:12px;align-items:center;text-align:left}
+.il-bolsa-rota .il-row svg{flex:0 0 92px;width:92px}
+.il-bolsa-rota .il-note{font-size:.9rem;color:var(--muted);margin:0}
+.il-piel-bebe .pics{grid-template-columns:repeat(2,1fr);gap:10px}
+.il-piel-bebe .pic svg{max-width:150px}
+.il-piel-bebe .pic b{font-size:.95rem}
+.il-piel-bebe .pic span{color:var(--ink)}
+.il-piel-bebe .res{border:2px solid var(--line);border-radius:12px;padding:8px 6px;background:var(--bg)}
+.il-piel-bebe .res.ok{border-color:var(--ok);background:var(--ok-soft)}
+.il-piel-bebe .res.bad{border-color:var(--alarm);background:var(--alarm-soft)}
+.il-piel-bebe .res.ok b{color:var(--ok)}
+.il-piel-bebe .res.bad b{color:var(--alarm)}
+.il-piel-bebe .res strong{display:block;font-size:1rem}
+.il-piel-bebe .note{margin:0;font-size:.92rem;border-left:4px solid var(--accent);padding:4px 10px}
+.il-agarre .il-agarre-two{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:10px}
+.il-agarre .il-agarre-two>div{border:1px solid var(--line);border-radius:10px;padding:8px;display:flex;flex-direction:column;gap:6px}
+.il-agarre .il-agarre-two .pic svg{width:100%;max-width:280px}
+.il-agarre ul,.il-agarre ol{margin:0;padding-left:0;list-style:none;font-size:.95rem;display:flex;flex-direction:column;gap:3px;text-align:left}
+.il-agarre li{display:flex;align-items:baseline}
+.il-agarre li i{display:inline-block;width:1.3em;height:1.3em;line-height:1.3em;border-radius:50%;text-align:center;font-style:normal;font-weight:700;font-size:.8rem;margin-right:6px;flex:none;color:var(--bg);background:var(--ink)}
+.il-agarre li.p::before{content:"·";display:inline-block;flex:none;width:1.3em;margin-right:6px;text-align:center;font-weight:700}
+.il-agarre .il-agarre-ok>b{color:var(--ok)}
+.il-agarre .il-agarre-no>b{color:var(--alarm)}
+.il-agarre .il-agarre-row{flex-direction:row!important;align-items:center;gap:10px}
+.il-agarre .il-agarre-row>svg{flex:0 0 46%;max-width:160px}
+.il-agarre .il-agarre-nip{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.il-agarre .il-agarre-nip>div{display:flex;flex-direction:column;align-items:center;gap:2px;font-size:.9rem;text-align:center}
+.il-agarre .il-agarre-nip svg{width:100%;max-width:84px}
+.il-agarre .il-agarre-pos{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:0 14px}
+.il-agarre .il-agarre-pos>div{display:grid;grid-template-columns:104px 1fr;gap:10px;align-items:center;padding:8px 0;border-top:1px solid var(--line);text-align:left}
+.il-agarre .il-agarre-pos svg{width:104px}
+.il-agarre .il-agarre-pos b{display:block;font-size:.95rem}
+.il-agarre .il-agarre-pos span{display:block;font-size:.85rem}
+.il-agarre .il-agarre-pos em{display:inline-block;margin-top:3px;font-style:normal;font-size:.8rem;font-weight:600;color:var(--ink);background:var(--accent-soft);border-radius:6px;padding:1px 6px}
+.il-cesarea-recuperacion .cj{display:flex;align-items:center;gap:12px;text-align:left}
+.il-cesarea-recuperacion .cj svg{flex:none;width:84px;height:auto}
+.il-cesarea-recuperacion .key{display:flex;align-items:center;gap:8px;font-size:.92rem;margin:0}
+.il-cesarea-recuperacion .key svg{flex:none;width:44px;height:16px}
+.il-a-quien-llamar .aq-list{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:10px}
+.il-a-quien-llamar .aq-lv{min-width:0;display:grid;grid-template-columns:48px minmax(0,1fr);gap:12px;align-items:start;border:2px solid var(--line);border-left-width:10px;border-radius:12px;padding:12px 12px 12px 10px}
+.il-a-quien-llamar .aq-lv svg{width:48px;height:48px;display:block}
+.il-a-quien-llamar .aq-lv h3{margin:0;font-size:1.08rem;line-height:1.25}
+.il-a-quien-llamar .aq-n{display:inline-grid;place-items:center;width:24px;height:24px;border-radius:50%;font-size:.85rem;color:var(--surface);margin-right:6px;vertical-align:1px}
+.il-a-quien-llamar .aq-when{margin:2px 0 6px;font-size:.9rem;color:var(--muted);line-height:1.35}
+.il-a-quien-llamar .aq-chips{display:flex;flex-direction:row;flex-wrap:wrap;gap:6px;margin:0;padding:0;list-style:none}
+.il-a-quien-llamar .aq-chips li{font-size:.9rem;line-height:1.3;padding:4px 10px;border-radius:999px;background:var(--surface);border:1px solid var(--line)}
+.il-a-quien-llamar .aq-do{margin:8px 0 0;font-size:.92rem;line-height:1.35}
+.il-a-quien-llamar .aq-1{border-color:var(--alarm);background:var(--alarm-soft)}
+.il-a-quien-llamar .aq-1 h3{color:var(--alarm)}
+.il-a-quien-llamar .aq-1 .aq-n{background:var(--alarm)}
+.il-a-quien-llamar .aq-2{border-color:var(--warm);background:var(--warm-soft)}
+.il-a-quien-llamar .aq-2 h3{color:var(--warm)}
+.il-a-quien-llamar .aq-2 .aq-n{background:var(--warm)}
+.il-a-quien-llamar .aq-3{border-color:var(--accent);background:var(--accent-soft)}
+.il-a-quien-llamar .aq-3 h3{color:var(--accent)}
+.il-a-quien-llamar .aq-3 .aq-n{background:var(--accent)}
+.il-a-quien-llamar .aq-4{border-color:var(--ok);background:var(--ok-soft)}
+.il-a-quien-llamar .aq-4 h3{color:var(--ok)}
+.il-a-quien-llamar .aq-4 .aq-n{background:var(--ok)}
+.il-a-quien-llamar .aq-doubt{margin:0;border:2px dashed var(--alarm);border-radius:12px;padding:10px 12px;font-size:.95rem;line-height:1.4}
+.il-llanto .chk{display:grid;grid-template-columns:repeat(auto-fit,minmax(78px,1fr));gap:8px}
+.il-llanto .chk div{display:flex;flex-direction:column;align-items:center;gap:4px;border:1px solid var(--line);border-radius:10px;padding:8px 4px;background:var(--bg);font-size:.92rem;font-weight:600;text-align:center}
+.il-llanto .chk svg{width:44px}
+.il-llanto .calm{display:flex;flex-direction:row;flex-wrap:wrap;gap:6px;margin:0;padding:0;list-style:none}
+.il-llanto .calm li{display:inline-block;width:auto;margin:0;background:var(--ok-soft);border-radius:999px;padding:5px 12px;font-size:.92rem}
+.il-llanto .steps{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}
+.il-llanto .steps .pic{border:1px solid var(--line);border-radius:10px;padding:8px 4px;background:var(--bg)}
+.il-llanto .steps .pic svg{max-width:100px}
+.il-llanto .steps .pic span{color:var(--ink);font-size:.88rem}
+.il-llanto .band{border:2px solid var(--alarm);background:var(--alarm-soft);border-radius:10px;padding:10px 12px;font-size:.95rem}
+.il-llanto .band b{color:var(--alarm);font-family:var(--display);font-size:1.05rem;display:block}
+.il-llanto .safe{background:var(--ok-soft);border-radius:10px;padding:8px 12px;font-size:.92rem;margin:0}
+.il-primera-semana .ps-days{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:10px;margin:0;padding:0;list-style:none}
+.il-primera-semana .ps-day{border:1px solid var(--line);border-left:5px solid var(--accent);border-radius:10px;padding:10px 12px;display:flex;flex-direction:column;gap:6px;background:var(--bg)}
+.il-primera-semana .ps-day>b{font-family:var(--display);font-size:1rem}
+.il-primera-semana .ps-line{display:grid;grid-template-columns:3.4em 1fr;gap:2px 8px;align-items:start;font-size:.9rem;line-height:1.3}
+.il-primera-semana .ps-line>div{display:flex;flex-direction:column;gap:3px;align-items:flex-start}
+.il-primera-semana .ps-line svg{width:auto;height:auto;flex:none;display:block}
+.il-primera-semana .ps-k{font-weight:700;padding-top:2px}
+.il-primera-semana .ps-w{display:flex;flex-direction:column;gap:4px;width:100%;max-width:440px}
+.il-primera-semana .ps-wl{display:grid;grid-template-columns:1fr 1fr 1fr;gap:6px;font-size:.85rem;line-height:1.3}
+.il-primera-semana .ps-wl span:nth-child(2){text-align:center}
+.il-primera-semana .ps-wl span:nth-child(3){text-align:right}
+.il-primera-semana .ps-notes{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:10px}
+.il-primera-semana .ps-note{display:flex;gap:10px;align-items:center;font-size:.9rem;line-height:1.35}
+.il-primera-semana .ps-note svg{width:auto;flex:none}
+.il-ejercicios .pic svg{max-width:170px}
+.il-ejercicios .il-ball{display:grid;grid-template-columns:minmax(0,1.3fr) minmax(0,1fr);gap:10px;align-items:center}
+.il-ejercicios .il-ball>svg{max-width:240px;margin:0 auto}
+.il-ejercicios .il-moves{display:flex;flex-direction:column;gap:8px}
+.il-ejercicios .il-moves div{display:flex;flex-direction:column;align-items:center;text-align:center;gap:2px}
+.il-ejercicios .il-moves svg{width:52px;height:auto}
+.il-ejercicios .il-moves span{font-size:.9rem;color:var(--ink);line-height:1.2}
+.il-ejercicios p.pic{margin:0}
+.il-ejercicios .il-sep{border-top:1px solid var(--line);padding-top:10px}
+.il-rebozo .il-key{display:flex;flex-wrap:wrap;gap:6px 16px;justify-content:center;font-size:.9rem;color:var(--muted)}
+.il-rebozo .il-dot{display:inline-block;width:12px;height:12px;border-radius:3px;vertical-align:-1px;margin-right:5px}
+.il-rebozo .il-tag{display:inline-block;margin-top:2px;padding:2px 10px;border-radius:99px;font-size:.85rem;font-weight:700;background:var(--warm-soft);color:var(--ink)}
+.il-rebozo .il-small{border-top:1px solid var(--line);padding-top:12px;max-width:420px;margin:0 auto}
+.il-rebozo .il-small svg{max-width:220px}
+.il-medicamentos-temperatura .rowlab{margin-top:4px}
+.il-medicamentos-temperatura .pics{margin-bottom:6px}
+.il-medicamentos-temperatura .pic span{color:var(--ink)}
+.il-medicamentos-temperatura .note{margin:0;font-size:.9rem;color:var(--muted)}
+.il-gases .il-gases-pos{display:grid;grid-template-columns:1fr;gap:10px}
+.il-gases .il-gases-pos .pic{flex-direction:row;align-items:center;gap:12px;text-align:left}
+.il-gases .il-gases-pos .pic svg{flex:0 0 112px;width:112px;margin:0}
+.il-gases .il-gases-pos .pic span{font-size:.93rem;line-height:1.35;color:var(--ink)}
+.il-gases .il-gases-pos .pic span b{display:block}
+.il-gases .il-gases-det{display:flex;flex-direction:column;gap:10px;align-items:center;background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:12px}
+.il-gases .il-gases-det svg{width:100%;max-width:170px}
+.il-gases .il-gases-det ul{margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:8px;font-size:.93rem;align-self:stretch}
+.il-gases .il-gases-det li{display:flex;gap:8px;align-items:flex-start}
+.il-gases .il-gases-sw{flex:0 0 14px;height:14px;border-radius:50%;margin-top:3px}
+.il-gases .il-gases-two{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}
+.il-gases .il-gases-two .pic svg{max-width:140px}
+@media (min-width:600px){.il-gases .il-gases-pos{grid-template-columns:repeat(3,1fr)}.il-gases .il-gases-pos .pic{flex-direction:column;text-align:center}.il-gases .il-gases-det{flex-direction:row}.il-gases .il-gases-det svg{flex:0 0 170px}}
+.il-ictericia .where{display:grid;grid-template-columns:120px 1fr;gap:12px;align-items:center}
+.il-ictericia .where svg{width:120px;height:auto}
+.il-ictericia .where ul{margin:0;padding-left:1.1em;display:flex;flex-direction:column;gap:6px;font-size:.95rem}
+.il-ictericia .look{grid-template-columns:repeat(3,1fr);gap:8px}
+.il-ictericia .look .pic svg{max-width:96px}
+.il-ictericia .look .pic span{color:var(--ink);font-size:.86rem}
+.il-ictericia .diap{grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px}
+.il-ictericia .res{border:2px solid var(--line);border-radius:12px;padding:8px 6px;background:var(--bg)}
+.il-ictericia .res.ok{border-color:var(--ok);background:var(--ok-soft)}
+.il-ictericia .res.bad{border-color:var(--alarm);background:var(--alarm-soft)}
+.il-ictericia .res.ok strong{color:var(--ok)}
+.il-ictericia .res.bad strong{color:var(--alarm)}
+.il-ictericia .res strong{display:block;font-size:1rem}
+.il-ictericia .res span{color:var(--ink)}
+.il-ictericia .res svg{max-width:140px}
+.il-ictericia .note{margin:0;font-size:.92rem;border-left:4px solid var(--accent);padding:4px 10px}
+.il-alarma-posparto .ap-wrap{display:grid;grid-template-columns:minmax(0,1fr);gap:14px;align-items:start}
+.il-alarma-posparto .ap-map{width:100%;max-width:260px;height:auto;display:block;margin:0 auto}
+.il-alarma-posparto .ap-list{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:8px}
+.il-alarma-posparto .ap-list li{display:grid;grid-template-columns:28px minmax(0,1fr);gap:10px;align-items:start;font-size:.95rem;line-height:1.35}
+.il-alarma-posparto .ap-n{display:inline-grid;place-items:center;width:26px;height:26px;border-radius:50%;background:var(--alarm);color:var(--surface);font-weight:700;font-size:.9rem}
+.il-alarma-posparto .ap-n.ap-day{background:var(--surface);color:var(--alarm);border:2px dashed var(--alarm);box-sizing:border-box}
+.il-alarma-posparto .ap-tag{display:inline-block;font-size:.82rem;font-weight:700;padding:1px 8px;border-radius:999px;border:1px solid var(--alarm);color:var(--alarm);margin-left:4px}
+.il-alarma-posparto .ap-note{display:block;color:var(--muted);font-size:.88rem;margin-top:2px}
+.il-alarma-posparto .ap-foot{margin:12px 0 0;border:2px solid var(--alarm);background:var(--alarm-soft);border-radius:12px;padding:10px 12px;text-align:center;font-size:1.05rem}
+.il-alarma-posparto .ap-foot b{color:var(--alarm)}
+@media (min-width:600px){.il-alarma-posparto .ap-wrap{grid-template-columns:240px minmax(0,1fr)}}
 </style>
 
 <div class="wrap">
@@ -361,11 +624,85 @@ P("ejercicios","b1","Respiración, pelota, suelo pélvico y posturas",5,"p2",`
 <p class="lead">Practicar estas técnicas en las semanas previas hace que el día del parto os salgan solas. Haced antes las que os indique vuestra matrona y parad si algo duele o molesta.</p>
 <h3>Respiración</h3><p>Durante una contracción ayuda soltar el aire más despacio de lo que se coge: inspirar por la nariz contando 4 y soltar por la boca contando 6, con los hombros y la mandíbula sueltos.</p>
 <div class="practice"><p>Dos minutos al día, los dos a la vez. Tú cuentas en voz alta; ella sigue tu ritmo. Es lo mismo que harás en el paritorio.</p></div>
-${video("respiracion","Vídeo de 1 minuto: cómo respirar en la dilatación, al empujar y cuando sale la cabeza. Más detalle en la píldora \"Cómo respirar en cada momento del parto\".")}
+<p>El vídeo con cada fase lo tenéis en la píldora <a href="#p-respiracion">Cómo respirar en cada momento del parto</a>.</p>
 <h3>Pelota de pilates</h3><p>Sentada en la pelota con los pies bien apoyados y las rodillas algo más bajas que la cadera: círculos y ochos con la cadera, balanceo adelante y atrás. Alivia la espalda y ayuda a que el bebé se coloque.</p>
 <h3>Suelo pélvico (ejercicios de Kegel)</h3><p>Contraer la musculatura como para cortar el pis, mantener 5 segundos y soltar 5 segundos. 10 repeticiones, tres veces al día. Seguirán siendo útiles en el posparto.</p>
 <h3>Masaje perineal</h3><p>Desde la semana 34–35 reduce los desgarros en un primer parto. Lo tenéis paso a paso en su propia píldora.</p>
 <h3>Posturas para el parto</h3><ul><li>A cuatro patas, o de rodillas apoyada en la pelota o en la cama.</li><li>De pie, inclinada hacia delante, con los brazos en tus hombros.</li><li>Tumbada de lado con un cojín entre las rodillas (útil también con epidural).</li></ul>
+<figure class="il-ejercicios">
+<p class="rowlab">Pelota de pilates</p>
+<div class="il-ball">
+<svg viewBox="0 0 160 130" role="img" aria-label="Ella sentada en la pelota, espalda recta, pies bien apoyados en el suelo y las rodillas algo más bajas que la cadera.">
+<rect x="6" y="120" width="148" height="4" rx="2" style="fill:var(--line)"/>
+<circle cx="70" cy="94" r="26" stroke-width="3" style="fill:var(--bg);stroke:var(--muted)"/>
+<path d="M48 84 Q70 98 92 84" fill="none" stroke-width="2" style="stroke:var(--muted)"/>
+<path d="M70 64 L140 64" stroke-width="2" stroke-dasharray="4 4" style="stroke:var(--muted)"/>
+<g stroke-linecap="round" stroke-linejoin="round" fill="none" style="stroke:var(--accent)">
+<path d="M68 62 L68 30" stroke-width="16"/>
+<path d="M70 64 L106 82 L108 116" stroke-width="12"/>
+<path d="M70 36 L100 76" stroke-width="7"/>
+</g>
+<path d="M106 118 L124 118" stroke-width="7" stroke-linecap="round" style="stroke:var(--accent)"/>
+<ellipse cx="80" cy="50" rx="9" ry="11" style="fill:var(--accent)"/>
+<circle cx="70" cy="14" r="10" style="fill:var(--accent)"/>
+<path d="M132 68 L132 80 M127 75 L132 81 L137 75" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="stroke:var(--ink)"/>
+</svg>
+<div class="il-moves">
+<div><svg viewBox="0 0 60 30" role="img" aria-label="Flecha en círculo"><path d="M44 8 A16 9 0 1 0 50 18" fill="none" stroke-width="3" stroke-linecap="round" style="stroke:var(--ink)"/><path d="M40 3 L47 9 L39 12 Z" style="fill:var(--ink)"/></svg><span>Círculos con la cadera</span></div>
+<div><svg viewBox="0 0 60 30" role="img" aria-label="Flecha en forma de ocho"><path d="M10 15 C10 5 25 5 30 15 C35 25 50 25 50 15 C50 5 35 5 30 15 C25 25 10 25 10 15 Z" fill="none" stroke-width="3" style="stroke:var(--ink)"/></svg><span>Ochos</span></div>
+<div><svg viewBox="0 0 60 30" role="img" aria-label="Flecha adelante y atrás"><path d="M12 15 L48 15" stroke-width="3" style="stroke:var(--ink)"/><path d="M6 15 L15 9 L15 21 Z M54 15 L45 9 L45 21 Z" style="fill:var(--ink)"/></svg><span>Balanceo adelante y atrás</span></div>
+</div>
+</div>
+<p class="pic"><span><b>Pies bien apoyados</b> y <b>rodillas algo más bajas que la cadera</b> (la línea de puntos marca la cadera). Alivia la espalda y ayuda a que el bebé se coloque.</span></p>
+<p class="rowlab il-sep">Posturas para el parto</p>
+<div class="pics">
+<div class="pic"><b>A cuatro patas o de rodillas</b>
+<svg viewBox="0 0 160 130" role="img" aria-label="Ella de rodillas en el suelo, con el tronco inclinado hacia delante y apoyado sobre la pelota.">
+<rect x="4" y="120" width="152" height="4" rx="2" style="fill:var(--line)"/>
+<circle cx="116" cy="94" r="26" stroke-width="3" style="fill:var(--bg);stroke:var(--muted)"/>
+<path d="M94 84 Q116 98 138 84" fill="none" stroke-width="2" style="stroke:var(--muted)"/>
+<g stroke-linecap="round" stroke-linejoin="round" fill="none" style="stroke:var(--accent)">
+<path d="M14 116 L40 116 L46 84" stroke-width="12"/>
+<path d="M46 84 L94 64" stroke-width="16"/>
+<path d="M94 66 L128 72" stroke-width="7"/>
+</g>
+<ellipse cx="70" cy="84" rx="12" ry="8" style="fill:var(--accent)"/>
+<circle cx="108" cy="54" r="10" style="fill:var(--accent)"/>
+</svg>
+<span>Apoyada en la pelota o en la cama</span></div>
+<div class="pic"><b>De pie, inclinada</b>
+<svg viewBox="0 0 160 130" role="img" aria-label="Ella de pie, inclinada hacia delante, con los brazos sobre los hombros de su pareja, que está de pie frente a ella.">
+<rect x="4" y="120" width="152" height="4" rx="2" style="fill:var(--line)"/>
+<g stroke-linecap="round" stroke-linejoin="round" fill="none" style="stroke:var(--warm)">
+<path d="M128 40 L128 82" stroke-width="16"/>
+<path d="M124 84 L120 118 M132 84 L136 118" stroke-width="10"/>
+</g>
+<circle cx="128" cy="24" r="10" style="fill:var(--warm)"/>
+<g stroke-linecap="round" stroke-linejoin="round" fill="none" style="stroke:var(--accent)">
+<path d="M46 118 L50 76 M58 118 L54 76" stroke-width="10"/>
+<path d="M52 74 L86 46" stroke-width="16"/>
+<path d="M86 46 L120 40" stroke-width="7"/>
+</g>
+<ellipse cx="74" cy="70" rx="9" ry="11" transform="rotate(-40 74 70)" style="fill:var(--accent)"/>
+<circle cx="98" cy="34" r="10" style="fill:var(--accent)"/>
+</svg>
+<span>Con los brazos en tus hombros</span></div>
+<div class="pic"><b>Tumbada de lado</b>
+<svg viewBox="0 0 160 130" role="img" aria-label="Ella tumbada de lado en la cama, con las piernas dobladas y un cojín entre las rodillas.">
+<rect x="4" y="104" width="152" height="12" rx="6" style="fill:var(--line)"/>
+<rect x="6" y="88" width="30" height="14" rx="7" stroke-width="2" style="fill:var(--bg);stroke:var(--muted)"/>
+<circle cx="22" cy="76" r="11" style="fill:var(--accent)"/>
+<g stroke-linecap="round" stroke-linejoin="round" fill="none" style="stroke:var(--accent)">
+<path d="M40 88 L84 88" stroke-width="20"/>
+<path d="M86 94 L118 96 L150 96" stroke-width="11"/>
+<path d="M86 82 L116 52 L148 78" stroke-width="11"/>
+</g>
+<ellipse cx="114" cy="74" rx="17" ry="12" stroke-width="3" style="fill:var(--accent-soft);stroke:var(--ink)"/>
+</svg>
+<span>Cojín entre las rodillas. Útil también con epidural</span></div>
+</div>
+<figcaption>Haced antes las que os indique vuestra matrona y parad si algo duele o molesta. La respiración la tenéis en vídeo en la píldora «Cómo respirar en cada momento del parto».</figcaption>
+</figure>
 <div class="practice"><p>Probad cada postura un par de minutos y apuntad cuáles le resultan más cómodas. Ponedlas en el plan de parto.</p></div>`);
 
 P("sesion-pareja","b1","Rutina de práctica en pareja (15 minutos)",5,"p2",`
@@ -382,6 +719,48 @@ P("sesion-pareja","b1","Rutina de práctica en pareja (15 minutos)",5,"p2",`
 P("contrapresion","b1","Masaje, contrapresión y calor",4,"p2",`
 <h3>Contrapresión en el sacro</h3><p>Cuando la contracción duele en la parte baja de la espalda: apoya la palma o el puño sobre el hueso plano que hay encima de las nalgas (el sacro) y empuja firme y sostenido durante toda la contracción. Ella te dirá dónde y cuánta fuerza.</p>
 <h3>Doble presión de caderas</h3><p>Ella inclinada hacia delante; tú detrás, con una mano en cada lado de la cadera (en la parte carnosa del glúteo), aprietas hacia el centro y ligeramente hacia arriba durante la contracción. Muy útil cuando el dolor es lumbar.</p>
+<figure class="il-contrapresion">
+<p class="rowlab">Durante la contracción (tú, detrás de ella)</p>
+<div class="pics wide">
+<div class="pic"><b>1 · Contrapresión en el sacro</b>
+<svg viewBox="0 0 220 210" role="img" aria-label="Ella de espaldas, inclinada hacia delante y apoyada. El sacro, el hueso plano encima de las nalgas, está marcado. La pareja apoya la palma sobre él y empuja firme.">
+<rect x="10" y="92" width="200" height="12" rx="6" style="fill:var(--line)"/>
+<g style="stroke:var(--accent)" stroke-width="14" stroke-linecap="round"><path d="M80 62 L58 98"/><path d="M140 62 L162 98"/></g>
+<circle cx="110" cy="40" r="17" style="fill:var(--accent)"/>
+<path d="M76 58 Q110 50 144 58 L134 122 Q148 140 146 160 L74 160 Q72 140 86 122 Z" style="fill:var(--accent)"/>
+<ellipse cx="90" cy="168" rx="24" ry="22" style="fill:var(--accent)"/><ellipse cx="130" cy="168" rx="24" ry="22" style="fill:var(--accent)"/>
+<path d="M110 152 L110 186" stroke-width="2" style="stroke:var(--bg)"/>
+<path d="M96 128 L124 128 L110 154 Z" stroke-width="2.5" stroke-linejoin="round" style="fill:var(--accent-soft);stroke:var(--ink)"/>
+<path d="M210 210 L134 156" stroke-width="16" stroke-linecap="round" style="stroke:var(--warm)"/>
+<ellipse cx="111" cy="141" rx="21" ry="17" stroke-width="3.5" style="fill:var(--warm);fill-opacity:.18;stroke:var(--warm)"/>
+<path d="M34 132 L88 136" stroke-width="2" style="stroke:var(--ink)"/>
+<text x="6" y="126" style="fill:var(--ink);font-family:var(--body);font-weight:700;font-size:15px">sacro</text>
+</svg>
+<span><i class="il-key"></i>El <b>sacro</b> es el hueso plano encima de las nalgas. Apoya la palma o el puño y <b>empuja firme y sostenido durante toda la contracción</b>.</span></div>
+<div class="pic"><b>2 · Doble presión de caderas</b>
+<svg viewBox="0 0 220 210" role="img" aria-label="Ella de espaldas, inclinada hacia delante. La pareja pone una mano en la parte carnosa de cada glúteo y aprieta hacia el centro y un poco hacia arriba.">
+<rect x="10" y="92" width="200" height="12" rx="6" style="fill:var(--line)"/>
+<g style="stroke:var(--accent)" stroke-width="14" stroke-linecap="round"><path d="M80 62 L58 98"/><path d="M140 62 L162 98"/></g>
+<circle cx="110" cy="40" r="17" style="fill:var(--accent)"/>
+<path d="M76 58 Q110 50 144 58 L134 122 Q148 140 146 160 L74 160 Q72 140 86 122 Z" style="fill:var(--accent)"/>
+<ellipse cx="90" cy="168" rx="24" ry="22" style="fill:var(--accent)"/><ellipse cx="130" cy="168" rx="24" ry="22" style="fill:var(--accent)"/>
+<path d="M110 152 L110 186" stroke-width="2" style="stroke:var(--bg)"/>
+<g stroke-width="16" stroke-linecap="round" style="stroke:var(--warm)"><path d="M20 210 L72 178"/><path d="M200 210 L148 178"/></g>
+<g stroke-width="3" style="fill:var(--warm);fill-opacity:.45;stroke:var(--warm)"><ellipse cx="82" cy="172" rx="15" ry="13"/><ellipse cx="138" cy="172" rx="15" ry="13"/></g>
+<g stroke-width="4" stroke-linecap="round" stroke-linejoin="round" fill="none" style="stroke:var(--ink)"><path d="M30 182 L58 166"/><path d="M45 163 L59 165 L54 178"/><path d="M190 182 L162 166"/><path d="M175 163 L161 165 L166 178"/></g>
+</svg>
+<span>Ella inclinada hacia delante. Una mano en la <b>parte carnosa de cada glúteo</b>: aprieta <b>hacia el centro y un poco hacia arriba</b> durante la contracción.</span></div>
+</div>
+<div class="il-small">
+<div class="pic"><b>Entre contracciones</b>
+<svg viewBox="0 0 120 90" role="img" aria-label="Masaje lento en los hombros durante la pausa"><circle cx="60" cy="24" r="13" style="fill:var(--accent)"/><path d="M22 90 Q22 44 60 42 Q98 44 98 90 Z" style="fill:var(--accent)"/><g fill="none" stroke-width="3.5" stroke-linecap="round" style="stroke:var(--warm)"><path d="M28 50 A12 12 0 1 1 40 62"/><path d="M92 50 A12 12 0 1 0 80 62"/></g><g style="fill:var(--warm)"><path d="M36 66 L44 60 L36 56 Z"/><path d="M84 66 L76 60 L84 56 Z"/></g></svg>
+<span>Masaje lento en hombros, lumbares o pies</span></div>
+<div class="pic"><b>Calor</b>
+<svg viewBox="0 0 120 90" role="img" aria-label="Bolsa de agua caliente envuelta en una toalla sobre la zona lumbar"><circle cx="60" cy="14" r="11" style="fill:var(--accent)"/><path d="M34 28 Q60 22 86 28 L80 70 Q92 80 90 90 L30 90 Q28 80 40 70 Z" style="fill:var(--accent)"/><rect x="38" y="52" width="44" height="26" rx="7" stroke-width="2.5" style="fill:var(--warm-soft);stroke:var(--warm)"/><g stroke-width="2" style="stroke:var(--warm)"><path d="M46 60 h28"/><path d="M46 68 h28"/></g></svg>
+<span>Bolsa caliente (no hirviendo) envuelta en una toalla, en la zona lumbar</span></div>
+</div>
+<figcaption>Ella te dirá dónde y cuánta fuerza. Durante la contracción muchas prefieren presión firme y quieta en lugar de masaje. Probad cada técnica dos o tres minutos antes del parto.</figcaption>
+</figure>
 <h3>Masaje entre contracciones</h3><p>Masaje lento en hombros, lumbares o pies durante las pausas, con aceite o crema si le apetece. Durante la contracción, muchas mujeres prefieren presión firme y quieta en lugar de masaje.</p>
 <h3>Calor</h3><p>Una bolsa de agua caliente (no hirviendo, envuelta en una toalla) o un saco de semillas en la zona lumbar alivia a muchas mujeres.</p>
 <p class="note">Una revisión Cochrane (2018) concluyó que el masaje puede reducir el dolor en la dilatación, con estudios de calidad baja. El rebozo tiene su propia píldora.</p>
@@ -390,6 +769,71 @@ P("contrapresion","b1","Masaje, contrapresión y calor",4,"p2",`
 P("rebozo","b1","El rebozo, paso a paso",6,"p2",`
 <p class="lead">El rebozo es un chal largo y resistente de tradición mexicana. Muchas matronas lo usan en el embarazo y el parto para relajar, aliviar la espalda y acompañar el movimiento de la pelvis. Necesitáis un rebozo o un fular de tejido firme de unos 2,5–3 metros.</p>
 <div class="callout"><strong>Antes de usarlo, consultad a vuestra matrona.</strong> No se usa si hay placenta previa o sangrado, contracciones antes de tiempo, la bolsa rota o cualquier complicación. Lo ideal es aprenderlo en una clase de preparación al parto.</div>
+<figure class="il-rebozo">
+<p class="il-key"><span><i class="il-dot" style="background:var(--accent)"></i>Ella</span><span><i class="il-dot" style="background:var(--warm)"></i>Tú y el rebozo</span></p>
+<div class="pics wide">
+<div class="pic"><b>1 · Manteo de cadera a cuatro patas</b>
+<svg viewBox="0 0 240 200" role="img" aria-label="Vista de lado. Ella a cuatro patas, con la cabeza y los brazos apoyados en la pelota. El rebozo pasa ancho por debajo de la barriga y sus dos extremos suben hasta las manos de la pareja, que está de pie detrás de ella. Una flecha doble indica un vaivén suave de lado a lado.">
+<rect x="4" y="189" width="232" height="3" rx="1.5" style="fill:var(--line)"/>
+<circle cx="40" cy="160" r="29" stroke-width="2.5" style="fill:var(--surface);stroke:var(--muted)"/>
+<path d="M18 152 Q40 144 62 152" fill="none" stroke-width="2" style="stroke:var(--muted)"/>
+<circle cx="52" cy="119" r="12" style="fill:var(--accent)"/>
+<path d="M82 126 L60 142" stroke-width="13" stroke-linecap="round" style="stroke:var(--accent)"/>
+<path d="M72 112 Q112 100 150 108 L156 132 Q120 176 82 138 Z" style="fill:var(--accent)"/>
+<path d="M148 122 L148 184 L180 186" fill="none" stroke-width="15" stroke-linecap="round" stroke-linejoin="round" style="stroke:var(--accent)"/>
+<g fill="none" stroke-linecap="round" style="stroke:var(--warm)">
+<path d="M94 140 L188 96" stroke-width="5"/>
+<path d="M146 136 L192 104" stroke-width="5"/>
+<path d="M90 142 Q120 178 150 138" stroke-width="12"/>
+</g>
+<circle cx="212" cy="34" r="12" style="fill:var(--warm)"/>
+<path d="M199 50 Q212 46 225 50 L224 120 L200 120 Z" style="fill:var(--warm)"/>
+<g stroke-width="11" stroke-linecap="round" style="stroke:var(--warm)"><path d="M206 120 L204 187"/><path d="M219 120 L222 187"/><path d="M203 58 L190 98"/></g>
+<circle cx="190" cy="100" r="7" style="fill:var(--warm)"/>
+<g fill="none" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" style="stroke:var(--ink)">
+<path d="M160 66 Q180 56 200 66" transform="translate(-26 8)"/>
+<path d="M140 68 L134 74 L142 78"/><path d="M174 68 L180 74 L172 78"/>
+</g>
+</svg>
+<span>El rebozo pasa <b>por debajo de la barriga, ancho y sin pliegues</b>. Tú, <b>de pie detrás</b>, con un extremo en cada mano. Levanta lo justo y haz un <b>vaivén suave de lado a lado</b>, alternando las manos.</span>
+<span class="il-tag">1 a 3 minutos · para despacio</span></div>
+<div class="pic"><b>2 · Sostén de la barriga de pie</b>
+<svg viewBox="0 0 240 200" role="img" aria-label="Vista de lado. Ella de pie, inclinada hacia delante con las manos apoyadas en la cama. La pareja, detrás, sujeta el rebozo que pasa por debajo de la barriga y levanta suavemente su peso hacia arriba, sin balancear.">
+<rect x="4" y="189" width="232" height="3" rx="1.5" style="fill:var(--line)"/>
+<rect x="6" y="118" width="70" height="22" rx="5" style="fill:var(--line)"/>
+<g stroke-width="6" stroke-linecap="round" style="stroke:var(--line)"><path d="M14 140 L14 188"/><path d="M68 140 L68 188"/></g>
+<circle cx="78" cy="68" r="12" style="fill:var(--accent)"/>
+<path d="M94 82 L64 114" stroke-width="12" stroke-linecap="round" style="stroke:var(--accent)"/>
+<path d="M90 76 Q114 72 136 92 L136 112 Q116 140 98 108 Z" style="fill:var(--accent)"/>
+<g stroke-width="14" stroke-linecap="round" style="stroke:var(--accent)"><path d="M128 106 L124 186"/><path d="M134 106 L142 186"/></g>
+<g fill="none" stroke-linecap="round" style="stroke:var(--warm)">
+<path d="M104 112 L176 96" stroke-width="5"/>
+<path d="M134 112 L178 104" stroke-width="5"/>
+<path d="M100 114 Q118 136 136 110" stroke-width="12"/>
+</g>
+<circle cx="204" cy="40" r="12" style="fill:var(--warm)"/>
+<path d="M191 56 Q204 52 217 56 L216 122 L192 122 Z" style="fill:var(--warm)"/>
+<g stroke-width="11" stroke-linecap="round" style="stroke:var(--warm)"><path d="M198 122 L196 187"/><path d="M211 122 L214 187"/><path d="M195 64 L180 98"/></g>
+<circle cx="179" cy="100" r="7" style="fill:var(--warm)"/>
+<g fill="none" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round" style="stroke:var(--ink)"><path d="M100 160 L100 134"/><path d="M92 142 L100 133 L108 142"/></g>
+</svg>
+<span>Ella se apoya en la cama o en una encimera. Tú, <b>detrás</b>, con el rebozo bajo la barriga y los extremos en tus manos o cruzados a tu espalda. <b>Levanta suavemente</b> el peso de la barriga.</span>
+<span class="il-tag">Sin balancear</span></div>
+</div>
+<div class="pic il-small"><b>3 · Como apoyo para empujar</b>
+<svg viewBox="0 0 220 110" role="img" aria-label="Ella tira de un extremo del rebozo y la pareja sujeta firme el otro extremo, con la tela tensa entre los dos.">
+<circle cx="34" cy="34" r="12" style="fill:var(--accent)"/>
+<path d="M14 108 Q14 52 34 50 Q54 52 56 108 Z" style="fill:var(--accent)"/>
+<path d="M46 64 L70 62" stroke-width="10" stroke-linecap="round" style="stroke:var(--accent)"/>
+<path d="M72 62 L170 60" stroke-width="7" stroke-linecap="round" style="stroke:var(--warm)"/>
+<circle cx="186" cy="28" r="12" style="fill:var(--warm)"/>
+<path d="M174 44 Q186 40 198 44 L200 108 L172 108 Z" style="fill:var(--warm)"/>
+<path d="M178 54 L168 60" stroke-width="10" stroke-linecap="round" style="stroke:var(--warm)"/>
+<g fill="none" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" style="stroke:var(--ink)"><path d="M100 80 L74 80"/><path d="M82 74 L74 80 L82 86"/></g>
+</svg>
+<span>En el expulsivo, <b>si el equipo lo permite</b>: ella tira de un extremo y tú <b>sujetas firme</b> el otro.</span></div>
+<figcaption>Antes de probarlo, consultad a vuestra matrona. Ella marca la intensidad; parad si hay dolor, mareo o molestia, si no se relaja o si notáis contracciones nuevas o pérdidas.</figcaption>
+</figure>
 <h3>1 · Manteo de cadera a cuatro patas</h3>
 <ol class="steps"><li>Ella a cuatro patas, con la cabeza y los brazos apoyados en cojines o en la pelota.</li><li>Pasas el rebozo por debajo de la barriga, que quede ancho y sin pliegues, y sujetas un extremo en cada mano, de pie detrás de ella.</li><li>Levantas lo justo para que note el peso de la barriga sujeto.</li><li>Haces un vaivén lateral suave y rítmico, alternando las manos, de 1 a 3 minutos.</li><li>Paras despacio, bajando el peso poco a poco.</li></ol>
 <h3>2 · Sostén de la barriga de pie</h3>
@@ -428,6 +872,21 @@ P("movimientos","b2","Los movimientos del bebé al final del embarazo",4,"p1",`
 <div class="dos"><div class="yes"><h3>Lo que sí ayuda</h3><ul><li>Fijarse cada día en cómo y cuándo se mueve, sin obsesionarse.</li><li>Si notáis un cambio, hacer la comprobación de unos 30 minutos y, si no se mueve como siempre, ir aunque sea de noche.</li><li>Volver a consultar si vuelve a pasar, las veces que haga falta.</li><li>Desde la semana 28, que ella se duerma de lado (izquierdo o derecho). Si se despierta boca arriba, basta con girarse.</li></ul></div>
 <div class="no"><h3>Lo que no ayuda</h3><ul><li>Esperar al día siguiente o acostarse a dormir con la duda.</li><li>Alargar la espera horas o toda la tarde: la comprobación es de unos 30 minutos.</li><li>Usar un aparato doméstico para escuchar el latido: oír el corazón no confirma que el bebé esté bien y puede retrasar la consulta.</li><li>Rellenar a diario una tabla de patadas: no hay pruebas suficientes de que sirva.</li></ul></div></div>
 <h3>Si notáis que se mueve menos</h3>
+<figure class="il-movimientos"><div class="mv-flow">
+<div class="mv-box mv-start"><b>Ella nota que se mueve menos o distinto</b></div>
+<div class="mv-arrow" aria-hidden="true"><svg viewBox="0 0 18 22"><path d="M9 0 V18 M3 12 L9 19 L15 12" fill="none" stroke-width="2.5" style="stroke:var(--muted)"/></svg></div>
+<div class="mv-box mv-red" role="group" aria-label="Id directamente sin esperar los 30 minutos si se da alguna de estas situaciones"><b>¿Además pasa algo de esto? Id directamente, sin esperar los 30 min</b><ul><li>Sangrado, pérdida de líquido o dolor de barriga intenso y continuo</li><li>Ya habíais consultado por lo mismo y vuelve a pasar</li><li>Os quedáis intranquilos</li></ul></div>
+<div class="mv-arrow"><span>Si no</span><svg viewBox="0 0 18 22" aria-hidden="true"><path d="M9 0 V18 M3 12 L9 19 L15 12" fill="none" stroke-width="2.5" style="stroke:var(--muted)"/></svg></div>
+<div class="mv-box mv-step"><b>Comprobación de unos 30 minutos</b>
+<div class="mv-check"><svg viewBox="0 0 220 100" role="img" aria-label="Ella tumbada de lado en la cama, tranquila, atenta al bebé"><rect x="6" y="70" width="208" height="16" rx="6" style="fill:var(--line)"/><rect x="12" y="50" width="44" height="20" rx="9" style="fill:var(--accent-soft);stroke:var(--accent)" stroke-width="2"/><circle cx="38" cy="40" r="15" style="fill:var(--accent)"/><path d="M46 52 Q56 42 90 44 Q118 16 142 44 Q178 46 204 60 L204 70 L46 70 Z" style="fill:var(--accent)"/></svg>
+<div class="mv-clock"><svg viewBox="0 0 64 64" role="img" aria-label="Reloj: unos 30 minutos"><circle cx="32" cy="32" r="28" stroke-width="3" style="fill:var(--surface);stroke:var(--ink)"/><path d="M32 32 V6 A26 26 0 0 1 32 58 Z" style="fill:var(--accent-soft)"/><path d="M32 32 V12 M32 32 L44 40" stroke-width="3" stroke-linecap="round" style="stroke:var(--ink)"/></svg><span>30 min</span></div></div>
+<span>Ella tumbada <strong>de lado</strong> (mejor el izquierdo), tranquila, concentrada en notarle. Si hace horas que no come, puede tomar algo.</span></div>
+<div class="mv-arrow" aria-hidden="true"><svg viewBox="0 0 18 22"><path d="M9 0 V18 M3 12 L9 19 L15 12" fill="none" stroke-width="2.5" style="stroke:var(--muted)"/></svg></div>
+<div class="mv-two">
+<div class="mv-box mv-green" role="group" aria-label="Si se mueve como suele, tranquilos"><b>Se mueve como suele</b><span>Tranquilos: lo más probable es que estuviera dormido</span></div>
+<div class="mv-box mv-alarm" role="group" aria-label="Si sigue moviéndose menos o distinto, id a urgencias de maternidad a cualquier hora"><b>Sigue menos o distinto</b><span>Urgencias de maternidad, a cualquier hora, también de noche</span></div>
+</div></div>
+<figcaption>Si tenéis dudas, llamad a urgencias de maternidad (91 529 01 22): os orientan por teléfono. Si vuestra matrona os indica otra cosa, haced lo que os diga ella.</figcaption></figure>
 <ol class="steps"><li>Que ella se tumbe <strong>de lado</strong> (mejor el izquierdo), tranquila, y se concentre en notarle. Si hace horas que no come, puede tomar algo.</li><li>Unos <strong>30 minutos</strong>. Si se mueve como suele, tranquilos: lo más probable es que estuviera dormido.</li><li>Si sigue moviéndose menos o distinto, <strong>id a urgencias de maternidad</strong>, a cualquier hora. No esperéis al día siguiente.</li></ol>
 <div class="callout info">Es lo que suelen indicar las matronas y los obstetras en las consultas en España. Algunas guías extranjeras (NHS, RCOG, HSE irlandés) prefieren llamar directamente, sin esperar ni tomar nada. Si tenéis dudas, llamad a urgencias de maternidad (91 529 01 22): os orientan por teléfono. Y si vuestra matrona os indica otra cosa, haced lo que os diga ella.</div>
 <div class="alarm"><h3>Id directamente, sin esperar los 30 minutos, si</h3><ul><li>Además hay <strong>sangrado</strong>, pérdida de líquido o un dolor de barriga intenso y continuo.</li><li>Ya habíais consultado por lo mismo y vuelve a pasar.</li><li>Os quedáis intranquilos: ir para quedarse tranquilos también está bien.</li></ul><p>Mirad también la píldora "Cuándo ir a urgencias durante el embarazo".</p></div>
@@ -455,8 +914,24 @@ P("fase-latente","b2","Las primeras horas en casa (fase latente)",4,"p2",`
 <p class="role">eres quien mantiene la calma: baja la luz, prepara algo de comer, avisa solo a quien hayáis acordado y lleva la cuenta de las contracciones cuando se vuelvan regulares. Revisa la píldora "Cuándo salir hacia el hospital".</p>`);
 
 P("cuando-ir","b2","Cuándo salir hacia el hospital",3,"p1",`
-<div class="dos"><div class="no"><h3>Salid ya, sin esperar</h3><ul><li>Rompe la bolsa y el líquido es <strong>verde, marrón o tiene sangre</strong>.</li><li>Sangrado como una regla o más.</li><li>El bebé se mueve menos y no se recupera tras unos 30 minutos de lado.</li><li>Rompe la bolsa y el cultivo del estreptococo (semanas 35–37) salió positivo.</li></ul></div>
-<div class="yes"><h3>Salid con calma</h3><ul><li>Contracciones <strong>regulares cada 5 minutos o menos durante al menos una hora</strong>, en primer parto.</li><li>Rompe la bolsa con líquido claro, aunque no haya contracciones: sin correr, pero sin esperar a que empiecen. Apuntad la hora.</li></ul></div></div>
+<figure class="il-cuando-ir"><div class="ci-cards">
+<div class="ci-card ci-ya" role="group" aria-label="Salid ya, sin esperar">
+<h3><span class="ci-dot" aria-hidden="true"></span>Salid ya, sin esperar</h3>
+<div class="ci-row"><svg viewBox="0 0 44 44" role="img" aria-label="Muestras de líquido verde, marrón o con sangre"><path d="M9 6 Q2 17 2 22 A7 7 0 0 0 16 22 Q16 17 9 6Z" fill="#7c8f2a" stroke-width="1.5" style="stroke:var(--line)"/><path d="M22 14 Q15 25 15 30 A7 7 0 0 0 29 30 Q29 25 22 14Z" fill="#8a5a2e" stroke-width="1.5" style="stroke:var(--line)"/><path d="M35 6 Q28 17 28 22 A7 7 0 0 0 42 22 Q42 17 35 6Z" fill="#b8323a" stroke-width="1.5" style="stroke:var(--line)"/></svg><span>Rompe la bolsa y el líquido es <strong>verde, marrón o tiene sangre</strong></span></div>
+<div class="ci-row"><svg viewBox="0 0 44 44" role="img" aria-label="Compresa con sangrado"><rect x="12" y="3" width="20" height="38" rx="10" stroke-width="2" style="fill:var(--surface);stroke:var(--muted)"/><path d="M22 12 Q16 21 16 25 A6 6 0 0 0 28 25 Q28 21 22 12Z" style="fill:var(--alarm)"/></svg><span>Sangrado como una regla o más</span></div>
+<div class="ci-row"><svg viewBox="0 0 44 44" role="img" aria-label="Reloj: unos 30 minutos"><circle cx="22" cy="22" r="19" stroke-width="2.5" style="fill:var(--surface);stroke:var(--ink)"/><path d="M22 22 V5 A17 17 0 0 1 22 39 Z" style="fill:var(--accent-soft)"/><path d="M22 22 V9 M22 22 L30 27" stroke-width="2.5" stroke-linecap="round" style="stroke:var(--ink)"/></svg><span>El bebé se mueve menos y <strong>no se recupera tras unos 30 minutos de lado</strong></span></div>
+<div class="ci-row"><svg viewBox="0 0 44 44" role="img" aria-label="Bolsa rota y cultivo positivo"><path d="M16 6 Q6 20 6 26 A10 10 0 0 0 26 26 Q26 20 16 6Z" stroke-width="2" style="fill:var(--accent-soft);stroke:var(--accent)"/><circle cx="32" cy="31" r="10" style="fill:var(--alarm)"/><path d="M32 25 V37 M26 31 H38" stroke-width="3" stroke-linecap="round" style="stroke:var(--surface)"/></svg><span>Rompe la bolsa y el cultivo del estreptococo (semanas 35–37) <strong>salió positivo</strong></span></div>
+</div>
+<div class="ci-card ci-calma" role="group" aria-label="Salid con calma">
+<h3><span class="ci-dot" aria-hidden="true"></span>Salid con calma</h3>
+<div class="ci-line"><svg viewBox="0 0 340 40" role="img" aria-label="Una hora con una contracción cada 5 minutos: unas 12 contracciones"><path d="M10 28 H330" stroke-width="3" stroke-linecap="round" style="stroke:var(--muted)"/><g style="fill:var(--warm)"><rect x="32" y="12" width="6" height="22" rx="3"/><rect x="58" y="12" width="6" height="22" rx="3"/><rect x="84" y="12" width="6" height="22" rx="3"/><rect x="110" y="12" width="6" height="22" rx="3"/><rect x="136" y="12" width="6" height="22" rx="3"/><rect x="162" y="12" width="6" height="22" rx="3"/><rect x="188" y="12" width="6" height="22" rx="3"/><rect x="214" y="12" width="6" height="22" rx="3"/><rect x="240" y="12" width="6" height="22" rx="3"/><rect x="266" y="12" width="6" height="22" rx="3"/><rect x="292" y="12" width="6" height="22" rx="3"/><rect x="318" y="12" width="6" height="22" rx="3"/></g></svg>
+<div class="ci-ends" aria-hidden="true"><span>0</span><span>cada 5 min</span><span>1 hora</span></div>
+<span>Contracciones <strong>regulares cada 5 minutos o menos durante al menos una hora</strong>, en primer parto</span></div>
+<hr>
+<div class="ci-row"><svg viewBox="0 0 44 44" role="img" aria-label="Líquido claro y reloj para apuntar la hora"><path d="M14 6 Q4 20 4 26 A10 10 0 0 0 24 26 Q24 20 14 6Z" fill="#e6f1f5" stroke-width="2" style="stroke:var(--muted)"/><circle cx="32" cy="30" r="10" stroke-width="2" style="fill:var(--surface);stroke:var(--ink)"/><path d="M32 30 V24 M32 30 L36 32" stroke-width="2" stroke-linecap="round" style="stroke:var(--ink)"/></svg><span>Rompe la bolsa con <strong>líquido claro</strong>, aunque no haya contracciones: sin correr, pero sin esperar a que empiecen. <strong>Apuntad la hora.</strong></span></div>
+</div>
+</div>
+<figcaption>Rojo: salid ya, sin esperar. Naranja: salid con calma, sin correr.</figcaption></figure>
 <p class="note">Son pautas generales. Preguntad en vuestra consulta qué recomienda el Gregorio Marañón.</p>
 <p class="role">mientras esperáis en casa, ayúdala a moverse, a ducharse con agua caliente o a apoyarse en la pelota. Ten el coche y la bolsa preparados.</p>`);
 
@@ -485,6 +960,56 @@ P("parto-rapido","b2","Si va muy rápido: el trayecto, el 112 y si nace antes de
 <li><strong>No toquéis ni cortéis el cordón.</strong> Lo cortará el equipo sanitario cuando llegue.</li>
 <li>No tiréis del cordón para sacar la placenta. Si sale sola antes de que llegue la ayuda, decídselo al 112 y seguid sus indicaciones.</li></ol>
 <div class="callout ok">Si ocurre, lo más importante ya lo estáis haciendo: pedir ayuda, mantener al bebé caliente sobre su madre y no tocar el cordón. Los equipos de emergencias atienden partos así cada semana y saben guiaros por teléfono.</div>
+<figure class="il-parto-rapido"><div class="pics wide">
+<div class="pic"><b><span class="n">1</span>En el coche: el cinturón</b>
+<svg viewBox="0 0 300 172" role="img" aria-label="Así sí: banda de abajo por debajo de la barriga, sobre las caderas, y diagonal entre los pechos. Así no: banda de abajo cruzando la barriga">
+<g style="fill:var(--line)"><rect x="30" y="14" width="90" height="150" rx="14"/><rect x="180" y="14" width="90" height="150" rx="14"/></g>
+<g stroke-width="2" style="fill:var(--accent-soft);stroke:var(--accent)">
+<path d="M47 56 Q75 46 103 56 L109 142 L41 142 Z"/><rect x="45" y="140" width="26" height="26" rx="6"/><rect x="79" y="140" width="26" height="26" rx="6"/><circle cx="75" cy="108" r="23"/>
+<path d="M197 56 Q225 46 253 56 L259 142 L191 142 Z"/><rect x="195" y="140" width="26" height="26" rx="6"/><rect x="229" y="140" width="26" height="26" rx="6"/><circle cx="225" cy="108" r="23"/></g>
+<g style="fill:var(--accent)"><circle cx="75" cy="32" r="14"/><circle cx="225" cy="32" r="14"/></g>
+<g fill="none" stroke-width="7" stroke-linecap="round" style="stroke:var(--ok)"><path d="M99 54 L75 80 Q46 98 44 140"/><path d="M42 141 Q75 147 108 141"/></g>
+<g fill="none" stroke-width="7" stroke-linecap="round" style="stroke:var(--alarm)"><path d="M249 54 L225 80 Q196 98 194 140"/><path d="M193 110 Q225 116 257 110"/></g>
+<circle cx="120" cy="20" r="13" style="fill:var(--ok)"/><path d="M113 20 l5 5 l9 -10" fill="none" stroke-width="3.5" stroke-linecap="round" style="stroke:var(--surface)"/>
+<circle cx="270" cy="20" r="13" style="fill:var(--alarm)"/><path d="M264 14 l12 12 M276 14 l-12 12" fill="none" stroke-width="3.5" stroke-linecap="round" style="stroke:var(--surface)"/>
+</svg>
+<div class="two"><span class="sy"><strong>Así sí</strong>Banda de abajo por debajo de la barriga, sobre los huesos de la cadera. Diagonal entre los pechos. Sin holguras.</span><span class="sn"><strong>Así no</strong>Banda de abajo cruzando la barriga.</span></div></div>
+<div class="pic al"><b><span class="n">2</span>Señales: llamad al 112</b>
+<ul class="sig"><li>Ganas incontrolables de empujar</li><li>Se ve o se nota la cabeza del bebé</li><li>Se ve o se nota el cordón</li><li>Sangra mucho, o se marea o se desmaya</li></ul>
+<div class="act"><b>Qué hacer:</b> parad en un sitio seguro, con las luces de emergencia. Llamad al <span class="t112">112</span> y poned el manos libres. Decid que es un parto, de cuántas semanas está, si es el primero y dónde estáis.</div></div>
+<div class="pic al"><b><span class="n">3</span>Si se ve o se nota el cordón</b>
+<svg viewBox="20 14 270 112" role="img" aria-label="Ella de rodillas, con los muslos en vertical, los codos y los antebrazos en el suelo, la cabeza baja y el pecho bajo. La pareja, de pie a un lado, con el móvil en manos libres y sin tocarla">
+<line x1="24" y1="120" x2="286" y2="120" stroke-width="3" stroke-linecap="round" style="stroke:var(--line)"/>
+<g fill="none" stroke-linecap="round" stroke-linejoin="round" style="stroke:var(--warm)">
+<path d="M262 44 L262 80" stroke-width="22"/><path d="M257 84 L255 116 M267 84 L269 116" stroke-width="10"/><path d="M256 50 L242 62 L238 50" stroke-width="7"/></g>
+<circle cx="262" cy="26" r="12" style="fill:var(--warm)"/>
+<rect x="232" y="36" width="11" height="17" rx="2" style="fill:var(--alarm)"/>
+<g fill="none" stroke-linecap="round" stroke-linejoin="round" style="stroke:var(--accent)">
+<path d="M40 113 L86 113" stroke-width="13"/><path d="M86 113 L98 80" stroke-width="13"/>
+<path d="M100 78 L168 56" stroke-width="28"/><path d="M170 58 L174 110" stroke-width="24"/><path d="M176 113 L222 113 L228 106" stroke-width="13"/></g>
+<ellipse cx="136" cy="84" rx="22" ry="13" style="fill:var(--accent)"/>
+<circle cx="72" cy="94" r="14" style="fill:var(--accent)"/>
+</svg>
+<span>Ella de rodillas, con los codos y las manos en el suelo y el pecho bajo, hasta que llegue la ayuda. <span class="you">Tú, al teléfono, sin tocarla.</span></span>
+<ul><li>Llamad al <span class="t112">112</span> y poned el manos libres</li><li>No toquéis el cordón ni intentéis meterlo</li><li>Que no coma ni beba nada</li></ul></div>
+<div class="pic"><b><span class="n">4</span>Si nace: piel con piel, tapados</b>
+<svg viewBox="12 10 276 136" role="img" aria-label="La pareja recibe al bebé con las manos y una toalla. El bebé, sobre el pecho de ella, piel con piel; una toalla seca tapa a los dos y cubre la cabeza del bebé como una capucha, solo asoma la cara">
+<rect x="20" y="40" width="60" height="96" rx="14" style="fill:var(--line)"/>
+<line x1="12" y1="140" x2="288" y2="140" stroke-width="3" stroke-linecap="round" style="stroke:var(--line)"/>
+<g fill="none" stroke-linecap="round" stroke-linejoin="round" style="stroke:var(--warm)"><path d="M214 40 L208 92" stroke-width="20"/><path d="M206 96 L198 136 L232 136" stroke-width="14"/><path d="M210 50 L184 70" stroke-width="8"/></g>
+<circle cx="216" cy="24" r="12" style="fill:var(--warm)"/>
+<g fill="none" stroke-linecap="round" style="stroke:var(--accent)"><path d="M70 66 L146 116" stroke-width="34"/><path d="M150 120 L272 124" stroke-width="24"/></g>
+<circle cx="56" cy="40" r="16" style="fill:var(--accent)"/>
+<path d="M76 60 A20 20 0 0 1 114 44 L182 78 Q192 100 172 116 L124 104 L86 80 Z" stroke-width="2.5" stroke-linejoin="round" style="fill:var(--surface);stroke:var(--muted)"/>
+<circle cx="92" cy="62" r="9" stroke-width="1.5" style="stroke:var(--line)" fill="#f1c9a5"/>
+<path d="M80 54 A15 15 0 0 1 104 52" fill="none" stroke-width="2" stroke-linecap="round" style="stroke:var(--muted)"/>
+<path d="M118 60 L170 88 M114 76 L164 102" fill="none" stroke-width="2" stroke-dasharray="5 5" style="stroke:var(--muted)"/>
+<circle cx="182" cy="72" r="6" style="fill:var(--warm)"/>
+</svg>
+<span><span class="you">Tú lo recibes con las manos y una toalla.</span> Enseguida sobre el pecho de ella. Secadlo y tapad a los dos, también la cabeza del bebé, con una toalla seca o una manta.</span>
+<ul><li>Fijaos en si respira o llora; si no, frotadle suavemente la espalda o las plantas de los pies y decídselo al 112</li><li>No tiréis del bebé (salvo que os lo diga el 112) ni del cordón</li><li>El cordón no se toca ni se corta</li></ul></div>
+</div>
+<figcaption>Ante cualquiera de las señales del panel 2, parad en un sitio seguro con las luces de emergencia, llamad al 112 y haced lo que os digan por teléfono. Esquema orientativo.</figcaption></figure>
 <p class="role">tu trabajo es ir tranquilo y por orden: conducir sin prisas peligrosas, llamar al 112 si aparece alguna de las señales y hacer exactamente lo que os digan por teléfono. Ella necesita oírte sereno. Guarda ya el 112 y el trayecto en el móvil.</p>
 <div class="practice"><p>Haced una vez el trayecto completo hasta la entrada de O'Donnell, 50, a la hora en que más tráfico suele haber. Leed en voz alta los siete pasos de arriba: si llega el momento, sabréis por dónde empezar.</p></div>
 <div class="remember"><ul><li>Ganas incontrolables de empujar, cabeza o cordón visibles: parad y llamad al 112.</li><li>Bebé sobre el pecho de ella, seco y tapado.</li><li>El cordón no se toca.</li></ul></div>
@@ -514,7 +1039,43 @@ P("llegada-urgencias","b2","Llegada a urgencias de maternidad: la primera hora",
 P("bolsa-rota","b2","Rotura de bolsa y tapón mucoso",3,"p2",`
 <h3>Rotura de bolsa</h3><p>Puede ser un chorro o un goteo continuo que no se puede retener. Fijaos en tres cosas: <strong>la hora, el color y el olor</strong>. Si es claro o rosado, id al hospital sin correr, pero sin esperar a que empiecen las contracciones. Si es verde, marrón o con sangre, id ya.</p>
 <p>Ponerse una compresa (no un tampón) ayuda a ver el color y la cantidad.</p>
-<h3>Tapón mucoso</h3><p>Es una mucosidad espesa, a veces con hilos de sangre, que puede expulsarse días o semanas antes del parto. <strong>No es motivo para ir al hospital</strong> por sí solo, salvo que haya sangrado abundante.</p>`);
+<h3>Tapón mucoso</h3><p>Es una mucosidad espesa, a veces con hilos de sangre, que puede expulsarse días o semanas antes del parto. <strong>No es motivo para ir al hospital</strong> por sí solo, salvo que haya sangrado abundante.</p>
+<figure class="il-bolsa-rota">
+<p class="rowlab">Si rompe la bolsa, fijaos en tres cosas</p>
+<div class="il-three">
+<div class="pic" role="img" aria-label="La hora"><svg viewBox="0 0 48 48" aria-hidden="true"><circle cx="24" cy="24" r="19" fill="none" stroke-width="3.5" style="stroke:var(--accent)"/><path d="M24 12 V24 L32 29" fill="none" stroke-width="3.5" stroke-linecap="round" style="stroke:var(--ink)"/></svg><b>La hora</b></div>
+<div class="pic" role="img" aria-label="El color"><svg viewBox="0 0 48 48" aria-hidden="true"><path d="M24 5 C30 16 37 23 37 31 A13 13 0 0 1 11 31 C11 23 18 16 24 5 Z" stroke-width="3.5" stroke-linejoin="round" style="fill:var(--accent-soft);stroke:var(--accent)"/></svg><b>El color</b></div>
+<div class="pic" role="img" aria-label="El olor"><svg viewBox="0 0 48 48" aria-hidden="true"><g fill="none" stroke-width="3.5" stroke-linecap="round" style="stroke:var(--accent)"><path d="M14 40 C8 32 20 26 14 18 C10 12 16 8 16 6"/><path d="M24 40 C18 32 30 26 24 18 C20 12 26 8 26 6"/><path d="M34 40 C28 32 40 26 34 18 C30 12 36 8 36 6"/></g></svg><b>El olor</b></div>
+</div>
+<p class="il-note">Con una <b>compresa (no un tampón)</b> se ven mejor el color y la cantidad.</p>
+<div class="il-cards">
+<div class="il-card il-calm">
+<b>Claro o rosado</b>
+<div class="il-pads">
+<div class="pic"><svg viewBox="0 0 76 120" role="img" aria-label="Compresa con una mancha de líquido claro, casi transparente"><rect x="10" y="4" width="56" height="112" rx="28" stroke-width="2.5" style="fill:var(--bg);stroke:var(--muted)"/><ellipse cx="38" cy="60" rx="17" ry="30" fill="#dfe9ee" stroke-width="2" style="stroke:var(--line)"/></svg><span>Claro</span></div>
+<div class="pic"><svg viewBox="0 0 76 120" role="img" aria-label="Compresa con una mancha de líquido rosado claro"><rect x="10" y="4" width="56" height="112" rx="28" stroke-width="2.5" style="fill:var(--bg);stroke:var(--muted)"/><ellipse cx="38" cy="60" rx="17" ry="30" fill="#f1c4c4" stroke-width="2" style="stroke:var(--line)"/></svg><span>Rosado</span></div>
+</div>
+<p><b>Id al hospital sin correr</b>, pero <b>sin esperar</b> a que empiecen las contracciones.</p>
+</div>
+<div class="il-card il-now">
+<b>Verde, marrón o con sangre</b>
+<div class="il-pads">
+<div class="pic"><svg viewBox="0 0 76 120" role="img" aria-label="Compresa con una mancha de líquido verdoso"><rect x="10" y="4" width="56" height="112" rx="28" stroke-width="2.5" style="fill:var(--bg);stroke:var(--muted)"/><ellipse cx="38" cy="60" rx="17" ry="30" fill="#7f8f3c" stroke-width="2" style="stroke:var(--line)"/></svg><span>Verde</span></div>
+<div class="pic"><svg viewBox="0 0 76 120" role="img" aria-label="Compresa con una mancha de líquido marrón"><rect x="10" y="4" width="56" height="112" rx="28" stroke-width="2.5" style="fill:var(--bg);stroke:var(--muted)"/><ellipse cx="38" cy="60" rx="17" ry="30" fill="#8a5a33" stroke-width="2" style="stroke:var(--line)"/></svg><span>Marrón</span></div>
+<div class="pic"><svg viewBox="0 0 76 120" role="img" aria-label="Compresa con una mancha roja de sangre"><rect x="10" y="4" width="56" height="112" rx="28" stroke-width="2.5" style="fill:var(--bg);stroke:var(--muted)"/><ellipse cx="38" cy="60" rx="17" ry="30" fill="#b3362b" stroke-width="2" style="stroke:var(--line)"/></svg><span>Con sangre</span></div>
+</div>
+<p><b>Id ya</b> al hospital.</p>
+</div>
+</div>
+<div class="il-card il-plug">
+<b>Tapón mucoso: no es la bolsa</b>
+<div class="il-row">
+<svg viewBox="0 0 72 60" role="img" aria-label="Mucosidad espesa, blanquecina, con un par de hilos finos de sangre"><path d="M14 30 C8 16 26 8 36 14 C46 6 66 14 60 30 C66 44 48 54 36 46 C24 54 6 44 14 30 Z" fill="#ece6d3" stroke-width="2" style="stroke:var(--line)"/><g fill="none" stroke="#b3362b" stroke-width="1.3" stroke-linecap="round"><path d="M24 26 C30 30 34 24 42 28"/><path d="M34 38 C38 35 44 40 50 36"/></g></svg>
+<p>Mucosidad espesa, a veces con hilos de sangre. Puede salir días o semanas antes del parto. <b>Por sí solo no es motivo para ir al hospital</b>, salvo que haya <b>sangrado abundante</b>.</p>
+</div>
+</div>
+<figcaption>Puede ser un chorro o un goteo continuo que no se puede retener. El color decide si vais sin correr o ya.</figcaption>
+</figure>`);
 
 P("nalgas","b2","Si el bebé no está cabeza abajo",5,"p2",`
 <p class="lead">Que el bebé esté de nalgas o de pies es muy frecuente a mitad de embarazo, y la mayoría se da la vuelta solo hacia las semanas 36 o 37. Al final, solo 3 o 4 de cada 100 siguen así. Normalmente no significa que haya ningún problema: simplemente hay que decidir con el equipo cómo nacerá.</p>
@@ -556,7 +1117,37 @@ P("fases","b3","Las fases del parto",5,"p2",`
 <li><div><strong>Dilatación activa.</strong> Contracciones regulares e intensas, hasta los 10 cm. Es el momento de estar en el hospital.</div></li>
 <li><div><strong>Expulsivo.</strong> Llega la necesidad de empujar y nace el bebé. En un primer parto puede durar desde minutos hasta un par de horas, más con epidural.</div></li>
 <li><div><strong>Alumbramiento.</strong> Sale la placenta, normalmente entre 5 y 30 minutos después del nacimiento.</div></li></ol>
-<div class="callout info">Los tiempos varían muchísimo entre mujeres y partos. Que vaya más lento de lo que esperabais no significa que algo vaya mal.</div>`);
+<figure class="il-fases" lang="es"><div class="fs-map" role="img" aria-label="Mapa del parto: la fase 1, dilatación latente, gran parte en casa; las fases 2, 3 y 4 en el hospital. Los tramos no están a escala.">
+<div class="fs-place fs-home"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 11 L12 3 L21 11 V21 H3 Z" stroke-width="2" stroke-linejoin="round" style="fill:var(--ok-soft);stroke:var(--ok)"/><rect x="10" y="14" width="4" height="7" style="fill:var(--ok)"/></svg>Casa</div>
+<div class="fs-place fs-hosp"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="18" height="17" rx="2" stroke-width="2" style="fill:var(--accent-soft);stroke:var(--accent)"/><path d="M12 8 V16 M8 12 H16" stroke-width="3" style="stroke:var(--accent)"/></svg>Hospital</div>
+<div class="fs-seg">1</div><div class="fs-seg on">2</div><div class="fs-seg on">3</div><div class="fs-seg on">4</div>
+</div>
+<div class="fs-cards">
+<div class="fs-card" role="group" aria-label="Fase 1, dilatación latente: el cuello del útero empieza a abrirse, de 0 a 4 o 5 centímetros. Contracciones irregulares. Muchas horas, gran parte en casa.">
+<div class="fs-head"><span class="fs-n">1</span><b>Dilatación latente</b></div>
+<svg class="fs-ic" viewBox="0 0 130 54" aria-hidden="true"><circle cx="27" cy="27" r="22" stroke-width="10" style="fill:none;stroke:var(--accent-soft)"/><circle cx="27" cy="27" r="3" style="fill:var(--surface);stroke:var(--accent)" stroke-width="2"/><path d="M56 27 H72 M66 21 L73 27 L66 33" stroke-width="3" fill="none" stroke-linecap="round" style="stroke:var(--muted)"/><circle cx="103" cy="27" r="22" stroke-width="10" style="fill:none;stroke:var(--accent-soft)"/><circle cx="103" cy="27" r="9" style="fill:var(--surface);stroke:var(--accent)" stroke-width="2"/></svg>
+<span>El cuello del útero se ablanda y empieza a abrirse: <b>0 → 4–5 cm</b></span>
+<span>Contracciones irregulares que poco a poco se ordenan</span>
+<span class="fs-t">Muchas horas, gran parte en casa</span></div>
+<div class="fs-card" role="group" aria-label="Fase 2, dilatación activa: contracciones regulares e intensas, hasta 10 centímetros. Es el momento de estar en el hospital.">
+<div class="fs-head"><span class="fs-n">2</span><b>Dilatación activa</b></div>
+<svg class="fs-ic" viewBox="0 0 130 54" aria-hidden="true"><circle cx="27" cy="27" r="22" stroke-width="10" style="fill:none;stroke:var(--accent-soft)"/><circle cx="27" cy="27" r="9" style="fill:var(--surface);stroke:var(--accent)" stroke-width="2"/><path d="M56 27 H72 M66 21 L73 27 L66 33" stroke-width="3" fill="none" stroke-linecap="round" style="stroke:var(--muted)"/><circle cx="103" cy="27" r="24" stroke-width="5" style="fill:none;stroke:var(--accent-soft)"/><circle cx="103" cy="27" r="20" style="fill:var(--surface);stroke:var(--accent)" stroke-width="2"/></svg>
+<span>Sigue abriéndose <b>hasta 10 cm</b></span>
+<span>Contracciones regulares e intensas</span>
+<span class="fs-t">Momento de estar en el hospital</span></div>
+<div class="fs-card" role="group" aria-label="Fase 3, expulsivo: llegan las ganas de empujar y nace el bebé. En un primer parto, de minutos a un par de horas, más con epidural.">
+<div class="fs-head"><span class="fs-n">3</span><b>Expulsivo</b></div>
+<svg class="fs-ic" viewBox="0 0 130 54" aria-hidden="true"><ellipse cx="65" cy="40" rx="30" ry="12" style="fill:var(--accent-soft)"/><circle cx="48" cy="26" r="11" style="fill:var(--accent)"/><path d="M58 30 Q72 18 90 26 Q96 32 90 40 Q74 44 58 40 Z" style="fill:var(--accent)"/></svg>
+<span>Llegan las ganas de empujar y <b>nace el bebé</b></span>
+<span class="fs-t">Primer parto: de minutos a un par de horas, más con epidural</span></div>
+<div class="fs-card" role="group" aria-label="Fase 4, alumbramiento: sale la placenta, normalmente entre 5 y 30 minutos después del nacimiento.">
+<div class="fs-head"><span class="fs-n">4</span><b>Alumbramiento</b></div>
+<svg class="fs-ic" viewBox="0 0 130 54" aria-hidden="true"><circle cx="65" cy="27" r="23" stroke-width="3" style="fill:var(--surface);stroke:var(--ink)"/><path d="M65 27 V4 A23 23 0 0 1 84 40 Z" style="fill:var(--accent-soft)"/><path d="M65 27 V10 M65 27 L76 33" stroke-width="3" stroke-linecap="round" style="stroke:var(--ink)"/></svg>
+<span>Sale <b>la placenta</b></span>
+<span class="fs-t">Normalmente 5–30 min después del nacimiento</span></div>
+</div>
+<div class="fs-note"><b>Los tramos no están a escala.</b> Los tiempos varían muchísimo entre mujeres y partos: que vaya más lento de lo que esperabais no significa que algo vaya mal.</div>
+<figcaption>Las cuatro fases del parto. Los 4–5 cm del final de la fase latente son orientativos: la guía española usa 4 cm y la OMS 5.</figcaption></figure>`);
 
 P("contracciones","b3","Cómo son las contracciones",5,"p1",`
 <p class="lead">El útero es un músculo. En cada contracción se tensa con fuerza para ir abriendo el cuello y empujar al bebé hacia abajo, y luego se relaja. Saber cómo funcionan quita mucho miedo: <strong>cada contracción tiene principio y final, y entre una y otra hay descanso.</strong></p>
@@ -758,6 +1349,48 @@ P("ictericia","b4","Ictericia: bilirrubina, fototerapia y qué vigilar en casa",
 <li>Se hacen <strong>pausas cortas</strong>, de hasta media hora, para darle el pecho o el biberón, cambiarle y cogerle. Si la cifra es muy alta, pueden pedir que no se interrumpa la luz durante un tiempo.</li>
 <li>La lactancia sigue. Si hace falta darle algo más, lo preferible es vuestra propia leche extraída. Pedid ayuda para extraerla si os separan.</li>
 <li>Suele durar unos dos días. Al terminar, a veces repiten la medición unas horas después, porque la bilirrubina puede subir un poco otra vez. No siempre hay que esperar ingresados.</li></ul>
+<figure class="il-ictericia">
+<p class="rowlab">1 · Dónde se ve</p>
+<div class="where" role="img" aria-label="Silueta de bebé: el tono amarillo empieza en la cara y la parte blanca de los ojos y puede bajar hacia el pecho y la tripa">
+<svg viewBox="0 0 120 170" aria-hidden="true">
+<defs><linearGradient id="ilIctG" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#e4b425"/><stop offset=".4" stop-color="#e9c459"/><stop offset=".7" stop-color="#f0cfa0"/><stop offset="1" stop-color="#f0c9a4"/></linearGradient></defs>
+<g stroke-width="2" style="fill:url(#ilIctG);stroke:var(--line)">
+<rect x="22" y="60" width="16" height="44" rx="8" transform="rotate(18 30 62)"/>
+<rect x="82" y="60" width="16" height="44" rx="8" transform="rotate(-18 90 62)"/>
+<rect x="38" y="118" width="18" height="46" rx="9"/><rect x="64" y="118" width="18" height="46" rx="9"/>
+<rect x="34" y="56" width="52" height="74" rx="22"/>
+<circle cx="60" cy="32" r="26"/></g>
+<path d="M106 26 V92 M100 84 L106 94 L112 84" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" style="fill:none;stroke:var(--accent)"/>
+</svg>
+<ul><li><b>Empieza por la cara</b> y la parte blanca de los ojos.</li><li>Puede <b>bajar</b> hacia el pecho y la tripa.</li><li>Aparece a partir del <b>2.º o 3.º día</b>.</li></ul>
+</div>
+<p class="rowlab">2 · Cómo mirar: con luz natural del día</p>
+<div class="pics look">
+<div class="pic" role="img" aria-label="Mirad la parte blanca de los ojos"><svg viewBox="0 0 96 70" aria-hidden="true">
+<path d="M6 35 Q48 2 90 35 Q48 68 6 35 Z" stroke-width="2.5" style="fill:#f3e3a0;stroke:var(--ink)"/>
+<circle cx="48" cy="35" r="14" style="fill:#3b2a1e"/><circle cx="53" cy="30" r="4" style="fill:#ffffff"/></svg><span>Lo <b>blanco de los ojos</b></span></div>
+<div class="pic" role="img" aria-label="Mirad las encías"><svg viewBox="0 0 96 70" aria-hidden="true">
+<path d="M10 28 Q48 12 86 28 Q86 58 48 62 Q10 58 10 28 Z" stroke-width="2.5" style="fill:#e7b9a4;stroke:var(--ink)"/>
+<path d="M20 30 Q48 20 76 30 Q72 46 48 48 Q24 46 20 30 Z" style="fill:#e9cf8a"/></svg><span>Las <b>encías</b></span></div>
+<div class="pic" role="img" aria-label="Apretad suave con un dedo la punta de la nariz o la frente y mirad el color que queda en la piel"><svg viewBox="0 0 96 70" aria-hidden="true">
+<rect x="4" y="44" width="88" height="22" rx="10" stroke-width="2" style="fill:#efcda0;stroke:var(--line)"/>
+<ellipse cx="48" cy="50" rx="17" ry="6" style="fill:#e4b425"/>
+<rect x="38" y="4" width="20" height="44" rx="10" style="fill:var(--warm)"/><rect x="42" y="30" width="12" height="12" rx="5" style="fill:var(--warm-soft)"/>
+<path d="M22 14 V32 M16 26 L22 34 L28 26 M74 14 V32 M68 26 L74 34 L80 26" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" style="fill:none;stroke:var(--warm)"/></svg><span><b>Apretad suave</b> la nariz o la frente</span></div>
+</div>
+<p class="rowlab">3 · Los pañales</p>
+<div class="pics diap">
+<div class="pic res ok" role="img" aria-label="Bien: pis claro, casi sin color, y caca amarilla o verdosa"><svg viewBox="0 0 140 64" aria-hidden="true">
+<path d="M6 12 H64 V30 Q35 62 6 30 Z" stroke-width="2" style="fill:var(--surface);stroke:var(--line)"/><ellipse cx="35" cy="28" rx="15" ry="8" stroke-width="1.5" style="fill:#f5efc6;stroke:var(--line)"/>
+<path d="M76 12 H134 V30 Q105 62 76 30 Z" stroke-width="2" style="fill:var(--surface);stroke:var(--line)"/><ellipse cx="98" cy="28" rx="10" ry="7" stroke-width="1.5" style="fill:#e0ad2e;stroke:var(--line)"/><ellipse cx="115" cy="29" rx="8" ry="6" stroke-width="1.5" style="fill:#8f9a3c;stroke:var(--line)"/></svg>
+<span>Pis <b>claro</b> · caca <b>amarilla o verdosa</b></span><strong>Bien</strong></div>
+<div class="pic res bad" role="img" aria-label="Pis amarillo oscuro o marrón, o caca blanca, gris o muy pálida: llamad al pediatra o a la matrona ese mismo día y guardad el pañal"><svg viewBox="0 0 140 64" aria-hidden="true">
+<path d="M6 12 H64 V30 Q35 62 6 30 Z" stroke-width="2" style="fill:var(--surface);stroke:var(--line)"/><ellipse cx="35" cy="28" rx="15" ry="8" stroke-width="1.5" style="fill:#a8691f;stroke:var(--line)"/>
+<path d="M76 12 H134 V30 Q105 62 76 30 Z" stroke-width="2" style="fill:var(--surface);stroke:var(--line)"/><ellipse cx="98" cy="28" rx="10" ry="7" stroke-width="1.5" style="fill:#ece8dc;stroke:#8a8578"/><ellipse cx="115" cy="29" rx="8" ry="6" stroke-width="1.5" style="fill:#b9b6ad;stroke:#6f6b62"/></svg>
+<span>Pis <b>oscuro o marrón</b> · caca <b>blanca, gris o muy pálida</b></span><strong>Pediatra o matrona ese mismo día</strong><span>Guardad el pañal</span></div>
+</div>
+<p class="note">El color no dice cuánta bilirrubina tiene: <b>a simple vista no basta</b>. Si le veis amarillo después del alta y nadie lo ha valorado, llamad ese mismo día.</p>
+<figcaption>Mirad con luz natural, sin ponerle al sol. Amarillo y muy dormido o sin comer: urgencias (más abajo, la lista completa).</figcaption></figure>
 <div class="dos"><div class="yes"><h3>En casa, sí</h3><ul><li>Mirad el color con <strong>luz natural</strong>: la parte blanca de los ojos, las encías y la piel después de apretar suave la punta de la nariz o la frente. En pieles oscuras se ve mejor así.</li><li>Fijaos en el <strong>pis</strong> (debe ser claro, casi sin color) y en la <strong>caca</strong> (amarilla o verdosa, nunca blanca).</li><li>Contad tomas y pañales mojados.</li></ul></div>
 <div class="no"><h3>En casa, no</h3><ul><li>Ponerle al sol, ni detrás de una ventana, para "quitarle lo amarillo": no sirve como tratamiento y se puede quemar o coger frío o calor.</li><li>Darle agua o infusiones.</li><li>Dejar el pecho por la ictericia sin que os lo indique el pediatra.</li></ul></div></div>
 <div class="alarm"><h3>Id a urgencias (o llamad al 112) si está amarillo y además</h3><ul>
@@ -786,6 +1419,18 @@ P("primera-semana","b4","Primera semana: tomas, pañales y peso día a día",6,"
 <tr><td>Desde el día 6</td><td>6 o más, pesados</td><td>2 o más, amarillas, del tamaño de una moneda de 2 euros o más</td></tr></tbody></table></div>
 <p class="note">Con los pañales desechables cuesta ver el pis: comparad cómo pesa en la mano con uno seco. Un pañal "pesado" se nota claramente. Con biberón, el número de pañales mojados es parecido y las cacas suelen ser más pastosas y algo menos frecuentes.</p>
 <ul><li>En los 2–3 primeros días pueden aparecer en el pañal unas <strong>manchas naranjas o rosadas</strong>, como polvo de ladrillo. Son sales de la orina (uratos), no sangre, y en esos días son normales. Si siguen saliendo después, o moja pocos pañales, contadlo ese mismo día a la matrona o al pediatra: puede necesitar comer más.</li></ul>
+<figure class="il-primera-semana">
+<p class="rowlab">Pañales, día a día</p>
+<ol class="ps-days">
+<li class="ps-day" role="group" aria-label="Días 1–2: pañales mojados 1–2 o más mojados; pañales con caca 1 o más · meconio, negro verdoso"><b>Días 1–2</b><div class="ps-line"><span class="ps-k">Pis</span><div><svg viewBox="0 0 56 24" style="width:56px" aria-hidden="true"><path d="M3 3h20q2 0 2 2v4q-5 2-6 11q0 2-2 2h-6q-2 0-2-2q-1-9-6-11v-4q0-2 2-2z" style="fill:var(--accent-soft);stroke:var(--accent)" stroke-width="1.8" stroke-linejoin="round"/><path d="M31 3h20q2 0 2 2v4q-5 2-6 11q0 2-2 2h-6q-2 0-2-2q-1-9-6-11v-4q0-2 2-2z" style="fill:var(--accent-soft);stroke:var(--accent)" stroke-width="1.8" stroke-linejoin="round"/></svg><span>1–2 o más mojados</span></div></div><div class="ps-line"><span class="ps-k">Caca</span><div><svg viewBox="0 0 24 20" style="width:24px" aria-hidden="true"><circle cx="10" cy="10" r="8" style="fill:#2e3a24;stroke:var(--muted)" stroke-width="1.5"/></svg><span>1 o más · meconio, negro verdoso</span></div></div></li>
+<li class="ps-day" role="group" aria-label="Días 3–4: pañales mojados 3–4 o más, más pesados; pañales con caca 2 o más · cambian a verde o marrón"><b>Días 3–4</b><div class="ps-line"><span class="ps-k">Pis</span><div><svg viewBox="0 0 112 24" style="width:112px" aria-hidden="true"><path d="M3 3h20q2 0 2 2v4q-5 2-6 11q0 2-2 2h-6q-2 0-2-2q-1-9-6-11v-4q0-2 2-2z" style="fill:var(--accent);stroke:var(--accent)" stroke-width="1.8" stroke-linejoin="round"/><path d="M31 3h20q2 0 2 2v4q-5 2-6 11q0 2-2 2h-6q-2 0-2-2q-1-9-6-11v-4q0-2 2-2z" style="fill:var(--accent);stroke:var(--accent)" stroke-width="1.8" stroke-linejoin="round"/><path d="M59 3h20q2 0 2 2v4q-5 2-6 11q0 2-2 2h-6q-2 0-2-2q-1-9-6-11v-4q0-2 2-2z" style="fill:var(--accent);stroke:var(--accent)" stroke-width="1.8" stroke-linejoin="round"/><path d="M87 3h20q2 0 2 2v4q-5 2-6 11q0 2-2 2h-6q-2 0-2-2q-1-9-6-11v-4q0-2 2-2z" style="fill:var(--accent);stroke:var(--accent)" stroke-width="1.8" stroke-linejoin="round"/></svg><span>3–4 o más, más pesados</span></div></div><div class="ps-line"><span class="ps-k">Caca</span><div><svg viewBox="0 0 48 20" style="width:48px" aria-hidden="true"><circle cx="10" cy="10" r="8" style="fill:#6b7a2c;stroke:var(--muted)" stroke-width="1.5"/><circle cx="34" cy="10" r="8" style="fill:#7a5530;stroke:var(--muted)" stroke-width="1.5"/></svg><span>2 o más · cambian a verde o marrón</span></div></div></li>
+<li class="ps-day" role="group" aria-label="Días 5–6: pañales mojados 5–6 o más, pesados; pañales con caca 2 o más · amarillas y blandas"><b>Días 5–6</b><div class="ps-line"><span class="ps-k">Pis</span><div><svg viewBox="0 0 168 24" style="width:168px" aria-hidden="true"><path d="M3 3h20q2 0 2 2v4q-5 2-6 11q0 2-2 2h-6q-2 0-2-2q-1-9-6-11v-4q0-2 2-2z" style="fill:var(--accent);stroke:var(--accent)" stroke-width="1.8" stroke-linejoin="round"/><path d="M31 3h20q2 0 2 2v4q-5 2-6 11q0 2-2 2h-6q-2 0-2-2q-1-9-6-11v-4q0-2 2-2z" style="fill:var(--accent);stroke:var(--accent)" stroke-width="1.8" stroke-linejoin="round"/><path d="M59 3h20q2 0 2 2v4q-5 2-6 11q0 2-2 2h-6q-2 0-2-2q-1-9-6-11v-4q0-2 2-2z" style="fill:var(--accent);stroke:var(--accent)" stroke-width="1.8" stroke-linejoin="round"/><path d="M87 3h20q2 0 2 2v4q-5 2-6 11q0 2-2 2h-6q-2 0-2-2q-1-9-6-11v-4q0-2 2-2z" style="fill:var(--accent);stroke:var(--accent)" stroke-width="1.8" stroke-linejoin="round"/><path d="M115 3h20q2 0 2 2v4q-5 2-6 11q0 2-2 2h-6q-2 0-2-2q-1-9-6-11v-4q0-2 2-2z" style="fill:var(--accent);stroke:var(--accent)" stroke-width="1.8" stroke-linejoin="round"/><path d="M143 3h20q2 0 2 2v4q-5 2-6 11q0 2-2 2h-6q-2 0-2-2q-1-9-6-11v-4q0-2 2-2z" style="fill:var(--accent);stroke:var(--accent)" stroke-width="1.8" stroke-linejoin="round"/></svg><span>5–6 o más, pesados</span></div></div><div class="ps-line"><span class="ps-k">Caca</span><div><svg viewBox="0 0 48 20" style="width:48px" aria-hidden="true"><circle cx="10" cy="10" r="8" style="fill:#d8a72a;stroke:var(--muted)" stroke-width="1.5"/><circle cx="34" cy="10" r="8" style="fill:#d8a72a;stroke:var(--muted)" stroke-width="1.5"/></svg><span>2 o más · amarillas y blandas</span></div></div></li>
+<li class="ps-day" role="group" aria-label="Desde el día 6: pañales mojados 6 o más, pesados; pañales con caca 2 o más · amarillas, como una moneda de 2 € o más"><b>Desde el día 6</b><div class="ps-line"><span class="ps-k">Pis</span><div><svg viewBox="0 0 168 24" style="width:168px" aria-hidden="true"><path d="M3 3h20q2 0 2 2v4q-5 2-6 11q0 2-2 2h-6q-2 0-2-2q-1-9-6-11v-4q0-2 2-2z" style="fill:var(--accent);stroke:var(--accent)" stroke-width="1.8" stroke-linejoin="round"/><path d="M31 3h20q2 0 2 2v4q-5 2-6 11q0 2-2 2h-6q-2 0-2-2q-1-9-6-11v-4q0-2 2-2z" style="fill:var(--accent);stroke:var(--accent)" stroke-width="1.8" stroke-linejoin="round"/><path d="M59 3h20q2 0 2 2v4q-5 2-6 11q0 2-2 2h-6q-2 0-2-2q-1-9-6-11v-4q0-2 2-2z" style="fill:var(--accent);stroke:var(--accent)" stroke-width="1.8" stroke-linejoin="round"/><path d="M87 3h20q2 0 2 2v4q-5 2-6 11q0 2-2 2h-6q-2 0-2-2q-1-9-6-11v-4q0-2 2-2z" style="fill:var(--accent);stroke:var(--accent)" stroke-width="1.8" stroke-linejoin="round"/><path d="M115 3h20q2 0 2 2v4q-5 2-6 11q0 2-2 2h-6q-2 0-2-2q-1-9-6-11v-4q0-2 2-2z" style="fill:var(--accent);stroke:var(--accent)" stroke-width="1.8" stroke-linejoin="round"/><path d="M143 3h20q2 0 2 2v4q-5 2-6 11q0 2-2 2h-6q-2 0-2-2q-1-9-6-11v-4q0-2 2-2z" style="fill:var(--accent);stroke:var(--accent)" stroke-width="1.8" stroke-linejoin="round"/></svg><span>6 o más, pesados</span></div></div><div class="ps-line"><span class="ps-k">Caca</span><div><svg viewBox="0 0 64 28" style="width:64px" aria-hidden="true"><circle cx="14" cy="14" r="12" style="fill:#d8a72a;stroke:var(--muted)" stroke-width="1.5"/><circle cx="46" cy="14" r="12" style="fill:#d8a72a;stroke:var(--muted)" stroke-width="1.5"/></svg><span>2 o más · amarillas, como una moneda de 2 € o más</span></div></div></li>
+</ol>
+<p class="rowlab">El peso: baja hasta un 7–10 % y luego sube</p>
+<div class="ps-w" role="img" aria-label="El peso baja hasta un 7 a 10 por ciento, deja de bajar hacia el día 3 o 4 y la mayoría recupera el peso de nacimiento hacia las dos semanas"><svg viewBox="0 0 300 80" aria-hidden="true"><line x1="6" y1="16" x2="294" y2="16" stroke-width="2" stroke-dasharray="6 5" style="stroke:var(--line)"/><path d="M10 16 C60 16 100 58 150 58 C210 58 250 20 290 16" fill="none" stroke-width="4" style="stroke:var(--accent)"/><circle cx="10" cy="16" r="6" style="fill:var(--accent)"/><circle cx="150" cy="58" r="6" style="fill:var(--accent)"/><circle cx="290" cy="16" r="7" style="fill:var(--ok)"/></svg><div class="ps-wl"><span><b>Nace</b></span><span><b>Día 3–4</b><br>deja de bajar</span><span><b>~2 semanas</b><br>recupera su peso</span></div></div>
+<div class="ps-notes"><div class="ps-note" role="group" aria-label="Biberón: cacas más pastosas y algo menos frecuentes"><svg viewBox="0 0 24 20" style="width:24px" aria-hidden="true"><circle cx="10" cy="10" r="8" style="fill:#c79a4a;stroke:var(--muted)" stroke-width="1.5"/></svg><span><b>Con biberón:</b> mismos pañales mojados; cacas más pastosas y algo menos frecuentes.</span></div><div class="ps-note" role="group" aria-label="Uratos: manchas naranjas o rosadas como polvo de ladrillo, normales en los 2 o 3 primeros días"><svg viewBox="0 0 24 20" style="width:24px" aria-hidden="true"><circle cx="10" cy="10" r="8" style="fill:#e0896a;stroke:var(--muted)" stroke-width="1.5"/></svg><span><b>Días 2–3: «polvo de ladrillo»</b> naranja o rosado. Son sales de la orina, no sangre: normal esos días.</span></div></div>
+<figcaption>Para ver el pis, comparad en la mano cómo pesa con un pañal seco. Si moja menos de lo que marca su día, llamad ese mismo día a la matrona o al pediatra. Si el peso se acerca al 10 %, revisad la alimentación con ellos.</figcaption></figure>
 <h3>Cada cuánto come</h3>
 <ul><li><strong>El primer día</strong> muchos bebés están dormilones: al menos 3–4 tomas.</li>
 <li><strong>Desde el segundo día</strong>, 8–12 tomas en 24 horas, sin horario fijo. A menudo se juntan varias seguidas, sobre todo por la tarde y la noche (la segunda noche suele ser muy movida).</li>
@@ -849,7 +1494,7 @@ P("alta","b4","El día del alta: lista antes de salir del hospital",4,"p1",`
 <li>Ella: sangrado, fiebre, dolor de cabeza fuerte, dolor en una pierna o en el pecho. Son las señales de la píldora de alarma en el posparto.</li></ul>
 <div class="alarm"><h3>Antes de salir, tened claro</h3><ul>
 <li>Emergencias: <span class="copy">112</span>.</li>
-<li>Bebé de menos de 3 meses con 38 °C o más, muy dormido, que no come, que respira con dificultad o que se pone azulado: urgencias (mirad la píldora de fiebre).</li>
+<li>Bebé de menos de 3 meses con 38 °C o más, muy dormido, que no come o que respira con dificultad: urgencias (mirad la píldora de fiebre). Si se pone azulado o gris, deja de respirar o no responde: 112.</li>
 <li>Urgencias de maternidad del Gregorio Marañón, para ella: <span class="copy">91 529 01 22</span>. Teléfono 24 horas de Mapfre: en vuestra tarjeta.</li></ul></div>
 <div class="practice"><p>Antes del alta, pedid en planta que os vean ponerle el pañal, darle una toma y sentarle en la silla del coche. Es el último día con alguien experto al lado.</p></div>
 <p class="role">el día del alta es tuyo: recoge los papeles, comprueba la lista, baja la bolsa, trae el coche con la silla ya instalada y siéntale tú (mirad la píldora de la silla del coche). Que ella solo tenga que vestirse y salir.</p>
@@ -926,6 +1571,55 @@ P("coger","b5","Coger, sujetar y portear al bebé",4,"p2",`
 <ul><li><strong>Cabeza y cuello siempre sujetos</strong> los primeros meses: una mano bajo la nuca y la otra bajo el culete.</li><li>Para cogerle de la cuna, desliza primero una mano bajo la cabeza y otra bajo el culete, y acércale a tu pecho antes de incorporarte.</li><li>Para pasarle a otra persona, espera a que tenga las dos manos bien colocadas antes de soltarle.</li></ul>
 <h3>Porteo seguro</h3><p>Fular, bandolera o mochila ergonómica: calman mucho y dejan las manos libres. Comprobad siempre:</p>
 <ol class="steps"><li><strong>Ajustado:</strong> pegado a tu cuerpo, sin holguras.</li><li><strong>Visible:</strong> le ves la cara sin abrir la tela.</li><li><strong>Al alcance de un beso:</strong> su cabeza, tan alta que puedes besarle la frente.</li><li><strong>Barbilla separada del pecho:</strong> que quepan dos dedos. Así respira bien.</li><li><strong>Espalda redondeada y piernas en M:</strong> rodillas más altas que el culete.</li></ol>
+<figure class="il-coger">
+<p class="rowlab">Coger de la cuna</p>
+<div class="pics il-coger-steps">
+<div class="pic" role="img" aria-label="Paso 1: inclinado sobre la cuna, una mano bajo la cabeza y la otra bajo el culete del bebé"><b>Paso 1</b><svg viewBox="2 8 120 102" aria-hidden="true">
+<rect x="4" y="96" width="112" height="10" rx="3" stroke-width="2" style="fill:var(--accent-soft);stroke:var(--accent)"/>
+<g fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M112 108 L104 52 L66 32" stroke-width="21" style="stroke:var(--muted)"/><path d="M112 108 L104 52 L66 32" stroke-width="17" style="stroke:var(--line)"/></g><circle cx="48" cy="26" r="12" stroke-width="2" style="fill:var(--line);stroke:var(--muted)"/>
+<g fill="none" stroke-width="6" stroke-linecap="round" style="stroke:var(--warm)"><path d="M70 38 Q34 50 24 90"/><path d="M76 40 Q74 66 68 90"/></g>
+<g style="fill:var(--warm)"><ellipse cx="24" cy="94" rx="12" ry="4.5"/><ellipse cx="68" cy="94" rx="12" ry="4.5"/></g>
+<ellipse cx="54" cy="85" rx="22" ry="7" style="fill:var(--accent)"/><circle cx="25" cy="81" r="9" stroke-width="2" style="fill:var(--accent-soft);stroke:var(--accent)"/></svg><span>Una mano bajo la cabeza y otra bajo el culete</span></div>
+<div class="pic" role="img" aria-label="Paso 2: con las dos manos bajo cabeza y culete, acercar al bebé a tu pecho antes de incorporarte"><b>Paso 2</b><svg viewBox="2 8 120 102" aria-hidden="true">
+<rect x="4" y="100" width="112" height="6" rx="3" stroke-width="2" style="fill:var(--accent-soft);stroke:var(--accent)"/>
+<g fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M112 108 L104 56 L84 36" stroke-width="21" style="stroke:var(--muted)"/><path d="M112 108 L104 56 L84 36" stroke-width="17" style="stroke:var(--line)"/></g><circle cx="70" cy="24" r="12" stroke-width="2" style="fill:var(--line);stroke:var(--muted)"/>
+<g fill="none" stroke-width="6" stroke-linecap="round" style="stroke:var(--warm)"><path d="M88 42 Q52 46 40 70"/><path d="M92 46 Q90 64 80 72"/></g>
+<g style="fill:var(--warm)"><ellipse cx="40" cy="73" rx="11" ry="4.5"/><ellipse cx="78" cy="75" rx="11" ry="4.5"/></g>
+<g transform="rotate(-8 64 60)"><ellipse cx="68" cy="66" rx="22" ry="7" style="fill:var(--accent)"/><circle cx="40" cy="64" r="9" stroke-width="2" style="fill:var(--accent-soft);stroke:var(--accent)"/></g>
+<g fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M42 50 L84 48 M76 42 L85 48 L76 54" stroke-width="9" style="stroke:var(--surface)"/><path d="M42 50 L84 48 M76 42 L85 48 L76 54" stroke-width="4" style="stroke:var(--accent)"/></g></svg><span>Acércale a tu pecho</span></div>
+<div class="pic" role="img" aria-label="Paso 3: incorporarte con el bebé pegado al pecho, una mano detrás de la nuca y la otra bajo el culete"><b>Paso 3</b><svg viewBox="2 8 120 102" aria-hidden="true">
+<g fill="none" stroke-linecap="round"><path d="M80 106 L80 48" stroke-width="24" style="stroke:var(--muted)"/><path d="M80 106 L80 48" stroke-width="20" style="stroke:var(--line)"/></g><circle cx="82" cy="22" r="12" stroke-width="2" style="fill:var(--line);stroke:var(--muted)"/>
+<g fill="none" stroke-width="6" stroke-linecap="round" stroke-linejoin="round" style="stroke:var(--warm)"><path d="M80 60 L46 60 L44 54"/><path d="M78 66 Q78 92 62 96"/></g>
+<ellipse cx="58" cy="72" rx="10" ry="22" style="fill:var(--accent)"/><circle cx="59" cy="40" r="10" stroke-width="2" style="fill:var(--accent-soft);stroke:var(--accent)"/>
+<g style="fill:var(--warm)"><path d="M46 56 Q38 46 44 32 Q48 30 48 34 Q44 46 49 54 Z"/><ellipse cx="58" cy="96" rx="11" ry="4.5"/></g>
+<path d="M110 90 L110 34" stroke-width="4" stroke-linecap="round" style="stroke:var(--accent)"/><path d="M102 44 L110 32 L118 44" fill="none" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" style="stroke:var(--accent)"/></svg><span>Ahora, incorpórate, con la cabeza y el cuello sujetos</span></div>
+</div>
+<div class="il-coger-sep">
+<p class="rowlab">Porteo: comprobad siempre</p>
+<div class="pics il-coger-porteo">
+<div class="pic" role="img" aria-label="Adulto de frente porteando: 1 ajustado, 2 cara visible, 3 al alcance de un beso, 5 piernas en M"><svg viewBox="0 0 160 190" aria-hidden="true">
+<g stroke-width="2" style="fill:var(--line);stroke:var(--muted)"><circle cx="80" cy="24" r="17"/><path d="M40 190 L40 70 Q40 48 62 46 L98 46 Q120 48 120 70 L120 190"/></g>
+<g stroke-width="9" stroke-linecap="round" stroke-linejoin="round" fill="none" style="stroke:var(--accent)"><path d="M68 132 L50 118 L48 150"/><path d="M92 132 L110 118 L112 150"/></g>
+<path d="M58 76 L102 76 L100 134 Q80 144 60 134 Z" stroke-width="2" style="fill:var(--accent-soft);stroke:var(--accent)"/>
+<circle cx="80" cy="63" r="13" stroke-width="2.5" style="fill:var(--accent-soft);stroke:var(--accent)"/>
+<g stroke-width="1.5" style="stroke:var(--accent)"><path d="M128 100 L102 100"/><path d="M38 64 L66 64"/><path d="M122 44 L92 52"/><path d="M73 166 L52 152"/><path d="M87 166 L108 152"/></g>
+<g style="fill:var(--accent)"><circle cx="140" cy="100" r="12"/><circle cx="26" cy="64" r="12"/><circle cx="134" cy="42" r="12"/><circle cx="80" cy="172" r="12"/></g>
+<g style="fill:var(--surface);font-family:var(--body);font-weight:700;font-size:16px" text-anchor="middle"><text x="140" y="106">1</text><text x="26" y="70">2</text><text x="134" y="48">3</text><text x="80" y="178">5</text></g></svg><span>De frente</span></div>
+<div class="pic" role="img" aria-label="Adulto de lado porteando, bebé pegado al pecho con la tela ceñida: 4 dos dedos entre la barbilla y el pecho del bebé, 5 espalda redondeada y rodilla más alta que el culete"><svg viewBox="0 0 160 190" aria-hidden="true">
+<g stroke-width="2" style="fill:var(--line);stroke:var(--muted)"><circle cx="50" cy="24" r="17"/><path d="M24 190 L24 66 Q24 46 44 46 L64 46 Q80 48 80 66 L80 190"/></g>
+<path d="M80 70 L102 68 Q138 104 118 150 L80 152 Z" stroke-width="2" style="fill:var(--accent-soft);stroke:var(--accent)"/>
+<path d="M84 80 Q98 76 108 84 Q126 106 112 138 Q102 146 90 140 L84 120 Z" style="fill:var(--accent)"/>
+<g fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M104 140 L88 116 L86 146" stroke-width="12" style="stroke:var(--surface)"/><path d="M104 140 L88 116 L86 146" stroke-width="7" style="stroke:var(--accent)"/></g>
+<circle cx="94" cy="58" r="13" stroke-width="2.5" style="fill:var(--accent-soft);stroke:var(--accent)"/>
+<g style="fill:var(--warm)"><rect x="96" y="72.5" width="14" height="3" rx="1.5"/><rect x="96" y="77" width="14" height="3" rx="1.5"/></g>
+<g stroke-width="1.5" style="stroke:var(--accent)"><path d="M131 42 L110 74"/><path d="M134 168 L124 128"/><path d="M128 174 L90 120"/></g>
+<g style="fill:var(--accent)"><circle cx="140" cy="34" r="12"/><circle cx="134" cy="176" r="12"/></g>
+<g style="fill:var(--surface);font-family:var(--body);font-weight:700;font-size:16px" text-anchor="middle"><text x="140" y="40">4</text><text x="134" y="182">5</text></g></svg><span>De lado</span></div>
+</div>
+
+</div>
+<figcaption>Cabeza y cuello siempre sujetos los primeros meses. Para pasarle a otra persona, suéltale solo cuando tenga las dos manos bien colocadas.</figcaption>
+</figure>
 <p class="role">el porteo es una de las mejores formas de calmarle por la tarde y de que ella descanse un rato.</p>`);
 
 P("panal","b5","Cambio de pañal paso a paso",7,"p1",`
@@ -951,7 +1645,7 @@ P("cacas-pis","b5","Cacas y pis: cuántas veces y qué colores",5,"p2",`
 <p class="lead">El pañal es una de las mejores pistas de que el bebé come bien. Cambia mucho las primeras semanas y es distinto con pecho o con biberón. El número de pañales mojados dice más que el color de la caca.</p>
 <h3>Día a día, la primera semana</h3>
 <div class="tbl"><table><thead><tr><th>Días</th><th>Pis</th><th>Caca</th></tr></thead><tbody>
-<tr><td>1–2</td><td>Solo 1 o 2 pañales mojados</td><td>Meconio: negro verdoso y pegajoso</td></tr>
+<tr><td>1–2</td><td>1–2 o más pañales mojados</td><td>Meconio: negro verdoso y pegajoso</td></tr>
 <tr><td>3–4</td><td>3 o más, y cada vez más pesados</td><td>De transición: verde, cada vez más clara</td></tr>
 <tr><td>Desde el 5.º</td><td><strong>5–6 o más, bien mojados</strong></td><td>Con pecho, al menos 2 al día, amarillas; con biberón, algo menos y más pastosas</td></tr>
 </tbody></table></div>
@@ -1000,6 +1694,40 @@ P("piel-bebe","b5","La piel del bebé: costra láctea, granitos y manchas",5,"p2
 <div class="callout info">Si aparecen placas rojas y secas que le pican (se frota o se rasca), comentadlo con el pediatra: puede ser una dermatitis atópica, que tiene tratamiento.</div>
 <h3>La prueba del vaso</h3>
 <p>Si le salen puntitos o manchas rojas o moradas, apretad con fuerza el lateral de un vaso de cristal transparente sobre ellas y miradlas a través del vaso. Si se borran, tranquilos. <strong>Si se siguen viendo, es una urgencia.</strong> En pieles oscuras, mirad las zonas más claras: palmas, plantas y tripa.</p>
+<figure class="il-piel-bebe">
+<div class="pics">
+<div class="pic" role="img" aria-label="Paso 1: puntitos o manchas rojas o moradas en la piel"><b>1 · Manchas</b><svg viewBox="0 0 150 110" aria-hidden="true">
+<rect x="6" y="10" width="138" height="90" rx="16" stroke-width="2" style="fill:#f0c9a4;stroke:var(--line)"/>
+<g style="fill:#c92f3a"><circle cx="40" cy="40" r="5"/><circle cx="62" cy="62" r="4"/><circle cx="96" cy="34" r="5"/><circle cx="110" cy="72" r="4"/><circle cx="34" cy="78" r="4"/></g>
+<g style="fill:#7a2f86"><circle cx="78" cy="44" r="5"/><circle cx="88" cy="80" r="5"/><circle cx="52" cy="28" r="3.5"/><circle cx="122" cy="48" r="4"/></g></svg><span>Puntitos o manchas <b>rojas o moradas</b></span></div>
+<div class="pic" role="img" aria-label="Paso 2: una mano aprieta con fuerza el lateral de un vaso de cristal transparente contra la piel y un ojo mira las manchas a través del vaso"><b>2 · Apretad</b><svg viewBox="0 0 150 110" aria-hidden="true">
+<rect x="4" y="88" width="142" height="18" rx="6" stroke-width="2" style="fill:#f0c9a4;stroke:var(--line)"/>
+<path d="M24 56 H120 V88 H24 Q18 72 24 56 Z" stroke-width="3" style="fill:var(--accent-soft);stroke:var(--accent);fill-opacity:.55"/>
+<ellipse cx="120" cy="72" rx="6" ry="16" stroke-width="3" style="fill:none;stroke:var(--accent)"/>
+<path d="M30 86 H112" stroke-width="2" stroke-dasharray="4 4" style="stroke:var(--accent)"/>
+<rect x="30" y="38" width="44" height="20" rx="10" style="fill:var(--warm)"/>
+<path d="M52 10 V32 M45 25 L52 34 L59 25" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" style="fill:none;stroke:var(--warm)"/>
+<path d="M88 26 Q101 14 114 26 Q101 38 88 26 Z" stroke-width="2.5" style="fill:var(--surface);stroke:var(--ink)"/><circle cx="101" cy="26" r="4" style="fill:var(--ink)"/>
+<path d="M101 38 L98 84" stroke-width="2" stroke-dasharray="3 4" style="stroke:var(--ink)"/>
+<g style="fill:#c92f3a"><circle cx="60" cy="92" r="3"/><circle cx="96" cy="93" r="3"/></g></svg><span>Con fuerza, el <b>lateral</b> de un vaso transparente. Mirad <b>a través</b> del cristal.</span></div>
+</div>
+<p class="rowlab">3 · ¿Qué veis a través del vaso?</p>
+<div class="pics">
+<div class="pic res ok" role="img" aria-label="Si las manchas se borran bajo el vaso: tranquilos"><svg viewBox="0 0 150 110" aria-hidden="true">
+<rect x="6" y="10" width="138" height="90" rx="16" stroke-width="2" style="fill:#f0c9a4;stroke:var(--line)"/>
+<g style="fill:#c92f3a"><circle cx="20" cy="30" r="4"/><circle cx="130" cy="84" r="4"/><circle cx="132" cy="28" r="4"/></g>
+<path d="M36 22 H114 L106 92 H44 Z" stroke-width="3" style="fill:#fbeadb;stroke:var(--ink)"/>
+<g style="fill:#c92f3a;fill-opacity:.12"><circle cx="62" cy="44" r="5"/><circle cx="88" cy="58" r="5"/><circle cx="70" cy="76" r="4"/></g>
+<path d="M48 32 L54 80" stroke-width="3" stroke-linecap="round" style="stroke:#ffffff;stroke-opacity:.8"/></svg><b>Se borran</b><strong>Tranquilos</strong></div>
+<div class="pic res bad" role="img" aria-label="Si las manchas se siguen viendo a través del vaso: es una urgencia, llamad al 112 o id a urgencias ya"><svg viewBox="0 0 150 110" aria-hidden="true">
+<rect x="6" y="10" width="138" height="90" rx="16" stroke-width="2" style="fill:#f0c9a4;stroke:var(--line)"/>
+<g style="fill:#7a2f86"><circle cx="20" cy="30" r="4"/><circle cx="130" cy="84" r="4"/><circle cx="132" cy="28" r="4"/></g>
+<path d="M36 22 H114 L106 92 H44 Z" stroke-width="3" style="fill:#fbeadb;stroke:var(--ink)"/>
+<g style="fill:#7a2f86"><circle cx="62" cy="44" r="5"/><circle cx="88" cy="58" r="5"/><circle cx="70" cy="76" r="4"/></g>
+<path d="M48 32 L54 80" stroke-width="3" stroke-linecap="round" style="stroke:#ffffff;stroke-opacity:.8"/></svg><b>Se siguen viendo</b><strong>Urgencia: 112 o urgencias ya</strong></div>
+</div>
+<p class="note">En pieles oscuras, mirad las zonas más claras: <b>palmas, plantas y tripa</b>.</p>
+<figcaption>La prueba del vaso: si las manchas se borran al apretar, tranquilos. Si se siguen viendo, es una urgencia.</figcaption></figure>
 <div class="alarm"><h3>Llamad al 112 o id a urgencias ya si</h3><ul><li>Las manchas no se borran con la prueba del vaso o parecen pequeños moratones o sangre bajo la piel.</li><li>Junto a la erupción, tiene la piel, los labios o la lengua pálidos, azulados, grises o moteados, o está decaído y no responde como siempre.</li><li>Se le hinchan de golpe los labios o la boca, o le cuesta respirar.</li><li>Tiene menos de 3 meses y 38 °C o más.</li></ul>
 <h3>Consultad con el pediatra si</h3><ul><li>Hay granos con pus, ampollas o costras que supuran o sangran.</li><li>Una zona está roja, caliente e hinchada.</li><li>La costra láctea se extiende por el cuerpo o no mejora tras unas semanas de cuidados.</li><li>Un hemangioma está cerca del ojo, la nariz o la boca, o crece deprisa (consultad pronto).</li><li>Una mancha se agranda, se oscurece, abulta o duele.</li></ul></div>
 <p class="role">el baño y la crema pueden ser tu momento con el bebé. Y cuando la familia opine sobre los granitos, aquí tienes los nombres: casi todo es normal y se va solo.</p>
@@ -1030,6 +1758,79 @@ ${video("agarre","Vídeo de 1 minuto: postura, agarre profundo y cómo saber si 
 <p class="note">Con puntos de episiotomía o desgarro, la postura recostada o tumbada de lado evita sentarse sobre la herida. Un cojín bajo el bebé ayuda a llevarle a la altura del pecho para que ella no se encorve.</p>
 <h3>Cómo conseguir un buen agarre</h3>
 <ol class="steps"><li>Acerca al bebé al pecho, no el pecho al bebé: todo su cuerpo pegado a ella y <strong>la nariz a la altura del pezón</strong>.</li><li>Deja que eche la cabeza un poco hacia atrás: el pezón le roza el labio de arriba y eso le hace abrir la boca.</li><li>Espera a que la abra <strong>mucho</strong>, como en un bostezo, y entonces acércale con decisión: primero llega la barbilla al pecho.</li><li>Comprueba: barbilla pegada al pecho, nariz libre, labios hacia fuera, mejillas redondas (no hundidas) y más areola visible por encima del labio de arriba que por debajo.</li><li>Debe pasar de chupeteos rápidos a succiones lentas y profundas, con pausas, y se le oye o ve tragar.</li></ol>
+<figure class="il-agarre">
+<p class="rowlab">Comprueba el agarre (de perfil)</p>
+<div class="il-agarre-two">
+<div class="pic il-agarre-ok" role="img" aria-label="Así sí: boca muy abierta, labios hacia fuera, barbilla pegada al pecho, nariz libre y más areola visible por encima del labio de arriba que por debajo"><b>Así sí</b><svg viewBox="8 4 148 102" aria-hidden="true">
+<defs><clipPath id="ilag-b1"><circle cx="190" cy="56" r="80"/></clipPath><clipPath id="ilag-t1"><rect x="0" y="0" width="200" height="47"/></clipPath></defs>
+<circle cx="190" cy="56" r="80" stroke-width="1.5" style="fill:var(--line);stroke:var(--muted)"/>
+<g clip-path="url(#ilag-t1)"><circle cx="112" cy="56" r="24" clip-path="url(#ilag-b1)" style="fill:var(--muted)"/></g>
+<path d="M98 20 Q104 26 104 31 L109 38 Q108 42 104 43 Q108 46 110.5 47 Q111 64 114 82 L117.5 90 Q112 102 92 101 C50 100 24 82 24 56 C24 26 50 10 76 10 Q90 10 98 20 Z" stroke-width="2" stroke-linejoin="round" style="fill:var(--accent-soft);stroke:var(--accent)"/>
+<g fill="none" stroke-width="2" stroke-linecap="round" style="stroke:var(--accent)"><path d="M54 50 Q46 57 54 64"/><path d="M80 29 Q86 33 92 29"/></g>
+<g fill="none" stroke-width="3.5" stroke-linecap="round" style="stroke:var(--accent)"><path d="M104 44 Q109 44 111 48"/><path d="M113.5 79 Q114 85 118 86"/></g>
+<path d="M130 34 L134 34 L134 47 L130 47" fill="none" stroke-width="1.5" style="stroke:var(--ink)"/><path d="M134 40.5 L137 40.5" stroke-width="1.5" style="stroke:var(--ink)"/>
+<path d="M110 35 L116 28" stroke-width="1.5" style="stroke:var(--ink)"/><path d="M119 92 L128 96" stroke-width="1.5" style="stroke:var(--ink)"/>
+<g style="fill:var(--ink)"><circle cx="143" cy="40.5" r="6"/><circle cx="120" cy="23" r="6"/><circle cx="134" cy="98" r="6"/></g>
+<g font-size="8.5" font-weight="700" text-anchor="middle" style="fill:var(--bg)"><text x="143" y="43.5">1</text><text x="120" y="26">2</text><text x="134" y="101">3</text></g>
+</svg>
+<ul><li><i>1</i>Se ve más areola arriba que abajo</li><li><i>2</i>Nariz libre</li><li><i>3</i>Barbilla pegada al pecho</li><li class="p">Boca muy abierta, labios hacia fuera</li><li class="p">Mejillas redondas</li></ul></div>
+<div class="pic il-agarre-no" role="img" aria-label="Así no: boca casi cerrada que solo coge la punta del pezón, labios hacia dentro, barbilla separada del pecho y mejillas hundidas"><b>Así no</b><svg viewBox="8 4 148 102" aria-hidden="true">
+<defs><clipPath id="ilag-b2"><circle cx="190" cy="56" r="80"/></clipPath></defs>
+<circle cx="190" cy="56" r="80" stroke-width="1.5" style="fill:var(--line);stroke:var(--muted)"/>
+<circle cx="112" cy="56" r="24" clip-path="url(#ilag-b2)" style="fill:var(--muted)"/>
+<rect x="100" y="52.5" width="14" height="7" rx="3.5" style="fill:var(--muted)"/>
+<path d="M84 20 Q90 26 90 31 L95 38 Q94 42 90 43 Q96 47 101 52.5 Q102 56 101 59.5 Q97 64 93 72 Q88 98 66 98 C36 98 12 80 12 56 C12 26 38 10 62 10 Q76 10 84 20 Z" stroke-width="2" stroke-linejoin="round" style="fill:var(--accent-soft);stroke:var(--accent)"/>
+<g fill="none" stroke-width="2" stroke-linecap="round" style="stroke:var(--accent)"><path d="M40 50 Q32 57 40 64"/><path d="M66 29 Q72 33 78 29"/></g>
+<g fill="none" stroke-width="3" stroke-linecap="round" style="stroke:var(--accent)"><path d="M101 52.5 Q98 54 96 53.5"/><path d="M101 59.5 Q98 58 96 58.5"/></g>
+<path d="M95 76 L112 76" stroke-width="1.5" stroke-dasharray="2 2" style="stroke:var(--ink)"/>
+<circle cx="104" cy="88" r="6" style="fill:var(--alarm)"/><path d="M101.3 85.3 L106.7 90.7 M106.7 85.3 L101.3 90.7" stroke-width="1.7" style="stroke:var(--bg)"/>
+</svg>
+<ul><li class="p">Boca casi cerrada: solo coge la punta</li><li class="p">Barbilla separada del pecho</li><li class="p">Labios hacia dentro</li><li class="p">Mejillas hundidas</li></ul></div>
+</div>
+<p class="rowlab">Si duele toda la toma</p>
+<div class="il-agarre-two">
+<div class="pic il-agarre-row" role="img" aria-label="Para soltarle: 1, un dedo limpio por la comisura de la boca; 2, suelta el vacío; 3, vuelve a empezar"><svg viewBox="20 4 136 132" aria-hidden="true">
+<circle cx="190" cy="56" r="80" stroke-width="1.5" style="fill:var(--line);stroke:var(--muted)"/>
+<path d="M98 20 Q104 26 104 31 L109 38 Q108 42 104 43 Q108 46 110.5 47 Q111 64 114 82 L117.5 90 Q112 102 92 101 C50 100 24 82 24 56 C24 26 50 10 76 10 Q90 10 98 20 Z" stroke-width="2" stroke-linejoin="round" style="fill:var(--accent-soft);stroke:var(--accent)"/>
+<g fill="none" stroke-width="2" stroke-linecap="round" style="stroke:var(--accent)"><path d="M54 50 Q46 57 54 64"/><path d="M80 29 Q86 33 92 29"/></g>
+<g stroke-linecap="round"><path d="M92 112 L108 68" stroke-width="11" style="stroke:var(--muted)"/><path d="M92 112 L108 68" stroke-width="8" style="stroke:var(--line)"/></g>
+<rect x="62" y="104" width="38" height="28" rx="12" stroke-width="1.5" style="fill:var(--line);stroke:var(--muted)"/>
+<g stroke-width="1.5" style="fill:var(--line);stroke:var(--muted)"><circle cx="68" cy="106" r="6"/><circle cx="78" cy="104" r="6"/><ellipse cx="60" cy="118" rx="5" ry="9"/></g>
+</svg>
+<ol><li><i>1</i>Un dedo limpio por la comisura</li><li><i>2</i>Suelta el vacío</li><li><i>3</i>Vuelve a empezar</li></ol></div>
+<div class="pic" role="img" aria-label="Mira el pezón al soltarlo: redondo está bien; aplastado, en forma de pintalabios o blanco indica que el agarre era poco profundo"><b>Mira el pezón al soltar</b><div class="il-agarre-nip">
+<div><svg viewBox="0 0 64 74" aria-hidden="true"><path d="M8 4 Q40 4 40 34 Q40 64 8 64 Z" stroke-width="1.5" style="fill:var(--line);stroke:var(--muted)"/><rect x="35" y="26" width="16" height="16" rx="8" style="fill:var(--muted)"/><circle cx="24" cy="66" r="7" style="fill:var(--ok)"/><path d="M20.5 66 L23 68.8 L27.8 63.5" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="stroke:var(--bg)"/></svg><span><b>Redondo:</b> bien</span></div>
+<div><svg viewBox="0 0 64 74" aria-hidden="true"><path d="M8 4 Q40 4 40 34 Q40 64 8 64 Z" stroke-width="1.5" style="fill:var(--line);stroke:var(--muted)"/><path d="M36 26 L54 22 L54 46 L36 42 Z" style="fill:var(--muted)"/><circle cx="24" cy="66" r="7" style="fill:var(--alarm)"/><path d="M21 63 L27 69 M27 63 L21 69" stroke-width="2" stroke-linecap="round" style="stroke:var(--bg)"/></svg><span><b>Aplastado o en pintalabios:</b> agarre poco profundo</span></div>
+</div></div>
+</div>
+<p class="rowlab">Las 5 posturas de la tabla</p>
+<div class="il-agarre-pos">
+<div role="img" aria-label="Recostada: ella semiincorporada y el bebé boca abajo sobre su pecho. Útil en las primeras tomas, si cuesta engancharse o si duele sentarse"><svg viewBox="0 0 96 72" aria-hidden="true">
+<path d="M8 66 L88 66" stroke-width="3" style="stroke:var(--line)"/><path d="M16 60 L58 28" stroke-width="16" stroke-linecap="round" style="stroke:var(--line)"/><circle cx="68" cy="18" r="10" style="fill:var(--line)"/>
+<g transform="rotate(-37 42 34)"><ellipse cx="36" cy="32" rx="15" ry="6" style="fill:var(--accent)"/><circle cx="55" cy="32" r="6" stroke-width="1.5" style="fill:var(--accent-soft);stroke:var(--accent)"/></g></svg><div><b>Recostada</b><span>Boca abajo sobre ella</span><em>Primeras tomas · si duele sentarse</em></div></div>
+<div role="img" aria-label="Cuna cruzada: el bebé de lado, sujeto por la nuca con la mano del brazo contrario, que cruza por delante de ella; la otra mano sujeta el pecho. Útil al principio"><svg viewBox="0 0 96 72" aria-hidden="true">
+<path d="M30 72 L30 26 Q30 20 36 20 L60 20 Q66 20 66 26 L66 72 Z" style="fill:var(--line)"/><circle cx="48" cy="10" r="9" style="fill:var(--line)"/>
+<ellipse cx="56" cy="44" rx="16" ry="6" style="fill:var(--accent)"/><circle cx="38" cy="44" r="6.5" stroke-width="1.5" style="fill:var(--accent-soft);stroke:var(--accent)"/>
+<path d="M30 25 L22 34 L40 33" fill="none" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" style="stroke:var(--muted)"/><circle cx="42" cy="33" r="3.5" style="fill:var(--muted)"/>
+<path d="M66 25 L82 50 L44 52 L31 48" fill="none" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round" style="stroke:var(--ink)"/><circle cx="29" cy="45" r="5.5" style="fill:var(--ink)"/>
+<circle cx="29" cy="45" r="10" fill="none" stroke-width="1.5" stroke-dasharray="3 2" style="stroke:var(--accent)"/></svg><div><b>Cuna cruzada</b><span>La mano del brazo contrario, en la nuca; la otra, en el pecho</span><em>Al principio</em></div></div>
+<div role="img" aria-label="Cuna: la cabeza del bebé apoyada en el antebrazo del mismo lado, no en el pliegue del codo. Útil cuando ya se engancha bien"><svg viewBox="0 0 96 72" aria-hidden="true">
+<path d="M30 72 L30 26 Q30 20 36 20 L60 20 Q66 20 66 26 L66 72 Z" style="fill:var(--line)"/><circle cx="48" cy="10" r="9" style="fill:var(--line)"/>
+<path d="M30 25 L14 52 L68 52" fill="none" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round" style="stroke:var(--ink)"/><circle cx="70" cy="51" r="5" style="fill:var(--ink)"/>
+<ellipse cx="56" cy="44" rx="15" ry="6" style="fill:var(--accent)"/><circle cx="38" cy="44" r="6.5" stroke-width="1.5" style="fill:var(--accent-soft);stroke:var(--accent)"/>
+<circle cx="37" cy="48" r="10" fill="none" stroke-width="1.5" stroke-dasharray="3 2" style="stroke:var(--accent)"/></svg><div><b>Cuna</b><span>Cabeza en el antebrazo del mismo lado (no en el codo)</span><em>Cuando ya se engancha bien</em></div></div>
+<div role="img" aria-label="Rugby, vista de lado: el bebé al costado, bajo el brazo de ella, con la cabeza en el pecho y los pies hacia su espalda. Útil tras una cesárea"><svg viewBox="0 0 96 72" aria-hidden="true">
+<path d="M40 60 L40 24 Q40 18 46 18 L58 18 Q64 18 64 24 L64 54 L86 54 L86 72 L76 72 L76 64 L40 64 Z" style="fill:var(--line)"/><circle cx="54" cy="8" r="8" style="fill:var(--line)"/>
+<ellipse cx="38" cy="40" rx="20" ry="6" style="fill:var(--accent)"/><circle cx="64" cy="38" r="6.5" stroke-width="1.5" style="fill:var(--accent-soft);stroke:var(--accent)"/>
+<path d="M50 22 L34 48 L56 47" fill="none" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round" style="stroke:var(--ink)"/><circle cx="58" cy="45" r="4.5" style="fill:var(--ink)"/>
+<path d="M14 54 L4 54" stroke-width="2" style="stroke:var(--accent)"/><path d="M8 50 L3 54 L8 58" fill="none" stroke-width="2" style="stroke:var(--accent)"/></svg><div><b>Rugby</b><span>Al costado, bajo su brazo, con los pies hacia su espalda</span><em>Tras cesárea</em></div></div>
+<div role="img" aria-label="Tumbada de lado: los dos tumbados en la cama, frente a frente, el bebé pegado al pecho de ella. Útil tras cesárea, con puntos y de noche"><svg viewBox="0 0 96 72" aria-hidden="true">
+<rect x="2" y="56" width="92" height="8" rx="3" style="fill:var(--line)"/><ellipse cx="14" cy="50" rx="12" ry="5" style="fill:var(--line);opacity:.6"/>
+<circle cx="16" cy="36" r="9" style="fill:var(--line)"/><path d="M28 44 Q30 30 44 32 L60 34 Q70 30 76 38 L90 46 L90 54 L28 54 Z" style="fill:var(--line)"/>
+<ellipse cx="50" cy="49" rx="14" ry="5.5" style="fill:var(--accent)"/><circle cx="33" cy="47" r="6" stroke-width="1.5" style="fill:var(--accent-soft);stroke:var(--accent)"/></svg><div><b>Tumbada de lado</b><span>Frente a frente, el bebé pegado a ella</span><em>Tras cesárea · puntos · de noche</em></div></div>
+</div>
+<figcaption>En cualquier postura: barriga con barriga y oreja, hombro y cadera del bebé en línea, con la boca frente al pecho sin girar el cuello. Si duele toda la toma o no se engancha, pedid que alguien observe una toma.</figcaption>
+</figure>
 <h3>Si duele o no se engancha</h3>
 <ul><li><strong>Si duele durante toda la toma</strong>, no aguantes: mete con suavidad un dedo limpio por la comisura de su boca para que suelte el vacío, y vuelve a empezar. Tirar del pezón sin soltar el vacío hace daño.</li><li>Un pezón aplastado, en forma de pintalabios o blanco al soltarlo indica que el agarre era poco profundo.</li><li><strong>Grietas o sangrado:</strong> pedid ayuda pronto, porque pueden infectarse. Al terminar, unas gotas de la propia leche sobre el pezón ayudan. No hace falta dejar el pecho.</li><li><strong>Pezón plano o invertido:</strong> no impide dar el pecho, aunque puede costar más al principio. Ayuda estimular el pezón con los dedos o con el sacaleches justo antes de la toma, y sujetar el pecho con la mano en forma de C, lejos del pezón, para ofrecerle un "bocado" más fácil. Pedid que os ayuden desde la primera toma.</li><li><strong>Si se duerme al pecho sin tragar</strong> o lleva horas sin engancharse, extraed calostro a mano y dádselo con una cucharita o una jeringa mientras pedís ayuda (lo explica la lección de sacaleches).</li></ul>
 <h3>Pedir ayuda: en planta y en casa</h3>
@@ -1045,9 +1846,9 @@ P("leche-suficiente","b5","¿Tiene leche suficiente? Señales fiables, tomas en 
 <div class="no"><h3>Señales que engañan</h3><ul><li>Que pida muy a menudo o quiera estar siempre al pecho.</li><li>Que se tome un biberón después de mamar (los bebés succionan por reflejo).</li><li>Que el pecho se note más blando con las semanas.</li><li>Lo que sale con el sacaleches.</li><li>"Tu leche es aguada": no existe la leche que no alimenta.</li></ul></div></div>
 <h3>Pañales y peso: la referencia</h3>
 <div class="tbl"><table><thead><tr><th>Días de vida</th><th>Pis</th><th>Caca</th></tr></thead><tbody>
-<tr><td>1–2</td><td>2–3 pañales mojados</td><td>Meconio, negro verdoso</td></tr>
-<tr><td>3–4</td><td>Van aumentando cada día</td><td>Pasa de verde oscuro a amarilla hacia el 4.º día</td></tr>
-<tr><td>Desde el 5.º–6.º</td><td><strong>5–6 o más pañales bien mojados</strong>, pis claro</td><td><strong>Al menos 2 cacas amarillas y blandas</strong> al día las primeras semanas (desde el 4.º día)</td></tr>
+<tr><td>1–2</td><td>1–2 o más pañales mojados</td><td>Meconio, negro verdoso</td></tr>
+<tr><td>3–4</td><td>Van aumentando cada día</td><td>Al menos 2 al día, pasando de verde oscuro a verde o marrón</td></tr>
+<tr><td>Desde el 5.º–6.º</td><td><strong>5–6 o más pañales bien mojados</strong>, pis claro</td><td><strong>Al menos 2 cacas amarillas y blandas</strong> al día las primeras semanas</td></tr>
 </tbody></table></div>
 <p class="note">Con pañales desechables cuesta saber si están mojados. Truco: echad 2–4 cucharadas de agua en un pañal limpio para notar cuánto pesa uno "bien mojado".</p>
 <ul><li><strong>Peso:</strong> es normal que pierda hasta un 7–10 % los primeros días. Desde el 4.º día debería ir ganando (unos 20–35 g al día) y haber recuperado su peso de nacimiento hacia las 2 semanas.</li></ul>
@@ -1059,7 +1860,7 @@ P("leche-suficiente","b5","¿Tiene leche suficiente? Señales fiables, tomas en 
 <div class="callout ok">Lactancia materna exclusiva, mixta o con fórmula: un bebé bien alimentado y unos padres que pueden dormir algo son el objetivo. Si en algún momento ella quiere reducir o dejar el pecho, también es una decisión válida: habladlo con la matrona para hacerlo poco a poco y sin molestias.</div>
 <h3>Cuando la familia opina</h3>
 <p>"¿Seguro que se queda con hambre?", "dale un biberón y así duerme". Frases que ayudan: <em>"Lo vigilamos con los pañales y el peso, y el pediatra dice que va bien."</em> O, simplemente: <em>"Gracias, si lo necesitamos ya os pediremos ayuda."</em></p>
-<div class="alarm"><h3>Llamad al pediatra o al centro de salud ese mismo día si</h3><ul><li>Desde el 5.º día moja menos de 5 pañales, o el pis es oscuro.</li><li>Desde el 4.º–5.º día no hace al menos 2 cacas amarillas al día.</li><li>Ha perdido más del 10 % de su peso, sigue perdiendo pasado el 10.º día o no lo ha recuperado a las 2 semanas.</li><li>Las tomas son casi continuas durante días y no parece quedarse nunca a gusto.</li></ul><p><strong>Id a urgencias</strong> si moja muchos menos pañales, está muy decaído, no se despierta para comer, rechaza varias tomas seguidas o tiene la piel muy amarilla y está adormilado.</p></div>
+<div class="alarm"><h3>Llamad al pediatra o al centro de salud ese mismo día si</h3><ul><li>Desde el 5.º día moja menos de 5 pañales, o el pis es oscuro.</li><li>El 5.º día aún no hace cacas amarillas, o desde el 3.º hace menos de 2 al día.</li><li>Ha perdido más del 10 % de su peso, sigue perdiendo pasado el 10.º día o no lo ha recuperado a las 2 semanas.</li><li>Las tomas son casi continuas durante días y no parece quedarse nunca a gusto.</li></ul><p><strong>Id a urgencias</strong> si moja muchos menos pañales, está muy decaído, no se despierta para comer, rechaza varias tomas seguidas o tiene la piel muy amarilla y está adormilado.</p></div>
 <p class="role">eres su escudo frente a los comentarios: respóndelos tú. Lleva la cuenta de pañales en una nota del móvil los primeros días y llévala a las revisiones. Si os indican suplemento, encárgate tú de prepararlo y dárselo, para que ella pueda extraer leche o descansar.</p>
 <p class="src">Fuentes: NHS, Breastfeeding: is my baby getting enough milk?; NHS Start for Life, latching on (tomas en racimo); protocolos de lactancia publicados por IHAN (pérdida de peso, pañales, métodos de suplementación); AEP En Familia, lactancia materna: cuándo es necesario dar suplementos.</p>`);
 
@@ -1119,6 +1920,25 @@ P("leche-materna","b5","Sacaleches y conservación de la leche materna",5,"p1",`
 
 P("llanto","b5","Llanto: qué hacer",4,"p1",`
 <ul><li>El llanto aumenta hasta las 6–8 semanas y luego va a menos. Muchas tardes de llanto sin causa clara son normales.</li><li>Repasa lo básico: hambre, pañal, frío o calor, gases, sueño. Tenéis píldoras propias para sacar los gases, el cólico y las regurgitaciones.</li><li>Lo que suele calmar: contacto piel con piel, mecerle, un "shhh" continuo, porteo, paseo, succión.</li><li>Cólico del lactante: llanto intenso más de 3 horas al día, más de 3 días por semana, en un bebé sano. Comentadlo con el pediatra.</li></ul>
+<figure class="il-llanto"><p class="rowlab">1 · Repasa lo básico</p>
+<div class="chk">
+<div><svg viewBox="0 0 60 60" role="img" aria-label="Hambre: gota de leche"><path d="M30 8 C40 24 46 32 46 40 A16 16 0 0 1 14 40 C14 32 20 24 30 8 Z" stroke-width="3" style="fill:var(--accent-soft);stroke:var(--accent)"/></svg>Hambre</div>
+<div><svg viewBox="0 0 60 60" role="img" aria-label="Pañal"><path d="M8 18 H52 V26 C52 42 42 50 30 50 C18 50 8 42 8 26 Z" stroke-width="3" style="fill:var(--accent-soft);stroke:var(--accent)"/><path d="M8 26 H18 M42 26 H52" stroke-width="3" style="stroke:var(--accent)"/></svg>Pañal</div>
+<div><svg viewBox="0 0 60 60" role="img" aria-label="Frío o calor: sol y copo de nieve"><circle cx="18" cy="30" r="7" style="fill:var(--warm)"/><path d="M18 16 V19 M18 41 V44 M4 30 H7 M29 30 H32 M8 20 L10 22 M26 38 L28 40 M8 40 L10 38 M26 22 L28 20" stroke-width="2.5" stroke-linecap="round" style="stroke:var(--warm)"/><path d="M44 20 V40 M35 25 L53 35 M35 35 L53 25" stroke-width="3" stroke-linecap="round" style="stroke:var(--accent)"/></svg>Frío o calor</div>
+<div><svg viewBox="0 0 60 60" role="img" aria-label="Gases: burbujas"><circle cx="22" cy="38" r="10" stroke-width="3" style="fill:var(--accent-soft);stroke:var(--accent)"/><circle cx="38" cy="22" r="7" stroke-width="3" style="fill:var(--accent-soft);stroke:var(--accent)"/><circle cx="44" cy="42" r="5" stroke-width="3" style="fill:var(--accent-soft);stroke:var(--accent)"/></svg>Gases</div>
+<div><svg viewBox="0 0 60 60" role="img" aria-label="Sueño: luna"><path d="M34 10 A20 20 0 1 0 50 40 A16 16 0 0 1 34 10 Z" style="fill:var(--accent)"/><path d="M42 10 H50 L42 18 H50" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="fill:none;stroke:var(--accent)"/></svg>Sueño</div>
+</div>
+<p class="rowlab">2 · Lo que suele calmar</p>
+<ul class="calm" aria-label="Lo que suele calmar"><li>Piel con piel</li><li>Mecerle</li><li>«Shhh» continuo</li><li>Porteo</li><li>Paseo</li><li>Succión</li></ul>
+<p class="rowlab">3 · Si sientes que no puedes más</p>
+<div class="steps">
+<div class="pic"><svg viewBox="0 0 120 90" role="img" aria-label="Bebé boca arriba en la cuna"><path d="M10 30 V80 M110 30 V80 M10 34 H110 M10 74 H110" stroke-width="4" stroke-linecap="round" style="stroke:var(--ink)"/><path d="M28 34 V74 M46 34 V74 M64 34 V74 M82 34 V74 M100 34 V74" stroke-width="2" style="stroke:var(--line)"/><circle cx="36" cy="62" r="9" style="fill:var(--accent)"/><rect x="44" y="56" width="44" height="14" rx="7" style="fill:var(--accent)"/></svg><span>Déjale en la cuna <b>boca arriba</b></span></div>
+<div class="pic"><svg viewBox="0 0 120 90" role="img" aria-label="El adulto sale de la habitación y respira"><rect x="14" y="14" width="34" height="68" stroke-width="3" style="fill:var(--surface);stroke:var(--ink)"/><path d="M48 14 L62 22 V88 L48 82 Z" style="fill:var(--line)"/><circle cx="90" cy="30" r="9" style="fill:var(--warm)"/><path d="M76 84 V54 C76 44 82 42 90 42 C98 42 104 44 104 54 V84 Z" style="fill:var(--warm)"/><path d="M102 22 q6 -4 12 0 M104 14 q6 -4 12 0" stroke-width="2.5" stroke-linecap="round" style="fill:none;stroke:var(--accent)"/></svg><span>Sal unos minutos y <b>respira</b></span></div>
+<div class="pic"><svg viewBox="0 0 120 90" role="img" aria-label="Otro adulto toma el relevo"><circle cx="32" cy="30" r="9" style="fill:var(--warm)"/><path d="M18 84 V54 C18 44 24 42 32 42 C40 42 46 44 46 54 V84 Z" style="fill:var(--warm)"/><circle cx="88" cy="30" r="9" style="fill:var(--muted)"/><path d="M74 84 V54 C74 44 80 42 88 42 C96 42 102 44 102 54 V84 Z" style="fill:var(--muted)"/><path d="M50 58 H68 M62 52 L69 58 L62 64" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" style="fill:none;stroke:var(--ink)"/></svg><span>O pide <b>relevo</b></span></div>
+</div>
+<p class="safe">Que llore un rato en un sitio seguro <b>no le hace daño</b>.</p>
+<div class="band" role="note"><b>Nunca le zarandees</b>Sacudirle, aunque sea un segundo, puede causarle lesiones cerebrales graves.</div>
+<figcaption>El llanto aumenta hasta las 6–8 semanas y luego va a menos. Muchas tardes de llanto sin causa clara son normales.</figcaption></figure>
 <div class="alarm"><h3>Nunca le zarandees</h3><p>Sacudir a un bebé, aunque sea un segundo, puede causarle lesiones cerebrales graves. Si sientes que no puedes más, déjale en la cuna boca arriba, sal de la habitación unos minutos y respira, o pide relevo. Que llore un rato en un sitio seguro no le hace daño.</p></div>`);
 
 P("gases","b5","Cómo sacarle los gases, paso a paso",4,"p1",`
@@ -1128,6 +1948,61 @@ ${video("gases","Vídeo de 1 minuto: cuándo y cómo sacarle los gases, en tres 
 <ul><li><strong>Cabeza y cuello sujetos</strong> en todo momento.</li><li><strong>Tripa y espalda rectas</strong>, no hechas un ovillo: así el aire sube mejor.</li><li><strong>Palmaditas suaves o frotar la espalda</strong> en círculos. No hace falta dar golpes fuertes.</li><li>Una muselina o un trapo a mano: es normal que salga un poco de leche con el eructo.</li></ul>
 <h3>Tres posturas</h3>
 <ol class="steps"><li><strong>Sobre el hombro:</strong> apoya su barbilla en tu hombro, sujeta con una mano la cabeza y la parte alta de la espalda, y con la otra da palmaditas o frota. Pasear un poco suele ayudar.</li><li><strong>Sentado en tu regazo:</strong> siéntale mirando hacia fuera, con la palma de tu mano en su pecho y los dedos sujetando la barbilla y la mandíbula, <strong>sin apretar el cuello</strong>. Inclínale un poco hacia delante y da palmaditas con la otra mano.</li><li><strong>Boca abajo sobre tus piernas:</strong> túmbale atravesado sobre tu regazo, con la cabeza un poco más alta que la tripa y la barbilla sujeta (otra vez, sin presionar la garganta). Frota o da palmaditas en la espalda.</li></ol>
+<figure class="il-gases">
+<p class="rowlab">Tres posturas: probadlas y quedaos con la que mejor le vaya</p>
+<div class="pics il-gases-pos">
+<div class="pic" role="img" aria-label="Postura 1, sobre el hombro: su barbilla apoyada en tu hombro, una mano sujeta cabeza y parte alta de la espalda y la otra da palmaditas"><svg viewBox="0 0 130 130" aria-hidden="true">
+<circle cx="50" cy="20" r="13" style="fill:var(--line)"/><path d="M28 130 L28 58 Q28 38 48 38 L62 38 Q78 40 78 58 L78 130 Z" style="fill:var(--line)"/>
+<ellipse cx="88" cy="74" rx="11" ry="22" style="fill:var(--accent)"/><circle cx="80" cy="40" r="10" stroke-width="2" style="fill:var(--warm-soft);stroke:var(--warm)"/>
+<g style="fill:var(--warm)"><ellipse cx="95" cy="46" rx="7" ry="10"/><ellipse cx="101" cy="82" rx="7" ry="10"/></g>
+<g fill="none" stroke-width="2.5" stroke-linecap="round" style="stroke:var(--warm)"><path d="M112 74 Q116 82 112 90"/><path d="M120 70 Q125 82 120 94"/></g></svg><span><b>1. Sobre el hombro</b>Su barbilla en tu hombro. Una mano sujeta cabeza y parte alta de la espalda; la otra da palmaditas o frota.</span></div>
+<div class="pic" role="img" aria-label="Postura 2, sentado en tu regazo mirando hacia fuera, un poco inclinado hacia delante: una mano en su pecho y barbilla, la otra da palmaditas en la espalda"><svg viewBox="0 0 130 130" aria-hidden="true">
+<circle cx="34" cy="20" r="13" style="fill:var(--line)"/><path d="M22 92 L22 50 Q22 36 36 36 Q50 36 50 50 L50 92 Z" style="fill:var(--line)"/>
+<path d="M30 92 L104 92 L104 128" fill="none" stroke-width="18" stroke-linecap="round" stroke-linejoin="round" style="stroke:var(--line)"/>
+<g transform="rotate(14 74 80)"><ellipse cx="74" cy="64" rx="11" ry="20" style="fill:var(--accent)"/></g><circle cx="84" cy="38" r="10" stroke-width="2" style="fill:var(--warm-soft);stroke:var(--warm)"/>
+<path d="M90 76 Q98 68 98 54 L94 46" fill="none" stroke-width="7" stroke-linecap="round" style="stroke:var(--warm)"/>
+<ellipse cx="62" cy="62" rx="6" ry="9" style="fill:var(--warm)"/>
+<g fill="none" stroke-width="2.5" stroke-linecap="round" style="stroke:var(--warm)"><path d="M52 54 Q48 62 52 70"/><path d="M45 50 Q40 62 45 74"/></g></svg><span><b>2. Sentado en tu regazo</b>Mirando hacia fuera, un poco inclinado hacia delante. Palmaditas con la otra mano.</span></div>
+<div class="pic" role="img" aria-label="Postura 3, boca abajo atravesado sobre tus piernas, con la cabeza un poco más alta que la tripa y la barbilla sujeta; la otra mano frota la espalda"><svg viewBox="0 0 130 130" aria-hidden="true">
+<circle cx="65" cy="16" r="12" style="fill:var(--line)"/><path d="M44 84 L44 46 Q44 32 58 32 L72 32 Q86 32 86 46 L86 84 Z" style="fill:var(--line)"/>
+<rect x="22" y="80" width="86" height="18" rx="9" style="fill:var(--line)"/><g style="fill:var(--line)"><rect x="28" y="92" width="20" height="38" rx="6"/><rect x="82" y="92" width="20" height="38" rx="6"/></g>
+<g transform="rotate(-9 66 72)"><ellipse cx="70" cy="72" rx="32" ry="9" style="fill:var(--accent)"/></g><circle cx="32" cy="70" r="10" stroke-width="2" style="fill:var(--warm-soft);stroke:var(--warm)"/>
+<ellipse cx="34" cy="84" rx="9" ry="5" style="fill:var(--warm)"/><ellipse cx="74" cy="60" rx="9" ry="6" style="fill:var(--warm)"/>
+<path d="M88 52 A12 8 0 1 0 60 48" fill="none" stroke-width="2.5" stroke-linecap="round" style="stroke:var(--warm)"/><path d="M56 43 L60 48 L54 51" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="stroke:var(--warm)"/></svg><span><b>3. Boca abajo sobre tus piernas</b>Atravesado, con la cabeza un poco más alta que la tripa y la barbilla sujeta. Frota o da palmaditas.</span></div>
+</div>
+<p class="rowlab">Detalle (posturas 2 y 3): cómo sujetar la barbilla</p>
+<div class="il-gases-det">
+<svg viewBox="0 0 140 150" role="img" aria-label="Perfil del bebé: tu palma en su pecho y los dedos sujetando barbilla y mandíbula, rodeando el cuello sin tocarlo">
+<rect x="46" y="58" width="24" height="42" rx="6" style="fill:var(--warm-soft)"/>
+<path d="M24 150 L24 118 Q24 96 50 96 L76 96 Q102 96 102 118 L102 150 Z" style="fill:var(--accent)"/>
+<path d="M56 12 A28 28 0 0 1 84 40 Q86 58 76 66 Q64 72 50 66 A28 28 0 0 1 56 12 Z" stroke-width="2" style="fill:var(--warm-soft);stroke:var(--warm)"/>
+<circle cx="72" cy="82" r="10" fill="none" stroke-width="2.5" stroke-dasharray="4 3" style="stroke:var(--ok)"/>
+<path d="M100 108 Q106 86 96 74 Q88 66 78 67" fill="none" stroke-width="8" stroke-linecap="round" style="stroke:var(--warm)"/>
+<ellipse cx="100" cy="118" rx="14" ry="11" style="fill:var(--warm)"/>
+</svg>
+<ul>
+<li><span class="il-gases-sw" style="background:var(--warm)"></span><span><b>Palma en su pecho</b> y <b>dedos en la barbilla y la mandíbula</b>.</span></li>
+<li><span class="il-gases-sw" style="border:2.5px dashed var(--ok)"></span><span><b>Sin apretar el cuello</b>: la mano lo rodea, no toca la garganta.</span></li>
+<li><span class="il-gases-sw"></span><span>Inclínale un poco hacia delante y da palmaditas con la otra mano.</span></li>
+</ul>
+</div>
+<p class="rowlab">Si no eructa y parece tener gases (llora, arquea la espalda, encoge las piernas, aprieta los puños)</p>
+<div class="pics il-gases-two">
+<div class="pic" role="img" aria-label="Bebé boca arriba visto desde arriba, masaje suave en la tripa en el sentido de las agujas del reloj"><svg viewBox="0 0 120 110" aria-hidden="true">
+<circle cx="60" cy="18" r="12" stroke-width="2" style="fill:var(--warm-soft);stroke:var(--warm)"/>
+<g stroke-width="7" stroke-linecap="round" style="stroke:var(--accent)"><path d="M44 46 L30 58"/><path d="M76 46 L90 58"/><path d="M52 84 L48 104"/><path d="M68 84 L72 104"/></g>
+<ellipse cx="60" cy="60" rx="19" ry="27" style="fill:var(--accent)"/>
+<path d="M60 48 A12 12 0 1 1 48 60" fill="none" stroke-width="3" stroke-linecap="round" style="stroke:var(--surface)"/><path d="M43 64 L48 57 L53 64" fill="none" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" style="stroke:var(--surface)"/>
+<ellipse cx="82" cy="78" rx="8" ry="12" transform="rotate(35 82 78)" style="fill:var(--warm)"/></svg><b>Masaje en la tripa</b><span>Boca arriba, suave, en el sentido de las agujas del reloj</span></div>
+<div class="pic" role="img" aria-label="Bebé boca arriba visto de lado, con las piernas moviéndose despacio como si pedaleara"><svg viewBox="0 0 120 110" aria-hidden="true">
+<rect x="4" y="88" width="112" height="8" rx="3" stroke-width="2" style="fill:var(--accent-soft);stroke:var(--accent)"/>
+<ellipse cx="54" cy="76" rx="28" ry="10" style="fill:var(--accent)"/><circle cx="20" cy="72" r="11" stroke-width="2" style="fill:var(--warm-soft);stroke:var(--warm)"/>
+<g fill="none" stroke-width="7" stroke-linecap="round" stroke-linejoin="round" style="stroke:var(--accent)"><path d="M78 74 L86 48 L100 50"/><path d="M78 76 L96 62 L106 74"/></g>
+<circle cx="94" cy="58" r="20" fill="none" stroke-width="2.5" stroke-dasharray="5 4" style="stroke:var(--warm)"/><path d="M108 36 L115 44 L105 47" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="stroke:var(--warm)"/></svg><b>Piernas en bicicleta</b><span>Muévelas despacio, como si pedaleara</span></div>
+</div>
+<p class="callout ok">Si está tranquilo y no eructa, <b>no insistáis</b>: no pasa nada.</p>
+<figcaption>Cabeza y cuello sujetos, espalda recta, palmaditas suaves. Un par de minutos basta. Después, a la cuna boca arriba. Practicad la sujeción de la barbilla con un muñeco antes del parto.</figcaption>
+</figure>
 <h3>Cuándo y cuánto rato</h3>
 <ul><li><strong>No hay reglas fijas.</strong> Unos bebés lo necesitan a mitad de la toma y otros al terminar. Si se le ve incómodo mientras come (se retuerce, suelta el pecho o la tetina, protesta), haced una pausa para el eructo. Si come tranquilo, esperad al final.</li><li><strong>Un par de minutos suele bastar.</strong> No hace falta pasar mucho rato.</li><li><strong>De noche:</strong> lo mismo, con luz tenue y sin juego. Después, a la cuna <strong>boca arriba</strong>, como siempre.</li></ul>
 <div class="dos"><div><h3>Con pecho</h3><ul><li>Un buen agarre (boca muy abierta, labios hacia fuera) hace que trague menos aire.</li><li>Si traga con mucha avidez, una pausa a mitad de toma puede venirle bien.</li></ul></div>
@@ -1155,7 +2030,7 @@ P("colico","b5","El cólico del lactante: qué es y cómo pasar las tardes",6,"p
 <div class="no"><h3>No, o no sin el pediatra</h3><ul><li><strong>Gotas para los cólicos y productos de parafarmacia:</strong> su efecto se parece al de un placebo, porque el cólico se pasa solo de todas formas.</li><li><strong>Infusiones y remedios de herbolario:</strong> no han demostrado utilidad, y algunas plantas, como el <strong>anís estrellado</strong>, pueden causar intoxicaciones graves. No le deis ninguna.</li><li><strong>Probióticos:</strong> algunos estudios ven mejoría en bebés de pecho, pero hay dudas. Solo si os lo propone el pediatra.</li><li><strong>Cambiar la dieta de la madre o pasar a leches especiales:</strong> no hace falta en general; solo si el pediatra sospecha alergia a la leche de vaca.</li><li><strong>Manipulaciones u osteopatía craneal:</strong> hay poca evidencia de que sirvan y pueden hacerle daño.</li></ul></div></div>
 <div class="callout">Si os sentís desbordados es normal: ver llorar a vuestro bebé sin poder calmarle es de lo más duro de estos meses. Repartid las tardes, pedid ayuda a la familia y, si alguno de los dos nota que la tristeza, la irritabilidad o la ansiedad duran semanas, consultadlo (mirad las píldoras de baby blues y de tu propia salud mental).</div>
 <div class="alarm"><h3>Nunca le zarandees</h3><p>Sacudir a un bebé, aunque sea un segundo, puede causarle lesiones cerebrales graves. Si sientes que no puedes más, déjale en la cuna boca arriba, sal de la habitación unos minutos y respira, o pide relevo. Que llore un rato en un sitio seguro no le hace daño.</p></div>
-<div class="alarm"><h3>Id a urgencias si</h3><ul><li>Tiene <strong>menos de 3 meses y 38 °C o más</strong> (mirad la píldora de fiebre).</li><li>El llanto <strong>es distinto del de siempre</strong>: débil, quejumbroso o muy agudo.</li><li>Está decaído o muy adormilado, no se despierta para comer o rechaza varias tomas seguidas.</li><li>Vomita verde o con sangre, tiene la tripa hinchada y dura, o hay sangre en la caca.</li><li>Respira con dificultad o cambia de color (azulado, grisáceo o muy pálido). Si deja de respirar o no responde, llamad al <span class="copy">112</span>.</li></ul>
+<div class="alarm"><h3>Id a urgencias si</h3><ul><li>Tiene <strong>menos de 3 meses y 38 °C o más</strong> (mirad la píldora de fiebre).</li><li>El llanto <strong>es distinto del de siempre</strong>: débil, quejumbroso o muy agudo.</li><li>Está decaído o muy adormilado, no se despierta para comer o rechaza varias tomas seguidas.</li><li>Vomita verde o con sangre, tiene la tripa hinchada y dura, o hay sangre en la caca.</li><li>Respira con dificultad o está muy pálido. Si se pone azulado o gris, deja de respirar o no responde, llamad al <span class="copy">112</span>.</li></ul>
 <h3>Pedid cita con el pediatra si</h3><ul><li>Os preocupa el llanto o no sabéis si es cólico.</li><li>No gana peso como esperaban en las revisiones.</li><li>El llanto sigue igual pasados los 4 meses.</li><li>Sentís que no podéis más: también es motivo de consulta.</li></ul></div>
 <div class="remember"><ul><li>Es frecuente, benigno y se pasa hacia los 3 o 4 meses.</li><li>Brazos, movimiento, ruido suave y turnos; nada de infusiones ni gotas por vuestra cuenta.</li><li>Llanto distinto, fiebre o bebé decaído: urgencias.</li></ul></div>
 <p class="role">las tardes de cólico se llevan mejor por turnos: pactad, por ejemplo, tramos de una hora en los que uno se ocupa del bebé y el otro sale de la habitación, se ducha o duerme. Si ella da el pecho, tú puedes encargarte del paseo en brazos o en el portabebés entre tomas. Y si en algún momento notas que pierdes la calma, deja al bebé en la cuna y pide relevo: es lo correcto.</p>
@@ -1213,6 +2088,19 @@ ${video("nasal","Vídeo de 1 minuto: cómo hacerle un lavado nasal con suero.")}
 <ul><li>Lavados nasales antes de cada toma y antes de dormir.</li><li><strong>Tomas más pequeñas y más frecuentes</strong>, porque se cansa al comer. Si toma pecho, ofrecédselo más veces. Antes de los 6 meses, con pecho a demanda, no necesita agua.</li><li>Despierto, en brazos y algo incorporado, respira mejor. <strong>Para dormir, las normas de sueño seguro no cambian:</strong> boca arriba, colchón firme y plano, sin cojines ni almohadas para elevarle. Si creéis que necesita otra postura, preguntad al pediatra.</li><li>Si tiene fiebre, no le abriguéis de más. Antitérmico solo si os lo indica el pediatra, con la dosis según su peso. Con menos de 3 meses y 38 °C o más, a urgencias (mirad la píldora de fiebre).</li><li>Ni rastro de humo de tabaco, tampoco en el coche.</li><li><strong>No sirven</strong> los jarabes para la tos, los mucolíticos ni los antibióticos (es un virus). No le deis nada que no haya recetado su pediatra.</li></ul>
 <h3>Cómo vigilar la respiración</h3>
 <ol class="steps"><li>Miradle cuando esté tranquilo o dormido, con el pecho y la tripa destapados.</li><li>Contad cuántas veces sube la tripa en <strong>un minuto entero</strong>, con el cronómetro del móvil.</li><li>Como referencia, se considera respiración rápida <strong>60 o más por minuto en menores de 2 meses</strong>, y 50 o más entre los 2 y los 12 meses. Si os sale alto, repetid la cuenta a los pocos minutos.</li><li>Mirad si hay <strong>tiraje</strong>: se le marcan las costillas o se hunde la piel entre ellas o por debajo, la tripa sube y baja mucho con cada respiración o se le abren las aletas de la nariz.</li><li>Escuchad si se queja al soltar el aire (quejido) y fijaos en el color de los labios y la cara.</li></ol>
+<figure class="il-mocos"><p class="rowlab">1 · Tranquilo o dormido, pecho y tripa destapados: contad un minuto entero</p>
+<div class="count" role="img" aria-label="Con el cronómetro del móvil, contad cuántas veces sube la tripa en un minuto. Respiración rápida: 60 o más con menos de 2 meses; 50 o más de 2 a 12 meses">
+<svg viewBox="0 0 76 130" aria-hidden="true"><rect x="4" y="4" width="68" height="122" rx="12" stroke-width="3" style="fill:var(--surface);stroke:var(--ink)"/><circle cx="38" cy="62" r="24" stroke-width="5" style="fill:none;stroke:var(--line)"/><path d="M38 38 A24 24 0 1 1 14 62" stroke-width="5" stroke-linecap="round" style="fill:none;stroke:var(--accent)"/><path d="M38 62 L38 46" stroke-width="4" stroke-linecap="round" style="stroke:var(--ink)"/><rect x="30" y="16" width="16" height="6" rx="3" style="fill:var(--ink)"/><rect x="24" y="100" width="28" height="12" rx="6" style="fill:var(--warm)"/></svg>
+<div class="ref"><span>Cronómetro del móvil: contad <b>cuántas veces sube la tripa</b></span><span><b>Menos de 2 meses:</b> 60 o más es rápida</span><span><b>De 2 a 12 meses:</b> 50 o más es rápida</span></div></div>
+<p style="margin:0;font-size:.9rem;color:var(--muted)">Si sale alto, repetid la cuenta a los pocos minutos.</p>
+<p class="rowlab">2 · Mirad cuánto esfuerzo hace</p>
+<div class="pics wide">
+<div class="pic ok"><b>Sin esfuerzo</b><svg viewBox="0 40 240 110" role="img" aria-label="Bebé tumbado boca arriba visto de lado: la tripa sube y baja suave"><path d="M10 136 H230" stroke-width="3" style="stroke:var(--line)"/><circle cx="42" cy="108" r="22" style="fill:var(--accent)"/><path d="M62 112 C70 96 92 90 118 90 C140 90 160 92 178 100 C196 104 212 110 214 122 C214 130 200 134 186 134 H66 C60 130 60 120 62 112 Z" style="fill:var(--accent)"/><path d="M118 86 C140 85 162 88 180 95" stroke-width="3" stroke-dasharray="6 5" style="fill:none;stroke:var(--ink)"/><path d="M150 62 V80 M144 68 L150 60 L156 68 M144 74 L150 82 L156 74" stroke-width="3" stroke-linecap="round" style="fill:none;stroke:var(--ok)"/></svg><span>La tripa sube y baja suave. No se le marcan las costillas.</span></div>
+<div class="pic bad"><b>Tiraje</b><svg viewBox="0 40 240 110" role="img" aria-label="Bebé tumbado boca arriba visto de lado: la piel se hunde por debajo de las costillas y la tripa sube y baja mucho"><path d="M10 136 H230" stroke-width="3" style="stroke:var(--line)"/><circle cx="42" cy="108" r="22" style="fill:var(--accent)"/><path d="M62 112 C70 96 84 92 98 94 C108 96 114 106 124 106 C134 106 140 92 160 92 C180 94 204 104 214 120 C214 130 200 134 186 134 H66 C60 130 60 120 62 112 Z" style="fill:var(--accent)"/><path d="M74 104 q4 -6 8 -10 M86 102 q4 -5 6 -9" stroke-width="3" stroke-linecap="round" style="fill:none;stroke:var(--surface)"/><path d="M140 82 C160 66 186 72 204 96" stroke-width="3" stroke-dasharray="6 5" style="fill:none;stroke:var(--ink)"/><path d="M124 58 V96 M117 87 L124 98 L131 87" stroke-width="4" stroke-linecap="round" style="fill:none;stroke:var(--alarm)"/><path d="M182 46 V76 M175 54 L182 44 L189 54 M175 68 L182 78 L189 68" stroke-width="3" stroke-linecap="round" style="fill:none;stroke:var(--alarm)"/></svg>
+<ul><li>Se le marcan las costillas o se hunde la piel entre ellas o <b>por debajo</b></li><li>La tripa <b>sube y baja mucho</b> con cada respiración</li><li>Se le abren las aletas de la nariz</li></ul></div></div>
+<p class="rowlab">3 · Escuchad y mirad el color</p>
+<p style="margin:0;font-size:.95rem">¿Se queja al soltar el aire (<b>quejido</b>)? ¿Cómo están los labios y la cara?</p>
+<figcaption>Se le marcan las costillas o respira cada vez más deprisa: <b>urgencias</b>. Se le hunden mucho las costillas, se queja con cada respiración, hace pausas o se pone azulado, gris o muy pálido: <b>112</b>.</figcaption></figure>
 <div class="alarm"><h3>Llamad al 112 si</h3><ul><li>Hace pausas: deja de respirar unos segundos.</li><li>Tiene los labios, la lengua o la cara azulados, grises o muy pálidos.</li><li>Le cuesta muchísimo respirar: se le hunden mucho las costillas o se queja con cada respiración.</li><li>Está flojo, no reacciona o no consigue despertarse.</li></ul>
 <h3>Id a urgencias si</h3><ul><li>Respira cada vez peor o cada vez más deprisa, o se le marcan las costillas.</li><li>Tiene menos de 3 meses y 38 °C o más.</li><li>Rechaza las tomas, se cansa tanto que come menos de la mitad de lo habitual, o vomita las tomas.</li><li>Moja muchos menos pañales (ninguno en 12 horas) o tiene la boca y la lengua secas.</li><li>Está muy decaído o se queja sin parar.</li></ul>
 <h3>Consultad con el pediatra si</h3><ul><li>Tiene menos de 3 meses, fue prematuro o tiene alguna enfermedad y empieza con mocos y tos: que os diga qué vigilar.</li><li>El catarro va a más en lugar de mejorar, o la fiebre no cede.</li><li>Tenéis dudas: vuestro centro de salud o el teléfono 24 horas de Mapfre Salud (en vuestra tarjeta) pueden orientaros.</li></ul></div>
@@ -1223,7 +2111,7 @@ ${video("nasal","Vídeo de 1 minuto: cómo hacerle un lavado nasal con suero.")}
 <p class="src">Fuentes: AEP En Familia (lavados nasales; bronquiolitis; cosas normales en recién nacidos); Sociedad Española de Urgencias de Pediatría, hoja de información para padres sobre bronquiolitis (2026); NHS (bronquiolitis); NICE NG9 (bronquiolitis en niños); OMS, Atención Integrada a las Enfermedades Prevalentes de la Infancia (frecuencia respiratoria por edad).</p>`);
 
 P("fiebre","b5","Fiebre y señales de alarma",4,"p1",`
-<div class="alarm"><h3>Id a urgencias si</h3><ul><li>Un bebé de <strong>menos de 3 meses tiene 38 °C o más</strong>. Si es en las 48 horas tras la vacuna de los 2 meses y está bien, llamad antes a vuestro centro de salud o pediatra: os dirán si hace falta ir.</li><li>Respira con dificultad: se le hunden las costillas, se queja o respira muy deprisa.</li><li>Color azulado, grisáceo o muy pálido.</li><li>Está muy decaído, no se despierta para comer o rechaza varias tomas seguidas.</li><li>Moja muchos menos pañales.</li><li>Vómitos verdes, o vómitos fuertes repetidos.</li><li>Convulsiones, o la fontanela (la parte blanda de la cabeza) abombada.</li><li>Piel muy amarilla y bebé adormilado.</li></ul></div>
+<div class="alarm"><h3>Id a urgencias si</h3><ul><li>Un bebé de <strong>menos de 3 meses tiene 38 °C o más</strong>. Si es en las 48 horas tras la vacuna de los 2 meses y está bien, llamad antes a vuestro centro de salud o pediatra: os dirán si hace falta ir.</li><li>Respira con dificultad: se le hunden las costillas, se queja o respira muy deprisa.</li><li>Está muy pálido. Si se pone azulado o gris, llamad al <span class="copy">112</span>.</li><li>Está muy decaído, no se despierta para comer o rechaza varias tomas seguidas.</li><li>Moja muchos menos pañales.</li><li>Vómitos verdes, o vómitos fuertes repetidos.</li><li>Convulsiones, o la fontanela (la parte blanda de la cabeza) abombada.</li><li>Piel muy amarilla y bebé adormilado.</li></ul></div>
 <p>Mide la temperatura con un termómetro digital en la axila. Antes de dar cualquier medicamento a un recién nacido, consultad siempre.</p>`);
 
 P("revisiones","b5","Revisiones del pediatra y vacunas",4,"p2",`
@@ -1235,8 +2123,8 @@ P("revisiones","b5","Revisiones del pediatra y vacunas",4,"p2",`
 /* Block 6 */
 P("atragantamiento","b6","Atragantamiento del bebé (menor de 1 año)",6,"p1",`
 <div class="alarm"><h3>Si tose con fuerza o llora</h3><p>Déjale toser: es la mejor forma de expulsar lo que sea. No le golpees ni metas los dedos en la boca. Vigílale.</p></div>
-<div class="alarm"><h3>Si no puede toser, llorar ni respirar</h3><ol class="steps"><li>Pide ayuda: que alguien llame al <span class="copy">112</span>, o llama tú con el altavoz.</li><li><strong>Cinco golpes en la espalda:</strong> boca abajo sobre tu antebrazo, apoyado en tu muslo, con la cabeza más baja que el cuerpo y sujetando la mandíbula (sin tapar la boca). Golpes secos con el talón de la mano entre los omóplatos.</li><li><strong>Cinco compresiones en el pecho:</strong> dale la vuelta boca arriba sobre el otro antebrazo, cabeza más baja. Con dos dedos en el centro del pecho, justo bajo la línea de los pezones, empuja hacia dentro con firmeza.</li><li>Alterna 5 golpes y 5 compresiones hasta que expulse el objeto o pierda el conocimiento.</li><li>Si pierde el conocimiento: túmbale boca arriba en una superficie firme y empieza la reanimación (RCP). El 112 te guiará por teléfono.</li></ol></div>
 ${SVG_CHOKE}
+<div class="alarm"><h3>Si no puede toser, llorar ni respirar</h3><ol class="steps"><li>Pide ayuda: que alguien llame al <span class="copy">112</span>, o llama tú con el altavoz.</li><li><strong>Cinco golpes en la espalda:</strong> boca abajo sobre tu antebrazo, apoyado en tu muslo, con la cabeza más baja que el cuerpo y sujetando la mandíbula (sin tapar la boca). Golpes secos con el talón de la mano entre los omóplatos.</li><li><strong>Cinco compresiones en el pecho:</strong> dale la vuelta boca arriba sobre el otro antebrazo, cabeza más baja. Con dos dedos en el centro del pecho, justo bajo la línea de los pezones, empuja hacia dentro con firmeza.</li><li>Alterna 5 golpes y 5 compresiones hasta que expulse el objeto o pierda el conocimiento.</li><li>Si pierde el conocimiento: túmbale boca arriba en una superficie firme y empieza la reanimación (RCP). El 112 te guiará por teléfono.</li></ol></div>
 <div class="dos"><div class="no"><h3>No hagas</h3><ul><li>Barrido a ciegas con el dedo: puede empujar el objeto más dentro. Sácalo solo si lo ves claramente.</li><li>Ponerle cabeza abajo sujetándole por los pies.</li><li>La maniobra de Heimlich de adultos (presión en el abdomen) en un bebé.</li></ul></div></div>
 <div class="practice"><p>Lo más útil es hacer un <strong>curso presencial de primeros auxilios pediátricos</strong> antes del parto, con muñeco, para practicar las maniobras y la RCP. Suelen organizarlos Cruz Roja, centros de salud y hospitales; preguntad a vuestra matrona. Hacedlo los dos.</p><p>Para repasar en casa: la app gratuita <strong>SOS Respira</strong> y el tríptico de atragantamiento en lactantes de Fundación Mapfre (enlace en Fuentes y vídeos, en la portada).</p></div>`);
 
@@ -1249,6 +2137,20 @@ P("rcp-bebe","b6","RCP básica del bebé (menor de 1 año)",6,"p1",`
 <li><strong>5 respiraciones de rescate:</strong> tapa con tu boca su boca y su nariz a la vez y sopla suave durante un segundo, lo justo para que se eleve el pecho.</li>
 <li><strong>Compresiones:</strong> en la mitad inferior del esternón (justo debajo de la línea de los pezones), con dos pulgares rodeando el pecho o con dos dedos. Hunde un tercio del pecho (unos 4 cm), a un ritmo de 100–120 por minuto.</li>
 <li><strong>Alterna 15 compresiones y 2 respiraciones</strong> sin parar hasta que llegue la ayuda, el bebé respire con normalidad o no puedas más.</li></ol></div>
+<figure class="il-rcp-bebe"><div class="steps5">
+<div class="st call"><svg viewBox="0 0 120 80" role="img" aria-label="Bebé boca arriba, una mano sobre él y el móvil con el altavoz puesto"><rect x="2" y="62" width="116" height="6" rx="3" style="fill:var(--line)"/><ellipse cx="72" cy="50" rx="34" ry="12" style="fill:var(--accent)"/><circle cx="28" cy="48" r="13" stroke-width="2" style="fill:var(--accent-soft);stroke:var(--accent)"/><rect x="60" y="34" width="26" height="11" rx="5.5" style="fill:var(--warm)"/><rect x="92" y="4" width="18" height="28" rx="4" stroke-width="2.5" style="fill:var(--surface);stroke:var(--alarm)"/><path d="M84 10 q-5 8 0 16 M78 6 q-9 12 0 24" fill="none" stroke-width="2.5" stroke-linecap="round" style="stroke:var(--alarm)"/></svg>
+<div><b><i class="n">1</i>Ayuda y 112</b><span>Grita pidiendo ayuda. 112 <strong>con el altavoz</strong>, sin dejar al bebé. Solo y sin móvil a mano: 1 minuto de RCP antes de ir a llamar.</span></div></div>
+<div class="st"><svg viewBox="0 0 120 118" role="img" aria-label="Arriba: cabeza en posición neutra con un dedo bajo la barbilla, bien. Abajo: cabeza echada hacia atrás del todo, mal"><rect x="2" y="50" width="116" height="5" rx="2.5" style="fill:var(--line)"/><ellipse cx="88" cy="39" rx="28" ry="10" style="fill:var(--accent)"/><circle cx="46" cy="33" r="16" stroke-width="2" style="fill:var(--accent-soft);stroke:var(--accent)"/><circle cx="46" cy="14" r="5" stroke-width="2" style="fill:var(--accent-soft);stroke:var(--accent)"/><rect x="55" y="42" width="16" height="7" rx="3.5" transform="rotate(-35 63 45)" style="fill:var(--warm)"/><path d="M4 14 l6 6 l11 -12" fill="none" stroke-width="4" stroke-linecap="round" style="stroke:var(--ok)"/><rect x="2" y="110" width="116" height="5" rx="2.5" style="fill:var(--line)"/><ellipse cx="88" cy="99" rx="28" ry="10" style="fill:var(--accent)"/><circle cx="48" cy="94" r="16" stroke-width="2" style="fill:var(--accent-soft);stroke:var(--accent)"/><circle cx="34" cy="81" r="5" stroke-width="2" style="fill:var(--accent-soft);stroke:var(--accent)"/><path d="M5 68 l13 13 M18 68 l-13 13" stroke-width="4" stroke-linecap="round" style="stroke:var(--alarm)"/></svg>
+<div><b><i class="n">2</i>Abre la vía aérea</b><span>Boca arriba, superficie firme. <span class="k ok">Así:</span> cabeza neutra y un dedo eleva la barbilla. <span class="k no">Así no:</span> echada hacia atrás del todo.</span></div></div>
+<div class="st"><svg viewBox="0 0 120 80" role="img" aria-label="Tu mejilla junto a su boca mientras miras su pecho"><rect x="2" y="62" width="116" height="6" rx="3" style="fill:var(--line)"/><ellipse cx="72" cy="50" rx="34" ry="12" style="fill:var(--accent)"/><circle cx="28" cy="48" r="13" stroke-width="2" style="fill:var(--accent-soft);stroke:var(--accent)"/><circle cx="30" cy="35" r="4" stroke-width="2" style="fill:var(--accent-soft);stroke:var(--accent)"/><circle cx="38" cy="20" r="12" style="fill:var(--warm)"/><path d="M51 22 Q64 24 70 34" fill="none" stroke-width="2.5" stroke-dasharray="4 4" style="stroke:var(--warm)"/><path d="M64 33 l7 4 l1 -8" fill="none" stroke-width="2.5" style="stroke:var(--warm)"/></svg>
+<div><b><i class="n">3</i>¿Respira? Hasta 10&nbsp;s</b><span>Tu mejilla junto a su boca: mira si se mueve el pecho, escucha y siente el aire en la mejilla.</span></div></div>
+<div class="st"><svg viewBox="0 0 120 80" role="img" aria-label="Tu boca tapa su boca y su nariz; el pecho se eleva"><rect x="2" y="62" width="116" height="6" rx="3" style="fill:var(--line)"/><ellipse cx="72" cy="50" rx="34" ry="12" style="fill:var(--accent)"/><circle cx="28" cy="48" r="13" stroke-width="2" style="fill:var(--accent-soft);stroke:var(--accent)"/><circle cx="28" cy="24" r="14" style="fill:var(--warm)"/><path d="M66 32 V18 M60 24 l6 -7 l6 7 M86 32 V18 M80 24 l6 -7 l6 7" fill="none" stroke-width="2.5" stroke-linecap="round" style="stroke:var(--accent)"/></svg>
+<div><b><i class="n">4</i>5 respiraciones</b><span>Tu boca tapa <strong>su boca y su nariz</strong> a la vez. Sopla suave 1 segundo, lo justo para que se eleve el pecho.</span></div></div>
+<div class="st"><div class="two"><div><svg viewBox="0 0 60 92" role="img" aria-label="Pecho visto desde arriba: dos pulgares justo debajo de la línea de los pezones y las manos rodeando el pecho"><circle cx="30" cy="12" r="11" stroke-width="2" style="fill:var(--accent-soft);stroke:var(--accent)"/><rect x="8" y="22" width="44" height="66" rx="18" style="fill:var(--accent)"/><line x1="12" y1="42" x2="48" y2="42" stroke-width="1.5" stroke-dasharray="3 3" style="stroke:var(--surface)"/><circle cx="19" cy="42" r="3" style="fill:var(--accent-soft)"/><circle cx="41" cy="42" r="3" style="fill:var(--accent-soft)"/><path d="M7 40 q-6 18 2 34 M53 40 q6 18 -2 34" fill="none" stroke-width="7" stroke-linecap="round" style="stroke:var(--warm)"/><ellipse cx="25" cy="52" rx="4" ry="6" stroke-width="1.5" style="fill:var(--warm);stroke:var(--surface)"/><ellipse cx="35" cy="52" rx="4" ry="6" stroke-width="1.5" style="fill:var(--warm);stroke:var(--surface)"/></svg><svg viewBox="0 0 60 92" role="img" aria-label="Pecho visto desde arriba: dos dedos justo debajo de la línea de los pezones"><circle cx="30" cy="12" r="11" stroke-width="2" style="fill:var(--accent-soft);stroke:var(--accent)"/><rect x="8" y="22" width="44" height="66" rx="18" style="fill:var(--accent)"/><line x1="12" y1="42" x2="48" y2="42" stroke-width="1.5" stroke-dasharray="3 3" style="stroke:var(--surface)"/><circle cx="19" cy="42" r="3" style="fill:var(--accent-soft)"/><circle cx="41" cy="42" r="3" style="fill:var(--accent-soft)"/><ellipse cx="26" cy="52" rx="3.5" ry="5.5" stroke-width="1.5" style="fill:var(--warm);stroke:var(--surface)"/><ellipse cx="34" cy="52" rx="3.5" ry="5.5" stroke-width="1.5" style="fill:var(--warm);stroke:var(--surface)"/></svg></div><small><i>pulgares</i><i>2 dedos</i></small></div>
+<div><b><i class="n">5</i>Compresiones</b><span>Justo debajo de la línea de los pezones, con <strong>dos pulgares</strong> rodeando el pecho o con <strong>dos dedos</strong>. Hunde un tercio del pecho (unos 4 cm).</span></div></div>
+</div>
+<div class="loop" role="img" aria-label="Alterna 15 compresiones y 2 respiraciones, a 100–120 por minuto"><strong>15 : 2</strong><span>15 compresiones y 2 respiraciones<br>a 100–120 por minuto, sin parar</span></div>
+<figcaption>Seguid hasta que llegue la ayuda, el bebé respire con normalidad o no podáis más. Si no recordáis la proporción, 30 y 2 también vale. Esquema orientativo: aprended la técnica en un curso presencial, con muñeco.</figcaption></figure>
 <div class="callout">Si no recuerdas la proporción, las guías europeas aceptan 30 compresiones y 2 respiraciones para quien no está formado en RCP pediátrica. <strong>Hacer algo es mucho mejor que no hacer nada.</strong></div>
 <div class="callout info">Si el bebé está consciente y se ha atragantado, la maniobra es otra: mira la píldora de atragantamiento.</div>
 <div class="practice"><p>Buscad un curso de primeros auxilios pediátricos antes de que nazca o en los primeros meses (Cruz Roja, vuestro centro de salud o el hospital suelen organizarlos). Id los dos.</p></div>
@@ -1256,6 +2158,33 @@ P("rcp-bebe","b6","RCP básica del bebé (menor de 1 año)",6,"p1",`
 
 P("a-quien-llamar","b6","Mi bebé está mal: ¿112, urgencias, teléfono o pediatra?",6,"p1",`
 <p class="lead">De madrugada, con un bebé que no está como siempre, cuesta pensar. Casi todo lo que preocupa a unos padres primerizos se puede resolver con una llamada o una cita, pero hay situaciones en las que no se espera. Decidid ahora, con calma, dónde iríais y guardad los teléfonos en los dos móviles. <strong>Si dudáis, tratadlo como urgente:</strong> nadie os va a reñir por consultar.</p>
+<figure class="il-a-quien-llamar"><ol class="aq-list">
+<li class="aq-lv aq-1" role="group" aria-label="Nivel 1, rojo: llamad al 112 ya">
+<svg viewBox="0 0 48 48" role="img" aria-label="Luz de emergencia"><path d="M14 36 V26 A10 10 0 0 1 34 26 V36 Z" style="fill:var(--alarm)"/><rect x="9" y="36" width="30" height="6" rx="2" style="fill:var(--ink)"/><path d="M24 4 V10 M8 12 L12 16 M40 12 L36 16 M3 26 H8 M40 26 H45" stroke-width="3" stroke-linecap="round" style="stroke:var(--alarm)"/><path d="M20 26 A4 4 0 0 1 24 22" stroke-width="2.5" stroke-linecap="round" fill="none" style="stroke:var(--surface)"/></svg>
+<div><h3><span class="aq-n" aria-hidden="true">1</span>112 ya</h3>
+<p class="aq-when">Riesgo para su vida</p>
+<ul class="aq-chips"><li>No respira bien</li><li>No responde</li><li>Convulsiona</li><li>Azulado o gris</li></ul>
+<p class="aq-do"><b>No le llevéis en coche</b> por vuestra cuenta.</p></div></li>
+<li class="aq-lv aq-2" role="group" aria-label="Nivel 2, naranja: urgencias de pediatría, ahora">
+<svg viewBox="0 0 48 48" role="img" aria-label="Hospital"><rect x="8" y="12" width="32" height="30" rx="3" style="fill:var(--surface);stroke:var(--warm)" stroke-width="3"/><path d="M24 17 V29 M18 23 H30" stroke-width="4" stroke-linecap="round" style="stroke:var(--warm)"/><rect x="20" y="33" width="8" height="9" style="fill:var(--warm)"/><path d="M4 42 H44" stroke-width="3" stroke-linecap="round" style="stroke:var(--ink)"/></svg>
+<div><h3><span class="aq-n" aria-hidden="true">2</span>Urgencias de pediatría, ahora</h3>
+<p class="aq-when">Está mal, pero respira y responde</p>
+<ul class="aq-chips"><li>Menos de 3 meses y 38&nbsp;°C o más</li><li>Muy adormilado</li><li>Rechaza tomas</li><li>Moja muchos menos pañales</li><li>Golpe en la cabeza: menos de 3 meses, o chichón antes del año</li></ul></div></li>
+<li class="aq-lv aq-3" role="group" aria-label="Nivel 3, azul: llamad hoy">
+<svg viewBox="0 0 48 48" role="img" aria-label="Teléfono móvil"><rect x="14" y="4" width="20" height="40" rx="4" style="fill:var(--surface);stroke:var(--accent)" stroke-width="3"/><circle cx="24" cy="38" r="2" style="fill:var(--accent)"/><path d="M19 15 Q24 11 29 15 M21 19 Q24 17 27 19" stroke-width="2.5" stroke-linecap="round" fill="none" style="stroke:var(--accent)"/></svg>
+<div><h3><span class="aq-n" aria-hidden="true">3</span>Llamad hoy</h3>
+<p class="aq-when">Algo os preocupa, pero está bien</p>
+<ul class="aq-chips"><li>Come</li><li>Se despierta</li><li>Tiene buen color</li></ul>
+<p class="aq-do">Centro de salud o pediatra, o el <b>teléfono de orientación médica 24 horas de Mapfre</b>.</p></div></li>
+<li class="aq-lv aq-4" role="group" aria-label="Nivel 4, verde: cita normal">
+<svg viewBox="0 0 48 48" role="img" aria-label="Calendario"><rect x="6" y="9" width="36" height="33" rx="4" style="fill:var(--surface);stroke:var(--ok)" stroke-width="3"/><path d="M6 18 H42" stroke-width="3" style="stroke:var(--ok)"/><path d="M15 5 V12 M33 5 V12" stroke-width="3" stroke-linecap="round" style="stroke:var(--ink)"/><path d="M17 30 L22 35 L31 25" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round" fill="none" style="stroke:var(--ok)"/></svg>
+<div><h3><span class="aq-n" aria-hidden="true">4</span>Cita normal</h3>
+<p class="aq-when">Dudas del día a día</p>
+<ul class="aq-chips"><li>Costra láctea</li><li>Granitos</li><li>Catarro sin fiebre que come bien</li></ul>
+<p class="aq-do">Pediatra o enfermera, o en la próxima revisión.</p></div></li>
+</ol>
+<p class="aq-doubt"><b>¿Dudáis?</b> Tratadlo como urgente. Si no sabéis si es grave, llamad al <b>112</b>: os atiende un médico que os orienta.</p>
+<figcaption>De arriba abajo, de más a menos urgente. Buscad el primer nivel que encaja con lo que veis.</figcaption></figure>
 <div class="tbl"><table><thead><tr><th>Qué pasa</th><th>Qué hacer</th></tr></thead><tbody>
 <tr><td>Riesgo para su vida: no respira bien, no responde, convulsiona, se ha puesto azulado o gris</td><td><strong>Llamad al <span class="copy">112</span> ya.</strong> No le llevéis en coche por vuestra cuenta.</td></tr>
 <tr><td>Está mal, pero respira y responde: fiebre con menos de 3 meses, muy adormilado, rechaza tomas, un golpe en la cabeza con menos de 3 meses o con chichón antes del año</td><td><strong>Urgencias de pediatría del hospital</strong>, ahora. Si dudáis de si es para el 112, llamad y os orientarán.</td></tr>
@@ -1305,6 +2234,23 @@ P("medicamentos-temperatura","b6","Dar medicamentos y tomar la temperatura",5,"p
 <div class="callout">Con fiebre, no le desnudéis del todo ni le bañéis con agua fría, pero tampoco le abriguéis de más: ropa normal y ligera. Si da el pecho, seguid ofreciéndolo con normalidad.</div>
 <h3>Dar un medicamento líquido</h3>
 <ol class="steps"><li><strong>Confirmad la dosis con el pediatra</strong> según su peso actual, y apuntadla en la caja con el nombre del medicamento. La dosis cambia a medida que crece.</li><li>Usad <strong>la jeringa o el gotero que viene con ese medicamento</strong>, nunca una cucharilla de casa ni la jeringa de otro producto. La misma dosis puede ser una cantidad de mililitros distinta según el preparado.</li><li>Leed la marca de la jeringa a la altura de los ojos y comprobad que coincide con lo que os han dicho.</li><li>Sostened al bebé semiincorporado, como para una toma, nunca tumbado del todo.</li><li>Meted la punta de la jeringa entre la encía y la parte de dentro de la mejilla y empujad poco a poco, dejándole tragar entre empujón y empujón. Si se lo echáis de golpe, puede atragantarse.</li><li>No lo mezcléis en un biberón entero: si no se lo acaba, no sabréis cuánto ha tomado.</li><li>Lavad la jeringa con agua templada y jabón; algunos productos de limpieza borran las marcas.</li><li><strong>Apuntad la hora y la dosis</strong> en una nota compartida en el móvil. Así ninguno de los dos le da otra dosis sin saberlo.</li></ol>
+<figure class="il-medicamentos-temperatura"><p class="rowlab">1 · Tomar la temperatura: termómetro digital en la axila</p>
+<div class="pics" role="img" aria-label="Tomar la temperatura en cuatro pasos: secad la axila, punta en lo más alto de la axila tocando la piel, brazo bajado y sujeto con el bebé en brazos, esperad al pitido y apuntad cifra y hora">
+<div class="pic"><b>1 · Secad</b><svg viewBox="0 0 160 120" aria-hidden="true"><circle cx="86" cy="28" r="17" style="fill:var(--accent)"/><rect x="62" y="46" width="48" height="58" rx="18" style="fill:var(--accent)"/><path d="M66 56 L40 22" stroke-width="14" stroke-linecap="round" style="stroke:var(--accent)"/><path d="M106 58 L114 96" stroke-width="14" stroke-linecap="round" style="stroke:var(--accent)"/><rect x="26" y="56" width="34" height="24" rx="6" transform="rotate(-20 43 68)" stroke-width="2" style="fill:var(--warm-soft);stroke:var(--warm)"/></svg><span>Si la axila está sudada</span></div>
+<div class="pic"><b>2 · Punta arriba</b><svg viewBox="0 0 160 120" aria-hidden="true"><circle cx="86" cy="28" r="17" style="fill:var(--accent)"/><rect x="62" y="46" width="48" height="58" rx="18" style="fill:var(--accent)"/><path d="M66 56 L40 22" stroke-width="14" stroke-linecap="round" style="stroke:var(--accent)"/><path d="M106 58 L114 96" stroke-width="14" stroke-linecap="round" style="stroke:var(--accent)"/><path d="M22 106 L62 62" stroke-width="12" stroke-linecap="round" style="stroke:var(--ink)"/><path d="M22 106 L58 66" stroke-width="7" stroke-linecap="round" style="stroke:var(--surface)"/><circle cx="64" cy="60" r="12" stroke-width="3" stroke-dasharray="4 3" style="fill:none;stroke:var(--warm)"/></svg><span>En lo más alto de la axila, tocando la piel</span></div>
+<div class="pic"><b>3 · Brazo bajado</b><svg viewBox="0 0 160 120" aria-hidden="true"><path d="M36 82 L14 104" stroke-width="12" stroke-linecap="round" style="stroke:var(--ink)"/><path d="M36 82 L14 104" stroke-width="7" stroke-linecap="round" style="stroke:var(--surface)"/><circle cx="86" cy="24" r="17" style="fill:var(--accent)"/><rect x="62" y="42" width="48" height="58" rx="18" style="fill:var(--accent)"/><path d="M60 54 L54 92" stroke-width="14" stroke-linecap="round" style="stroke:var(--accent)"/><path d="M106 54 L114 92" stroke-width="14" stroke-linecap="round" style="stroke:var(--accent)"/><ellipse cx="50" cy="76" rx="12" ry="9" style="fill:var(--warm)"/><path d="M18 116 Q84 128 150 98" stroke-width="13" stroke-linecap="round" style="fill:none;stroke:var(--warm)"/></svg><span>Sujeto pegado al cuerpo, con el bebé en brazos</span></div>
+<div class="pic"><b>4 · Pitido</b><svg viewBox="0 0 160 120" aria-hidden="true"><rect x="20" y="22" width="100" height="22" rx="11" stroke-width="3" style="fill:var(--surface);stroke:var(--ink)"/><rect x="40" y="27" width="40" height="12" rx="3" style="fill:var(--accent-soft)"/><rect x="118" y="29" width="18" height="8" rx="4" style="fill:var(--ink)"/><path d="M128 14 q8 -6 14 0 M132 6 q12 -8 22 0" stroke-width="3" stroke-linecap="round" style="fill:none;stroke:var(--warm)"/><rect x="36" y="58" width="88" height="54" rx="7" stroke-width="2" style="fill:var(--surface);stroke:var(--line)"/><path d="M48 74 H90 M48 88 H84 M48 100 H78" stroke-width="3" stroke-linecap="round" style="stroke:var(--muted)"/><circle cx="106" cy="84" r="11" stroke-width="3" style="fill:none;stroke:var(--warm)"/><path d="M106 77 V84 L111 87" stroke-width="2.5" stroke-linecap="round" style="fill:none;stroke:var(--warm)"/></svg><span>Apuntad la cifra y la hora</span></div>
+</div>
+<p class="note">Hay fiebre a partir de 38 °C. Recién bañado o muy tapado: esperad unos minutos y volved a medir.</p>
+<p class="rowlab">2 · Dar un jarabe: con la jeringa de ese medicamento</p>
+<div class="pics" role="img" aria-label="Dar un medicamento líquido en cuatro pasos: la jeringa o el gotero de ese medicamento, nunca una cucharilla de casa; leed la marca a la altura de los ojos; bebé semiincorporado, como para una toma; punta entre la encía y la mejilla, poco a poco">
+<div class="pic"><b>1 · Su jeringa</b><svg viewBox="0 0 160 120" aria-hidden="true"><rect x="38" y="20" width="76" height="18" rx="4" stroke-width="3" style="fill:var(--surface);stroke:var(--ink)"/><path d="M50 20 V28 M62 20 V26 M74 20 V28 M86 20 V26 M98 20 V28" stroke-width="2" style="stroke:var(--ink)"/><rect x="24" y="25" width="14" height="8" rx="3" style="fill:var(--ink)"/><rect x="114" y="25" width="22" height="8" style="fill:var(--ink)"/><rect x="136" y="17" width="6" height="24" rx="2" style="fill:var(--ink)"/><circle cx="14" cy="16" r="9" style="fill:var(--ok)"/><path d="M9 16 l4 4 l7 -8" stroke-width="2.5" stroke-linecap="round" style="fill:none;stroke:var(--surface)"/><ellipse cx="56" cy="88" rx="22" ry="13" stroke-width="3" style="fill:var(--surface);stroke:var(--muted)"/><path d="M78 86 L138 76" stroke-width="6" stroke-linecap="round" style="stroke:var(--muted)"/><path d="M30 64 L130 108 M130 64 L30 108" stroke-width="6" stroke-linecap="round" style="stroke:var(--alarm)"/></svg><span>Nunca una cucharilla de casa ni la jeringa de otro producto</span></div>
+<div class="pic"><b>2&nbsp;·&nbsp;A la altura de los ojos</b><svg viewBox="0 0 160 120" aria-hidden="true"><circle cx="40" cy="42" r="20" style="fill:var(--warm)"/><path d="M8 118 Q12 70 40 68 Q68 70 72 118 Z" style="fill:var(--warm)"/><path d="M62 42 H104" stroke-width="3" stroke-dasharray="5 4" style="stroke:var(--ink)"/><rect x="108" y="14" width="22" height="70" rx="4" stroke-width="3" style="fill:var(--surface);stroke:var(--ink)"/><path d="M108 28 H116 M108 42 H126 M108 56 H116 M108 70 H116" stroke-width="2" style="stroke:var(--ink)"/><path d="M104 42 H130" stroke-width="5" style="stroke:var(--accent)"/><rect x="115" y="84" width="8" height="14" rx="3" style="fill:var(--ink)"/><rect x="115" y="2" width="8" height="12" style="fill:var(--ink)"/></svg><span>Comprobad que la marca coincide con la dosis</span></div>
+<div class="pic"><b>3&nbsp;·&nbsp;Semi&shy;incorporado</b><svg viewBox="0 0 160 120" aria-hidden="true"><path d="M10 112 H150" stroke-width="3" style="stroke:var(--line)"/><g transform="rotate(-40 80 76)"><ellipse cx="72" cy="78" rx="42" ry="17" style="fill:var(--accent)"/><circle cx="128" cy="74" r="17" style="fill:var(--accent)"/></g><path d="M18 106 Q80 112 126 56" stroke-width="13" stroke-linecap="round" style="fill:none;stroke:var(--warm)"/></svg><span>Como para una toma, nunca tumbado del todo</span></div>
+<div class="pic"><b>4&nbsp;·&nbsp;Junto a la mejilla</b><svg viewBox="0 0 160 120" aria-hidden="true"><circle cx="66" cy="62" r="44" style="fill:var(--accent)"/><path d="M54 86 Q66 92 78 86" stroke-width="4" stroke-linecap="round" style="fill:none;stroke:var(--surface)"/><path d="M80 82 Q92 72 90 60" stroke-width="3" stroke-dasharray="4 4" stroke-linecap="round" style="fill:none;stroke:var(--surface)"/><g transform="rotate(-18 80 86)"><rect x="84" y="80" width="10" height="8" rx="2" style="fill:var(--ink)"/><rect x="94" y="76" width="44" height="16" rx="3" stroke-width="3" style="fill:var(--surface);stroke:var(--ink)"/><rect x="138" y="80" width="14" height="8" style="fill:var(--ink)"/></g></svg><span>Entre la encía y la mejilla. Poco a poco, dejándole tragar</span></div>
+</div>
+<p class="note">Si se lo echáis de golpe, puede atragantarse. Apuntad la hora y la dosis en una nota compartida.</p>
+<figcaption>Con menos de 3 meses, ningún medicamento sin que lo indique el pediatra; con 38 °C o más, a urgencias. La dosis, según su peso actual: confirmadla con el pediatra.</figcaption></figure>
 <div class="dos"><div class="yes"><h3>Sí</h3><ul><li>Seguir el prospecto y la pauta del pediatra.</li><li>Si lo escupe o lo vomita, preguntar al pediatra, a la farmacia o al teléfono de orientación de Mapfre si hay que repetir la dosis.</li><li>Llevar la caja y vuestras notas de horas a cualquier consulta.</li></ul></div>
 <div class="no"><h3>No</h3><ul><li>Repetir una dosis por vuestra cuenta porque «ha escupido un poco».</li><li>Alternar paracetamol e ibuprofeno si no os lo ha indicado el pediatra.</li><li>Ibuprofeno a bebés de menos de 3 meses o de menos de 5 kg.</li><li>Aspirina, ni medicamentos de adulto partidos o rebajados.</li></ul></div></div>
 <div class="alarm"><h3>Si le habéis dado más de la cuenta</h3><p>Aunque esté bien, id a urgencias con la caja del medicamento: los síntomas pueden tardar días en aparecer. Si tenéis dudas, el Servicio de Información Toxicológica atiende 24 horas en el <span class="copy">91 562 04 20</span>. Si está adormilado, respira mal o no responde, llamad al <span class="copy">112</span>.</p></div>
@@ -1319,10 +2265,53 @@ P("botiquin","b6","Botiquín y teléfonos útiles",3,"p2",`
 
 /* Block 7 */
 P("alarma-posparto","b7","Señales de alarma en el posparto",3,"p1",`
-<div class="alarm"><h3>Id a urgencias si ella tiene</h3><ul><li>Sangrado que empapa más de una compresa por hora, o coágulos grandes.</li><li>Fiebre de 38 °C o más, o mal olor del sangrado. (Si la fiebre viene con un pecho rojo y doloroso, puede ser una mastitis: consultad ese mismo día y, si no podéis ver a vuestra matrona o médico, urgencias.)</li><li>Dolor, hinchazón o enrojecimiento en una pierna.</li><li>Dificultad para respirar o dolor en el pecho.</li><li>Dolor de cabeza intenso o visión borrosa (puede aparecer también después del parto).</li><li>Herida o puntos rojos, calientes o que supuran.</li><li>Pensamientos de hacerse daño o de hacérselo al bebé, con ganas o planes de llevarlos a cabo: buscad ayuda ya (112 o 024). Las imágenes que asaltan sin querer y dan miedo son otra cosa, frecuente y tratable: mirad la píldora de ansiedad y pensamientos intrusivos.</li></ul></div>`);
+<div class="alarm"><h3>Id a urgencias si ella tiene</h3><ul><li>Sangrado que empapa más de una compresa por hora, o coágulos grandes.</li><li>Fiebre de 38 °C o más, o mal olor del sangrado. (Si la fiebre viene con un pecho rojo y doloroso, puede ser una mastitis: consultad ese mismo día y, si no podéis ver a vuestra matrona o médico, urgencias.)</li><li>Dolor, hinchazón o enrojecimiento en una pierna.</li><li>Dificultad para respirar o dolor en el pecho.</li><li>Dolor de cabeza intenso o visión borrosa (puede aparecer también después del parto).</li><li>Herida o puntos rojos, calientes o que supuran.</li><li>Pensamientos de hacerse daño o de hacérselo al bebé, con ganas o planes de llevarlos a cabo: buscad ayuda ya (112 o 024). Las imágenes que asaltan sin querer y dan miedo son otra cosa, frecuente y tratable: mirad la píldora de ansiedad y pensamientos intrusivos.</li></ul></div>
+<figure class="il-alarma-posparto"><div class="ap-wrap">
+<svg class="ap-map" viewBox="0 0 240 290" role="img" aria-label="Silueta de una mujer de frente con puntos numerados de arriba abajo: 1 cabeza, 2 pecho, 3 mama, 4 herida o puntos, 5 compresa, 6 una pierna, 7 termómetro y 8 bocadillo de pensamientos">
+<g stroke-width="2.5" stroke-linejoin="round" style="stroke:var(--accent)">
+<path d="M98 44 Q96 14 120 14 Q144 14 142 44 L144 64 L96 64 Z" style="fill:var(--accent)"/>
+<circle cx="120" cy="38" r="19" style="fill:var(--accent-soft)"/>
+<path d="M88 70 Q120 60 152 70 L171 158 Q166 164 160 160 L148 104 L150 150 L156 176 L84 176 L90 150 L92 104 L80 160 Q74 164 69 158 Z" style="fill:var(--accent-soft)"/>
+<rect x="88" y="172" width="28" height="104" rx="12" style="fill:var(--accent-soft)"/>
+<rect x="124" y="172" width="28" height="104" rx="12" style="fill:var(--alarm-soft);stroke:var(--alarm)"/>
+</g>
+<g aria-hidden="true">
+<path d="M10 22 Q10 6 36 6 Q62 6 62 22 Q62 38 36 38 Q24 38 18 34 Q12 30 10 22 Z" stroke-width="2" style="fill:var(--surface);stroke:var(--ink)"/>
+<circle cx="70" cy="44" r="4" stroke-width="2" style="fill:var(--surface);stroke:var(--ink)"/>
+<circle cx="80" cy="52" r="2.5" stroke-width="2" style="fill:var(--surface);stroke:var(--ink)"/>
+<rect x="196" y="18" width="12" height="62" rx="6" stroke-width="2.5" style="fill:var(--surface);stroke:var(--ink)"/>
+<circle cx="202" cy="86" r="10" style="fill:var(--alarm)"/>
+<rect x="199" y="44" width="6" height="40" style="fill:var(--alarm)"/>
+<rect x="20" y="186" width="30" height="72" rx="15" stroke-width="2.5" style="fill:var(--surface);stroke:var(--ink)"/>
+<path d="M35 208 Q42 220 42 226 A7 7 0 0 1 28 226 Q28 220 35 208 Z" style="fill:var(--alarm)"/>
+</g>
+<g style="fill:var(--alarm)">
+<circle cx="120" cy="38" r="12"/><circle cx="108" cy="88" r="12"/><circle cx="138" cy="108" r="12" stroke-width="2.5" stroke-dasharray="4 3" style="fill:var(--surface);stroke:var(--alarm)"/><circle cx="120" cy="146" r="12"/>
+<circle cx="35" cy="168" r="12"/><circle cx="138" cy="226" r="12"/><circle cx="222" cy="50" r="12"/><circle cx="36" cy="22" r="12"/>
+</g>
+<g font-size="15" font-weight="700" text-anchor="middle" style="fill:var(--surface)" aria-hidden="true">
+<text x="120" y="43">1</text><text x="108" y="93">2</text><text x="138" y="113" style="fill:var(--alarm)">3</text><text x="120" y="151">4</text>
+<text x="35" y="173">5</text><text x="138" y="231">6</text><text x="222" y="55">7</text><text x="36" y="27">8</text>
+</g>
+</svg>
+<ol class="ap-list" aria-label="Señales de alarma de arriba abajo">
+<li><span class="ap-n">1</span><span><b>Cabeza:</b> dolor intenso o visión borrosa <span class="ap-note">Puede aparecer también después del parto.</span></span></li>
+<li><span class="ap-n">2</span><span><b>Pecho:</b> dificultad para respirar o dolor</span></li>
+<li><span class="ap-n ap-day">3</span><span><b>Mama</b> roja y dolorosa con fiebre <span class="ap-tag">ese mismo día</span><span class="ap-note">Puede ser una mastitis: consultad hoy; si no podéis ver a vuestra matrona o médico, urgencias.</span></span></li>
+<li><span class="ap-n">4</span><span><b>Herida o puntos:</b> rojos, calientes o que supuran</span></li>
+<li><span class="ap-n">5</span><span><b>Sangrado:</b> más de una compresa por hora, coágulos grandes o mal olor</span></li>
+<li><span class="ap-n">6</span><span><b>Una pierna:</b> dolor, hinchazón o enrojecimiento</span></li>
+<li><span class="ap-n">7</span><span><b>Fiebre:</b> 38&nbsp;°C o más</span></li>
+<li><span class="ap-n">8</span><span><b>Pensamientos</b> de hacerse daño o de hacérselo al bebé, con ganas o planes: <b>112 o 024</b> ya <span class="ap-note">Las imágenes que asaltan sin querer y dan miedo son otra cosa, frecuente y tratable.</span></span></li>
+</ol>
+</div>
+<p class="ap-foot"><b>Id a urgencias</b> · 112 · 024</p>
+<figcaption>Repasad de arriba abajo. Con cualquiera de estas señales, id a urgencias; la 3 (mama con fiebre) se consulta ese mismo día.</figcaption></figure>`);
 
 P("recuperacion","b7","Recuperación física",5,"p2",`
 <h3>Sangrado posparto (loquios)</h3>${SVG_LOCHIA}
+<p>Los primeros días el sangrado es rojo y abundante, como una regla fuerte; luego se vuelve rosado o marrón y, al final, amarillento, cada vez en menor cantidad. Puede durar hasta 4–6 semanas.</p>
+<div class="alarm"><h3>Id a urgencias si</h3><p>Empapa más de una compresa por hora, salen coágulos grandes, el sangrado huele mal o tiene fiebre de 38 °C o más. Mirad la píldora "Señales de alarma en el posparto".</p></div>
 <h3>Puntos de episiotomía o desgarro</h3><ul><li>Lavar con agua después de ir al baño y secar con toques suaves.</li><li>Frío local (envuelto en una gasa) las primeras 24–48 horas alivia la inflamación.</li><li>Los puntos suelen reabsorberse solos. Sentarse sobre un cojín ayuda.</li></ul>
 <h3>Cicatriz de cesárea</h3><ul><li>Mantenerla limpia y seca. La revisión de los puntos suele hacerse a los 7–10 días en el centro de salud.</li><li>Levantarse de lado, apoyándose en el brazo. No cargar más peso que el del bebé las primeras semanas.</li></ul>
 <h3>Entuertos</h3><p>Son contracciones del útero que vuelve a su tamaño. Se notan más al dar el pecho y en los primeros días.</p>
@@ -1351,6 +2340,91 @@ P("cesarea-recuperacion","b7","Recuperarse de una cesárea",5,"p2",`
 <h3>En el hospital</h3><ul><li><strong>Comer y beber</strong> en cuanto tenga hambre o sed, si todo va bien.</li><li><strong>Levantarse y caminar pronto</strong>, con ayuda: acelera la recuperación y previene trombos. La sonda de la orina se suele quitar cuando ya camina.</li><li><strong>Analgesia pautada</strong>, compatible con la lactancia: mejor tomarla a sus horas que esperar a que duela mucho.</li><li>A menudo se ponen <strong>medias de compresión o inyecciones de heparina</strong> para prevenir trombos; si os mandan inyecciones a casa, os enseñarán a ponerlas.</li><li>Para toser, reír o levantarse, sujetar la herida con un cojín o con las manos alivia mucho.</li></ul>
 <h3>En casa, las primeras semanas</h3><ul><li><strong>No cargar nada más pesado que el bebé</strong> durante unas 6 semanas. Que no levante la silla del coche con el bebé dentro.</li><li><strong>Conducir:</strong> cuando pueda frenar de golpe sin dolor, a menudo hacia las 6 semanas. Comprobad las condiciones de vuestro seguro del coche.</li><li><strong>Herida:</strong> lavarla a diario con agua y jabón suave y secarla bien con toques. Ropa interior de talle alto que no roce la cicatriz.</li><li><strong>Ejercicio, deporte y relaciones sexuales:</strong> cuando se sienta recuperada; empezad por caminar. Para el suelo pélvico y el abdomen, pedid valoración en la revisión posparto.</li></ul>
 <h3>Lactancia tras cesárea</h3><p>Se puede dar el pecho igual que tras un parto vaginal. Las posturas que no apoyan al bebé sobre la herida son las más cómodas: <strong>de rugby</strong> (el bebé bajo el brazo, a un lado), <strong>tumbada de lado</strong> o <strong>recostada</strong>, con el bebé cruzado lejos de la cicatriz.</p>
+<figure class="il-cesarea-recuperacion">
+<p class="rowlab">Moverse pronto, con ayuda</p>
+<div class="pics">
+<div class="pic"><b>Caminar pronto</b>
+<svg viewBox="0 0 160 128" role="img" aria-label="Ella camina y, a su lado, la pareja la sujeta del brazo">
+<line x1="4" y1="122" x2="156" y2="122" stroke-width="3" stroke-linecap="round" style="stroke:var(--line)"/>
+<circle cx="58" cy="20" r="11" style="fill:var(--accent)"/>
+<g fill="none" stroke-linecap="round" style="stroke:var(--accent)"><path d="M58 40 L58 80" stroke-width="24"/><path d="M52 84 L46 116" stroke-width="11"/><path d="M64 84 L70 116" stroke-width="11"/></g>
+<circle cx="108" cy="18" r="11" stroke-width="2" style="fill:var(--warm-soft);stroke:var(--warm)"/>
+<g fill="none" stroke-linecap="round" style="stroke:var(--warm)"><path d="M108 38 L108 80" stroke-width="24"/><path d="M102 84 L98 116" stroke-width="11"/><path d="M114 84 L118 116" stroke-width="11"/><path d="M98 46 L76 56" stroke-width="9"/></g>
+<circle cx="74" cy="57" r="6" stroke-width="2" style="fill:var(--warm);stroke:var(--surface)"/>
+</svg>
+<span>Con alguien al lado</span></div>
+<div class="pic"><b>Tú cargas la silla</b>
+<svg viewBox="0 0 160 128" role="img" aria-label="La pareja lleva la silla del coche con el bebé dentro; ella camina a su lado sin cargar nada">
+<line x1="4" y1="122" x2="156" y2="122" stroke-width="3" stroke-linecap="round" style="stroke:var(--line)"/>
+<circle cx="34" cy="20" r="11" style="fill:var(--accent)"/>
+<g fill="none" stroke-linecap="round" style="stroke:var(--accent)"><path d="M34 40 L34 80" stroke-width="24"/><path d="M29 84 L27 116" stroke-width="11"/><path d="M39 84 L41 116" stroke-width="11"/></g>
+<circle cx="90" cy="18" r="11" stroke-width="2" style="fill:var(--warm-soft);stroke:var(--warm)"/>
+<g fill="none" stroke-linecap="round" style="stroke:var(--warm)"><path d="M90 38 L90 80" stroke-width="24"/><path d="M85 84 L83 116" stroke-width="11"/><path d="M95 84 L97 116" stroke-width="11"/><path d="M100 44 L112 62" stroke-width="9"/></g>
+<path d="M104 72 Q120 54 136 72" fill="none" stroke-width="4" stroke-linecap="round" style="stroke:var(--muted)"/>
+<path d="M100 76 L140 76 Q138 100 120 100 Q102 100 100 76 Z" stroke-width="2" style="fill:var(--surface);stroke:var(--muted)"/>
+<circle cx="112" cy="80" r="6" stroke-width="2.5" style="fill:var(--accent-soft);stroke:var(--accent)"/>
+<circle cx="114" cy="63" r="6" stroke-width="2" style="fill:var(--warm);stroke:var(--surface)"/>
+</svg>
+<span>Ella, nada más pesado que el bebé</span></div>
+</div>
+<div class="callout cj">
+<svg viewBox="0 0 110 122" role="img" aria-label="Ella sentada aprieta un cojín contra la herida con las manos">
+<rect x="2" y="88" width="72" height="8" rx="3" style="fill:var(--muted)"/>
+<rect x="2" y="40" width="8" height="56" rx="3" style="fill:var(--muted)"/>
+<circle cx="34" cy="22" r="11" style="fill:var(--accent)"/>
+<g fill="none" stroke-linecap="round" style="stroke:var(--accent)"><path d="M30 42 L30 82" stroke-width="26"/><path d="M34 84 L66 84" stroke-width="16"/><path d="M68 86 L68 116" stroke-width="13"/></g>
+<rect x="44" y="56" width="18" height="30" rx="7" stroke-width="2" style="fill:var(--surface);stroke:var(--muted)"/>
+<path d="M36 48 L54 66" fill="none" stroke-width="9" stroke-linecap="round" style="stroke:var(--accent)"/>
+<circle cx="56" cy="68" r="6" stroke-width="2" style="fill:var(--accent);stroke:var(--surface)"/>
+<g fill="none" stroke-width="2.5" stroke-linecap="round" style="stroke:var(--muted)"><path d="M52 16 Q58 22 52 28"/><path d="M60 12 Q68 22 60 32"/></g>
+</svg>
+<div><strong>Al toser, reír o levantarse:</strong> sujetar la herida con un cojín o con las manos alivia mucho.</div>
+</div>
+<p class="rowlab">Dar el pecho sin apoyar al bebé en la herida</p>
+<p class="key"><svg viewBox="0 0 44 16" aria-hidden="true"><rect x="0" y="0" width="44" height="16" rx="5" style="fill:var(--accent)"/><path d="M6 8 L38 8" stroke-width="2.5" stroke-dasharray="5 3" style="stroke:var(--surface)"/></svg>línea de la cicatriz</p>
+<div class="pics">
+<div class="pic"><b>De rugby</b>
+<svg viewBox="0 0 150 124" role="img" aria-label="Ella sentada en una silla con el bebé bajo el brazo, a un lado, sobre un cojín, por encima de la cicatriz">
+<line x1="4" y1="120" x2="146" y2="120" stroke-width="3" stroke-linecap="round" style="stroke:var(--line)"/>
+<rect x="128" y="30" width="8" height="66" rx="3" style="fill:var(--muted)"/>
+<rect x="48" y="90" width="88" height="7" rx="3" style="fill:var(--muted)"/>
+<rect x="52" y="97" width="6" height="22" style="fill:var(--muted)"/><rect x="126" y="97" width="6" height="22" style="fill:var(--muted)"/>
+<circle cx="92" cy="18" r="11" style="fill:var(--accent)"/>
+<g fill="none" stroke-linecap="round" style="stroke:var(--accent)"><path d="M92 38 L92 82" stroke-width="26"/><path d="M88 84 L56 84" stroke-width="15"/><path d="M52 86 L52 116" stroke-width="13"/></g>
+<path d="M82 76 L102 76" stroke-width="2.5" stroke-dasharray="5 3" style="stroke:var(--surface)"/>
+<rect x="80" y="58" width="46" height="12" rx="6" stroke-width="2" style="fill:var(--surface);stroke:var(--muted)"/>
+<ellipse cx="104" cy="50" rx="17" ry="7" stroke-width="2.5" style="fill:var(--accent-soft);stroke:var(--accent)"/>
+<circle cx="80" cy="47" r="8" stroke-width="2.5" style="fill:var(--accent-soft);stroke:var(--accent)"/>
+</svg>
+<span>El bebé bajo el brazo, a un lado</span></div>
+<div class="pic"><b>Tumbada de lado</b>
+<svg viewBox="0 0 150 112" role="img" aria-label="Vista desde arriba: ella tumbada de lado y el bebé tumbado en paralelo, frente a su pecho, lejos de la cicatriz">
+<rect x="4" y="6" width="142" height="100" rx="10" style="fill:var(--line)"/>
+<rect x="8" y="22" width="26" height="40" rx="9" stroke-width="2" style="fill:var(--surface);stroke:var(--muted)"/>
+<circle cx="24" cy="40" r="10" style="fill:var(--accent)"/>
+<g fill="none" stroke-linecap="round" style="stroke:var(--accent)"><path d="M38 44 L98 44" stroke-width="24"/><path d="M100 48 L120 70" stroke-width="15"/><path d="M122 72 L142 62" stroke-width="12"/></g>
+<path d="M82 52 L98 52" stroke-width="2.5" stroke-dasharray="5 3" style="stroke:var(--surface)"/>
+<ellipse cx="60" cy="70" rx="14" ry="7" stroke-width="2.5" style="fill:var(--accent-soft);stroke:var(--accent)"/>
+<circle cx="42" cy="70" r="8" stroke-width="2.5" style="fill:var(--accent-soft);stroke:var(--accent)"/>
+</svg>
+<span>El bebé frente a su pecho</span></div>
+<div class="pic"><b>Recostada</b>
+<svg viewBox="0 0 150 124" role="img" aria-label="Ella recostada contra el respaldo con el bebé en la parte alta del pecho; la pareja, de pie, le acerca el bebé">
+<line x1="4" y1="120" x2="146" y2="120" stroke-width="3" stroke-linecap="round" style="stroke:var(--line)"/>
+<rect x="52" y="92" width="92" height="12" rx="4" style="fill:var(--line)"/>
+<path d="M128 94 L140 30" fill="none" stroke-width="12" stroke-linecap="round" style="stroke:var(--muted)"/>
+<circle cx="118" cy="22" r="11" style="fill:var(--accent)"/>
+<g fill="none" stroke-linecap="round" style="stroke:var(--accent)"><path d="M104 80 L114 44" stroke-width="26"/><path d="M100 84 L58 84" stroke-width="14"/></g>
+<path d="M96 70 L112 76" stroke-width="2.5" stroke-dasharray="5 3" style="stroke:var(--surface)"/>
+<ellipse cx="100" cy="46" rx="15" ry="7" transform="rotate(-15 100 46)" stroke-width="2.5" style="fill:var(--accent-soft);stroke:var(--accent)"/>
+<circle cx="84" cy="52" r="8" stroke-width="2.5" style="fill:var(--accent-soft);stroke:var(--accent)"/>
+<circle cx="26" cy="20" r="10" stroke-width="2" style="fill:var(--warm-soft);stroke:var(--warm)"/>
+<g fill="none" stroke-linecap="round" style="stroke:var(--warm)"><path d="M26 38 L26 78" stroke-width="22"/><path d="M21 82 L19 116" stroke-width="10"/><path d="M31 82 L33 116" stroke-width="10"/><path d="M34 46 L68 54" stroke-width="8"/></g>
+<circle cx="72" cy="55" r="6" stroke-width="2" style="fill:var(--warm);stroke:var(--surface)"/>
+</svg>
+<span>Tú le acercas el bebé</span></div>
+</div>
+<figcaption>Moverse pronto y pedir ayuda: caminar con alguien al lado y que tú cargues todo lo pesado. Para dar el pecho, las posturas que no apoyan al bebé sobre la herida son las más cómodas, con el bebé lejos de la cicatriz.</figcaption></figure>
 <div class="alarm"><h3>Consultad ese mismo día o id a urgencias si</h3><ul><li>Fiebre de 38 °C o más.</li><li>La herida se pone más roja, hinchada y dolorosa, o sale pus o líquido que huele mal.</li><li>Sangrado vaginal abundante.</li><li>Dolor fuerte en la barriga que va a más.</li><li>Dolor al orinar o pérdidas de orina.</li><li>Tos o falta de aire, o dolor o hinchazón en una pantorrilla.</li></ul></div>
 <h3>Si pensáis en otro embarazo</h3><p>Tras una cesárea se puede intentar un parto vaginal en el siguiente embarazo: según el Colegio Británico de Obstetras, 3 de cada 4 mujeres con una cesárea previa cuyo parto empieza de forma natural dan a luz por vía vaginal. Habladlo con vuestro equipo cuando llegue el momento.</p>
 <p class="role">las primeras semanas haz tú todo lo que implique cargar: el capazo, la silla del coche, la compra y la ropa. Acércale al bebé para las tomas y deja agua y los analgésicos a su alcance.</p>
