@@ -115,8 +115,8 @@ a:focus-visible,button:focus-visible,input:focus-visible,summary:focus-visible{o
 .dos h3{font-size:1rem}
 .yes h3{color:var(--ok)} .no h3{color:var(--alarm)}
 .steps{counter-reset:s;list-style:none;padding:0!important}
-.steps>li{counter-increment:s;display:grid;grid-template-columns:32px 1fr;gap:10px;align-items:start}
-.steps>li::before{content:counter(s);width:28px;height:28px;border-radius:50%;background:var(--accent);color:var(--bg);display:grid;place-items:center;font-weight:700;font-family:var(--display)}
+.steps>li{counter-increment:s;position:relative;padding-left:42px;min-height:30px}
+.steps>li::before{content:counter(s);position:absolute;left:0;top:-1px;width:28px;height:28px;border-radius:50%;background:var(--accent);color:var(--bg);display:grid;place-items:center;font-weight:700;font-family:var(--display)}
 .tbl{overflow-x:auto;border:1px solid var(--line);border-radius:12px;background:var(--surface)}
 table{border-collapse:collapse;width:100%;min-width:460px;font-size:.94rem}
 th,td{text-align:left;padding:10px 12px;border-bottom:1px solid var(--line);vertical-align:top}
@@ -126,8 +126,28 @@ figure{margin:0;background:var(--surface);border:1px solid var(--line);border-ra
 figure svg{width:100%;height:auto;display:block}
 figcaption{font-size:.86rem;color:var(--muted)}
 figure video{width:100%;height:auto;display:block;border-radius:8px;background:var(--line)}
-.svg-txt{fill:var(--ink);font-family:var(--body);font-size:13px}
-.svg-small{fill:var(--muted);font-family:var(--body);font-size:11.5px}
+.rowlab{font-family:var(--display);font-weight:700;font-size:.95rem;margin:0}
+.legend{margin:0;padding-left:1.2em;display:flex;flex-direction:column;gap:4px;font-size:.95rem}
+.pics{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:14px}
+.pics.wide{grid-template-columns:repeat(auto-fit,minmax(240px,1fr))}
+.pic{display:flex;flex-direction:column;gap:6px;text-align:center;min-width:0}
+.pic svg{max-width:150px;margin:0 auto}
+.pics.wide .pic svg{max-width:320px}
+.pic b{font-family:var(--display);font-size:1rem}
+.pic span{font-size:.9rem;color:var(--muted)}
+.lochia{display:grid;grid-template-columns:2fr 3fr 4fr;gap:4px}
+.lochia>div{display:flex;flex-direction:column;gap:6px;min-width:0}
+.lochia i{display:block;height:24px;border-radius:6px}
+.lochia span{font-size:.85rem;line-height:1.35}
+@media (max-width:600px){
+  .tbl{overflow:visible;border:0;background:none;border-radius:0}
+  .tbl table{min-width:0}
+  .tbl thead{display:none}
+  .tbl tr{display:block;background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:6px 0;margin-bottom:10px}
+  .tbl td{display:block;border:0;padding:5px 14px}
+  .tbl td:first-child{font-family:var(--display);font-weight:700;font-size:1.02rem}
+  .tbl td[data-label]::before{content:attr(data-label);display:block;font-family:var(--body);font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--muted)}
+}
 .src{font-size:.88rem;color:var(--muted)}
 .src ul{padding-left:1.2em;margin:4px 0 0}
 .copy{font-family:var(--display);font-weight:700;font-variant-numeric:tabular-nums;user-select:all}
@@ -212,62 +232,52 @@ const STAGES = [
   {id:"casa", label:"Primeras semanas", blocks:["b5","b7","b8","b6","b9"]}
 ];
 
-const SVG_CONTR = `<figure><svg viewBox="0 0 640 210" role="img" aria-labelledby="ctT"><title id="ctT">Contracciones de práctica irregulares frente a contracciones de parto cada vez más seguidas e intensas</title>
-<text x="0" y="18" class="svg-txt" font-weight="700">De práctica</text><line x1="0" y1="78" x2="640" y2="78" style="stroke:var(--line)"/>
-<g style="fill:var(--muted)"><rect x="40" y="52" width="30" height="26" rx="4"/><rect x="170" y="60" width="22" height="18" rx="4"/><rect x="230" y="48" width="34" height="30" rx="4"/><rect x="420" y="62" width="24" height="16" rx="4"/><rect x="560" y="56" width="28" height="22" rx="4"/></g>
-<text x="0" y="118" class="svg-txt" font-weight="700">De parto</text><line x1="0" y1="180" x2="640" y2="180" style="stroke:var(--line)"/>
-<g style="fill:var(--accent)"><rect x="20" y="160" width="26" height="20" rx="4"/><rect x="150" y="155" width="30" height="25" rx="4"/><rect x="260" y="148" width="34" height="32" rx="4"/><rect x="350" y="142" width="38" height="38" rx="4"/><rect x="430" y="136" width="42" height="44" rx="4"/><rect x="505" y="132" width="44" height="48" rx="4"/><rect x="580" y="128" width="46" height="52" rx="4"/></g>
-<text x="0" y="200" class="svg-small">Tiempo →</text><text x="640" y="200" class="svg-small" text-anchor="end">Más seguidas, más largas y más intensas</text></svg>
-<figcaption>Cada bloque es una contracción: el ancho es lo que dura y la altura, lo intensa que es.</figcaption></figure>`;
+const SVG_CONTR = `<figure><p class="rowlab">De práctica</p><svg viewBox="0 40 640 44" role="img" aria-label="Contracciones de práctica: irregulares y sin patrón"><line x1="0" y1="78" x2="640" y2="78" style="stroke:var(--line)"/>
+<g style="fill:var(--muted)"><rect x="40" y="52" width="30" height="26" rx="4"/><rect x="170" y="60" width="22" height="18" rx="4"/><rect x="230" y="48" width="34" height="30" rx="4"/><rect x="420" y="62" width="24" height="16" rx="4"/><rect x="560" y="56" width="28" height="22" rx="4"/></g></svg>
+<p class="rowlab">De parto</p><svg viewBox="0 122 640 62" role="img" aria-label="Contracciones de parto: cada vez más seguidas, largas e intensas"><line x1="0" y1="180" x2="640" y2="180" style="stroke:var(--line)"/>
+<g style="fill:var(--accent)"><rect x="20" y="160" width="26" height="20" rx="4"/><rect x="150" y="155" width="30" height="25" rx="4"/><rect x="260" y="148" width="34" height="32" rx="4"/><rect x="350" y="142" width="38" height="38" rx="4"/><rect x="430" y="136" width="42" height="44" rx="4"/><rect x="505" y="132" width="44" height="48" rx="4"/><rect x="580" y="128" width="46" height="52" rx="4"/></g></svg>
+<figcaption>Tiempo de izquierda a derecha. Cada bloque es una contracción: el ancho es lo que dura y la altura, lo intensa que es. Las de parto llegan cada vez más seguidas, más largas y más intensas.</figcaption></figure>`;
 
-const SVG_CRIB = `<figure><svg viewBox="0 0 640 300" role="img" aria-labelledby="crT"><title id="crT">Cuna segura: bebé boca arriba con saco de dormir, colchón firme y nada más dentro</title>
+const SVG_CRIB = `<figure><svg viewBox="100 60 440 220" role="img" aria-label="Cuna segura: bebé boca arriba con saco de dormir, colchón firme y nada más dentro">
 <g fill="none" stroke-width="3" style="stroke:var(--muted)"><rect x="120" y="70" width="400" height="160" rx="10"/><line x1="120" y1="230" x2="120" y2="270"/><line x1="520" y1="230" x2="520" y2="270"/></g>
 <g stroke-width="2" style="stroke:var(--line)"><line x1="160" y1="70" x2="160" y2="196"/><line x1="200" y1="70" x2="200" y2="196"/><line x1="240" y1="70" x2="240" y2="196"/><line x1="400" y1="70" x2="400" y2="196"/><line x1="440" y1="70" x2="440" y2="196"/><line x1="480" y1="70" x2="480" y2="196"/></g>
 <rect x="128" y="196" width="384" height="26" rx="4" stroke-width="2" style="fill:var(--accent-soft);stroke:var(--accent)"/>
 <ellipse cx="370" cy="182" rx="80" ry="15" style="fill:var(--accent)"/><circle cx="270" cy="178" r="20" stroke-width="2" style="fill:var(--warm-soft);stroke:var(--warm)"/>
-<path d="M262 176 q3 -3 6 0 M274 176 q3 -3 6 0" fill="none" stroke-width="1.6" style="stroke:var(--ink)"/>
-<g class="svg-txt"><text x="270" y="140" text-anchor="middle">Boca arriba</text><text x="370" y="140" text-anchor="middle">Saco de dormir</text><text x="320" y="252" text-anchor="middle">Colchón firme, bien ajustado, solo con sábana bajera</text></g>
-<g class="svg-small"><text x="20" y="40">Nada dentro: ni almohada, ni peluches, ni protectores, ni mantas sueltas</text><text x="20" y="292">Habitación a unos 20–22 °C · sin humo · cuna junto a vuestra cama</text></g></svg>
+<path d="M262 176 q3 -3 6 0 M274 176 q3 -3 6 0" fill="none" stroke-width="1.6" style="stroke:var(--ink)"/></svg>
+<ul class="legend"><li><strong>Boca arriba</strong>, con <strong>saco de dormir</strong> de su talla.</li><li><strong>Colchón firme</strong>, bien ajustado, solo con sábana bajera.</li><li><strong>Nada dentro:</strong> ni almohada, ni peluches, ni protectores, ni mantas sueltas.</li><li>Habitación a unos 20–22 °C, sin humo, cuna junto a vuestra cama.</li></ul>
 <figcaption>Si usáis manta en lugar de saco: los pies del bebé tocando el pie de la cuna y la manta remetida bajo el colchón, nunca por encima de los hombros.</figcaption></figure>`;
 
-const SVG_CHOKE = `<figure><svg viewBox="0 0 640 260" role="img" aria-labelledby="chT"><title id="chT">Maniobras para un lactante atragantado: golpes en la espalda boca abajo sobre el antebrazo y compresiones en el pecho boca arriba</title>
-<text x="160" y="22" class="svg-txt" font-weight="700" text-anchor="middle">1 · Cinco golpes en la espalda</text>
-<path d="M30 190 L290 150" stroke-width="26" stroke-linecap="round" style="stroke:var(--line)"/>
+const SVG_CHOKE = `<figure><div class="pics wide">
+<div class="pic"><b>1 · Cinco golpes en la espalda</b><svg viewBox="20 60 290 150" role="img" aria-label="Bebé boca abajo sobre el antebrazo, golpes entre los omóplatos"><path d="M30 190 L290 150" stroke-width="26" stroke-linecap="round" style="stroke:var(--line)"/>
 <g transform="rotate(-9 160 150)"><ellipse cx="170" cy="140" rx="75" ry="22" style="fill:var(--accent)"/><circle cx="82" cy="152" r="20" stroke-width="2" style="fill:var(--warm-soft);stroke:var(--warm)"/></g>
-<path d="M205 70 L190 112" stroke-width="4" style="stroke:var(--alarm)"/><path d="M182 102 L190 116 L200 104" fill="none" stroke-width="4" style="stroke:var(--alarm)"/>
-<text x="160" y="232" class="svg-small" text-anchor="middle">Boca abajo sobre tu antebrazo, cabeza más baja que el cuerpo,</text>
-<text x="160" y="248" class="svg-small" text-anchor="middle">sujetando la mandíbula. Golpes secos entre los omóplatos.</text>
-<text x="480" y="22" class="svg-txt" font-weight="700" text-anchor="middle">2 · Cinco compresiones en el pecho</text>
-<path d="M350 150 L610 190" stroke-width="26" stroke-linecap="round" style="stroke:var(--line)"/>
+<path d="M205 70 L190 112" stroke-width="5" style="stroke:var(--alarm)"/><path d="M182 102 L190 116 L200 104" fill="none" stroke-width="5" style="stroke:var(--alarm)"/></svg>
+<span>Boca abajo sobre tu antebrazo, cabeza más baja que el cuerpo, sujetando la mandíbula. Golpes secos entre los omóplatos.</span></div>
+<div class="pic"><b>2 · Cinco compresiones en el pecho</b><svg viewBox="330 60 290 150" role="img" aria-label="Bebé boca arriba sobre el otro antebrazo, compresiones con dos dedos"><path d="M350 150 L610 190" stroke-width="26" stroke-linecap="round" style="stroke:var(--line)"/>
 <g transform="rotate(9 480 150)"><ellipse cx="470" cy="140" rx="75" ry="22" style="fill:var(--accent)"/><circle cx="558" cy="152" r="20" stroke-width="2" style="fill:var(--warm-soft);stroke:var(--warm)"/></g>
-<path d="M488 70 L488 112" stroke-width="4" style="stroke:var(--alarm)"/><path d="M479 102 L488 116 L497 102" fill="none" stroke-width="4" style="stroke:var(--alarm)"/>
-<text x="480" y="232" class="svg-small" text-anchor="middle">Boca arriba sobre tu otro antebrazo, cabeza más baja.</text>
-<text x="480" y="248" class="svg-small" text-anchor="middle">Dos dedos en el centro del pecho, justo bajo los pezones.</text></svg>
+<path d="M488 70 L488 112" stroke-width="5" style="stroke:var(--alarm)"/><path d="M479 102 L488 116 L497 102" fill="none" stroke-width="5" style="stroke:var(--alarm)"/></svg>
+<span>Boca arriba sobre tu otro antebrazo, cabeza más baja. Dos dedos en el centro del pecho, justo bajo la línea de los pezones.</span></div></div>
 <figcaption>Alternad 5 y 5 hasta que expulse el objeto o pierda el conocimiento. Esquema orientativo: aprended la técnica en un curso presencial.</figcaption></figure>`;
 
-const SVG_DIAPER = `<figure><svg viewBox="0 0 640 170" role="img" aria-labelledby="dpT"><title id="dpT">Cambio de pañal en cuatro pasos: preparar, abrir y limpiar de delante hacia atrás, pañal limpio debajo, cerrar dejando el cordón fuera</title>
-<g class="svg-txt" text-anchor="middle" font-weight="700"><text x="80" y="20">Prepara</text><text x="240" y="20">Limpia</text><text x="400" y="20">Desliza</text><text x="560" y="20">Cierra</text></g>
-<g stroke-width="2" style="stroke:var(--line);fill:var(--surface)"><rect x="20" y="34" width="120" height="96" rx="10"/><rect x="180" y="34" width="120" height="96" rx="10"/><rect x="340" y="34" width="120" height="96" rx="10"/><rect x="500" y="34" width="120" height="96" rx="10"/></g>
-<g style="fill:var(--accent)"><rect x="36" y="56" width="26" height="40" rx="4"/><rect x="70" y="66" width="22" height="30" rx="4"/><rect x="100" y="60" width="26" height="36" rx="13"/></g>
-<path d="M240 52 L240 112" stroke-width="5" style="stroke:var(--accent)"/><path d="M230 100 L240 116 L250 100" fill="none" stroke-width="5" style="stroke:var(--accent)"/>
-<path d="M360 94 h80 v18 h-80 z" style="fill:var(--accent-soft);stroke:var(--accent)"/><path d="M400 56 L400 88" stroke-width="4" style="stroke:var(--accent)"/><path d="M391 78 L400 92 L409 78" fill="none" stroke-width="4" style="stroke:var(--accent)"/>
-<path d="M520 70 q40 50 80 0 v30 q-40 22 -80 0 z" style="fill:var(--accent-soft);stroke:var(--accent)"/><circle cx="560" cy="60" r="6" style="fill:var(--warm)"/>
-<g class="svg-small" text-anchor="middle"><text x="80" y="150">Todo a mano antes</text><text x="240" y="150">De delante a atrás</text><text x="400" y="150">Levantando el culete</text><text x="560" y="150">Cordón por fuera</text></g></svg>
+const SVG_DIAPER = `<figure><div class="pics" role="img" aria-label="Cambio de pañal en cuatro pasos">
+<div class="pic"><b>Prepara</b><svg viewBox="20 34 120 96" aria-hidden="true"><rect x="20" y="34" width="120" height="96" rx="10" stroke-width="2" style="stroke:var(--line);fill:var(--surface)"/><g style="fill:var(--accent)"><rect x="36" y="56" width="26" height="40" rx="4"/><rect x="70" y="66" width="22" height="30" rx="4"/><rect x="100" y="60" width="26" height="36" rx="13"/></g></svg><span>Todo a mano antes</span></div>
+<div class="pic"><b>Limpia</b><svg viewBox="180 34 120 96" aria-hidden="true"><rect x="180" y="34" width="120" height="96" rx="10" stroke-width="2" style="stroke:var(--line);fill:var(--surface)"/><path d="M240 52 L240 112" stroke-width="5" style="stroke:var(--accent)"/><path d="M230 100 L240 116 L250 100" fill="none" stroke-width="5" style="stroke:var(--accent)"/></svg><span>De delante hacia atrás</span></div>
+<div class="pic"><b>Desliza</b><svg viewBox="340 34 120 96" aria-hidden="true"><rect x="340" y="34" width="120" height="96" rx="10" stroke-width="2" style="stroke:var(--line);fill:var(--surface)"/><path d="M360 94 h80 v18 h-80 z" style="fill:var(--accent-soft);stroke:var(--accent)"/><path d="M400 56 L400 88" stroke-width="4" style="stroke:var(--accent)"/><path d="M391 78 L400 92 L409 78" fill="none" stroke-width="4" style="stroke:var(--accent)"/></svg><span>Mano bajo el culete</span></div>
+<div class="pic"><b>Cierra</b><svg viewBox="500 34 120 96" aria-hidden="true"><rect x="500" y="34" width="120" height="96" rx="10" stroke-width="2" style="stroke:var(--line);fill:var(--surface)"/><path d="M520 70 q40 50 80 0 v30 q-40 22 -80 0 z" style="fill:var(--accent-soft);stroke:var(--accent)"/><circle cx="560" cy="60" r="6" style="fill:var(--warm)"/></svg><span>Cordón por fuera</span></div></div>
 <figcaption>Nunca le dejes solo en el cambiador, ni un segundo: mantén siempre una mano sobre él.</figcaption></figure>`;
 
-const SVG_LOCHIA = `<figure><svg viewBox="0 0 640 110" role="img" aria-labelledby="loT"><title id="loT">Evolución del sangrado posparto: rojo intenso los primeros días, rosado o marrón hasta unas dos semanas, amarillento o blanquecino hasta las 4 a 6 semanas</title>
-<rect x="0" y="30" width="140" height="28" rx="6" fill="#b3362b"/><rect x="140" y="30" width="200" height="28" fill="#c98b84"/><rect x="340" y="30" width="300" height="28" rx="6" fill="#e9dcb8"/>
-<g class="svg-small"><text x="0" y="20">Días 1–4: rojo intenso</text><text x="150" y="20">Hasta ~2 semanas: rosado o marrón</text><text x="350" y="20">Hasta 4–6 semanas: amarillento o blanquecino</text><text x="0" y="86">Cada vez menos cantidad. Puede aumentar un poco al dar el pecho o al levantarse.</text></g></svg>
-<figcaption>Orientativo: cada recuperación tiene su ritmo.</figcaption></figure>`;
+const SVG_LOCHIA = `<figure><div class="lochia" role="img" aria-label="Evolución del sangrado posparto">
+<div><i style="background:#b3362b"></i><span><strong>Días 1–4</strong><br>Rojo intenso</span></div>
+<div><i style="background:#c98b84"></i><span><strong>Hasta ~2 semanas</strong><br>Rosado o marrón</span></div>
+<div><i style="background:#e9dcb8"></i><span><strong>Hasta 4–6 semanas</strong><br>Amarillento o blanquecino</span></div></div>
+<figcaption>Cada vez menos cantidad. Puede aumentar un poco al dar el pecho o al levantarse. Orientativo: cada recuperación tiene su ritmo.</figcaption></figure>`;
 
 const SVG_WAVE = `<figure><svg viewBox="0 0 640 330" role="img" aria-labelledby="wvT"><title id="wvT">Una contracción es como una ola: sube, llega a un pico y baja; después viene una pausa sin dolor</title>
 <line x1="10" y1="230" x2="630" y2="230" style="stroke:var(--line)" stroke-width="2"/>
 <path d="M10 230 C60 230 90 90 160 90 C230 90 260 230 310 230 L420 230 C450 230 470 110 520 110 C570 110 590 230 630 230" fill="none" stroke-width="5" style="stroke:var(--accent)"/>
 <path d="M10 230 C60 230 90 90 160 90 C230 90 260 230 310 230 Z" style="fill:var(--accent-soft)"/>
 <rect x="312" y="216" width="106" height="12" rx="6" style="fill:var(--ok)"/>
-<g style="fill:var(--ink);font-family:var(--body);font-weight:700;font-size:24px"><text x="160" y="36" text-anchor="middle">Pico</text><text x="365" y="200" text-anchor="middle">Pausa</text><text x="20" y="130">Sube</text><text x="254" y="130">Baja</text></g>
-<g style="fill:var(--muted);font-family:var(--body);font-size:19px"><text x="160" y="62" text-anchor="middle">respiración más ligera</text><text x="20" y="154">lenta</text><text x="254" y="154">suelta</text><text x="365" y="262" text-anchor="middle">descansa</text>
-<text x="160" y="262" text-anchor="middle">≈ 1 minuto</text><text x="10" y="318">Tiempo →</text><text x="630" y="318" text-anchor="end">Una cada vez</text></g></svg>
+<g style="fill:var(--ink);font-family:var(--body);font-weight:700;font-size:32px"><text x="160" y="70" text-anchor="middle">Pico</text><text x="365" y="200" text-anchor="middle">Pausa</text><text x="14" y="140">Sube</text><text x="252" y="140">Baja</text></g>
+<g style="fill:var(--muted);font-family:var(--body);font-size:26px"><text x="160" y="270" text-anchor="middle">≈ 1 minuto</text><text x="10" y="318">Tiempo →</text></g></svg>
 <figcaption>Sube: respira lento. Pico: respiración más ligera, sin acelerar. Baja: suelta el aire y afloja. Pausa: no duele, descansa de verdad. A medida que avanza el parto, las contracciones duran más y las pausas se acortan, pero siempre hay pausa.</figcaption></figure>`;
 
 const CHECK = [
@@ -911,6 +921,10 @@ function render(){
   const v = $("#view");
   v.innerHTML = h.startsWith("p-") ? viewLesson(h.slice(2)) : h.startsWith("b-") ? viewBlock(h.slice(2)) : viewHome();
   renderChecklist();
+  v.querySelectorAll(".tbl table").forEach(t=>{
+    const hs=[...t.querySelectorAll("thead th")].map(th=>th.textContent.trim());
+    t.querySelectorAll("tbody tr").forEach(tr=>[...tr.children].forEach((td,i)=>{ if(i>0 && hs[i]) td.dataset.label=hs[i]; }));
+  });
   if(h!==lastRoute){ window.scrollTo(0,0); lastRoute=h; }
 }
 window.addEventListener("hashchange",render);
