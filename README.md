@@ -12,3 +12,5 @@ python3 scripts/build_site.py
 ```
 
 General information only; it does not replace advice from a midwife or paediatrician.
+
+`assets/` holds the self-hosted fonts and PNG app icons the build copies into `docs/`; the build also writes a service worker (`docs/sw.js`) so the installed site works offline.

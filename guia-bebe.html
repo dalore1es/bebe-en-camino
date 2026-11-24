@@ -8,6 +8,7 @@
   --bg:#f3f5f7; --surface:#ffffff; --ink:#1d2433; --muted:#5b6578; --line:#d9dee6;
   --accent:#2f6f8f; --accent-soft:#e3eef4; --warm:#b76a1f; --warm-soft:#fbefe2;
   --alarm:#b3362b; --alarm-soft:#fbe7e4; --ok:#2e7d55; --ok-soft:#e2f2e9;
+  --sos:#b3362b; --on-sos:#ffffff;
   --display:"Bricolage Grotesque","Avenir Next",system-ui,sans-serif;
   --body:"Atkinson Hyperlegible","Segoe UI",system-ui,sans-serif;
 }
@@ -41,10 +42,10 @@ a:focus-visible,button:focus-visible,input:focus-visible,summary:focus-visible{o
 .bar{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--bg);padding-block:8px;border-bottom:1px solid var(--line);display:flex;align-items:center;gap:10px}
 .bar .home{font-family:var(--display);font-weight:700;text-decoration:none;color:var(--ink);font-size:1.05rem}
 .bar .tools{margin-left:auto;display:flex;gap:8px;align-items:center}
-.tool{display:inline-flex;align-items:center;gap:6px;min-height:40px;padding:0 12px;border-radius:999px;border:1px solid var(--line);background:var(--surface);color:var(--ink);text-decoration:none;font-size:.9rem}
+.tool{display:inline-flex;align-items:center;gap:6px;min-height:44px;padding:0 12px;border-radius:999px;border:1px solid var(--line);background:var(--surface);color:var(--ink);text-decoration:none;font-size:.9rem}
 .settings{display:flex;flex-wrap:wrap;gap:10px 18px;align-items:center;margin-bottom:12px;color:var(--ink)}
 .settings label{display:flex;gap:8px;align-items:center;min-height:44px;cursor:pointer}
-.sos{font:inherit;font-size:.9rem;font-weight:700;color:var(--bg);border:0;background:var(--alarm);border-radius:999px;padding:0 16px;min-height:40px;display:inline-flex;align-items:center;text-decoration:none}
+.sos{font:inherit;font-size:.9rem;font-weight:700;color:var(--on-sos);border:0;background:var(--sos);border-radius:999px;padding:0 18px;min-height:44px;display:inline-flex;align-items:center;text-decoration:none}
 .sync::before{content:"";display:inline-block;width:8px;height:8px;border-radius:50%;background:var(--muted);margin-right:6px;vertical-align:1px}
 .sync[data-state="on"]::before{background:var(--ok)}
 
@@ -79,10 +80,10 @@ a:focus-visible,button:focus-visible,input:focus-visible,summary:focus-visible{o
 
 /* Lesson */
 .crumb{font-size:.88rem;color:var(--muted)}
-.crumb a{color:var(--muted)}
+.crumb a{color:var(--muted);display:inline-block;padding:10px 4px;margin:-10px -4px}
 .meta{display:flex;gap:8px;flex-wrap:wrap;align-items:center;font-size:.86rem;color:var(--muted)}
 .prio{display:inline-block;font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em;padding:2px 8px;border-radius:999px}
-.p1{background:var(--alarm-soft);color:var(--alarm)} .p2{background:var(--warm-soft);color:var(--warm)} .p3{background:var(--line);color:var(--muted)}
+.p1{background:var(--accent-soft);color:var(--accent)} .p1::before{content:"★ "} .p2{background:var(--warm-soft);color:var(--warm)} .p3{background:var(--line);color:var(--muted)}
 .body{display:flex;flex-direction:column;gap:16px}
 .body ul,.body ol{margin:0;padding-left:1.25em;display:flex;flex-direction:column;gap:6px}
 .alarm{border:2px solid var(--alarm);border-radius:14px;padding:16px 18px;background:var(--surface);display:flex;flex-direction:column;gap:10px}
@@ -152,7 +153,7 @@ body.hide-sens .sens:not(.revealed) .veil{display:flex;position:absolute;inset:0
 .pager #markBtn{grid-column:1/-1;justify-content:center;min-height:48px;font-size:1rem}
 .pager .nav{display:flex;flex-direction:column;gap:2px;min-height:48px;justify-content:center;border:1px solid var(--line);background:var(--surface);border-radius:12px;padding:8px 12px;text-decoration:none;color:var(--ink);min-width:0}
 .pager .nav small{color:var(--muted);font-size:.78rem}
-.pager .nav span{font-size:.9rem;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.pager .nav span{font-size:.9rem;overflow:hidden;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical}
 .pager .nav.next{text-align:right;grid-column:2}
 
 /* Search, symptom index, SOS */
@@ -178,9 +179,8 @@ body.hide-sens .sens:not(.revealed) .veil{display:flex;position:absolute;inset:0
 .help a.row.urgent{border:2px solid var(--alarm)}
 .help a.row.urgent strong{color:var(--alarm)}
 .calls{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px}
-.calls a{display:flex;flex-direction:column;gap:2px;padding:12px 14px;border-radius:14px;background:var(--alarm);color:var(--bg);text-decoration:none;min-height:64px;justify-content:center}
-.calls a.soft{background:var(--surface);color:var(--ink);border:1px solid var(--line)}
-.calls b{font-family:var(--display);font-size:1.25rem;font-variant-numeric:tabular-nums}
+.calls a{display:flex;flex-direction:column;gap:2px;padding:10px 14px;border-radius:14px;background:var(--surface);color:var(--ink);border:1px solid var(--line);text-decoration:none;min-height:60px;justify-content:center}
+.calls b{font-family:var(--display);font-size:1.2rem;font-variant-numeric:tabular-nums;color:var(--accent)}
 
 /* Breathing pacer */
 .pacer{background:var(--accent-soft);border-radius:14px;padding:20px 16px;display:flex;flex-direction:column;align-items:center;gap:14px}
@@ -736,6 +736,84 @@ footer{font-size:.85rem;color:var(--muted);border-top:1px solid var(--line);padd
 .il-sueno-3-6-saco .arrow svg{transform:none}
 }
 
+
+/* UX round: stage timeline, SOS, lesson tools */
+:root[data-theme="dark"]{--sos:#c9372c}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){--sos:#c9372c}}
+.vh{position:absolute!important;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+h1:focus{outline:none}
+input[type=checkbox]{width:22px;height:22px;accent-color:var(--accent)}
+.lnk{color:var(--accent)}
+footer .lnk{display:inline-block;padding:6px 0}
+.bar{position:sticky}
+.readbar{position:absolute;left:0;right:0;bottom:-1px;height:3px;background:transparent}
+.readbar i{display:block;height:100%;width:0;background:var(--accent);border-radius:0 3px 3px 0}
+.tl-box{display:flex;flex-direction:column;gap:6px}
+.tl{display:grid;grid-template-columns:repeat(7,minmax(min-content,1fr));row-gap:2px;padding:0 3px}
+.band{font-size:13px;font-weight:700;color:var(--muted);text-align:center;border-bottom:2px solid var(--line);padding-bottom:2px;margin:0 5px}
+.step{font:inherit;position:relative;background:none;border:0;border-radius:14px;color:var(--muted);padding:6px 3px 6px;display:flex;flex-direction:column;align-items:center;gap:4px;cursor:pointer;min-width:44px;min-height:44px}
+.step svg{width:34px;height:34px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.step::before{content:"";position:absolute;left:0;right:0;top:49px;height:2px;background:var(--line)}
+.step.first::before{left:50%} .step.last::before{right:50%}
+.step.past::before{background:var(--ok)}
+.step.cur::before{background:linear-gradient(90deg,var(--ok) 50%,var(--line) 50%)}
+.step.cur.first::before{background:var(--line)}
+.step .dot{position:relative;z-index:1;width:12px;height:12px;border-radius:50%;border:2px solid var(--muted);background:var(--surface)}
+.step.past{color:var(--ink)}
+.step.past .dot{background:var(--ok);border-color:var(--ok)}
+.step.cur{color:var(--accent);background:var(--accent-soft);outline:2px solid var(--accent);outline-offset:-2px}
+.step.cur .dot{width:16px;height:16px;margin:-2px 0;border:3px solid var(--accent);background:var(--surface)}
+.step .tick{font-size:13px;line-height:1.2;text-align:center;color:var(--ink);white-space:nowrap;display:flex;flex-direction:column}
+.step .tick small{font-size:13px;color:var(--ink)}
+.step.cur .tick{font-weight:700}
+.step:hover{background:var(--accent-soft)}
+.here{font-size:.95rem}
+.step .sh{display:none}
+@media (max-width:350px){.step{padding:6px 0;min-width:40px}.step .lg{display:none}.step .sh{display:inline}.band{margin:0 2px}.tl-box .band{font-size:13px}}
+.here strong{font-family:var(--display)}
+.next .after{font-size:.92rem}
+.stage-prog{display:flex;flex-direction:column;gap:6px}
+.count{font-size:.86rem;color:var(--muted);margin-top:auto}
+details.all{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:4px 16px}
+details.all>summary,details.toc>summary,details.srcbox>summary{cursor:pointer;min-height:44px;display:flex;align-items:center;font-family:var(--display);font-weight:700}
+details.all[open]{padding-bottom:16px}
+details.all .blocks{margin-top:8px}
+.srclist{display:flex;flex-direction:column;gap:10px;padding-left:1.2em;margin:0}
+.srclist a{display:inline-block;padding:4px 0}
+.call112{display:flex;align-items:center;gap:14px;min-height:76px;padding:12px 18px;border-radius:16px;background:var(--sos);color:var(--on-sos);text-decoration:none}
+.call112 b{display:block;font-family:var(--display);font-size:1.5rem}
+.call112 small{font-size:.92rem}
+.lead.strong{color:var(--ink)}
+.utag{display:inline-block;font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em;padding:1px 7px;border-radius:999px;background:var(--sos);color:var(--on-sos);margin-right:6px;vertical-align:2px}
+.help a.row .utag{align-self:flex-start;margin-bottom:2px}
+.sym a.urgent::before{content:"!";display:inline-grid;place-items:center;width:18px;height:18px;border-radius:50%;background:var(--sos);color:var(--on-sos);font-size:.75rem;font-weight:700;margin-right:8px;flex:0 0 auto}
+.results .sitrow{padding:10px 16px;display:flex;flex-direction:column;gap:8px}
+.results li.urgent a{border-left:4px solid var(--sos)}
+.search{scroll-margin-top:64px}
+.done-tag{color:var(--ok);font-weight:700}
+.now{border:2px solid var(--accent);background:var(--accent-soft);border-radius:14px;padding:14px 16px;display:flex;flex-direction:column;gap:8px}
+.now>h3{color:var(--accent)}
+.body h3{scroll-margin-top:72px}
+details.toc{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:2px 14px}
+details.toc[open]{padding-bottom:10px}
+details.toc ol{margin:0;padding-left:1.3em;display:flex;flex-direction:column}
+details.toc a{display:block;padding:7px 0;color:var(--ink);text-decoration:none}
+details.toc li.urgent a{color:var(--alarm);font-weight:700}
+details.srcbox{border-top:1px solid var(--line);padding-top:4px}
+details.srcbox .src{margin-top:4px}
+a.tel{font-weight:700;color:var(--accent);text-decoration:underline;text-underline-offset:3px;white-space:nowrap;padding:2px 0}
+a.tel::before{content:"✆ ";text-decoration:none;display:inline-block;margin-right:1px}
+.copy a.tel{color:inherit}
+a.xref{color:var(--accent);text-decoration:underline;text-underline-offset:3px}
+.backref{align-self:flex-start;display:inline-flex;align-items:center;min-height:44px;padding:8px 14px;border-radius:999px;border:1px solid var(--line);background:var(--surface);color:var(--ink);text-decoration:none;font-size:.92rem}
+.pager .nav.rec{grid-column:1/-1;border-color:var(--accent);background:var(--accent-soft)}
+.opt .mk{font-weight:700}
+.opt.right .mk{color:var(--ok)} .opt.wrong .mk{color:var(--alarm)}
+.lnkbtn{font:inherit;background:none;border:0;color:var(--accent);text-decoration:underline;cursor:pointer;padding:10px 4px;min-height:44px}
+.qfb{display:block}
+.il-mastitis .il-mastitis-steps li{border-left-width:3px}
+.il-mastitis .il-mastitis-steps li.lv2{border-left-width:7px}
+.il-mastitis .il-mastitis-steps li.lv3{border-left-width:11px;border-left-style:double}
 </style>
 
 <div class="wrap">
@@ -745,9 +823,10 @@ footer{font-size:.85rem;color:var(--muted);border-top:1px solid var(--line);padd
       <a class="tool" href="#buscar" aria-label="Buscar"><svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.5" fill="none" stroke="currentColor" stroke-width="2.4"/><path d="M15.5 15.5 L21 21" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/></svg>Buscar</a>
       <a class="sos" href="#ayuda">SOS</a>
     </div>
+    <div class="readbar" id="readbar" hidden><i></i></div>
   </div>
   <main id="view" class="stack" tabindex="-1"></main>
-  <footer><div class="settings"><label for="sensToggle"><input type="checkbox" id="sensToggle" checked> Ocultar contenido delicado</label><span class="sync" id="sync" data-state="off">Progreso en este dispositivo</span></div>Curso informativo general, sin datos personales. No sustituye a vuestra matrona ni a vuestro pediatra: ante cualquier duda concreta, preguntadles a ellos. Ayudas, plazos y teléfonos revisados en noviembre de 2026: confirmadlos antes de cada trámite.</footer>
+  <footer><div class="settings"><label for="sensToggle"><input type="checkbox" id="sensToggle" checked> Ocultar contenido delicado</label><span class="sync" id="sync" data-state="off">Progreso en este dispositivo</span></div><a class="lnk" href="#fuentes">Fuentes y vídeos</a>. Curso informativo general, sin datos personales. No sustituye a vuestra matrona ni a vuestro pediatra: ante cualquier duda concreta, preguntadles a ellos. Ayudas, plazos y teléfonos revisados en noviembre de 2026: confirmadlos antes de cada trámite.</footer>
 </div>
 
 <script>
@@ -766,13 +845,13 @@ const BLOCKS = [
 ];
 
 const STAGES = [
-  {id:"s30", label:"Semanas 30–36", blocks:["b1","b9","b6"]},
-  {id:"s37", label:"Semanas 37–40+", blocks:["b2","b3","b1"]},
-  {id:"parto", label:"Parto", blocks:["b3","b2"]},
-  {id:"hospital", label:"Días en el hospital", blocks:["b4","b5","b7","b8","b9"]},
-  {id:"casa", label:"Primeras semanas", blocks:["b5","b7","b8","b6","b9"]},
-  {id:"meses", label:"1–3 meses", blocks:["b5","b6","b8","b9"]},
-  {id:"meses6", label:"3–6 meses", blocks:["b10","b5","b6","b8"]}
+  {id:"s30", label:"Semanas 30–36", name:"Embarazo, semanas 30 a 36", tick:"30–36", sub:"sem.", blocks:["b1","b9","b6"]},
+  {id:"s37", label:"Semanas 37–40+", name:"Embarazo, semana 37 hasta el parto", tick:"37–40+", sub:"sem.", blocks:["b2","b3","b1"]},
+  {id:"parto", label:"Parto", name:"El parto", tick:"Parto", blocks:["b3","b2"]},
+  {id:"hospital", label:"Días en el hospital", name:"Días en el hospital", tick:'<span class="lg">Hospital</span><span class="sh">Hosp.</span>', blocks:["b4","b5","b7","b8","b9"]},
+  {id:"casa", label:"Primeras semanas", name:"Recién nacido: primeras semanas en casa", tick:"0–1", sub:"mes", blocks:["b5","b7","b8","b6","b9"]},
+  {id:"meses", label:"1–3 meses", name:"Bebé de 1 a 3 meses", tick:"1–3", sub:"meses", blocks:["b5","b6","b8","b9"]},
+  {id:"meses6", label:"3–6 meses", name:"Bebé de 3 a 6 meses", tick:"3–6", sub:"meses", blocks:["b10","b5","b6","b8"]}
 ];
 
 const SVG_CONTR = `<figure><p class="rowlab">De práctica</p><svg viewBox="0 40 640 44" role="img" aria-label="Contracciones de práctica: irregulares y sin patrón"><line x1="0" y1="78" x2="640" y2="78" style="stroke:var(--line)"/>
@@ -1323,6 +1402,7 @@ P("miedo-parto","b1","Miedo al parto y emociones al final del embarazo",5,"p2",`
 
 /* Block 2 */
 P("movimientos","b2","Los movimientos del bebé al final del embarazo",4,"p1",`
+<div class="now"><h3>Qué hacer ahora</h3><ol class="steps"><li>Si notáis que se mueve menos o distinto, que ella se tumbe <strong>de lado</strong>, tranquila, unos <strong>30 minutos</strong> atenta a él.</li><li>Si sigue moviéndose menos o distinto, <strong>id a urgencias de maternidad</strong>, a cualquier hora.</li><li>Id directamente, sin esperar, si además hay sangrado, pérdida de líquido o dolor de barriga intenso y continuo, o si ya habíais consultado por lo mismo.</li></ol><p>Si dudáis, llamad a urgencias de maternidad del Gregorio Marañón: 91 529 01 22.</p></div>
 <p class="lead">Los movimientos del bebé son una de las mejores señales de que está bien. Al final del embarazo no tienen por qué disminuir: lo que cambia es cómo se notan. Lo importante no es contar patadas, sino conocer el patrón de vuestro bebé y actuar en cuanto cambie.</p>
 <h3>Lo que es normal</h3>
 <ul><li>Los primeros movimientos se notan entre las semanas 16 y 24; en un primer embarazo, a menudo pasada la semana 20.</li>
@@ -1400,6 +1480,7 @@ P("cuando-ir","b2","Cuándo salir hacia el hospital",3,"p1",`
 <p class="role">mientras esperáis en casa, ayúdala a moverse, a ducharse con agua caliente o a apoyarse en la pelota. Ten el coche y la bolsa preparados.</p>`);
 
 P("parto-rapido","b2","Si va muy rápido: el trayecto, el 112 y si nace antes de llegar",5,"p1",`
+<div class="now"><h3>Qué hacer ahora</h3><ul><li>Ganas fuertes e incontrolables de empujar, se ve la cabeza o el cordón, o sangra mucho: <strong>parad en un sitio seguro y llamad al 112</strong> con el manos libres.</li><li>Si nace antes de que llegue la ayuda: el bebé sobre el pecho de ella, seco y tapado. El cordón no se toca.</li></ul></div>
 <p class="lead">En un primer parto suele haber tiempo de sobra para llegar al hospital. Aun así, a veces avanza muy deprisa: en 2023 el SUMMA 112 atendió en la Comunidad de Madrid casi 600 llamadas por partos en curso o inminentes. Tenerlo pensado de antemano es lo que permite mantener la calma si os toca.</p>
 <h3>Antes del día: el trayecto</h3>
 <ul><li>Calculad cuánto tardáis en llegar a la entrada de urgencias de maternidad (calle O'Donnell, 50) <strong>de noche y en hora punta</strong>. Si vivís lejos o el tráfico es imprevisible, salid un poco antes de lo que marca la píldora "Cuándo salir hacia el hospital".</li>
@@ -3111,6 +3192,7 @@ P("regurgitaciones","b5","Regurgitaciones y vómitos: qué es normal",5,"p1",`
 <p class="src">Fuentes: AEP En Familia, Reflujo gastroesofágico en bebés y Enfermedad por reflujo gastroesofágico; SEGHNP, Protocolo de vómitos y reflujo gastroesofágico (guía conjunta Primaria-Especializada, 2012); NHS, Reflux in babies; AEP En Familia, Lactancia materna: ¿el bebé se está alimentando bien?; NHS, Vomiting blood; Safer Care Victoria, Vomiting in neonates.</p>`);
 
 P("atraganta-leche","b5","Se atraganta con la leche: chorro fuerte, tos y pausas en la toma",5,"p1",`
+<div class="now"><h3>Qué hacer ahora</h3><ol class="steps"><li>Si tose con la leche: <strong>parad la toma, incorporadle y dejad que tosa</strong>. No le deis palmadas fuertes ni le metáis el dedo en la boca mientras tose bien.</li><li>Cuando respire tranquilo, seguid la toma más despacio.</li><li>Si <strong>no puede toser, llorar ni respirar</strong>, o se queda azulado o gris: 112 y la maniobra de la píldora "Atragantamiento del bebé".</li></ol></div>
 <p class="lead">Que un bebé tosa, se aparte o "se ahogue" un momento con la leche es frecuente (más de lo que parece), sobre todo las primeras semanas y en bebés que maman con mucha ansia. Casi siempre es que la leche le llega más deprisa de lo que sabe tragar. Él mismo lo resuelve tosiendo, y vosotros podéis ayudarle frenando el chorro.</p>
 <h3>Por qué pasa</h3>
 <ul><li><strong>Con pecho:</strong> al empezar la toma, la leche sale de golpe (es el reflejo de eyección, la "bajada"). A veces es tan fuerte que el bebé tose y farfulla. Pasa más si hay mucha producción, algo habitual las primeras semanas mientras el pecho se ajusta a lo que él necesita.</li>
@@ -3278,6 +3360,7 @@ P("bultos","b5","Bultos en el ombligo, la ingle y el escroto",5,"p1",`
 <div class="remember"><ul><li>Bulto blando en el ombligo: casi siempre se cierra solo. Nada de monedas ni fajas.</li><li>Bulto en la ingle: no se cierra solo. Al pediatra pronto, aunque no le moleste.</li><li>Duro, doloroso, de otro color o que no se va al calmarse: a urgencias.</li></ul></div>
 <p class="src">Fuentes: AEP En Familia, Hernia inguinal, Hernia umbilical y Criptorquidia; AEPap, Guía de Algoritmos en Pediatría de Atención Primaria, Criptorquidia en pediatría; AAP HealthyChildren, Hernia inguinal en bebés y niños e Hidrocele comunicante; NHS, Umbilical hernia y Undescended testicles; Manual MSD (versión para el público), Hernia umbilical en niños.</p>`);
 P("mocos","b5","Mocos, lavados nasales y bronquiolitis",7,"p1",`
+<div class="now"><h3>Qué hacer ahora</h3><p>Si le cuesta respirar:</p><ul><li><strong>112</strong> si hace pausas al respirar, tiene los labios o la cara azulados o grises, se le hunden mucho las costillas o está flojo y no reacciona.</li><li><strong>Urgencias</strong> si respira cada vez peor o más deprisa, tiene menos de 3 meses y 38 °C o más, rechaza las tomas o moja muchos menos pañales.</li></ul></div>
 <p class="lead">Los bebés respiran casi solo por la nariz y aún no saben sonarse, así que unos pocos mocos les molestan mucho, sobre todo al comer y al dormir. La mayoría de los catarros se pasan en casa. Lo importante es saber limpiarle la nariz y vigilar cómo respira.</p>
 ${video("nasal","Vídeo de 1 minuto: cómo hacerle un lavado nasal con suero.")}
 <h3>Lo que es normal</h3>
@@ -3386,9 +3469,9 @@ P("percentiles","b5","Peso, talla y percentiles: cómo leerlos sin agobiarse",5,
 
 /* Block 6 */
 P("atragantamiento","b6","Atragantamiento del bebé (menor de 1 año)",6,"p1",`
+<div class="alarm"><h3>Si no puede toser, llorar ni respirar</h3><ol class="steps"><li>Pide ayuda: que alguien llame al <span class="copy">112</span>, o llama tú con el altavoz.</li><li><strong>Cinco golpes en la espalda:</strong> boca abajo sobre tu antebrazo, apoyado en tu muslo, con la cabeza más baja que el cuerpo y sujetando la mandíbula (sin tapar la boca). Golpes secos con el talón de la mano entre los omóplatos.</li><li><strong>Cinco compresiones en el pecho:</strong> dale la vuelta boca arriba sobre el otro antebrazo, cabeza más baja. Con dos dedos en el centro del pecho, justo bajo la línea de los pezones, empuja hacia dentro con firmeza.</li><li>Alterna 5 golpes y 5 compresiones hasta que expulse el objeto o pierda el conocimiento.</li><li>Si pierde el conocimiento: túmbale boca arriba en una superficie firme y empieza la reanimación (RCP). El 112 te guiará por teléfono.</li></ol></div>
 <div class="alarm"><h3>Si tose con fuerza o llora</h3><p>Déjale toser: es la mejor forma de expulsar lo que sea. No le golpees ni metas los dedos en la boca. Vigílale.</p></div>
 ${SVG_CHOKE}
-<div class="alarm"><h3>Si no puede toser, llorar ni respirar</h3><ol class="steps"><li>Pide ayuda: que alguien llame al <span class="copy">112</span>, o llama tú con el altavoz.</li><li><strong>Cinco golpes en la espalda:</strong> boca abajo sobre tu antebrazo, apoyado en tu muslo, con la cabeza más baja que el cuerpo y sujetando la mandíbula (sin tapar la boca). Golpes secos con el talón de la mano entre los omóplatos.</li><li><strong>Cinco compresiones en el pecho:</strong> dale la vuelta boca arriba sobre el otro antebrazo, cabeza más baja. Con dos dedos en el centro del pecho, justo bajo la línea de los pezones, empuja hacia dentro con firmeza.</li><li>Alterna 5 golpes y 5 compresiones hasta que expulse el objeto o pierda el conocimiento.</li><li>Si pierde el conocimiento: túmbale boca arriba en una superficie firme y empieza la reanimación (RCP). El 112 te guiará por teléfono.</li></ol></div>
 <div class="dos"><div class="no"><h3>No hagas</h3><ul><li>Barrido a ciegas con el dedo: puede empujar el objeto más dentro. Sácalo solo si lo ves claramente.</li><li>Ponerle cabeza abajo sujetándole por los pies.</li><li>La maniobra de Heimlich de adultos (presión en el abdomen) en un bebé.</li></ul></div></div>
 <div class="practice"><p>Lo más útil es hacer un <strong>curso presencial de primeros auxilios pediátricos</strong> antes del parto, con muñeco, para practicar las maniobras y la RCP. Suelen organizarlos Cruz Roja, centros de salud y hospitales; preguntad a vuestra matrona. Hacedlo los dos.</p><p>Para repasar en casa: la app gratuita <strong>SOS Respira</strong> y el tríptico de atragantamiento en lactantes de Fundación Mapfre (enlace en Fuentes y vídeos, en la portada).</p></div>`);
 
@@ -3571,6 +3654,7 @@ P("mascotas","b6","Perro o gato en casa con un recién nacido",5,"p2",`
 <div class="remember"><ul><li>Bebé y animal nunca solos juntos, por bueno que sea.</li><li>El gato, fuera de la habitación donde duerme el bebé y nunca en la cuna o el carrito.</li><li>Un mordisco que rompe la piel lo ve un médico ese mismo día.</li></ul></div>
 <p class="src">Fuentes: NHS, Animal and human bites; NHS Health for Under 5s, Things to think about if you have pets; NHS Cambridgeshire and Peterborough, Staying safe around pets; NHS Cardiff and Vale, Your new baby and your dog; NHS, Why should I not change cat litter during pregnancy?; NHS 111 Wales, Toxoplasmosis; AAP HealthyChildren, Before choosing a pet; CDC, Healthy pets; Pregnancy, Birth and Baby (servicio público de salud de Australia), Getting your pets ready for baby.</p>`);
 P("caidas-golpes","b6","Caídas y golpes en la cabeza",5,"p1",`
+<div class="now"><h3>Qué hacer ahora</h3><ol class="steps"><li>Cogedle, calmadle y mirad si responde, si llora con fuerza y si respira con normalidad.</li><li><strong>112</strong> si ha perdido el conocimiento aunque sea un momento, tiene una convulsión, no respira con normalidad o le sale sangre o líquido claro por la nariz o los oídos.</li><li><strong>Urgencias de pediatría</strong> si tiene menos de 3 meses, o menos de 1 año y le ha salido un chichón, un moratón o una herida en la cabeza, o si notáis alguna señal de la lista de abajo.</li></ol></div>
 <p class="lead">Casi todos los bebés se caen o se dan algún golpe en la cabeza alguna vez, aunque se les cuide muy bien: un giro inesperado en el cambiador, un resbalón en brazos, el borde de la cama. <strong>No es culpa de nadie.</strong> La mayoría de los golpes en la cabeza son leves y se curan solos. Lo importante es saber qué mirar y cuándo hay que ir.</p>
 <div class="callout ok"><strong>Buena señal:</strong> llora enseguida, se calma en brazos en unos minutos, mama o toma el biberón como siempre y se comporta como de costumbre. Un chichón sin más suele ser lo habitual tras un golpe leve (aun así, con menos de 1 año, que le vean: mirad la lista de abajo).</div>
 <h3>Justo después del golpe</h3>
@@ -3587,6 +3671,7 @@ P("caidas-golpes","b6","Caídas y golpes en la cabeza",5,"p1",`
 <p class="src">Fuentes: Sociedad Española de Urgencias de Pediatría (SEUP), hoja para padres sobre traumatismo craneal; NHS, golpes en la cabeza y conmociones (Head injury and concussion, revisada en mayo de 2025); NHS, lesiones en los ojos.</p>`);
 
 P("quemaduras","b6","Quemaduras: qué hacer en el momento",5,"p1",`
+<div class="now"><h3>Qué hacer ahora</h3><ol class="steps"><li>Apartadle del calor y quitadle la ropa mojada de líquido caliente (lo que esté pegado, no).</li><li><strong>Agua del grifo, fresca o templada, 20 minutos</strong> sobre la zona. Nunca hielo.</li><li>El resto del cuerpo, abrigado. Tapad la quemadura con film posado o una gasa limpia suelta.</li><li>Que le vea un médico. Si la quemadura es grande, llamad primero al 112.</li></ol></div>
 <p class="lead">Un café que se vuelca, el agua del baño más caliente de lo que parecía, un biberón que no habéis probado. En los bebés casi todas las quemaduras son <strong>escaldaduras</strong>: líquidos calientes. Su piel es muy fina y se quema antes que la de un adulto. Lo que hagáis en los primeros minutos cuenta mucho: <strong>agua del grifo durante 20 minutos</strong>, abrigarle y que le vea un médico.</p>
 <figure class="il-quemaduras">
 <p class="rowlab">Los primeros minutos</p>
@@ -3965,6 +4050,7 @@ P("lactancia-ayuda","b7","Cuando la lactancia cuesta: dónde pedir ayuda y decid
 <p class="src">Fuentes: NHS, Stopping breastfeeding y mixed feeding; IHAN, Fármacos y lactancia; Comunidad de Madrid, responsables de lactancia en los centros de salud.</p>`);
 P("mastitis","b7","Pecho congestionado, bulto o mastitis: qué hacer",6,"p1",`
 <p class="lead">Un pecho duro, un bulto que duele o una zona roja con fiebre asustan, pero casi siempre se resuelven en casa en uno o dos días, sin dejar el pecho. Hoy se sabe que no son problemas distintos sino escalones de una misma inflamación. Cuanto antes se cuida bien, menos sube. Y cuidarlo bien es más sencillo de lo que se suele decir: frío, calma y tomas normales.</p>
+${video("mastitis","Pecho duro, bulto o mastitis: qué hacer en cada escalón y cuándo consultar (1 minuto).")}
 <div class="callout info"><strong>Lo que ha cambiado.</strong> Durante años se aconsejó calor, masaje fuerte para "deshacer el tapón" y vaciar el pecho al máximo. La guía de la Academy of Breastfeeding Medicine (2022) explica que eso inflama más: no hay un tapón que sacar, sino tejido hinchado. Algunas guías todavía mencionan una ducha templada antes de la toma; si a ella le alivia un momento, no pasa nada, pero no cura y el calor seguido puede hinchar más.</div>
 <figure class="il-mastitis">
 <p class="rowlab">Los escalones, de menos a más</p>
@@ -4756,97 +4842,173 @@ let db = null, progressRef = null;
 
 const byBlock = b => L.filter(l=>l.b===b);
 const blockOf = id => BLOCKS.find(b=>b.id===id);
-const pct = list => list.length ? Math.round(100*list.filter(l=>progress[l.id]).length/list.length) : 0;
+const lessonOf = id => L.find(l=>l.id===id);
+const curStage = () => STAGES.find(x=>x.id===stage)||STAGES[0];
+const doneIn = list => list.filter(l=>progress[l.id]).length;
+const pct = list => list.length ? Math.round(100*doneIn(list)/list.length) : 0;
 const prioLabel = {p1:"Imprescindible",p2:"Conviene",p3:"Si da tiempo"};
-const meter = (list) => `<div class="overall"><div class="meter"><i style="width:${pct(list)}%"></i></div><span>${list.filter(l=>progress[l.id]).length}/${list.length}</span></div>`;
+const meter = (list) => `<div class="overall"><div class="meter"><i style="width:${pct(list)}%"></i></div><span>${doneIn(list)} de ${list.length}</span></div>`;
+/* Course order: block by block, lessons in their block order */
+const SEQ = BLOCKS.flatMap(b=>byBlock(b.id));
+const stagePlan = () => curStage().blocks.flatMap(byBlock);
+/* Recommended next lesson for the current stage: essentials first. Used by the home card and the lesson pager, so both agree. */
+function nextLesson(skip){
+  const ok = l => !progress[l.id] && l.id!==skip;
+  const ordered = stagePlan();
+  return ordered.find(l=>ok(l) && l.prio==="p1") || ordered.find(ok) || SEQ.find(ok);
+}
 
-function nextLesson(){
-  const s = STAGES.find(x=>x.id===stage)||STAGES[0];
-  const ordered = s.blocks.flatMap(byBlock);
-  return ordered.find(l=>!progress[l.id] && l.prio==="p1") || ordered.find(l=>!progress[l.id]) || L.find(l=>!progress[l.id]);
+/* ---------- Stage timeline ---------- */
+const STAGE_ICONS = {
+  s30:`<circle cx="14.5" cy="5.5" r="3.4"/><path d="M13 10.5C12 15 12 20 13 24.5V30"/><path d="M16 10.5C16 14 16.4 15.6 17.2 16.6C20.6 18.4 20.4 22 16.8 23.4V30"/><path d="M14.5 12.5C14.7 15.4 15.6 17.2 17.6 17.8"/>`,
+  s37:`<circle cx="12" cy="5.5" r="3.4"/><path d="M10.5 10.5C9.4 15 9.4 21 10.5 25V30"/><path d="M13.5 10.5C13.5 13.5 14 15 15.5 16C24.5 17.5 25.5 26 15 26.2V30"/><path d="M12 12.5C12.3 15.6 14 18 18.5 18.6"/>`,
+  parto:`<path d="M6 28V11h20v17"/><path d="M3 28h26"/><path d="M10 11V6h12v5"/><path d="M16 14v7M12.5 17.5h7"/><path d="M13.5 28v-4h5v4"/>`,
+  hospital:`<path d="M5 15h22l-2.5 8h-17z"/><path d="M9 23l-2 6M23 23l2 6"/><circle cx="11" cy="11.5" r="2.6"/><path d="M14.5 13.5c3-1.5 6-1.5 8.5 0"/>`,
+  casa:`<circle cx="16" cy="7" r="3.6"/><path d="M10 21c0-6 2.5-10 6-10s6 4 6 10c0 4-2.5 7-6 7s-6-3-6-7z"/><path d="M10.5 17.5c3.5 2.5 7.5 2.5 11 0"/>`,
+  meses:`<circle cx="8" cy="19.5" r="4"/><path d="M12 17h7.5a3.25 3.25 0 0 1 0 6.5H12"/><path d="M15.5 17C15 13.5 16 11.5 18 10.5"/><path d="M21.5 17.5C23.5 16.5 24.5 14.5 25 12M23 21.5C25 21.5 26.8 20 27.8 18"/><path d="M3 27h26"/>`,
+  meses6:`<circle cx="13" cy="7" r="4.6"/><path d="M8.5 24.5C8.5 18 10.5 13.5 13 13.5S17.5 18 17.5 24.5C17.5 26 15.5 27 13 27S8.5 26 8.5 24.5Z"/><path d="M16.8 17.5L21 18.5"/><path d="M21 18.5L23 15.2"/><circle cx="24.3" cy="12.8" r="2.5"/>`
+};
+function timeline(){
+  const cur = STAGES.findIndex(x=>x.id===stage);
+  const bands = [["Embarazo",1,3],["Nacimiento",3,5],["Bebé",5,8]];
+  return `<section class="tl-box" aria-labelledby="tlH"><h2 id="tlH" class="eyebrow">¿Dónde estáis?</h2>
+  <div class="tl" role="group" aria-labelledby="tlH">${
+    bands.map(([t,a,b])=>`<span class="band" style="grid-column:${a}/${b}" aria-hidden="true">${t}</span>`).join("")}${
+    STAGES.map((x,i)=>`<button type="button" class="step ${i<cur?"past":i===cur?"cur":"todo"}${i===0?" first":""}${i===STAGES.length-1?" last":""}" data-stage="${x.id}" aria-pressed="${i===cur}" aria-label="${x.name}"><svg viewBox="0 0 32 32" aria-hidden="true">${STAGE_ICONS[x.id]}</svg><span class="dot" aria-hidden="true"></span><span class="tick" aria-hidden="true">${x.tick}<small>${x.sub||"&nbsp;"}</small></span></button>`).join("")}</div>
+  <p class="here" id="here" aria-live="polite">Estáis aquí: <strong>${STAGES[cur].name}</strong></p></section>`;
 }
 
 /* ---------- Views ---------- */
-const VIDEOS = [["contracciones","contracciones","Cómo son las contracciones"],["respiracion","respiracion","Cómo respirar en el parto"],["silla-coche-bebe","silla","Silla del coche"],["agarre","agarre","Agarre al pecho"],["panal","panal","Cambio de pañal"],["gases","gases","Sacar los gases"],["mocos","nasal","Lavado nasal"]];
+const VIDEOS = [["contracciones","contracciones","Cómo son las contracciones"],["respiracion","respiracion","Cómo respirar en el parto"],["silla-coche-bebe","silla","Silla del coche"],["agarre","agarre","Agarre al pecho"],["panal","panal","Cambio de pañal"],["gases","gases","Sacar los gases"],["mocos","nasal","Lavado nasal"],["mastitis","mastitis","Pecho duro o mastitis"]];
+const blockCard = (b, tag) => { const ls = byBlock(b.id), d = doneIn(ls);
+  return `<a class="block ${tag?"rec":""}" href="#b-${b.id}"><span class="num">Bloque ${b.n}${tag?`<span class="tag">${tag}</span>`:""}</span><h3>${b.title}</h3><p>${b.sub}</p>${d?meter(ls):`<span class="count">${ls.length} píldoras</span>`}</a>`; };
+function resumeInfo(){
+  const r = store.get("last",null);
+  if(!r || !lessonOf(r.id) || progress[r.id] || !(r.r>0.08 && r.r<0.92)) return null;
+  return r;
+}
 function viewHome(){
-  const s = STAGES.find(x=>x.id===stage)||STAGES[0];
-  const nx = nextLesson();
-  return `<header class="stack"><span class="eyebrow">Curso para los dos · ${L.length} píldoras de 3 a 7 minutos</span><h1>Bebé en Camino</h1>
-  <p class="lead">Dos formas de usarlo: seguir el curso a vuestro ritmo, píldora a píldora, o buscar una duda concreta cuando surja.</p></header>
-  <div class="stack"><span class="eyebrow">¿Dónde estáis?</span><div class="chips" role="group" aria-label="Etapa">${
-    STAGES.map(x=>`<button class="chip" type="button" id="chip-${x.id}" data-stage="${x.id}" aria-pressed="${x.id===stage}">${x.label}</button>`).join("")}</div></div>
-  ${nx?`<section class="next"><span class="eyebrow">Siguiente píldora · ${blockOf(nx.b).title}</span><h2>${nx.title}</h2>
-    <div class="meta"><span class="prio ${nx.prio}">${prioLabel[nx.prio]}</span><span>${nx.min} min</span></div>
-    <a class="btn primary go" href="#p-${nx.id}">Empezar</a></section>`
-   :`<section class="next"><h2>¡Curso completado!</h2><p>Podéis repasar cualquier píldora cuando queráis.</p></section>`}
+  const s = curStage();
+  const plan = stagePlan(), pd = doneIn(plan);
+  const nx = nextLesson(), rs = resumeInfo();
+  const firstVisit = !store.get("seen",false);
+  const card = rs ? (()=>{ const l = lessonOf(rs.id); return `<section class="next"><span class="eyebrow">Seguir leyendo · ${blockOf(l.b).title}</span><h2>${l.title}</h2>
+    <div class="meta"><span>Ibais por el ${Math.round(rs.r*100)} %</span></div>
+    <a class="btn primary go" href="#p-${l.id}" data-resume="${Math.round(rs.y)}">Continuar donde lo dejasteis</a>
+    ${nx && nx.id!==l.id ? `<p class="after">Después: <a href="#p-${nx.id}">${nx.title}</a></p>`:""}</section>`; })()
+   : nx ? `<section class="next"><span class="eyebrow">Siguiente píldora${nx.prio==="p1"?" · primero lo imprescindible":""}</span><h2>${nx.title}</h2>
+    <div class="meta"><span class="prio ${nx.prio}">${prioLabel[nx.prio]}</span><span>${nx.min} min</span><span>${blockOf(nx.b).title}</span></div>
+    <a class="btn primary go" href="#p-${nx.id}">${pd?"Continuar":"Empezar"}</a>
+    ${pd?`<div class="stage-prog"><span class="note">De esta etapa lleváis ${pd} de ${plan.length} píldoras</span>${meter(plan)}</div>`:""}</section>`
+   : `<section class="next"><h2>Curso completado</h2><p>Podéis repasar cualquier píldora cuando queráis.</p></section>`;
+  const rest = BLOCKS.filter(b=>!s.blocks.includes(b.id)), total = doneIn(L);
+  return `<header class="${firstVisit?"stack":"vh"}"><h1>Bebé en Camino</h1>${firstVisit?`<p class="lead">Un curso por píldoras de 3 a 7 minutos para los dos. Seguidlo a vuestro ritmo o buscad una duda concreta cuando surja.</p>`:""}</header>
+  ${timeline()}
+  ${card}
   ${quickHelp(s.id)}
-  <div class="stack"><span class="eyebrow">Progreso total</span>${meter(L)}</div>
-  <section class="stack"><h2>El curso, bloque a bloque</h2><div class="blocks">${
-    BLOCKS.map(b=>`<a class="block ${s.blocks[0]===b.id?"rec":""}" href="#b-${b.id}"><span class="num">Bloque ${b.n}${s.blocks[0]===b.id?'<span class="tag">Ahora</span>':""}</span><h3>${b.title}</h3><p>${b.sub}</p>${meter(byBlock(b.id))}</a>`).join("")}</div></section>
+  <section class="stack"><h2>Ahora para vosotros</h2><div class="blocks">${s.blocks.map((id,i)=>blockCard(blockOf(id), i===0?"Empezad aquí":"")).join("")}</div></section>
+  <details class="all"><summary>Todo el curso · ${BLOCKS.length} bloques${total?` · ${total} de ${L.length} hechas`:""}</summary><div class="blocks">${rest.map(b=>blockCard(b,"")).join("")}</div></details>
   <section class="stack"><h2>Vídeos de 1 minuto</h2><div class="vids">${VIDEOS.map(([id,name,t])=>`<a class="vid" href="#p-${id}"><img src="videos/${name}.jpg" alt="" loading="lazy"><span>▶ ${t}</span></a>`).join("")}</div></section>
-  <section class="src"><h3>Fuentes y vídeos</h3><ul>${SOURCES.map(([t,u])=>`<li><a href="${u}" target="_blank" rel="noopener">${t}</a></li>`).join("")}</ul></section>`;
+  <p class="note"><a class="lnk" href="#fuentes">Fuentes y vídeos externos</a></p>`;
+}
+function viewSources(){
+  return `<p class="crumb"><a href="#inicio">Inicio</a> › Fuentes</p><header class="stack"><h1>Fuentes y vídeos</h1><p class="lead">Las guías y webs oficiales en las que se basa el curso. Cada píldora cita además sus propias fuentes al final.</p></header>
+  <ul class="srclist">${SOURCES.map(([t,u])=>`<li><a href="${u}" target="_blank" rel="noopener">${t}</a></li>`).join("")}</ul>`;
 }
 
-const norm = t => t.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g,"");
+/* ---------- Search ---------- */
+const norm = t => t.toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g,"");
+const STOP = new Set("que con por para una uno unos unas los las del como mas pero sus esta este esto estan muy hay tiene tengo hemos han ser sin sobre cuando donde porque desde hasta nos les mis tus qué cómo".split(" ").map(norm));
+const URGENT = new Set(SYMPTOMS.flatMap(g=>g.items.filter(x=>x[2]).map(x=>x[1])));
 let searchIndex = null;
 function buildIndex(){
   const tmp = document.createElement("div");
-  searchIndex = L.map(l=>{ tmp.innerHTML = l.body.replace(/</g," <"); const text = (tmp.textContent||"").replace(/\s+/g," ").trim(); return {l, title:norm(l.title), text, ntext:norm(text)}; });
+  const sym = {}; SYMPTOMS.forEach(g=>g.items.forEach(([t,id])=>{ (sym[id]=sym[id]||[]).push(norm(t)); }));
+  searchIndex = L.map(l=>{ tmp.innerHTML = l.body.replace(/<\/(li|td|th|h3)>/g," · </$1>").replace(/</g," <");
+    const text = (tmp.textContent||"").replace(/\s+/g," ").replace(/(\s*·\s*)+/g," · ").trim();
+    return {l, title:norm(l.title), text, ntext:norm(text), sym:(sym[l.id]||[]).join(" | ")}; });
 }
+function queryWords(q){ return norm(q).split(/[^a-z0-9ñ]+/).filter(w=>(w.length>2 || SYNONYMS[w]) && !STOP.has(w)); }
 function search(q){
   if(!searchIndex) buildIndex();
-  const words = norm(q).split(/[^a-z0-9ñ]+/).filter(w=>w.length>2);
+  const words = queryWords(q);
   if(!words.length) return [];
-  const terms = words.map(w=>[w,...(SYNONYMS[w]||[]).map(norm)]);
+  /* each word: itself, a light stem (caído → caid) and its synonyms, weighted */
+  const terms = words.map(w=>[[w,1], ...(w.length>4?[[w.slice(0,-1),.8]]:[]), ...(SYNONYMS[w]||[]).map(t=>[norm(t),.6])]);
+  const inStage = new Set(curStage().blocks), phrase = norm(q).trim();
+  const need = Math.max(1, Math.ceil(words.length/2));
   return searchIndex.map(e=>{
-    let score = 0, hit = null;
+    let score = 0, matched = 0, hit = null;
     for(const group of terms){
       let g = 0;
-      for(const t of group){
-        if(e.title.includes(t)) g += 6;
-        const i = e.ntext.indexOf(t); if(i>=0){ g += 2 + Math.min(4,e.ntext.split(t).length-2); if(hit===null) hit=[i,t.length]; }
+      for(const [t,wt] of group){
+        let s = 0;
+        /* very short words (rh, uci) only count as whole words */
+        const re = t.length<4 ? new RegExp("(^|[^a-z0-9ñ])"+t+"(?![a-z0-9ñ])","g") : null;
+        const find = x => re ? (re.lastIndex=0, (m=>m?m.index+m[1].length:-1)(re.exec(x))) : x.indexOf(t);
+        const count = x => re ? (x.match(re)||[]).length : x.split(t).length-1;
+        if(find(e.title)>=0) s += 10;
+        if(find(e.sym)>=0) s += 5;
+        const i = find(e.ntext);
+        if(i>=0){ s += 2 + Math.min(8,count(e.ntext)-1); if(hit===null) hit=[i,t.length]; }
+        g = Math.max(g, s*wt);
       }
-      if(!g) return null; score += g;
+      if(g){ matched++; score += g; }
     }
-    return {e, score, hit};
+    if(matched<need) return null;
+    if(words.length>1 && (e.title.includes(phrase) || e.ntext.includes(phrase))) score += 8;
+    if(inStage.has(e.l.b)) score += 3;
+    return {e, score: score + matched*15, hit};
   }).filter(Boolean).sort((a,b)=>b.score-a.score).slice(0,12);
 }
+function situations(q){
+  const words = queryWords(q); if(!words.length) return [];
+  const all = SYMPTOMS.flatMap(g=>g.items).filter(([,id])=>lessonOf(id));
+  return all.map(it=>{ const t = norm(it[0]); const n = words.filter(w=>t.includes(w) || (w.length>4 && t.includes(w.slice(0,-1)))).length; return [it,n]; })
+    .filter(([,n])=>n>=Math.max(1,Math.ceil(words.length/2))).sort((a,b)=>b[1]-a[1]).slice(0,3).map(([it])=>it);
+}
+const symLink = ([t,id,u]) => `<a href="#p-${id}" class="${u?"urgent":""}">${t}</a>`;
 function renderResults(q){
   const box = $("#results"); if(!box) return;
-  const rs = search(q);
-  box.innerHTML = q.trim().length>2 && !rs.length ? `<li><a href="#ayuda">No encontramos nada con esas palabras. Si es urgente, abre SOS.<small>Prueba con otras palabras: "gases", "fiebre", "rompe aguas"…</small></a></li>` :
+  const rs = search(q), sit = q.trim().length>2 ? situations(q) : [];
+  box.innerHTML = q.trim().length>2 && !rs.length ? `<li><a href="#ayuda">No encontramos nada con esas palabras. Si es urgente, abre SOS.<small>Probad con otras palabras: "gases", "fiebre", "rompe aguas"…</small></a></li>` :
+    (sit.length ? `<li class="sitrow"><span class="eyebrow">Situaciones</span><div class="sym">${sit.map(symLink).join("")}</div></li>` : "") +
     rs.map(({e,hit})=>{ let snip = "";
       if(hit){ const a=Math.max(0,hit[0]-50), b=Math.min(e.text.length,hit[0]+hit[1]+70);
         snip = (a?"…":"")+esc(e.text.slice(a,hit[0]))+"<mark>"+esc(e.text.slice(hit[0],hit[0]+hit[1]))+"</mark>"+esc(e.text.slice(hit[0]+hit[1],b))+(b<e.text.length?"…":""); }
-      return `<li><a href="#p-${e.l.id}">${e.l.title}<small>${blockOf(e.l.b).title} · ${snip}</small></a></li>`; }).join("");
+      const u = URGENT.has(e.l.id);
+      return `<li${u?' class="urgent"':""}><a href="#p-${e.l.id}">${u?'<span class="utag">Urgente</span> ':""}${e.l.title}<small>${blockOf(e.l.b).title} · ${snip}</small></a></li>`; }).join("");
 }
 const esc = t => t.replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
-const searchBox = (label) => `<div class="search" role="search"><label class="eyebrow" for="q">${label}</label><input id="q" type="search" autocomplete="off" placeholder="Ej.: gases, fiebre, rompe aguas, puntos…" value="${esc(lastQuery)}"><ul class="results" id="results"></ul></div>`;
+const searchBox = (label) => `<div class="search" role="search"><label class="eyebrow" for="q">${label}</label><input id="q" type="search" autocomplete="off" enterkeyhint="search" placeholder="Ej.: gases, fiebre, rompe aguas, puntos…" value="${esc(lastQuery)}"><ul class="results" id="results"></ul></div>`;
 let lastQuery = "";
 /* Home: a compact entry to the "I have a doubt" path; the full index lives in #buscar */
 function quickHelp(stageId){
   const pregnancy = ["s30","s37","parto"].includes(stageId);
   const groups = pregnancy ? [SYMPTOMS[1]] : [SYMPTOMS[0], SYMPTOMS[2]];
-  const items = groups.flatMap(g=>g.items.slice(0, pregnancy ? 6 : 4)).filter(([, id])=>L.some(l=>l.id===id));
+  const items = groups.flatMap(g=>g.items.filter(([, id])=>lessonOf(id)).slice(0, pregnancy ? 5 : 3));
   return `<section class="quick stack"><h2>¿Tenéis una duda ahora?</h2>${searchBox("Buscad por palabra")}
-  <div class="sym">${items.map(([t,id,u])=>`<a href="#p-${id}" class="${u?"urgent":""}">${t}</a>`).join("")}</div>
+  <div class="sym">${items.map(symLink).join("")}</div>
   <a class="btn more" href="#buscar">Ver todas las situaciones</a></section>`;
 }
 function symptomIndex(){
   return `<section class="symptoms"><h2>¿Qué le pasa?</h2>${SYMPTOMS.map(g=>`<div class="sym-group"><h3>${g.title}</h3><div class="sym">${
-    g.items.filter(([, id])=>L.some(l=>l.id===id)).map(([t,id,u])=>`<a href="#p-${id}" class="${u?"urgent":""}">${t}</a>`).join("")}</div></div>`).join("")}</section>`;
+    g.items.filter(([, id])=>lessonOf(id)).map(symLink).join("")}</div></div>`).join("")}</section>`;
 }
 function viewSearch(){
   return `<p class="crumb"><a href="#inicio">Inicio</a> › Buscar</p>${searchBox("Buscar en el curso")}${symptomIndex()}`;
 }
+const PHONE_SVG = `<svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path d="M6.6 10.8a15.1 15.1 0 0 0 6.6 6.6l2.2-2.2a1 1 0 0 1 1-.25 11.4 11.4 0 0 0 3.6.57 1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17 17 0 0 1 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1c0 1.25.2 2.45.57 3.57a1 1 0 0 1-.25 1z" fill="currentColor"/></svg>`;
 function viewHelp(){
-  const row = (id,t,sub,u) => L.some(l=>l.id===id) ? `<a class="row ${u?"urgent":""}" href="#p-${id}"><strong>${t}</strong><small>${sub}</small></a>` : "";
-  return `<p class="crumb"><a href="#inicio">Inicio</a> › SOS</p>
-  <header class="stack"><h1>¿Qué está pasando?</h1><p class="lead">Si alguien no respira o no responde, llamad al 112 ya. Para todo lo demás, elegid la situación.</p></header>
-  <div class="calls"><a href="tel:112"><span>Emergencias</span><b>112</b></a><a class="soft" href="tel:+34915290122"><span>Urgencias maternidad Gregorio Marañón</span><b>91 529 01 22</b></a><a class="soft" href="tel:+34915290108"><span>Urgencias infantiles Gregorio Marañón</span><b>91 529 01 08</b></a><a class="soft" href="tel:024"><span>Atención a la conducta suicida</span><b>024</b></a></div>
-  <section class="help"><h2>El bebé</h2>${row("rcp-bebe","No responde o no respira","RCP básica del bebé",1)}${row("atragantamiento","Se ha atragantado","Golpes en la espalda y compresiones",1)}${row("fiebre","Fiebre o le veo mal","Cuándo ir a urgencias",1)}${row("caidas-golpes","Se ha caído o se ha dado un golpe","Qué vigilar y cuándo ir",1)}${row("mocos","Le cuesta respirar","Señales de bronquiolitis")}${row("a-quien-llamar","No sé a quién llamar","112, urgencias, pediatra o teléfono")}</section>
-  <section class="help"><h2>Embarazo y parto</h2>${row("urgencias","Se mueve menos, sangra o pierde líquido","Señales para ir a urgencias",1)}${row("movimientos","Se mueve menos","30 min de lado; si sigue igual, a urgencias",1)}${row("parto-rapido","Va muy rápido o no llegamos","El 112 y qué hacer hasta que llegue",1)}${row("cuando-ir","¿Salimos ya?","Cuándo salir hacia el hospital")}${row("bolsa-rota","Ha roto aguas","Color, hora y olor")}</section>
-  <section class="help"><h2>Ella después del parto</h2>${row("alarma-posparto","Sangra mucho, fiebre, dolor en el pecho o en una pierna","Señales de alarma en el posparto",1)}${row("salud-mental","Tristeza, ansiedad o pensamientos que asustan","Baby blues y depresión posparto")}</section>
+  const row = (id,t,sub,u) => lessonOf(id) ? `<a class="row ${u?"urgent":""}" href="#p-${id}">${u?'<span class="utag">Urgente</span>':""}<strong>${t}</strong><small>${sub}</small></a>` : "";
+  const baby = `<section class="help"><h2>El bebé</h2>${row("rcp-bebe","No responde o no respira","RCP básica del bebé",1)}${row("atragantamiento","Se ha atragantado y no puede toser, llorar ni respirar","Golpes en la espalda y compresiones",1)}${row("atraganta-leche","Se atraganta con la leche, pero tose y se recupera","Qué hacer en ese momento y cómo frenar el chorro")}${row("fiebre","Fiebre o le veo mal","Cuándo ir a urgencias",1)}${row("caidas-golpes","Se ha caído o se ha dado un golpe","Qué vigilar y cuándo ir",1)}${row("quemaduras","Se ha quemado","Agua del grifo 20 minutos y cuándo ir",1)}${row("mocos","Le cuesta respirar","Señales de bronquiolitis")}${row("a-quien-llamar","No sé a quién llamar","112, urgencias, pediatra o teléfono")}</section>`;
+  const preg = `<section class="help"><h2>Embarazo y parto</h2>${row("movimientos","Se mueve menos","30 min de lado; si sigue igual, a urgencias",1)}${row("urgencias","Sangra, pierde líquido u otra señal de alarma","Señales para ir a urgencias",1)}${row("parto-rapido","Va muy rápido o no llegamos","El 112 y qué hacer hasta que llegue",1)}${row("cuando-ir","¿Salimos ya?","Cuándo salir hacia el hospital")}${row("bolsa-rota","Ha roto aguas","Color, hora y olor")}</section>`;
+  const her = `<section class="help"><h2>Ella después del parto</h2>${row("alarma-posparto","Sangra mucho, fiebre, dolor en el pecho o en una pierna","Señales de alarma en el posparto",1)}${row("salud-mental","Tristeza, ansiedad o pensamientos que asustan","Baby blues y depresión posparto")}</section>`;
+  const pregnancy = ["s30","s37","parto"].includes(stage);
+  return `<header class="stack"><h1>¿Qué está pasando?</h1><p class="lead strong">Si alguien no respira o no responde, llamad al 112 ya. Para todo lo demás, elegid la situación.</p></header>
+  <a class="call112" href="tel:112">${PHONE_SVG}<span><b>Llamar al 112</b><small>Emergencias, 24 horas</small></span></a>
+  <div class="calls"><a href="tel:+34915290122"><span>Urgencias maternidad Gregorio Marañón</span><b>91 529 01 22</b></a><a href="tel:+34915290108"><span>Urgencias infantiles Gregorio Marañón</span><b>91 529 01 08</b></a><a href="tel:+34915620420"><span>Información Toxicológica (24 h)</span><b>91 562 04 20</b></a><a href="tel:024"><span>Atención a la conducta suicida</span><b>024</b></a></div>
+  ${pregnancy ? preg+baby+her : baby+her+preg}
   <p class="note">Confirmad los teléfonos del hospital en vuestra próxima consulta.</p>`;
 }
 
@@ -4854,22 +5016,32 @@ function viewBlock(id){
   const b = blockOf(id); if(!b) return viewHome();
   const ls = byBlock(id);
   return `<p class="crumb"><a href="#inicio">Inicio</a> › Bloque ${b.n}</p>
-  <header class="stack"><span class="eyebrow">Bloque ${b.n}</span><h1>${b.title}</h1><p class="lead">${b.sub}</p>${meter(ls)}</header>
-  <ul class="lessons">${ls.map(l=>`<li class="${progress[l.id]?"done":""}"><a href="#p-${l.id}"><span class="dot" aria-hidden="true">${progress[l.id]?"✓":""}</span><span class="t">${l.title}<span class="m"><span class="prio ${l.prio}">${prioLabel[l.prio]}</span> ${l.min} min${l.body.includes("<video")?" · ▶ vídeo":""}</span></span></a></li>`).join("")}</ul>`;
+  <header class="stack"><span class="eyebrow">Bloque ${b.n}</span><h1>${b.title}</h1><p class="lead">${b.sub}</p>${doneIn(ls)?meter(ls):""}</header>
+  <ul class="lessons">${ls.map(l=>`<li class="${progress[l.id]?"done":""}"><a href="#p-${l.id}"><span class="dot" aria-hidden="true">${progress[l.id]?"✓":""}</span><span class="t">${l.title}<span class="m"><span class="prio ${l.prio}">${prioLabel[l.prio]}</span> ${l.min} min${l.body.includes("<video")?" · ▶ vídeo":""}${progress[l.id]?'<span class="vh"> · aprendida</span>':""}</span></span></a></li>`).join("")}</ul>`;
 }
 
+/* Where a cross-link from another lesson came from, to offer the way back */
+let cameFrom = null;
 function viewLesson(id){
-  const l = L.find(x=>x.id===id); if(!l) return viewHome();
-  const b = blockOf(l.b), i = L.indexOf(l), prev = L[i-1], next = L[i+1];
+  const l = lessonOf(id); if(!l) return viewHome();
+  const b = blockOf(l.b), i = SEQ.indexOf(l), prev = SEQ[i-1], next = SEQ[i+1];
+  const rec = nextLesson(l.id);
+  const back = cameFrom && cameFrom.to===l.id && lessonOf(cameFrom.id) ? lessonOf(cameFrom.id) : null;
+  const backLink = back ? `<a class="backref" href="#p-${back.id}" data-back="1">← Volver a «${back.title}»</a>` : "";
   const body = l.sens
     ? `<div class="sens" id="sens-${l.id}"><div class="veil"><p><strong>Contenido delicado.</strong> ${l.sens}</p><button class="btn" type="button" data-reveal="${l.id}">Mostrar</button></div><div class="content body">${l.body}</div></div>`
     : `<div class="body">${l.body}</div>`;
   return `<p class="crumb"><a href="#inicio">Inicio</a> › <a href="#b-${b.id}">Bloque ${b.n} · ${b.title}</a></p>
-  <header class="stack"><h1>${l.title}</h1><div class="meta"><span class="prio ${l.prio}">${prioLabel[l.prio]}</span><span>${l.min} min de lectura</span></div></header>
+  ${backLink}
+  <header class="stack"><h1>${l.title}</h1><div class="meta"><span class="prio ${l.prio}">${prioLabel[l.prio]}</span><span>${l.min} min de lectura</span>${progress[l.id]?'<span class="done-tag">✓ Aprendida</span>':""}</div></header>
+  <div id="tocSlot"></div>
   ${body}
   ${QUIZ[l.id] ? viewQuiz(l.id) : ""}
+  <div id="srcSlot"></div>
+  ${backLink}
   <div class="pager">
     <button class="btn ${progress[l.id]?"doneb":"primary"}" type="button" id="markBtn" data-id="${l.id}">${progress[l.id]?"✓ Aprendida":"Marcar como aprendida"}</button>
+    ${rec && rec.id!==next?.id ? `<a class="nav rec" href="#p-${rec.id}"><small>Siguiente recomendada para vuestra etapa${rec.prio==="p1"?" · imprescindible":""} →</small><span>${rec.title}</span></a>`:""}
     ${prev?`<a class="nav" href="#p-${prev.id}"><small>← Anterior</small><span>${prev.title}</span></a>`:""}
     ${next?`<a class="nav next" href="#p-${next.id}"><small>Siguiente →</small><span>${next.title}</span></a>`:""}
   </div>`;
@@ -4878,7 +5050,7 @@ function viewLesson(id){
 function viewQuiz(id){
   const [q,opts] = QUIZ[id];
   return `<section class="quiz" id="quiz"><span class="eyebrow">Repaso</span><h3>${q}</h3><div class="opts">${
-    opts.map((o,i)=>`<button class="opt" type="button" data-quiz="${id}" data-i="${i}">${o}</button>`).join("")}</div><p class="qfb" id="qfb" aria-live="polite"></p></section>`;
+    opts.map((o,i)=>`<button class="opt" type="button" data-quiz="${id}" data-i="${i}">${o}</button>`).join("")}</div><div class="qfb" id="qfb" aria-live="polite"></div></section>`;
 }
 
 function renderChecklist(){
@@ -4888,6 +5060,81 @@ function renderChecklist(){
     return `<details open><summary>${g.title}<span class="count">${done}/${g.items.length}</span></summary><ul>${
       g.items.map(([id,t])=>`<li class="${checked[id]?"done":""}"><label for="ck-${id}"><input type="checkbox" id="ck-${id}" data-ck="${id}" ${checked[id]?"checked":""}><span>${t}</span></label></li>`).join("")}</ul></details>`;
   }).join("");
+}
+
+/* ---------- Lesson enhancements (run after each lesson render) ---------- */
+/* Phone numbers in lessons become call links */
+const PHONE_RE = /(112|024|016|91 \d{3} \d{2} \d{2})(?!\d)/g;
+function telHref(n){ const d = n.replace(/\D/g,""); return "tel:" + (d.length===9 ? "+34"+d : d); }
+function textNodes(root, skip){
+  const out = [], w = document.createTreeWalker(root, NodeFilter.SHOW_TEXT, {acceptNode: n => n.parentElement.closest(skip) ? NodeFilter.FILTER_REJECT : NodeFilter.FILTER_ACCEPT});
+  while(w.nextNode()) out.push(w.currentNode);
+  return out;
+}
+function linkPhones(root){
+  for(const n of textNodes(root, "a,button,svg,title,script,style,.src,input,textarea")){
+    const t = n.nodeValue; PHONE_RE.lastIndex = 0; if(!PHONE_RE.test(t)) continue;
+    const frag = document.createDocumentFragment(); let last = 0; PHONE_RE.lastIndex = 0; let m;
+    while((m = PHONE_RE.exec(t))){
+      const before = t.slice(0, m.index);
+      if(/\d\s?$/.test(before) || (m[1].length===3 && /\d[ .]$/.test(before))) continue; /* part of a longer number */
+      frag.append(t.slice(last, m.index));
+      const a = document.createElement("a"); a.className = "tel"; a.href = telHref(m[1]); a.textContent = m[1];
+      a.setAttribute("aria-label", "Llamar al " + m[1]); frag.append(a); last = m.index + m[1].length;
+    }
+    if(!last) continue;
+    frag.append(t.slice(last)); n.replaceWith(frag);
+  }
+}
+/* Mentions of other lessons ("la píldora "Sueño seguro"", "la píldora de fiebre") become links */
+const TITLE_IDX = L.map(l=>[norm(l.title), l.id]);
+function lessonByTitle(t){
+  const n = norm(t.trim()); if(n.length<5) return null;
+  const exact = TITLE_IDX.find(([x])=>x===n); if(exact) return exact[1];
+  const pre = TITLE_IDX.filter(([x])=>x.startsWith(n)); return n.length>=12 && pre.length===1 ? pre[0][1] : null;
+}
+const XREF_KEYS = [["señales de alarma en el posparto","alarma-posparto"],["alarma en el posparto","alarma-posparto"],["fiebre y señales de alarma","fiebre"],["rotura de bolsa y tapón","bolsa-rota"],["revisiones y vacunas","revisiones"],["recuperación de la cesárea","cesarea-recuperacion"],["ansiedad y pensamientos intrusivos","ansiedad-intrusivos"],["baby blues y depresión posparto","salud-mental"],["suelo pélvico, sexualidad y anticoncepción","suelo-pelvico"],["regurgitaciones y vómitos","regurgitaciones"],["sacaleches y conservación","leche-materna"],["tu propia salud mental","tu-salud"],["la silla del coche","silla-coche-bebe"],["la primera semana","primera-semana"],["caídas y golpes","caidas-golpes"],["cómo vestirle","vestir"],["sueño seguro","sueno"],["suelo pélvico","suelo-pelvico"],["salud mental","salud-mental"],["baby blues","salud-mental"],["atragantamiento","atragantamiento"],["alimentación","alimentacion"],["respiración","respiracion"],["revisiones","revisiones"],["ictericia","ictericia"],["del cambio de pañal","panal"],["del registro","registro"],["del biberón","biberon-formula"],["rcp del bebé","rcp-bebe"],["rcp","rcp-bebe"],["trucos","trucos-contracciones"],["fiebre","fiebre"],["gases","gases"]];
+function xrefA(id, text){ const a = document.createElement("a"); a.className = "xref"; a.href = "#p-"+id; a.textContent = text; return a; }
+function linkLessons(root, selfId){
+  const QUOTED = /"([^"]{5,110})"|«([^»]{5,110})»|“([^”]{5,110})”/g;
+  const PLAIN = /(p[íi]ldoras? (?:de |sobre )?)((?:la |el |los |las )?[a-záéíóúñ ,]+)/gi;
+  for(const n of textNodes(root, "a,button,svg,title,script,style,.src,h1,h2,figcaption")){
+    const t = n.nodeValue; const parts = []; let last = 0, m;
+    QUOTED.lastIndex = 0;
+    while((m = QUOTED.exec(t))){ const id = lessonByTitle(m[1]||m[2]||m[3]); if(id && id!==selfId){ parts.push([m.index, m.index+m[0].length, id]); } }
+    PLAIN.lastIndex = 0;
+    while((m = PLAIN.exec(t))){
+      let pos = m.index + m[1].length, rest = t.slice(pos);
+      for(let k=0;k<2;k++){
+        const low = rest.toLowerCase(); const key = XREF_KEYS.find(([w])=>low.startsWith(w));
+        if(!key) break;
+        if(key[1]!==selfId && !parts.some(([a,b])=>pos<b && pos+key[0].length>a)) parts.push([pos, pos+key[0].length, key[1]]);
+        const j = low.slice(key[0].length).match(/^ y de /); if(!j) break;
+        pos += key[0].length + j[0].length; rest = t.slice(pos);
+      }
+    }
+    if(!parts.length) continue;
+    parts.sort((a,b)=>a[0]-b[0]);
+    const frag = document.createDocumentFragment();
+    for(const [a,b,id] of parts){ if(a<last) continue; frag.append(t.slice(last,a)); frag.append(xrefA(id, t.slice(a,b))); last = b; }
+    frag.append(t.slice(last)); n.replaceWith(frag);
+  }
+  root.querySelectorAll('a[href^="#p-"]:not(.xref)').forEach(a=>a.classList.add("xref"));
+}
+/* Outline of long lessons, from their headings */
+function buildToc(view, id){
+  const body = view.querySelector(".body"); const slot = $("#tocSlot"); if(!body || !slot) return;
+  const hs = [...body.querySelectorAll("h3")].filter(h=>!h.closest(".dos,.now,figure,.quiz"));
+  hs.forEach((h,i)=>{ h.id = "s"+i; });
+  if(hs.length<4) return;
+  slot.outerHTML = `<details class="toc"><summary>En esta píldora · ${hs.length} apartados</summary><ol>${hs.map((h,i)=>`<li${h.closest(".alarm")?' class="urgent"':""}><a href="#p-${id}" data-jump="s${i}">${h.textContent.replace(/^\d+/,"").trim()}</a></li>`).join("")}</ol></details>`;
+}
+/* Sources go after the quiz, folded */
+function foldSources(view){
+  const slot = $("#srcSlot"); const src = [...view.querySelectorAll(".body > .src")].pop();
+  if(!slot || !src) return;
+  const d = document.createElement("details"); d.className = "srcbox"; d.innerHTML = "<summary>Fuentes de esta píldora</summary>";
+  src.textContent = src.textContent.replace(/^\s*Fuentes:\s*/,""); d.append(src); slot.replaceWith(d);
 }
 
 /* Breathing pacer: 6 cycles of 4 s in, 6 s out */
@@ -4909,45 +5156,99 @@ function toggleBreath(){
   },1000);
 }
 
-let lastRoute = null;
+/* ---------- Router, scroll memory and reading position ---------- */
+try{ history.scrollRestoration = "manual"; }catch(e){}
+let lastRoute = null, linkNav = false, pendingY = null;
+const scrollMem = {};
+const route = () => location.hash.slice(1) || "inicio";
 function render(){
   stopBreath();
-  const h = location.hash.slice(1) || "inicio";
+  const h = route();
   const v = $("#view");
-  v.innerHTML = h.startsWith("p-") ? viewLesson(h.slice(2)) : h.startsWith("b-") ? viewBlock(h.slice(2)) : h==="buscar" ? viewSearch() : h==="ayuda" ? viewHelp() : viewHome();
+  const lessonId = h.startsWith("p-") ? h.slice(2) : null;
+  v.innerHTML = lessonId ? viewLesson(lessonId) : h.startsWith("b-") ? viewBlock(h.slice(2)) : h==="buscar" ? viewSearch() : h==="ayuda" ? viewHelp() : h==="fuentes" ? viewSources() : viewHome();
   if(lastQuery) renderResults(lastQuery);
   renderChecklist();
   v.querySelectorAll(".tbl table").forEach(t=>{
     const hs=[...t.querySelectorAll("thead th")].map(th=>th.textContent.trim());
     t.querySelectorAll("tbody tr").forEach(tr=>[...tr.children].forEach((td,i)=>{ if(i>0 && hs[i]) td.dataset.label=hs[i]; }));
   });
-  if(h!==lastRoute){ window.scrollTo(0,0); lastRoute=h; if(h==="buscar") $("#q")?.focus(); }
+  if(lessonId && lessonOf(lessonId)){ foldSources(v); buildToc(v, lessonId); linkLessons(v.querySelector(".body"), lessonId); linkPhones(v); }
+  if(h==="inicio" || h==="") store.set("seen", true);
+  $("#readbar").hidden = !lessonId;
+  if(h!==lastRoute){
+    const y = pendingY!==null ? pendingY : linkNav ? 0 : (scrollMem[h]||0);
+    pendingY = null; linkNav = false; lastRoute = h;
+    window.scrollTo({top:y, left:0, behavior:"instant"});
+    const l = lessonId && lessonOf(lessonId);
+    document.title = l ? l.title + " · Bebé en Camino" : h==="ayuda" ? "SOS · Bebé en Camino" : h==="buscar" ? "Buscar · Bebé en Camino" : "Bebé en Camino";
+    const h1 = v.querySelector("h1");
+    if(h==="buscar") $("#q")?.focus(); else if(lastRoute && h1){ h1.tabIndex = -1; h1.focus({preventScroll:true}); }
+    onScroll();
+  }
 }
 window.addEventListener("hashchange",render);
+let ticking = false, lastSave = 0;
+function onScroll(){
+  const h = route(), y = window.scrollY;
+  scrollMem[h] = y;
+  if(!h.startsWith("p-")) return;
+  const max = Math.max(1, document.documentElement.scrollHeight - innerHeight), r = Math.min(1, y/max);
+  const bar = $("#readbar i"); if(bar) bar.style.width = (r*100).toFixed(1)+"%";
+  const now = Date.now();
+  if(r>0.05 && now-lastSave>800){ lastSave = now; store.set("last", {id:h.slice(2), y, r}); }
+}
+window.addEventListener("scroll", ()=>{ if(!ticking){ ticking = true; requestAnimationFrame(()=>{ ticking = false; onScroll(); }); } }, {passive:true});
 
 /* ---------- Events ---------- */
+document.addEventListener("click", e=>{
+  const a = e.target.closest('a[href^="#"]');
+  if(!a) return;
+  linkNav = true;
+  if(a.dataset.resume) pendingY = +a.dataset.resume;
+  if(a.classList.contains("xref") && route().startsWith("p-")) cameFrom = {id: route().slice(2), to: a.getAttribute("href").slice(3), y: window.scrollY};
+  if(a.dataset.back && cameFrom){ pendingY = cameFrom.y; cameFrom = null; }
+}, true);
 document.addEventListener("click", async e=>{
   const chip = e.target.closest("[data-stage]");
-  if(chip){ stage=chip.dataset.stage; store.set("stage",stage); render(); return; }
+  if(chip){
+    stage=chip.dataset.stage; store.set("stage",stage); render();
+    const sel = document.querySelector(`[data-stage="${stage}"]`); sel?.focus({preventScroll:true});
+    return;
+  }
+  const jump = e.target.closest("[data-jump]");
+  if(jump){ e.preventDefault(); linkNav = false; const t = document.getElementById(jump.dataset.jump); if(t){ t.scrollIntoView({block:"start"}); t.setAttribute("tabindex","-1"); t.focus({preventScroll:true}); } return; }
   const rv = e.target.closest("[data-reveal]");
   if(rv){ $("#sens-"+rv.dataset.reveal).classList.add("revealed"); return; }
   if(e.target.closest("[data-breath]")){ toggleBreath(); return; }
+  if(e.target.closest("[data-qreveal]")){
+    const id = e.target.closest("[data-qreveal]").dataset.qreveal, [,,ok,why] = QUIZ[id];
+    document.querySelectorAll("[data-quiz]").forEach(b=>{ b.disabled=true; if(+b.dataset.i===ok) markOpt(b,"right"); });
+    $("#qfb").innerHTML = "<strong>La respuesta es la marcada.</strong> " + why; return;
+  }
   const op = e.target.closest("[data-quiz]");
   if(op){
     const id = op.dataset.quiz, i = +op.dataset.i, [,,ok,why] = QUIZ[id];
-    document.querySelectorAll("[data-quiz]").forEach(b=>{ b.disabled=true; if(+b.dataset.i===ok) b.classList.add("right"); });
-    if(i!==ok) op.classList.add("wrong");
-    $("#qfb").innerHTML = (i===ok ? "<strong>Correcto.</strong> " : "<strong>No exactamente.</strong> ") + why + (i===ok && !progress[id] ? " La marcamos como aprendida." : "");
-    if(i===ok && !progress[id]){
-      progress = {...progress,[id]:true}; saveProgress();
-      const mb = $("#markBtn"); mb.className="btn doneb"; mb.textContent="✓ Aprendida";
+    if(i===ok){
+      document.querySelectorAll("[data-quiz]").forEach(b=>{ b.disabled=true; });
+      markOpt(op,"right");
+      $("#qfb").innerHTML = "<strong>Correcto.</strong> " + why + (!progress[id] ? " La marcamos como aprendida." : "");
+      if(!progress[id]){ progress = {...progress,[id]:true}; saveProgress(); const mb = $("#markBtn"); mb.className="btn doneb"; mb.textContent="✓ Aprendida"; }
+    } else {
+      op.disabled = true; markOpt(op,"wrong");
+      const left = [...document.querySelectorAll("[data-quiz]")].filter(b=>!b.disabled).length;
+      $("#qfb").innerHTML = left>1 ? `<strong>No exactamente.</strong> Probad otra vez. <button class="lnkbtn" type="button" data-qreveal="${id}">Ver la respuesta</button>` : "";
+      if(left<=1){ document.querySelectorAll("[data-quiz]").forEach(b=>{ b.disabled=true; if(+b.dataset.i===ok) markOpt(b,"right"); }); $("#qfb").innerHTML = "<strong>La respuesta es la marcada.</strong> " + why; }
     }
+    $("#qfb").scrollIntoView({block:"nearest"});
     return;
   }
   const mk = e.target.closest("#markBtn");
   if(mk){ const id=mk.dataset.id; progress={...progress,[id]:!progress[id]}; render(); saveProgress(); }
 });
+function markOpt(b, kind){ if(b.classList.contains(kind)) return; b.classList.add(kind); b.insertAdjacentHTML("afterbegin", kind==="right" ? '<span class="mk">✓ Correcta · </span>' : '<span class="mk">✗ Tu respuesta · </span>'); }
 document.addEventListener("input", e=>{ if(e.target.id==="q"){ lastQuery=e.target.value; renderResults(lastQuery); } });
+document.addEventListener("focusin", e=>{ if(e.target.id==="q" && route()!=="buscar" && matchMedia("(max-width:600px)").matches) setTimeout(()=>e.target.closest(".search").scrollIntoView({block:"start"}), 250); });
 document.addEventListener("change", async e=>{
   const id = e.target.dataset?.ck; if(!id) return;
   checked = {...checked,[id]:e.target.checked}; renderChecklist();
